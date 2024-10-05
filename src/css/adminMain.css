@@ -1,0 +1,170 @@
+/* 여백 초기화 */
+#contents body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, 
+input, fieldset, legend, p, select, table, th, td, tr,
+textarea, button, form {margin: 0; padding: 0;}
+
+/* clearfix */
+#contents .clearfix{*zoom:1;}
+#contents .clearfix:before, .clearfix:after {display: block; content: ""; line-height: 0;}
+#contents .clearfix:after {clear: both;}
+
+/* 기본 스타일 */
+#contents ul, ol {list-style-type: none; }
+#contents a:link {text-decoration: none; color: #000000;}
+#contents a:visited {text-decoration: none; color: #000000; }
+#contents a:active {text-decoration: none; color: #000000; }
+#contents a:hover {text-decoration: none; color: #000000;}
+
+/* #admin_main 레이아웃 */
+#admin_main {
+    margin: 20px auto;
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px;
+    margin-bottom: 100px;
+}
+
+/* aside 메뉴 */
+#admin_main #asides {
+    float: left;
+    width: 17%;
+    margin-left: 3%;
+}
+
+#admin_main #asides h2 {
+    font-size: 20px;
+    font-weight: bold;
+    padding-bottom: 20px;
+}
+
+#admin_main #asides #sub_list ul>li {
+    padding-bottom: 10px;
+    font-size: 15px;
+}
+
+#admin_main #asides #sub_list ul li a {
+    color: #aeaeae;
+}
+
+#admin_main #asides #sub_list ul li a:hover {
+    font-weight: bold;
+    color: #1594EB;
+}
+
+/* 스토어 */
+#admin_main .hjy-section {
+    grid-column: 1 / -1;
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-height: 380px; /* 3개의 카드만 보이도록 높이 제한 */
+    overflow: hidden; /* 넘치는 부분 숨김 */
+}
+
+#admin_main .hjy-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/* Grid 레이아웃 사용하여 상품 카드 정렬 */
+#admin_main .hjy-brief {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(3, 1fr); /* 3개의 컬럼 고정 */
+    grid-auto-rows: auto; /* 자동 높이 설정 */
+}
+
+#admin_main .hjy-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+    transition: box-shadow 0.3s ease;
+}
+
+#admin_main .hjy-card:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+#admin_main .hjy-card img {
+    max-width: 250px;
+    max-height: 600px;
+    height: auto;
+    border-radius: 10px;
+}
+
+#admin_main .hjy-details {
+    margin-top: 10px;
+}
+
+#admin_main .hjy-details h4 {
+    margin: 0;
+    font-size: 14px;
+}
+
+#admin_main .hjy-details p {
+    margin: 5px 0;
+    font-size: 12px;
+    color: #666;
+}
+
+#admin_main .hjy-price {
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+#admin_main .hjy-purchase-type {
+    color: green;
+}
+
+/* 반응형 조정 */
+#admin_main @media (max-width: 768px) {
+    .favorite-products {
+        grid-template-columns: repeat(2, 1fr); /* 화면이 좁아지면 2개의 컬럼 */
+    }
+}
+
+#admin_main .hjy-list-section {
+    margin-top: 20px;
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    max-height: 380px; /* Same as .section */
+    overflow: hidden; /* Consistent with .section */
+}
+
+/* Ensure .list-header aligns with .header */
+#admin_main .hjy-list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px; /* Make this consistent with .header */
+}
+
+#admin_main .hjy-list-status {
+	background-color: #f7f7f7;
+	padding: 10px;
+	border-radius: 5px;
+	color: #555;
+}
+
+#admin_main .hjy-list-status p {
+	margin: 0;
+	font-size: 14px;
+}
+
+#admin_main .hjy-grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; /* Creates two equal columns */
+    gap: 20px; /* Gap between the two sections */
+}

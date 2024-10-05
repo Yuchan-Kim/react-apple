@@ -1,0 +1,234 @@
+/* 여백 초기화 */
+#contents body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, 
+input, fieldset, legend, p, select, table, th, td, tr,
+textarea, button, form {margin: 0; padding: 0;}
+
+/* clearfix */
+#contents .clearfix{*zoom:1;}
+#contents .clearfix:before, .clearfix:after {display: block; content: ""; line-height: 0;}
+#contents .clearfix:after {clear: both;}
+
+/* 기본 스타일 */
+#contents ul, ol {list-style-type: none; }
+#contents a:link {text-decoration: none; color: #000000;}
+#contents a:visited {text-decoration: none; color: #000000; }
+#contents a:active {text-decoration: none; color: #000000; }
+#contents a:hover {text-decoration: none; color: #000000;}
+/* #community 레이아웃 수정 */
+#community {
+    margin: 0px auto;
+    width: 90%; /* 100% 대신 90%로 줄여서 양쪽에 여백 확보 */
+    max-width: 1150px;
+    padding: 20px;
+    margin-bottom: 100px;
+    box-sizing: border-box; /* 패딩을 포함한 전체 너비 계산 */
+}
+
+/* 카테고리 스타일 */
+#community .hjy-tip-catrgory {
+    width: 100%;
+    margin-bottom: 30px;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+#community .hjy-tip-catrgory a{
+    color: #333333;
+}
+
+/* 팁 스타일 */
+#community .hjy-tip {
+    width: 100%;
+    margin-bottom: 30px;
+    padding: 15px;
+    box-sizing: border-box;
+    border: 1px solid #d3d3d3;
+    border-radius: 10px;
+    background-color: #FBFBFD;
+    font-size: 15px;
+}
+
+#community .hjy-tip p{
+    padding: 5px;
+}
+
+#community .hjy-tip1 {
+    color: #242426;
+    font-weight: bold;
+}
+
+#community .hjy-tip2, .hjy-tip3 {
+    color: #47474A;
+}
+
+/* 링크 스타일 */
+#community .hjy-tip a {
+    color: #0071e3;
+}
+
+#community .hjy-tip a:hover {
+    text-decoration: underline;
+}
+
+#community .hjy-img img {
+    float: left;
+    width: 20%;
+    margin-right: 60px;
+}
+
+#community .hjy-input-container {
+    width: 100%;
+    position: relative;
+}
+
+#community .hjy-tip-text {
+    float: left;
+    margin-top: 50px;
+    font-size: 29px;
+    color: #333333;
+    font-weight: bold;
+}
+
+/* 검색창 아이콘 */
+#community .hjy-input-container button {
+    position: absolute;
+    top: 160px;
+    margin-left: 15px;
+    border: none;
+    background-color: #ffffff;
+    cursor: pointer;
+}
+
+#community .hjy-input-container button {
+    font-size: 25px;
+    color: #d3d3d3;
+}
+
+/* 키워드 입력창 */
+#community #tip-keyword input {
+    font-size: 22px;
+    width: 65%;
+    height: 48px;
+    margin-top: 60px;
+    padding-left: 59px;
+    border: 1px solid #C0C0C0;
+    border-radius: 5px;
+}
+  
+#community #tip-keyword input {
+    outline: none;
+    border: 1px solid #d3d3d3;
+    color: #d3d3d3;
+}
+
+#community #tip-keyword input:focus {
+    border: 1px solid #d3d3d3; 
+    box-shadow: 0 0 8px #d3d3d3; 
+    transition: box-shadow 0.3s ease, border 0.3s ease; 
+    border-radius: 8px; 
+}
+
+#community #action-left {
+    float: left;
+    margin-top: 30px;
+}
+
+#community #action-left a {
+    float: left;
+    padding: 10px 17px 10px 17px;
+    font-size: 15px;
+    border: none;
+    border-radius: 20px;
+    background-color: #0171E3;
+    color: #ffffff;
+}
+
+/* 필터 아이콘 */
+#community #filter img {
+    width: 17px;
+    padding-top: 40px;
+    padding-right: 5px;
+}
+
+#community #filter span {
+    font-size: 16px;
+}
+
+#community #action-right {
+    float: right;
+    padding-top: 40px;
+    color: #b5b5b5;
+}
+
+#community #action-right span {
+    font-size: 15px;
+}
+
+#community #action-right a {
+    margin-left: 20px;
+    padding: 0px 5px 4px 7px;
+    border: 1px solid #d3d3d3;
+    border-radius: 3px;
+    color: #0071e3;
+}
+
+#community #community-post {
+    margin-top: 50px;
+}
+
+/* 프로필 */
+#community #community-post .profile {
+    float: left;
+}
+
+/* 프로필 사진 */
+#community .hjy-profile {
+    margin-right: 30px;
+}
+
+#community .hjy-profile img {
+    width: 50px;
+}
+
+/* 커뮤니티 내용 박스 */
+#community #community-post #content {
+    float: left;
+    margin-top: 5px;
+    width: 80%;
+    color: #6F6F73;
+}
+
+/* 커뮤니티 제목 */
+#community #community-post .title {
+    float: left;
+    width: 80%;
+    color: #242426;
+    font-weight: bold;
+    
+}
+
+/* 마지막답글, 작성자 */
+#community .hjy-time {
+    float: left;
+    margin-right: 25px;
+}
+
+/* 댓글 */
+#community .hjy-comment {
+    float: left;
+    margin-right: 25px;
+}
+
+/* 조회수 */
+#community .hjy-hit {
+    float: left;
+    margin-right: 25px;
+}
+
+/* 질문자 */
+#community .hjy-question {
+    float: left;
+    margin-right: 25px;
+}

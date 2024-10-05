@@ -1,0 +1,105 @@
+/* 여백 초기화 */
+#contents body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, 
+input, fieldset, legend, p, select, table, th, td, tr,
+textarea, button, form {margin: 0; padding: 0;}
+
+/* clearfix */
+#contents .clearfix{*zoom:1;}
+#contents .clearfix:before, .clearfix:after {display: block; content: ""; line-height: 0;}
+#contents .clearfix:after {clear: both;}
+
+/* 기본 스타일 */
+#contents ul, ol {list-style-type: none; }
+#contents a:link {text-decoration: none; color: #000000;}
+#contents a:visited {text-decoration: none; color: #000000; }
+#contents a:active {text-decoration: none; color: #000000; }
+#contents a:hover {text-decoration: none; color: #000000;}
+
+/* #history 레이아웃 수정 */
+#history {
+    margin: 20px auto;
+    width: 100%;
+    max-width: 1200px; /* 헤더의 로고와 맞추기 위해 최대 너비 설정 */
+    padding: 20px 20px; /* 양쪽에 약간의 패딩을 추가해 정돈된 느낌 */
+    margin-bottom: 100px;
+}
+
+/* aside 메뉴 */
+#history #asides {
+    float: left;
+    width: 17%; /* 로고 크기에 맞춰서 너비 조정 */
+    margin-left: 3%; /* history_area와의 간격 */
+}
+
+#history #asides h2 {
+    font-size: 20px;
+    font-weight: bold;
+    padding-bottom: 20px;
+}
+
+#history #asides #sub_list ul>li {
+    padding-bottom: 10px;
+    font-size: 15px;
+}
+
+#history #asides #sub_list ul li a {
+    color: #aeaeae;
+}
+
+#history #asides #sub_list ul li a:hover {
+    font-weight: bold;
+    color: #1594EB;
+}
+
+/* 매장 리스트 영역 */
+#history #history_area {
+    float: left;
+    width: 75%; /* aside와 합쳐서 전체 100%가 되도록 설정 */
+}
+
+#history #history_list h2 {
+    font-size: 20px;
+    font-weight: bold;
+    padding-bottom: 15px;
+}
+
+/* 매장 목록 */
+#history #history_item {
+    display: flex;
+    height: 145px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#history #history_item:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* 매장 이미지 */
+#history #sotre_Img {
+    width: 120px; /* 이미지 크기를 적절하게 조정 */
+    height: auto;
+    border-radius: 8px;
+    margin-right: 30px;
+}
+
+/* 매장 정보 */
+#history .hjy_history_info {
+    flex: 1;
+    font-size: 16px;
+}
+
+#history .hjy_history_info p {
+    margin-bottom: 8px;
+}
+
+#history .hjy_history_info strong {
+    font-weight: bold;
+}

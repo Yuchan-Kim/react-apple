@@ -35,7 +35,7 @@ const Header = () => {
         <nav className="yc-nav-links">
           <Link to="/">iPhone</Link>
           <Link to="/">Accessories</Link>
-          <Link to="/">Community</Link>
+          <Link to="/community">Community</Link>
         </nav>
       </div>
     </header>

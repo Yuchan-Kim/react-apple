@@ -1,0 +1,180 @@
+/* 여백 초기화 */
+#contents body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, 
+input, fieldset, legend, p, select, table, th, td, tr,
+textarea, button, form {margin: 0; padding: 0;}
+
+/* clearfix */
+#contents .clearfix{*zoom:1;}
+#contents .clearfix:before, .clearfix:after {display: block; content: ""; line-height: 0;}
+#contents .clearfix:after {clear: both;}
+
+/* 기본 스타일 */
+#contents ul, ol {list-style-type: none; }
+#contents a:link {text-decoration: none; color: #000000;}
+#contents a:visited {text-decoration: none; color: #000000; }
+#contents a:active {text-decoration: none; color: #000000; }
+#contents a:hover {text-decoration: none; color: #000000;}
+
+/* community-write 레이아웃 수정 */
+#community-write {
+    margin: 0px auto;
+    width: 90%; /* 100% 대신 90%로 줄여서 양쪽에 여백 확보 */
+    max-width: 1150px;
+    padding: 20px;
+    margin-bottom: 100px;
+    box-sizing: border-box; /* 패딩을 포함한 전체 너비 계산 */
+}
+
+/* 카테고리 스타일 */
+#community-write .hjy-write-catrgory {
+    width: 100%;
+    margin-bottom: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+#community-write .hjy-write-catrgory a{
+    color: #333333;
+}
+
+/* 팁 스타일 */
+#community-write .hjy-explanation {
+    width: 100%;
+    margin-bottom: 30px;
+    padding: 15px;
+    box-sizing: border-box;
+    /* border: 1px solid #d3d3d3;
+    border-radius: 10px; */
+    /* background-color: #FBFBFD; */
+    font-size: 15px;
+}
+
+#community-write .hjy-explanation p{
+    text-align: center;
+    padding: 5px;
+    color: #333;
+}
+
+#community-write .hjy-exp1 {
+    color: #333;
+    font-size: 23px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+#community-write .hjy-exp2 {
+    margin-bottom: 10px;
+}
+
+/* 1번 */
+#community-write .hjy-title {
+    margin-bottom: 40px;
+    font-weight: bold;
+}
+
+#community-write .hjy-title p {
+    margin-bottom: 25px;
+    font-size: 18px;
+}
+
+#community-write .hjy-title input {
+    width: 97%;
+    height: 40px;
+    margin-left: 20px;
+    padding-left: 10px;
+    outline: none;
+    border: 1px solid #d3d3d3;
+    border-radius: 8px; 
+    color: #d3d3d3;
+
+}
+
+#community-write input[type="text"]:focus {
+    border: 1px solid #d3d3d3; 
+    box-shadow: 0 0 8px #d3d3d3; 
+    transition: box-shadow 0.3s ease, border 0.3s ease; 
+    border-radius: 8px; 
+}
+
+/* 2번 */
+#community-write .hjy-device {
+    margin-bottom: 40px;
+    font-weight: bold;
+}
+
+#community-write .hjy-device p {
+    margin-bottom: 25px;
+    font-size: 18px;
+}
+
+#community-write .hjy-device input {
+    width: 97%;
+    height: 40px;
+    margin-left: 20px;
+    padding-left: 10px;
+    outline: none;
+    border: 1px solid #d3d3d3;
+    border-radius: 8px; 
+    color: #d3d3d3;
+}
+
+/* 3번 */
+#community-write .hjy-content {
+    margin-bottom: 25px;
+    font-weight: bold;
+}
+
+#community-write .hjy-content p {
+    margin-bottom: 25px;
+    font-size: 18px;
+}
+
+#community-write .hjy-content textarea {
+    width: 97%;
+    height: 160px;
+    margin-left: 20px;
+    padding: 10px 0px 0px 10px;
+    outline: none;
+    border: 1px solid #d3d3d3;
+    border-radius: 8px; 
+    color: #d3d3d3;
+}
+
+#community-write textarea:focus {
+    border: 1px solid #d3d3d3; 
+    box-shadow: 0 0 8px #d3d3d3; 
+    transition: box-shadow 0.3s ease, border 0.3s ease; 
+    border-radius: 8px; 
+}
+
+/* 글쓰기 버튼*/
+#community-write .hjy-btns button {
+    margin: 0px 15px 0px 20px;
+    padding: 10px 17px 10px 17px;
+    border: none;
+    border-radius: 20px;
+    background-color: #0171E3;
+    font-size: 15px;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+/* 취소 링크 */
+#community-write .hjy-btns a {
+    padding: 10px 17px 10px 17px;
+    border: none;
+    border-radius: 20px;
+    background-color: #757579;
+    font-size: 15px;
+    color: #ffffff;
+}
+
+#community-write .hjy-btns a:link {
+    color: #ffffff;
+}
+
+#community-write .hjy-btns a:visited {
+    color: #ffffff;
+}
