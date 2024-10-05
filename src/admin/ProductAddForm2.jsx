@@ -71,6 +71,7 @@ const ProductAddForm2 = () => {
                                             <option value="256GB">256GB</option>
                                             <option value="512GB">512GB</option>
                                             <option value="1TB">1TB</option>
+                                            <option value="악세사리">악세사리</option>
                                         </select>
                                     </div>
                                     <div className="hjy_product_content">
