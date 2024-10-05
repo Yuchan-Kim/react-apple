@@ -1,0 +1,576 @@
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* Global Purchase Section */
+.yc-purchase-section {
+    padding: 50px 0;
+    background-color: white;
+    text-align: left;
+    width: 90%;
+    margin: auto;
+}
+
+.yc-purchase-header {
+    margin-bottom: 30px;
+}
+
+.yc-new-badge {
+    color: #d35400;
+    font-weight: bold;
+    font-size: 14px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.yc-purchase-header h1 {
+    font-size: 40px;
+    font-weight: bold;
+    color: #1d1d1f;
+    margin: 0;
+}
+
+.yc-price {
+    font-size: 22px;
+    color: #6e6e73;
+    margin-top: 10px;
+}
+
+/* Model Images Section */
+.yc-model-images-section {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin: auto;
+}
+
+.yc-model-images {
+    position: sticky;
+    top: 100px;
+    padding-right: 50px;
+}
+
+.yc-phone-image {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Selection Section */
+.yc-selection-section {
+    width: 65%;
+    overflow-y: scroll;
+    max-height: 680px;
+}
+
+.yc-model-selection h2,
+.yc-color-selection h2,
+.yc-capacity-selection h2 {
+    font-size: 23px;
+    margin-bottom: 20px;
+}
+
+.yc-model-selection,
+.yc-color-selection {
+    margin-bottom: 250px;
+}
+
+.yc-model-options {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.yc-model-option {
+    border: 1px solid #e5e5e5;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 420px;
+    height: 50px;
+    cursor: pointer;
+    transition: border-color 0.3s, background-color 0.3s;
+}
+
+.yc-model-option:hover {
+    border-color: #0070c9;
+    background-color: #f0f8ff;
+}
+
+.yc-model-option p {
+    margin: 0;
+    font-weight: bold;
+}
+
+.yc-modelPrice {
+    font-size: 12px;
+    color: rgb(176, 174, 174);
+}
+
+/* Compare Info */
+.yc-compare-info {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+/* Color Options */
+.yc-color-options {
+    display: flex;
+    gap: 20px;
+}
+
+.yc-color-circle {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.2s, border 0.3s;
+}
+
+.yc-color-circle::after {
+    content: attr(data-color);
+    position: absolute;
+    bottom: 125%; /* Positioning above the circle */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 5px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+    font-size: 12px;
+    z-index: 1;
+}
+
+.yc-color-circle:hover::after {
+    content: '색 - ' attr(data-color);
+    opacity: 1;
+}
+
+/* Selected Color Circle */
+.yc-color-circle.yc-selected {
+    border: 2px solid #0070c9;
+    transform: scale(1.1);
+}
+
+/* Capacity Selection */
+.yc-capacity-selection {
+    margin-top: 40px;
+}
+
+.yc-capacity-options {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 440px;
+}
+
+.yc-capacity-option {
+    padding: 20px;
+    border: 1px solid #e5e5e5;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+    color: #1d1d1f;
+    cursor: pointer;
+    transition: border-color 0.3s, background-color 0.3s;
+}
+
+.yc-capacity-option:hover {
+    border-color: #0070c9;
+    background-color: #f0f8ff;
+}
+
+.yc-capacity-option p:last-child {
+    font-size: 12px;
+    color: rgb(176, 174, 174);
+}
+
+.yc-storage-info-box {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: rgb(251, 251, 251);
+    border-radius: 10px;
+    font-size: 14px;
+    color: #6e6e73;
+    width: 410px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.yc-storage-info-box p {
+    margin: 0;
+    font-size: 12px;
+    flex: 1;
+}
+
+.yc-info-button {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    transition: transform 0.2s, color 0.3s;
+}
+
+.yc-info-button:hover {
+    transform: rotate(45deg);
+    color: #0070c9;
+}
+
+/* AppleCare+ Section */
+.yc-applecare-section {
+    padding: 50px 0;
+    width: 90%;
+    margin: auto;
+}
+
+.yc-applecare-options {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    width: 100%;
+}
+
+.yc-applecare-option {
+    width: 60%;
+    padding: 20px;
+    border: 1px solid #e5e5e5;
+    border-radius: 10px;
+    background-color: white;
+    font-size: 12px;
+    color: rgb(83, 80, 80);
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    transition: border-color 0.3s, background-color 0.3s;
+}
+
+.yc-applecare-option:hover {
+    border-color: #0070c9;
+    background-color: #f0f8ff;
+}
+
+.yc-applecare-option-nocare {
+    width: 60%;
+    padding: 20px;
+    padding-top: 0px;
+    border: 1px solid #e5e5e5;
+    border-radius: 10px;
+    background-color: white;
+    font-size: 18px;
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    transition: border-color 0.3s, background-color 0.3s;
+}
+
+.yc-applecare-option-nocare:hover {
+    border-color: #0070c9;
+    background-color: #f0f8ff;
+}
+
+.yc-applecare-logo {
+    width: 100%;
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #e5e5e5;
+    padding-bottom: 10px;
+}
+
+.yc-apple-logo {
+    color: #e74c3c;
+}
+
+.yc-applecare-text {
+    color: #1d1d1f;
+}
+
+.yc-applecare-info {
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    font-size: 10px;
+}
+
+.yc-info-box {
+    background-color: rgb(251, 251, 251);
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    font-size: 13px;
+}
+
+.yc-applecare-addons {
+    font-size: 13px;
+    color: #6e6e73;
+}
+
+/* Final Purchase Section */
+.yc-final-purchase-section {
+    background-color: rgb(244, 244, 244);
+    padding: 0;
+    width: 100%;
+}
+
+.yc-final-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    width: 80%;
+    margin: auto;
+    padding-top: 20px;
+}
+
+.yc-final-image span { /* <text> 태그 대신 <span> 사용 */
+    font-size: 24px;
+    text-align: left;
+    font-weight: bold;
+}
+
+.yc-imageDesc {
+    font-size: 24px;
+    color: lightgray;
+    margin-top: 0px;
+}
+
+.yc-final-iphone-image {
+    width: 300px;
+    height: auto;
+}
+
+.yc-final-info-details {
+    font-size: 14px;
+    color: #6e6e73;
+    border-top: 1px solid lightgray;
+    margin-top: 70px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid lightgray;
+}
+
+.yc-final-info-details3 {
+    font-size: 13px;
+    color: #080808;
+}
+
+.yc-final-price {
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.yc-shipping-options {
+    font-size: 14px;
+    color: #6e6e73;
+    margin-left: 90px;
+}
+
+.yc-shipping-options .yc-option {
+    list-style: none;
+    padding: 0;
+    font-size: 14px;
+    color: #6e6e73;
+    margin-bottom: 150px;
+}
+
+.yc-shipping-options .yc-icon {
+    margin-right: 10px;
+    font-size: 17px;
+}
+
+.yc-continue {
+    padding: 10px 20px;
+    background-color: #0070c9;
+    border: 1px solid #0070c9;
+    color: white;
+    width: 72%;
+    margin-left: 40px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.yc-continue:hover {
+    background-color: #005fa3;
+    transform: scale(1.05);
+}
+
+.yc-continue:active {
+    transform: scale(0.95);
+}
+
+/* Model Images 2-7 Sections */
+.yc-model-images2,
+.yc-model-images3,
+.yc-model-images4,
+.yc-model-images5,
+.yc-model-images6,
+.yc-model-images7 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Ensure the container takes full width */
+    margin: 20px 0;
+}
+
+.yc-model-images2 {
+    width: 60%;
+    margin: 0 auto;
+}
+
+.yc-model-images2 .yc-phone-image,
+.yc-model-images3 .yc-phone-image,
+.yc-model-images4 .yc-phone-image,
+.yc-model-images5 .yc-phone-image,
+.yc-model-images6 .yc-phone-image,
+.yc-model-images7 .yc-phone-image {
+    width: 100%;
+    height: auto;
+}
+
+/* Environment Message */
+.yc-environment-message {
+    text-align: center;
+    margin: 20px auto; /* Centers the element horizontally */
+    font-size: 14px;
+    color: #6e6e73;
+    line-height: 1.5;
+    width: 60%; /* Controls the width of the message box */
+}
+
+.yc-environment-message strong {
+    font-size: 14px;
+    color: #bdbdc0;
+}
+
+.yc-environment-message p {
+    margin: 10px 0;
+    color: #bdbdc0;
+    font-size: 12px;
+}
+
+/* FAQ Section */
+.yc-faq-section {
+    width: 60%;
+    margin: 0 auto;
+    padding: 30px 0;
+    border-top: 1px solid lightgray;
+}
+
+.yc-faq-item {
+    border-bottom: 1px solid #ddd;
+    padding: 30px 0;
+}
+
+.yc-faq-question {
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.yc-faq-question h3 {
+    font-size: 18px;
+    margin: 0;
+}
+
+.yc-arrow-icon {
+    font-size: 18px;
+}
+
+.yc-faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+.yc-faq-answer.yc-open {
+    max-height: 150px; /* Adjust this based on your content */
+    overflow: visible;
+}
+
+.yc-faq-answer.yc-closed {
+    max-height: 0;
+    overflow: hidden;
+}
+
+.yc-faq-answer p {
+    margin: 0;
+    padding: 10px 0;
+    font-size: 14px;
+    color: #666;
+}
+
+/* Tooltip Styling for Color Circles */
+.yc-color-circle {
+    position: relative;
+    margin-left:5px;
+}
+
+.yc-color-circle::after {
+    content: attr(data-color);
+    position: absolute;
+    bottom: 125%; /* Positioning above the circle */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 5px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+    font-size: 12px;
+    z-index: 1;
+}
+
+.yc-color-circle:hover::after {
+    content: '색 - ' attr(data-color);
+    opacity: 1;
+}
+
+/* Selected Color Circle */
+.yc-color-circle.yc-selected {
+    border: 2px solid #0070c9;
+    transform: scale(1.1);
+}
+
+/* Button Hover and Active States */
+.yc-info-button {
+    transition: transform 0.2s, color 0.3s;
+}
+
+.yc-info-button:hover {
+    transform: rotate(45deg);
+    color: #0070c9;
+}
+
+.yc-continue {
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.yc-continue:hover {
+    background-color: #005fa3;
+    transform: scale(1.05);
+}
+
+.yc-continue:active {
+    transform: scale(0.95);
+}

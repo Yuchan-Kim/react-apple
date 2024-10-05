@@ -1,0 +1,89 @@
+.jm-order-confirmation-container {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 40px; /* 상단 여백을 더 추가 */
+  }
+
+.jm-order-confirmation-container h1 {
+  margin-bottom: 20px;
+}
+
+.jm-order-confirmation-container p {
+  margin-bottom: 10px;
+}
+  
+  .jm-navbar {
+    background-color: #f8f8f8;
+    padding: 15px 0;
+  }
+  
+  .jm-main-content h1 {
+    font-size: 36px; /* 제목 크기 확대 */
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .jm-main-content p {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 5px;
+  }
+  
+  .jm-order-number {
+    margin-top: 10px;
+    font-size: 18px;
+    color: #0071e3;
+  }
+  
+  /* Flexbox를 사용하여 텍스트와 이미지를 나란히 배치 */
+  .shipment-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+  }
+  
+  .shipment-details {
+    width: 65%;
+    text-align: right; /* 텍스트를 왼쪽 정렬 */
+    font-size: 18px; /* 텍스트 크기 조정 */
+  }
+  .shipment-text {
+    width: 50%;
+    margin-left: 50%; /* ��스트와 이미지 간격 조정 */
+    text-align: left;
+  }
+  
+  .shipment-details h2 {
+    font-size: 24px; /* 출고 날짜 크기 조정 */
+    font-weight: bold;
+    margin-bottom: 10px;
+    margin-top: 60px; /* 텍스트와 이미지 위 간격 더 추가 */
+  }
+  
+  .product-image {
+    width: 50%;
+    text-align: left;
+    margin-right: 22%;
+    
+  }
+  
+  .product-image img {
+    max-width: 80%; /* 이미지 크기 확대 */
+    margin: 20px auto; /* 이미지와 텍스트 간격 조정 */
+    text-align: left;
+  }
+  
+  @media (max-width: 768px) {
+    .shipment-info {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .product-image img {
+      margin-left: 0;
+      margin-top: 20px;
+      
+    }
+  }
+  

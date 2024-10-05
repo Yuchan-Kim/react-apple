@@ -1,0 +1,124 @@
+/* Style for the Tabs Menu */
+.yc-tabs-menu {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+    margin-bottom: 20px;
+}
+
+.yc-tabs-menu ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+.yc-tabs-menu ul li {
+    margin: 0 20px;
+    padding: 10px 0;
+    cursor: pointer;
+    font-size: 16px;
+    color: #86868b;
+    position: relative;
+}
+
+.yc-tabs-menu ul li.active {
+    color: #000;
+    font-weight: bold;
+}
+
+.yc-tabs-menu ul li.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #000;
+}
+
+/* Tab Content */
+.yc-tab-content {
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    width: 60%;
+    margin: 0 auto;
+}
+
+.yc-tab-content h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Product Grid Styling */
+.yc-product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 items per row */
+    gap: 40px;
+    margin-top: 20px;
+}
+
+.yc-product-item {
+    text-align: center;
+}
+
+.yc-product-item img {
+    width: 100%;
+    height: auto;
+}
+
+.yc-product-item h3 {
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.yc-product-item p {
+    font-size: 16px;
+    color: #666;
+}
+
+/* Store Locator */
+.yc-store-locator {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 3 items per row */
+    gap: 40px;
+    margin-top: 20px;
+}
+
+.yc-store-item {
+    text-align: center;
+}
+
+.yc-store-item img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.yc-store-item h3 {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.yc-store-item p {
+    font-size: 16px;
+    color: #555;
+}
+
+/* Community Section */
+.yc-tab-content ul {
+    list-style: none;
+    padding: 0;
+}
+
+.yc-tab-content ul li {
+    margin-bottom: 10px;
+}
+
+.yc-tab-content ul li a {
+    color: #0071e3;
+    text-decoration: none;
+}
+
+.yc-tab-content ul li a:hover {
+    text-decoration: underline;
+}

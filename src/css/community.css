@@ -1,0 +1,296 @@
+@charset "UTF-8";
+/****************************************************************/
+/* 커뮤니티 댓글폼 ***************************************************/
+/****************************************************************/
+#nav .DA-link {
+    color: black; /* 기본 링크 색상 */
+    text-decoration: none; /* 밑줄 제거 */
+}
+
+#nav .DA-link:visited {
+    color: black;; /* 방문한 링크 색상을 기본 색상과 동일하게 설정 */
+}
+
+#nav .DA-link:hover {
+    color: #0071e3;
+}
+
+
+#nav {
+    margin: 0px auto;
+    width: 100%; /* 100% 대신 90%로 줄여서 양쪽에 여백 확보 */
+    max-width: 65%;
+    margin-bottom: 100px;
+    box-sizing: border-box; /* 패딩을 포함한 전체 너비 계산 */
+}
+
+/* 카테고리 스타일 */
+#nav .DA-tip_catrgory {
+    width: 100%;
+    margin-bottom: 30px;
+    font-size: 15px;
+    font-weight: bold;
+    padding-top: 15px;
+    box-sizing: border-box;
+}
+
+#nav .DA-tip_catrgory .DA-link{
+    color: #333333;
+}
+
+/* 팁 스타일 */
+#nav .DA-tip {
+    width: 100%;
+    margin-bottom: 30px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #d3d3d3;
+    border-radius: 10px;
+    background-color: #FBFBFD;
+    font-size: 15px;
+}
+
+#nav .DA-tip p{
+    padding: 5px;
+}
+
+#nav .DA-tip1 {
+    color: #242426;
+    font-weight: bold;
+    margin: 0px;
+}
+
+#nav .DA-tip2, .DA-tip3 {
+    color: #47474A;
+    margin: 0px;
+}
+
+/* 링크 스타일 */
+#nav .DA-tip .DA-link {
+    color: #0071e3;
+}
+
+#nav .DA-tip .DA-link:hover {
+    text-decoration: underline;
+}
+
+/* ------------------------------------------------------------------ */
+
+#content {
+    width: 65%;
+    margin: 0 auto;
+    margin-top: 80px;
+    /* background-color: bisque; */
+}
+
+/* 작성자 관련 */
+#content .DA-writer-info img{
+    width: 50px;
+    float: left;
+}
+
+#content .DA-writer-info span:nth-of-type(1){
+    margin-left: 10px ;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+#content .DA-writer-info span:nth-of-type(2){
+    margin-left: 20px ;
+    font-weight: bold;
+    font-size: 16px;
+    color: #777777;
+}
+
+#content .DA-writer-info span:nth-of-type(3){
+    margin-left: 10px ;
+    font-size: 20px;
+}
+
+/* 내용관련 */
+/* 제목 */
+#content .DA-contents p:nth-of-type(1) {
+    font-weight: bold;
+    font-size: 32px;
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+
+/* 내용 */
+#content .DA-contents p:nth-of-type(2) {
+    font-size: 17px;
+    margin-top: 0px;
+    font-weight: normal;
+}
+
+/* 게시일 */
+#content .DA-contents p:nth-of-type(3) {
+    font-size: 14px;
+    margin-top: 0px;
+    font-weight: 200;
+    color: #777777;
+    font-weight: bold;
+
+}
+
+/* 답글버튼 */
+#content .DA-contents-btn {
+    width: 70px;
+    height: 40px;
+    font-size: 18px;
+    background-color: #0071e3;
+    border: 1px solid #0071e3;
+    color: white;
+    border-radius: 20px;
+    margin-top: 20px;
+}
+
+/* 답글버튼 */
+#content .DA-contents-btn:hover {
+    cursor: pointer;
+    background-color: #0071e3;
+}
+
+/* ---------------------------------------------------------- */
+
+/* 답글버튼 눌렀을때 나타날 화면 */
+#content .DA-commentClick {
+    margin-top: 50px;
+    width: 100%;
+    height: 330px;
+}
+
+#content .DA-commentClick textarea {
+    width: 100%;
+    height: 230px;
+    border-radius: 20px;
+    border-color: rgb(163, 157, 157);
+    padding-top: 25px;
+    padding-left: 20px;
+    line-height: 20px;
+    font-size: 15px;
+    letter-spacing: 2px;
+}
+
+#content .DA-commentClick textarea::placeholder {
+    color: #838383; /* placeholder 텍스트 색상 */
+    font-size: 17px; /* 폰트 크기 */
+    letter-spacing: -3px;
+    font-weight: 800;
+}
+
+/* 글쓰기 버튼 */
+#content .DA-commentClick .DA-commentWrite-btn {
+    width: 72px;
+    height: 36px;
+    font-size: 16px;
+    background-color: #0071e3;
+    border: 1px solid #0071e3;
+    color: white;
+    border-radius: 20px;
+    margin-top: 20px;
+}
+
+#content .DA-commentClick .DA-commentWrite-btn:hover {
+    cursor: pointer;
+    background-color: #0071e3;
+}
+
+/* 취소 버튼 */
+#content .DA-commentClick .DA-commentCancel-btn {
+    width: 66px;
+    height: 36px;
+    font-size: 16px;
+    background-color: rgb(109, 109, 109);
+    border: 1px solid #0071e3;
+    color: white;
+    border-radius: 20px;
+    margin-top: 20px;
+    margin-left: 5px;
+}
+
+#content .DA-commentClick .DA-commentCancel-btn:hover {
+    cursor: pointer;
+    background-color: #0071e3;
+}
+
+
+
+/* ---------------------------------------------------------- */
+
+/* 댓글 관련 */
+#content #comment {
+    margin-top: 60px;
+    margin-bottom: 150px;
+    border-top: 1px solid rgb(202, 202, 202);
+}
+
+.DA-clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+#content #comment .DA-clearfix > span:nth-of-type(1) {
+    float: left;
+    margin-top: 15px;
+    font-size: 14px;
+    color: #777777;
+}
+
+#content #comment span:nth-of-type(2) {
+    float: right;
+    margin-top: 15px;
+    font-size: 14px;
+    margin-right: 10px;
+    color: #777777;
+}
+
+/* 댓글자 관련 */
+#comment .DA-user-info {
+    margin-top: 60px;
+}
+
+#comment .DA-user-info img{
+    width: 50px;
+    float: left;
+}
+
+#comment .DA-user-info span:nth-of-type(1){
+    margin-left: 10px ;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+/* 누구~에게 답변 */
+#comment .DA-whoComment {
+    margin-top: 35px;
+    font-weight: lighter;
+    font-size: 13px;
+    color: #777777;
+}
+
+/* 내용 */
+#comment .DA-contents p:nth-of-type(1) {
+    font-size: 17px;
+    margin-top: 0px;
+    font-weight: normal;
+}
+
+/* 답글 버튼 */
+#comment .DA-comment-btn {
+    width: 55px;
+    height: 25px;
+    font-size: 11px;
+    background-color: white;
+    border: 1px solid #0071e3;
+    color: #0071e3;
+    border-radius: 20px;
+    margin-top: 0px;
+}
+
+#comment .DA-comment-btn:hover {
+    cursor: pointer;
+}
+
+

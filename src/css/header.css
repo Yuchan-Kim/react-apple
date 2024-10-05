@@ -1,0 +1,148 @@
+/* 상단 및 하단 헤더 스타일 */
+.yc-apple-header {
+  background-color: #f7f7f7;
+  width: 100%; /* 전체 화면 너비 */
+  z-index: 1050;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  font-family: BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 14px;
+  position: relative; /* Border line이 apple-header의 길이를 유지하도록 설정 */
+  border-bottom: 1px solid #d2d2d7; /* Border line을 전체 너비에 맞춤 */
+}
+
+/* 상단 헤더 스타일 */
+.yc-header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 58%; /* 상단 헤더의 너비를 70%로 설정 */
+  margin: 0 auto; /* 중앙 정렬 */
+  padding: 8px 0; 
+  position: relative; /* 검색창의 중앙 정렬을 위한 상대적 위치 지정 */
+}
+
+/* 로고 이미지 크기 조절 */
+.yc-logo img {
+  height: 16px; /* 로고 크기를 줄임 */
+}
+
+/* 검색창을 중앙에 배치 */
+.yc-search-bar {
+  display: flex;
+  align-items: center;
+  position: absolute; /* 절대 위치로 중앙에 배치 */
+  left: 50%; /* 부모 요소 기준으로 좌우 중앙 */
+  transform: translateX(-50%); /* 검색창을 정확히 중앙으로 */
+  width: 35%; /* 검색창의 최대 너비를 설정 */
+}
+
+.yc-search-bar input {
+  width: 100%;
+  padding: 6px 35px 6px 12px;
+  border: 1px solid #d2d2d7;
+  border-radius: 20px;
+  background-color: #f1f1f1;
+  font-size: 12px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.yc-search-bar input:focus {
+  border-color: #0071e3;
+  background-color: #ffffff;
+}
+
+.yc-search-bar .yc-search-btn {
+  position: absolute;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: #6e6e73;
+}
+
+.yc-search-bar .yc-search-btn:hover {
+  color: #0071e3;
+}
+
+/* 로그인, 회원가입 버튼 및 장바구니 아이콘 */
+.yc-auth-cart-icons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.yc-auth-btn {
+  text-decoration: none;
+  color: #1d1d1f;
+  font-size: 12px;
+  padding: 4px 12px;
+  border: 1px solid #d2d2d7;
+  border-radius: 16px;
+}
+
+.yc-auth-btn:hover {
+  border-color: #0071e3;
+  background-color: #ffffff;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.yc-icon {
+  font-size: 18px;
+  color: #6e6e73;
+  cursor: pointer;
+}
+
+/* 하단 헤더 네비게이션 스타일 */
+.yc-header-bottom {
+  background-color: #f7f7f7;
+  padding: 8px 0;
+  width: 58%; /* 하단 헤더의 너비를 70%로 설정 */
+  margin: 0 auto; /* 중앙 정렬 */
+}
+
+.yc-nav-links {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  font-size: 12px;
+  color: #1d1d1f;
+}
+
+.yc-nav-links a {
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  padding-bottom: 5px;
+  transition: color 0.3s ease;
+}
+
+.yc-nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: black;
+  transition: width 0.3s ease, left 0.3s ease;
+}
+
+.yc-nav-links a:hover {
+  color: black;
+}
+
+.yc-nav-links a:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+.yc-header-icon, .yc-login-button, .yc-signup-button {
+  transition: transform 3s ease, color 3s ease;
+}
+
+.yc-header-icon:hover, .yc-login-button:hover, .yc-signup-button:hover {
+  transform: scale(1.05);
+  color: #0071e3;
+}

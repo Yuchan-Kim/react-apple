@@ -1,0 +1,182 @@
+/* Global Purchase Section */
+.yc-acc-purchase-section {
+    padding: 50px 0;
+    background-color: white;
+    text-align: left;
+    width: 90%;
+    margin: auto;
+}
+
+.yc-acc-purchase-header {
+    margin-bottom: 30px;
+}
+
+.yc-acc-new-badge {
+    color: #d35400;
+    font-weight: bold;
+    font-size: 14px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.yc-acc-purchase-header h1 {
+    font-size: 40px;
+    font-weight: bold;
+    color: #1d1d1f;
+    margin: 0;
+}
+
+/* Model Images Section */
+.yc-acc-model-images-section {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin: auto;
+    margin-bottom: 100px;
+}
+
+.yc-acc-model-images {
+    position: sticky;
+    top: 100px;
+    padding-right: 50px;
+}
+
+.yc-acc-phone-image {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Selection Section */
+.yc-acc-selection-section {
+    width: 65%;
+    max-height: 680px;
+}
+
+/* Price Section */
+.yc-acc-price-section {
+    margin-bottom: 30px;
+}
+
+.yc-acc-price {
+    font-size: 22px;
+    color: #6e6e73;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+/* Cart and Wishlist Buttons */
+.yc-acc-cart-button,
+.yc-acc-wishlist-button {
+    padding: 10px 20px;
+    font-size: 14px;
+    color: white;
+    background-color: #0070c9;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+.yc-acc-wishlist-button {
+    background-color: #6e6e73;
+}
+
+.yc-acc-cart-button:hover,
+.yc-acc-wishlist-button:hover {
+    opacity: 0.8;
+}
+
+/* AppleCare+ Section */
+.yc-acc-applecare-section {
+    padding: 50px 0;
+    margin-bottom: 20px;
+}
+
+.yc-acc-applecare-options {
+    display: flex;
+    flex-direction: column; /* Arrange in a column */
+    gap: 20px;
+}
+
+.yc-acc-applecare-option {
+    width: 100%;
+    padding: 20px;
+    border: 1px solid #e5e5e5;
+    border-radius: 10px;
+    background-color: white;
+    font-size: 12px;
+    color: rgb(83, 80, 80);
+    display: flex;
+    flex-direction: column;
+}
+
+.yc-acc-applecare-logo {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.yc-acc-applecare-text {
+    color: #1d1d1f;
+}
+
+/* Recommended Accessories Section */
+.yc-recommended-accessories {
+    margin-top: 40px;
+    width: 100%; /* Set width to 100% to center the section */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content horizontally */
+}
+
+.yc-section-title {
+    font-size: 22px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.yc-accessory-list {
+    display: flex;
+    justify-content: center; /* Center accessories list */
+    gap: 30px; /* Adds spacing between accessories */
+    width: 90%;
+    
+}
+
+.yc-accessory-item {
+    text-align: center;
+    width: 30%;
+}
+
+.yc-accessory-item p {
+    text-align: left;
+    margin-left: 7%;
+}
+
+.yc-accessory-image {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.yc-add-to-cart-button {
+    background-color: #0071e3;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.yc-add-to-cart-button:hover {
+    background-color: #005bb5;
+}
+
+.yc-more-products-button {
+    display: block;
+    text-align: center;
+    margin: 20px auto;
+    background: none;
+    color: #0071e3;
+    text-decoration: none;
+}

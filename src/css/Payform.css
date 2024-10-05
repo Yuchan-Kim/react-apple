@@ -1,0 +1,345 @@
+.wrap {
+  background-color: #fff; /* Ensure the wrap div has a white background */
+}
+
+.jm-checkout-page {
+  max-width: 60%;
+  background-color: #fff; /* Set checkout-page background to white */
+  padding: 30px;
+  margin: 0 auto;
+  
+}
+
+#jm-order-tatle {
+  display: flex;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #d2d2d7;
+  text-align: center;
+}
+
+#jm-order-tatle h2 {
+  width: 50%;
+  text-align: left;
+}
+
+#jm-order-summary {
+  width: 50%;
+  text-align: right;
+  margin-top: 10px;
+  color: #0071e3;
+  font-size: 14px;
+}
+
+/* Delivery Option Buttons */
+.jm-delivery-options {
+display: flex;
+justify-content: center;
+margin: 20px 0;
+}
+
+.jm-delivery-btn {
+display: flex;
+width: 200px;
+align-items: center;
+justify-content: center;
+padding: 20px;
+font-size: 14px;
+font-weight: bold;
+border: 1px solid #19191a;
+border-radius: 12px;
+background-color: #fff;
+cursor: pointer;
+margin: 5px;
+transition: border-color 0.3s ease;
+}
+
+.jm-delivery-btn .icon {
+margin-right: 8px;
+}
+
+.jm-delivery-btn.active {
+border-color: #0071e3;
+width: 200px;
+margin: 5px;
+}
+
+.jm-as-svgicon {
+  margin-right: 5px;
+}
+
+.jm-delivery-btn img {
+width: 20px;
+height: 20px;
+}
+
+.jm-delivery-btn:last-child {
+margin-right: 0;
+}
+
+.jm-checkout-container {
+  background-color: #f7f7f7;
+  text-align: center;
+}
+
+.jm-checkout-page {
+padding: 30px;
+border-radius: 10px;
+max-width: 800px;
+margin: 0 auto;
+}
+
+
+.jm-checkout-title {
+  text-align: center; /* Centers the text horizontally */
+  font-size: 24px;    /* You can adjust the size as needed */
+  font-weight: bold;  /* Adds bold styling to the title */
+  margin-bottom: 20px; /* Adds space below the title */
+}
+
+
+.jm-delivery-address {
+  margin: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #ccc;
+}
+.jm-product-summary {
+  margin: 20px;
+}
+.jm-shipping-info,
+.help-section,
+.faq-section {
+margin: 20px 0;
+}
+
+.jm-continue-button {
+text-align: center;
+}
+
+.jm-continue-button button {
+background-color: #0071e3;
+color: white;
+border: none;
+padding: 10px 20px;
+border-radius: 8px;
+cursor: pointer;
+}
+
+.jm-continue-button button:hover {
+  background-color: #005bb5;
+}
+
+.jm-product-summary ul {
+  display: grid;
+  justify-content: center;
+  max-width: 100%;
+  grid-template-columns: repeat(3, 1fr); /* Create 3 equal-width columns */
+  list-style: none;
+  padding: 0;
+}
+
+.jm-product-details {
+display: flex;
+width: 100%;
+margin-left: 20px;
+text-align: center;
+}
+
+.jm-product-img {
+width: 40%;
+}
+
+.jm-product-img img {
+  width: 100%;
+  margin-block: 20px;
+  padding-top: 15px;
+  }
+
+.jm-product-info {
+  width: 60%;
+  margin-block: 20px;
+  padding-top: 15px;
+}
+
+.jm-shipping-bottom {
+  display: flex;
+  
+}
+
+.jm-shipping-info {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding-left: 20px;
+  padding-top: 10px;
+  display: flex;
+  width: 50%;
+  text-align: left;
+}
+
+.jm-d-date-box {
+  margin-right: 10px;
+}
+
+.jm-d-date {
+  font-weight: bold;
+}
+
+.jm-d-date-p {
+  margin-top: 5px;
+  font-size: 12px;
+}
+
+.jm-shipping-massage {
+  width: 50%;
+  padding: 20px;
+  margin-block: 20px;
+  margin-left: 20px;
+  font-size: 12px;
+}
+
+.jm-massage-box {
+  text-align: left;
+}
+
+.jm-massage-tatle {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.jm-massage-text {
+  margin-top: 5px;
+}
+
+.jm-massage-text li {
+  margin-bottom: 5px;
+}
+
+.jm-delivery-address {
+  text-align: center;
+}
+
+.jm-pickup-store-selector {
+  display: flex;
+width: 100%;
+}
+
+/* Pickup store list styles */
+.jm-pickup-store-list {
+  margin-top: 20px;
+  width: 50%;
+}
+
+.jm-pickup-store-map {
+  text-align: center;
+  width: 50%;
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+.jm-pickup-store-map img {
+  width: 100%;
+}
+
+#jm-pickup-store {
+  width: 80%;
+  padding: 15px;
+  border: 2px solid #d2d2d7; /* Default border */
+  border-radius: 12px;
+  margin-left: 5%;
+  margin-bottom: 25px;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+#jm-pickup-store.selected {
+  border-color: #0071e3; /* Blue border for selected store */
+}
+
+.jm-pickup-store .pickup-store-details {
+  display: flex;
+  align-items: center;
+}
+
+.jm-pickup-store .store-number {
+  background-color: #0071e3;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 50%;
+  margin-right: 15px;
+  font-size: 16px;
+}
+
+.jm-pickup-store p {
+  margin: 0;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.jm-pickup-availability {
+  text-align: right;
+}
+
+.jm-pickup-availability .available {
+  font-size: 16px;
+  /* Removed color since it's now handled in JSX */
+}
+
+
+.jm-pickup-availability p {
+  margin: 0;
+  font-size: 14px;
+  color: #86868b;
+}
+
+/*-------------------------------*/
+.jm-pickup-store {
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+}
+
+.jm-pickup-store.selected {
+  border-color: #0071e3; /* Blue border for the selected store */
+}
+
+.jm-pickup-store .pickup-store-details {
+  display: flex;
+  align-items: center;
+}
+
+.jm-pickup-store .available {
+  font-size: 16px;
+  color: green;
+}
+
+.jm-pickup-title {
+  margin-top: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.jm-continue-button {
+  margin-top: 20px;
+  text-align: center;
+}
+
+
+/* Continue button */
+.jm-continue-button {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.jm-continue-button button {
+  background-color: #0071e3;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 10px;
+  cursor: pointer;
+}
