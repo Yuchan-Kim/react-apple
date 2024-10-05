@@ -15,26 +15,45 @@
 /* aside 메뉴 */
 #history #asides {
     float: left;
-    width: 17%; /* 로고 크기에 맞춰서 너비 조정 */
-    margin-left: 3%; /* history_area와의 간격 */
+    width: 17%;
+    margin-left: 2%;
 }
 
 #history #asides h2 {
     font-size: 20px;
     font-weight: bold;
-    padding-bottom: 20px;
+    padding-bottom: 5px;
+}
+
+#history #asides a {
+    text-decoration: none;
+}
+
+#history #asides a:link {
+    color: #333; 
+}
+
+#history #asides a:visited {
+    color: #333; 
+}
+
+#history #asides #sub_list ul {
+    padding-inline-start: 0;
+    margin: 0;
 }
 
 #history #asides #sub_list ul>li {
     padding-bottom: 10px;
     font-size: 15px;
+    list-style-type: none; 
 }
 
-#history #asides #sub_list ul li a {
+#history #asides #sub_list ul>li a {
     color: #aeaeae;
+    text-decoration: none;
 }
 
-#history #asides #sub_list ul li a:hover {
+#history #asides #sub_list ul>li a:hover {
     font-weight: bold;
     color: #1594EB;
 }
@@ -54,10 +73,10 @@
 /* 매장 목록 */
 #history #history_item {
     display: flex;
-    height: 145px;
+    height: 165px;
     align-items: center;
     justify-content: space-between;
-    padding: 20px;
+    padding: 10px 20px 20px 20px;
     margin-bottom: 20px;
     background-color: #f9f9f9;
     border-radius: 10px;

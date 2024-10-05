@@ -15,26 +15,45 @@
 /* aside 메뉴 */
 #product #asides {
     float: left;
-    width: 17%; /* 로고 크기에 맞춰서 너비 조정 */
-    margin-left: 3%; /* product_area와의 간격 */
+    width: 17%;
+    margin-left: 2%;
 }
 
 #product #asides h2 {
     font-size: 20px;
     font-weight: bold;
-    padding-bottom: 20px;
+    padding-bottom: 5px;
+}
+
+#product #asides a {
+    text-decoration: none;
+}
+
+#product #asides a:link {
+    color: #333; 
+}
+
+#product #asides a:visited {
+    color: #333; 
+}
+
+#product #asides #sub_list ul {
+    padding-inline-start: 0;
+    margin: 0;
 }
 
 #product #asides #sub_list ul>li {
     padding-bottom: 10px;
     font-size: 15px;
+    list-style-type: none; 
 }
 
-#product #asides #sub_list ul li a {
+#product #asides #sub_list ul>li a {
     color: #aeaeae;
+    text-decoration: none;
 }
 
-#product #asides #sub_list ul li a:hover {
+#product #asides #sub_list ul>li a:hover {
     font-weight: bold;
     color: #1594EB;
 }
@@ -62,6 +81,16 @@
 #product .hjy_header_with_button h2 {
     font-size: 24px;
     font-weight: bold;
+}
+
+#product .hjy_header_with_button a:link {
+    text-decoration: none;
+    color: #333;
+}
+
+#product .hjy_header_with_button a:visited {
+    text-decoration: none;
+    color: #333;
 }
 
 /* 추가 버튼 스타일링 */

@@ -21,7 +21,7 @@ const AdminMain = () => {
                         <div id="asides">
                             <h2><Link to="/admin/main" rel="noreferrer noopener">관리자 페이지</Link></h2>
                             <div id="sub_list"> 
-                                <ul>
+                                <ul className='lists'>
                                     <li><Link to="/admin/store" rel="noreferrer noopener">매장 관리</Link></li>
                                     <li><Link to="/admin/product" rel="noreferrer noopener">상품 관리</Link></li>
                                     <li><Link to="/admin/user" rel="noreferrer noopener">유저 관리</Link></li>
@@ -69,21 +69,21 @@ const AdminMain = () => {
                                     <Link to="/admin/product" rel="noreferrer noopener">더보기</Link>
                                 </div>
                                 <div className="hjy-brief">
-                                    <div className="hjy-card">
+                                    <div className="hjy-cards">
                                         <img id="sotre_Img" src="/images/iPhone.png" alt="상품이미지"/>
                                         <div className="hjy-detail">
                                             <p> iPhone16 Black</p>
                                         </div>
                                     </div>
 
-                                    <div className="hjy-card">
+                                    <div className="hjy-cards">
                                         <img id="sotre_Img" src="/images/iPhone.png" alt="상품이미지"/>
                                         <div className="hjy-detail">
                                             <p> iPhone16 White</p>
                                         </div>
                                     </div>
 
-                                    <div className="hjy-card">
+                                    <div className="hjy-cards">
                                         <img id="sotre_Img" src="/images/iPhone.png" alt="상품이미지"/>
                                         <div className="hjy-detail">
                                             <p> iPhone16 Gray</p>
