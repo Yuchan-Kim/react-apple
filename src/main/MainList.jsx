@@ -1,14 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+
 import Header from '../include/Header';
 import Footer from '../include/Footer';
+
 import '../css/mainList.css';
 
 const MainList = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState(null);
-
+    const [products, setProducts] = useState([]);
+    /*
     const products = [
+        
         {
             name: "iPhone 16 Pro ",
             image: "https://via.placeholder.com/300",
@@ -37,7 +42,8 @@ const MainList = () => {
             description: "15.9cm Super Retina XDR 디스플레이, 세라믹 쉴드, A18 Pro 칩 탑재",
             colors: ['#8a2be2', '#ff69b4', '#87ceeb'], 
         },
-    ];
+    ];*/
+
 
     const handleModalOpen = (product) => {
         setSelectedProduct(product);
@@ -56,6 +62,19 @@ const MainList = () => {
             document.body.classList.remove('yc-modal-open');
         }
     }, [isModalOpen]);
+
+    useEffect(() => {
+        axios({
+            method: 'get',
+            url: 'http://localhost:9000/api/main/mainproducts',
+            responseType: 'json'
+        }).then(response => {
+            console.log(response.data);
+            setProducts(response.data);
+        }).catch(error =>{
+            console.log(error);
+        });
+    })
 
     return (
         <>

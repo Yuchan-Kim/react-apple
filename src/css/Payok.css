@@ -36,51 +36,51 @@
   }
   
   /* Flexbox를 사용하여 텍스트와 이미지를 나란히 배치 */
-  .shipment-info {
+  .jm-shipment-info {
     display: flex;
     align-items: center;
     justify-content: center;
     
   }
   
-  .shipment-details {
+  .jm-shipment-details {
     width: 65%;
     text-align: right; /* 텍스트를 왼쪽 정렬 */
     font-size: 18px; /* 텍스트 크기 조정 */
   }
-  .shipment-text {
+  .jm-shipment-text {
     width: 50%;
     margin-left: 50%; /* ��스트와 이미지 간격 조정 */
     text-align: left;
   }
   
-  .shipment-details h2 {
+  .jm-shipment-details h2 {
     font-size: 24px; /* 출고 날짜 크기 조정 */
     font-weight: bold;
     margin-bottom: 10px;
     margin-top: 60px; /* 텍스트와 이미지 위 간격 더 추가 */
   }
   
-  .product-image {
+  .jm-product-image {
     width: 50%;
     text-align: left;
     margin-right: 22%;
     
   }
   
-  .product-image img {
+  .jm-product-image img {
     max-width: 80%; /* 이미지 크기 확대 */
     margin: 20px auto; /* 이미지와 텍스트 간격 조정 */
     text-align: left;
   }
   
   @media (max-width: 768px) {
-    .shipment-info {
+    .jm-shipment-info {
       flex-direction: column;
       text-align: center;
     }
   
-    .product-image img {
+    .jm-product-image img {
       margin-left: 0;
       margin-top: 20px;
       

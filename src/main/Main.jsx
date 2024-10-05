@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-// css imprt
-import '../css/Reset.css';
+// css import
+import '../css/reset.css';
 import '../css/Main.css'; // CSS 파일 import
 import Header from '../include/Header'; 
 import Footer from '../include/Footer';
@@ -56,7 +56,7 @@ const Wishlist = () => {
             </div>
         </div>
         <div className='jm-apple-tv'>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/2/28/Apple_TV_Plus_Logo.svg"/>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/2/28/Apple_TV_Plus_Logo.svg" alt="appleTv"/>
         </div>
 
         {/* Slider Section */}

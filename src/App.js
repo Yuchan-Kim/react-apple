@@ -17,16 +17,18 @@ import Wishlist from './user/Wishlist';
 // 메인
 import Main from './main/Main';
 
-import './css/Reset.css';
+import './css/reset.css';
 
 function App() {
   return (
     <BrowserRouter>
         <Routes>
-          <Route path='/mainList' element={<MainList />} />
+          <Route path='/mainlist' element={<MainList />} />
           <Route path='/search' element={<Search />} />
           <Route path='/purchaseAcc' element={<PurchaseAcc />} />
           <Route path='/purchase' element={<Purchase />} />
+
+
           <Route path='/user/joinform' element={<JoinForm />} />
 					<Route path='/user/loginform' element={<LoginForm />} />
 					<Route path='/user/mypage' element={<Mypage />} />

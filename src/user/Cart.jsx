@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 //css import
-import '../css/Reset.css';
+import '../css/reset.css';
 import '../css/cart.css'; // Separate CSS for checkout
 import Header from '../include/Header'; 
 import Footer from '../include/Footer';
@@ -56,7 +56,7 @@ const Cart = () => {
                     <div className="jm-as-icondetails-detail">
                     <div>
                         <h3 className='jm-apple-care-tatle'>
-                        <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/APPLECARE-plus_ICON?wid=800&amp;hei=800&amp;fmt=jpeg&amp;qlt=90&amp;fit=constrain&amp;.v=1527725457537"/>
+                        <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/APPLECARE-plus_ICON?wid=800&amp;hei=800&amp;fmt=jpeg&amp;qlt=90&amp;fit=constrain&amp;.v=1527725457537" alt='applecare'/>
                         iPad&nbsp;Pro 13(M4 모델)을 위한 AppleCare+ 추가, 
                             <span>₩259,000</span>
                         </h3>

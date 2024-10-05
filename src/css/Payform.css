@@ -251,16 +251,16 @@ width: 100%;
   transition: border-color 0.3s ease;
 }
 
-#jm-pickup-store.selected {
+#jm-pickup-store .selected {
   border-color: #0071e3; /* Blue border for selected store */
 }
 
-.jm-pickup-store .pickup-store-details {
+.jm-pickup-store .jm-pickup-store-details {
   display: flex;
   align-items: center;
 }
 
-.jm-pickup-store .store-number {
+.jm-pickup-store .jm-store-number {
   background-color: #0071e3;
   color: white;
   padding: 5px 10px;
@@ -302,16 +302,38 @@ width: 100%;
   justify-content: space-between;
 }
 
-.jm-pickup-store.selected {
-  border-color: #0071e3; /* Blue border for the selected store */
+.jm-pickup-storeselected {
+  height: 39px;
+  padding: 10px;
+  border: 2px solid #0071e3;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
 }
 
-.jm-pickup-store .pickup-store-details {
+.jm-pickup-storeselected .jm-pickup-store-details {
   display: flex;
   align-items: center;
 }
 
-.jm-pickup-store .available {
+.jm-pickup-storeselected .jm-available {
+  font-size: 16px;
+  color: green;
+}
+
+.jm-pickup-storeselected p {
+font-weight: bold;
+margin: 0px;
+}
+
+.jm-pickup-store .jm-pickup-store-details {
+  display: flex;
+  align-items: center;
+}
+
+.jm-pickup-store .jm-available {
   font-size: 16px;
   color: green;
 }
@@ -342,4 +364,8 @@ width: 100%;
   padding: 12px 25px;
   border-radius: 10px;
   cursor: pointer;
+}
+
+.jm-map-ping {
+  background-image: url(https://store.storeimages.cdn-apple.com/8756/store.apple.com/static-resources/rs-checkout-5.4.1-33660/dist/assets/react-trans/store-locator/apple-selector-marker.png);
 }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 //css imports
-import '../css/Reset.css';
+import '../css/reset.css';
 import '../css/Payform.css';
 import Header from '../include/Header'; 
 import Footer from '../include/Footer';
@@ -130,13 +130,13 @@ const CheckoutPage = () => {
                 <div className="jm-pickup-store-list">
                   {[1, 2, 3, 4, 5].map((store) => (
                     <div
-                      id='jm-pickup-store'
+                      id='pickup-store'
                       key={store}
-                      className={`jm-pickup-store ${selectedStore === store ? 'selected' : ''}`}
+                      className={`jm-pickup-store${selectedStore === store ? 'selected' : ''}`}
                       onClick={() => handleStoreClick(store)}
                     >
                       <div className="jm-pickup-store-details">
-                        <span class="map-ping">{store}</span>
+                        <span class="jm-map-ping">{store}</span>
                         <p>Apple Store {store}</p>
                       </div>
                       <div>
