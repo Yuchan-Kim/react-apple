@@ -54,7 +54,7 @@ const ProductList = () => {
                     {/* 매장 리스트관련 내용 */}
                     <div id="product_area">
                         <div id="product_list" >
-                            <div className="hjy_header_with_button">
+                            <div className="hjy_header_with_buttons">
                                 <h2>상품 관리</h2>
                                 <button type="button" className="hjy_add_product_btn"><Link to="/admin/product/add" rel="noreferrer noopener">상품 등록</Link></button>
                             </div>

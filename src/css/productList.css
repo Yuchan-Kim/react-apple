@@ -71,26 +71,26 @@
 }
 
 /* 제목과 버튼을 한 줄에 배치 */
-#product .hjy_header_with_button {
+#product .hjy_header_with_buttons {
     display: flex; 
     justify-content: space-between; /* 좌우로 배치 */
     align-items: center; /* 세로 정렬 */
     margin-bottom: 10px; 
 }
 
-#product .hjy_header_with_button h2 {
+#product .hjy_header_with_buttons h2 {
     font-size: 24px;
     font-weight: bold;
 }
 
-#product .hjy_header_with_button a:link {
+#product .hjy_header_with_buttons a:link {
     text-decoration: none;
-    color: #333;
+    color: #ffffff;
 }
 
-#product .hjy_header_with_button a:visited {
+#product .hjy_header_with_buttons a:visited {
     text-decoration: none;
-    color: #333;
+    color: #ffffff;
 }
 
 /* 추가 버튼 스타일링 */

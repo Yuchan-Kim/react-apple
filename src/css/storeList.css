@@ -29,11 +29,7 @@
     text-decoration: none;
 }
 
-#store #asides a:link {
-    color: #333; 
-}
-
-#store #asides a:visited {
+#store #asides h2 a:visited {
     color: #333; 
 }
 
@@ -85,12 +81,12 @@
 
 #store .hjy_header_with_button a:link {
     text-decoration: none;
-    color: #333;
+    color: #ffffff;
 }
 
 #store .hjy_header_with_button a:visited {
     text-decoration: none;
-    color: #333;
+    color: #ffffff;
 }
 
 /* 추가 버튼 */
