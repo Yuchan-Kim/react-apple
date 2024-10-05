@@ -17,6 +17,20 @@ import Wishlist from './user/Wishlist';
 // 메인
 import Main from './main/Main';
 
+// 관리자
+import AdminMain from './admin/AdminMain';
+import StoreList from './admin/StoreList';
+import ProductList from './admin/ProductList';
+import UserList from './admin/UserList';
+import StoreModifyForm from './admin/StoreModifyForm';
+import ProductModifyForm from './admin/ProductModifyForm';
+import UserModifyForm from './admin/UserModifyForm';
+import StoreAddForm from './admin/StoreAddForm';
+import ProductAddForm from './admin/ProductAddForm';
+import ProductAddForm2 from './admin/ProductAddForm2';
+import DeliveryList from './admin/DeliveryList';
+import HistoryList from './admin/HistoryList';
+
 import './css/reset.css';
 
 function App() {

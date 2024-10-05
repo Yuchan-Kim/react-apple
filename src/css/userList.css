@@ -1,0 +1,143 @@
+/* 여백 초기화 */
+#contents body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, 
+input, fieldset, legend, p, select, table, th, td, tr,
+textarea, button, form {margin: 0; padding: 0;}
+
+/* clearfix */
+#contents .clearfix{*zoom:1;}
+#contents .clearfix:before, .clearfix:after {display: block; content: ""; line-height: 0;}
+#contents .clearfix:after {clear: both;}
+
+/* 기본 스타일 */
+#contents ul, ol {list-style-type: none; }
+#contents a:link {text-decoration: none; color: #000000;}
+#contents a:visited {text-decoration: none; color: #000000; }
+#contents a:active {text-decoration: none; color: #000000; }
+#contents a:hover {text-decoration: none; color: #000000;}
+
+/* #user 레이아웃 수정 */
+#user {
+    margin: 20px auto;
+    width: 100%;
+    max-width: 1200px; /* 헤더의 로고와 맞추기 위해 최대 너비 설정 */
+    padding: 20px 20px; /* 양쪽에 약간의 패딩을 추가해 정돈된 느낌 */
+    margin-bottom: 100px;
+}
+
+/* aside 메뉴 */
+#user #aside {
+    float: left;
+    width: 17%; /* 로고 크기에 맞춰서 너비 조정 */
+    margin-left: 3%; /* user_area와의 간격 */
+}
+
+#user #aside h2 {
+    font-size: 20px;
+    font-weight: bold;
+    padding-bottom: 20px;
+}
+
+#user #sub_list ul>li {
+    padding-bottom: 10px;
+    font-size: 15px;
+}
+
+#user #sub_list ul li a {
+    color: #aeaeae;
+}
+
+#user #sub_list ul li a:hover {
+    font-weight: bold;
+    color: #1594EB;
+}
+
+/* 매장 리스트 영역 */
+#user #user_area {
+    float: left;
+    width: 75%; /* aside와 합쳐서 전체 100%가 되도록 설정 */
+}
+
+#user #user_list h2 {
+    font-size: 20px;
+    font-weight: bold;
+    padding-bottom: 15px;
+}
+
+/* 유저 목록 */
+#user #user_item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#user #user_item:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* 매장 정보 */
+#user .hjy_user_info {
+    flex: 1;
+    font-size: 16px;
+}
+
+#user .hjy_user_info p {
+    margin-bottom: 10px;
+}
+
+#user .hjy_user_info strong {
+    font-weight: bold;
+}
+
+/* 수정 버튼 */
+#user .hjy_modify_btn {
+    margin-left: 10px;
+}
+
+#user .hjy_modify_btn button {
+    border: none;
+    background-color: #0071e3;
+    border-radius: 5px;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+#user .hjy_modify_btn button:hover {
+    background-color: #005bb5;
+}
+
+#user .hjy_modify_btn button a {
+    color: white; /* 글씨 색상을 흰색으로 설정 */
+    text-decoration: none; /* 밑줄 제거 */
+}
+
+/* a 태그에 hover 시에도 흰색 유지 */
+#user .hjy_modify_btn button a:hover {
+    color: white;
+}
+
+/* 삭제 버튼 */
+#user .hjy_del_btn {
+    margin-left: 10px;
+}
+
+#user .hjy_del_btn button {
+    border: none;
+    color: white;
+    background-color: #ff6b6b;
+    border-radius: 5px;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+#user .hjy_del_btn button:hover {
+    background-color: #ff4c4c;
+}

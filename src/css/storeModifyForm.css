@@ -1,0 +1,164 @@
+/* 여백 초기화 */
+#contents body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, 
+input, fieldset, legend, p, select, table, th, td, tr,
+textarea, button, form {margin: 0; padding: 0;}
+
+/* clearfix */
+#contents .clearfix{*zoom:1;}
+#contents .clearfix:before, .clearfix:after {display: block; content: ""; line-height: 0;}
+#contents .clearfix:after {clear: both;}
+
+/* 기본 스타일 */
+#contents ul, ol {list-style-type: none; }
+#contents a:link {text-decoration: none; color: #000000;}
+#contents a:visited {text-decoration: none; color: #000000; }
+#contents a:active {text-decoration: none; color: #000000; }
+#contents a:hover {text-decoration: none; color: #000000;}
+
+/* #store_modify 레이아웃 */
+#store_modify {
+    margin: 20px auto;
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px;
+    margin-bottom: 100px;
+}
+
+/* aside 메뉴 */
+#store_modify #aside {
+    float: left;
+    width: 17%;
+    margin-left: 3%;
+}
+
+#store_modify #aside h2 {
+    font-size: 20px;
+    font-weight: bold;
+    padding-bottom: 20px;
+}
+
+#store_modify #sub_list ul>li {
+    padding-bottom: 10px;
+    font-size: 15px;
+}
+
+#store_modify #sub_list ul li a {
+    color: #aeaeae;
+}
+
+#store_modify #sub_list ul li a:hover {
+    font-weight: bold;
+    color: #1594EB;
+}
+
+/* 매장 정보 수정 영역 */
+#store_modify_area {
+    float: left;
+    width: 75%;
+}
+
+#store_modify_area h2 {
+    font-size: 20px;
+    font-weight: bold;
+    padding-bottom: 15px;
+}
+
+/* 매장 상세 정보 폼 */
+#store_modify_item {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 매장 정보 입력 필드 */
+#store_modify .hjy_store_detail {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#store_modify .hjy_store_detail label {
+    width: 150px;
+    font-size: 16px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+#store_modify .hjy_store_detail input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* 부드러운 전환 효과 추가 */
+    color: #727272;
+}
+
+#store_modify .hjy_store_detail input[type="file"] {
+    color: #727272;
+}
+
+/* input 필드가 클릭 */
+#store_modify .hjy_store_detail input:focus {
+    outline: none; /* 기본 포커스 테두리 제거 */
+    border-color: #727272;
+}
+
+#store_modify .hjy_store_modify_btnbox {
+    display: flex; /* 버튼을 한 줄에 배치 */
+    justify-content: center; /* 버튼들을 중앙에 배치 */
+    align-items: center; /* 버튼을 수직으로 중앙에 배치 */
+    margin: 30px 0px 3px 0px;
+}
+
+/* 수정 버튼 */
+#store_modify .hjy_store_modify_btn button {
+    width: 220px;
+    margin-right: 15px;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 25px;
+    font-size: 18px; 
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease; /* 모든 스타일 변화에 트랜지션 추가 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 기본 그림자 추가 */
+    background-color: #0071e3;
+    color: white;
+}
+
+#store_modify .hjy_store_modify_btn button:hover {
+    transform: translateY(-2px); /* hover 시 살짝 위로 이동하는 효과 */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* hover 시 그림자 확장 */
+    background-color: #005bb5;
+}
+
+/* 취소 버튼 */
+#store_modify .hjy_store_cancel_btn button {
+    width: 220px;
+    margin-right: 15px;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 25px;
+    font-size: 18px; 
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease; /* 모든 스타일 변화에 트랜지션 추가 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 기본 그림자 추가 */
+    background-color: lightgray;
+    color: white;
+}
+
+#store_modify .hjy_store_cancel_btn button:hover {
+    transform: translateY(-2px); /* hover 시 살짝 위로 이동하는 효과 */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* hover 시 그림자 확장 */
+    background-color: #c9c9c9;
+}
+
+/* 버튼 안의 a 태그에 흰색 텍스트 적용 */
+#store_modify .hjy_store_cancel_btn a {
+    color: white; 
+}
