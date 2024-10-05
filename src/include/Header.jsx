@@ -42,7 +42,6 @@ const Header = () => {
             <FaSearch />
           </button>
         </div>
-        
 
         {
           (token !== null)?(
