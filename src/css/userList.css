@@ -15,26 +15,45 @@
 /* aside 메뉴 */
 #user #asides {
     float: left;
-    width: 17%; /* 로고 크기에 맞춰서 너비 조정 */
-    margin-left: 3%; /* user_area와의 간격 */
+    width: 17%;
+    margin-left: 2%;
 }
 
 #user #asides h2 {
     font-size: 20px;
     font-weight: bold;
-    padding-bottom: 20px;
+    padding-bottom: 5px;
+}
+
+#user #asides a {
+    text-decoration: none;
+}
+
+#user #asides a:link {
+    color: #333; 
+}
+
+#user #asides a:visited {
+    color: #333; 
+}
+
+#user #asides #sub_list ul {
+    padding-inline-start: 0;
+    margin: 0;
 }
 
 #user #asides #sub_list ul>li {
     padding-bottom: 10px;
     font-size: 15px;
+    list-style-type: none; 
 }
 
-#user #asides #sub_list ul li a {
+#user #asides #sub_list ul>li a {
     color: #aeaeae;
+    text-decoration: none;
 }
 
-#user #asides #sub_list ul li a:hover {
+#user #asides #sub_list ul>li a:hover {
     font-weight: bold;
     color: #1594EB;
 }

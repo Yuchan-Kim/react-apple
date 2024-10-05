@@ -16,25 +16,44 @@
 #product_modify #asides {
     float: left;
     width: 17%;
-    margin-left: 3%;
+    margin-left: 2%;
 }
 
 #product_modify #asides h2 {
     font-size: 20px;
     font-weight: bold;
-    padding-bottom: 20px;
+    padding-bottom: 5px;
+}
+
+#product_modify #asides a {
+    text-decoration: none;
+}
+
+#product_modify #asides a:link {
+    color: #333; 
+}
+
+#product_modify #asides a:visited {
+    color: #333; 
+}
+
+#product_modify #asides #sub_list ul {
+    padding-inline-start: 0;
+    margin: 0;
 }
 
 #product_modify #asides #sub_list ul>li {
     padding-bottom: 10px;
     font-size: 15px;
+    list-style-type: none; 
 }
 
-#product_modify #asides #sub_list ul li a {
+#product_modify #asides #sub_list ul>li a {
     color: #aeaeae;
+    text-decoration: none;
 }
 
-#product_modify #asides #sub_list ul li a:hover {
+#product_modify #asides #sub_list ul>li a:hover {
     font-weight: bold;
     color: #1594EB;
 }
@@ -150,16 +169,20 @@
 /* 버튼 안의 a 태그에 흰색 텍스트 적용 */
 #product_modify .hjy_product_add_btn a:link {
     color: white; 
+    text-decoration: none;
 }
 
 #product_modify .hjy_product_add_btn a:visited {
     color: white; 
+    text-decoration: none;
 }
 
 #product_modify .hjy_product_cancel_btn a:link {
     color: white; 
+    text-decoration: none;
 }
 
 #product_modify .hjy_product_cancel_btn a:visited {
     color: white; 
+    text-decoration: none;
 }
