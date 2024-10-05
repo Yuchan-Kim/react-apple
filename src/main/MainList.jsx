@@ -131,7 +131,7 @@ const MainList = () => {
 
                             {/* Category 2: 보급형 */}
                             <div className="yc-category">
-                                <h2>보급형</h2>
+                                <h2>BASIC</h2>
                                 <div className="yc-scroll-container">
                                     <div className="yc-product-list">
                                         {products.map((product, index) => (
@@ -172,7 +172,7 @@ const MainList = () => {
 
                             {/* Category 3: 이전 모델 */}
                             <div className="yc-category">
-                                <h2>이전 모델</h2>
+                                <h2>SPECIAL EDITION</h2>
                                 <div className="yc-scroll-container">
                                     <div className="yc-product-list">
                                         {products.map((product, index) => (
