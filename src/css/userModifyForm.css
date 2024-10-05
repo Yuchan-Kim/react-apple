@@ -1,19 +1,7 @@
-/* 여백 초기화 */
-#contents body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, 
-input, fieldset, legend, p, select, table, th, td, tr,
-textarea, button, form {margin: 0; padding: 0;}
-
 /* clearfix */
 #contents .clearfix{*zoom:1;}
 #contents .clearfix:before, .clearfix:after {display: block; content: ""; line-height: 0;}
 #contents .clearfix:after {clear: both;}
-
-/* 기본 스타일 */
-#contents ul, ol {list-style-type: none; }
-#contents a:link {text-decoration: none; color: #000000;}
-#contents a:visited {text-decoration: none; color: #000000; }
-#contents a:active {text-decoration: none; color: #000000; }
-#contents a:hover {text-decoration: none; color: #000000;}
 
 /* #user_modify 레이아웃 */
 #user_modify {
