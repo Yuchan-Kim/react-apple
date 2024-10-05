@@ -211,8 +211,8 @@
   }
 
   .jm-accessory-item p {
-    text-align: left;
-    margin-left: 7%;
+    font-size: 15px;
+    margin-inline: 10px;
   }
   
   .jm-accessory-image {
