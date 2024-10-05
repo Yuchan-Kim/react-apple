@@ -56,7 +56,7 @@ const CommunityList = () => {
 
                         <div id="filter" className="clearfix">
                             <div id="action-left">
-                                <Link to="/community/comment" rel="noreferrer noopener">커뮤니티에 질문하기</Link>
+                                <Link to="/community/write" rel="noreferrer noopener">커뮤니티에 질문하기</Link>
                             </div>
                             <div id="action-right">
                                 <span>페이지1</span>

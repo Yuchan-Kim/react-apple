@@ -30,7 +30,7 @@ const UserModifyForm = () => {
                     {/* user_modify */}
                     <div id="user_modify" className="clearfix">
                         {/* aside */}
-                        <div id="aside">
+                        <div id="asides">
                             <h2><Link to="/admin/main" rel="noreferrer noopener">관리자 페이지</Link></h2>
                             <div id="sub_list"> 
                                 <ul>

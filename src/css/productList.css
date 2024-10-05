@@ -25,28 +25,28 @@ textarea, button, form {margin: 0; padding: 0;}
 }
 
 /* aside 메뉴 */
-#product #aside {
+#product #asides {
     float: left;
     width: 17%; /* 로고 크기에 맞춰서 너비 조정 */
     margin-left: 3%; /* product_area와의 간격 */
 }
 
-#product #aside h2 {
+#product #asides h2 {
     font-size: 20px;
     font-weight: bold;
     padding-bottom: 20px;
 }
 
-#product #sub_list ul>li {
+#product #asides #sub_list ul>li {
     padding-bottom: 10px;
     font-size: 15px;
 }
 
-#product #sub_list ul li a {
+#product #asides #sub_list ul li a {
     color: #aeaeae;
 }
 
-#product #sub_list ul li a:hover {
+#product #asides #sub_list ul li a:hover {
     font-weight: bold;
     color: #1594EB;
 }

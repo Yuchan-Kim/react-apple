@@ -25,28 +25,28 @@ textarea, button, form {margin: 0; padding: 0;}
 }
 
 /* aside 메뉴 */
-#store_add #aside {
+#store_add #asides {
     float: left;
     width: 17%;
     margin-left: 3%;
 }
 
-#store_add #aside h2 {
+#store_add #asides h2 {
     font-size: 20px;
     font-weight: bold;
     padding-bottom: 20px;
 }
 
-#store_add #sub_list ul>li {
+#store_add #asides #sub_list ul>li {
     padding-bottom: 10px;
     font-size: 15px;
 }
 
-#store_add #sub_list ul li a {
+#store_add #asides #sub_list ul li a {
     color: #aeaeae;
 }
 
-#store_add #sub_list ul li a:hover {
+#store_add #asides #sub_list ul li a:hover {
     font-weight: bold;
     color: #1594EB;
 }
@@ -158,6 +158,18 @@ textarea, button, form {margin: 0; padding: 0;}
 }
 
 /* 버튼 안의 a 태그에 흰색 텍스트 적용 */
-#store_add .hjy_store_cancel_btn a {
+#store_add .hjy_store_add_btnbox a:link {
+    color: white; 
+}
+
+#store_add .hjy_store_add_btnbox a:visited {
+    color: white; 
+}
+
+#store_add .hjy_store_cancel_btn a:link {
+    color: white; 
+}
+
+#store_add .hjy_store_cancel_btn a:visited {
     color: white; 
 }

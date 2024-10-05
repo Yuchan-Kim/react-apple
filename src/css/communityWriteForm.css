@@ -170,3 +170,11 @@ textarea, button, form {margin: 0; padding: 0;}
     font-size: 15px;
     color: #ffffff;
 }
+
+#community-write .hjy-btns a:link {
+    color: #ffffff;
+}
+
+#community-write .hjy-btns a:visited {
+    color: #ffffff;
+}

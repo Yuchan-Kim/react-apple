@@ -25,28 +25,28 @@ textarea, button, form {margin: 0; padding: 0;}
 }
 
 /* aside 메뉴 */
-#admin_main #aside {
+#admin_main #asides {
     float: left;
     width: 17%;
     margin-left: 3%;
 }
 
-#admin_main #aside h2 {
+#admin_main #asides h2 {
     font-size: 20px;
     font-weight: bold;
     padding-bottom: 20px;
 }
 
-#admin_main #sub_list ul>li {
+#admin_main #asides #sub_list ul>li {
     padding-bottom: 10px;
     font-size: 15px;
 }
 
-#admin_main #sub_list ul li a {
+#admin_main #asides #sub_list ul li a {
     color: #aeaeae;
 }
 
-#admin_main #sub_list ul li a:hover {
+#admin_main #asides #sub_list ul li a:hover {
     font-weight: bold;
     color: #1594EB;
 }
