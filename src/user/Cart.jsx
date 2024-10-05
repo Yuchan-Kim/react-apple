@@ -30,7 +30,7 @@ const Cart = () => {
             </div>
             {/* 반복문 영역 */}
             <div className="jm-item-info">
-                <div className="ijm-tem-details">
+                <div className="jm-item-details">
                     <div className='jm-item-name'><h2>iPhone 15 Plus 128GB 블랙</h2></div>
                     <div className='jm-item-options'>
                     <select data-autom="item-quantity-dropdown">
