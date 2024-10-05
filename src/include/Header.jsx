@@ -42,23 +42,19 @@ const Header = () => {
             <FaSearch />
           </button>
         </div>
-        <div className="yc-auth-cart-icons">
-          <Link to="/" className="yc-auth-btn">로그인</Link>
-          <Link to="/" className="yc-auth-btn">회원 가입</Link>
-          <FaShoppingBag className="yc-icon" />
-        </div>
+        
 
         {
           (token !== null)?(
             <div className="yc-auth-cart-icons">
-              <Link to="/" className="yc-auth-btn">로그인</Link>
-              <Link to="/" className="yc-auth-btn">회원 가입</Link>
-              <FaShoppingBag className="yc-icon" />
+              <button className="yc-auth-btn" onClick={handleLogout}> {authUser.userName} 로그아웃 </button>
+              <Link to ="" className="yc-auth-btn">회원 정보 수정</Link>
+              <FaShoppingBag className="yc-icon"  />
             </div>
           ):(
             <div className="yc-auth-cart-icons">
-              <Link to="/" className="yc-auth-btn">로그인</Link>
-              <Link to="/" className="yc-auth-btn">회원 가입</Link>
+              <Link to="/user/loginform" className="yc-auth-btn">로그인</Link>
+              <Link to="/user/joinform" className="yc-auth-btn">회원 가입</Link>
               <FaShoppingBag className="yc-icon" />
             </div>
           )
@@ -68,8 +64,8 @@ const Header = () => {
       {/* 하단 헤더 */}
       <div className="yc-header-bottom">
         <nav className="yc-nav-links">
-          <Link to="/">iPhone</Link>
-          <Link to="/">Accessories</Link>
+          <Link to="/purchase">iPhone</Link>
+          <Link to="/purchaseAcc">Accessories</Link>
           <Link to="/community">Community</Link>
         </nav>
       </div>
