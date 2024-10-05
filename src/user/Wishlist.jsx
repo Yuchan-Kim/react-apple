@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 // css import
 import '../css/Wishlist.css'; // CSS 파일 import
@@ -25,49 +26,49 @@ const Wishlist = () => {
       <section className="jm-wishlist-section">
         <div className="jm-section-header">
           <h2>관심 제품</h2>
-          <a href="#" className="jm-edit-link">편집</a>
+          <Link to="#" className="jm-edit-link">편집</Link>
         </div>
 
         <div className="jm-wish-item">
           {/* 반복되는 제품 아이템 */}
           <div className="jm-product-item">
             <div className="jm-product-item-img">
-              <img src="https://via.placeholder.com/150" />
+              <img src="https://via.placeholder.com/150" alt='item-img'/>
             </div>
             <span>iphone 16 pro</span>
         </div>
 
         <div className="jm-product-item">
             <div className="jm-product-item-img">
-              <img src="https://via.placeholder.com/150" />
+              <img src="https://via.placeholder.com/150" alt='item-img'/>
             </div>
             <span>iphone 16 pro</span>
         </div>
 
         <div className="jm-product-item">
             <div className="jm-product-item-img">
-              <img src="https://via.placeholder.com/150" />
+              <img src="https://via.placeholder.com/150" alt='item-img'/>
             </div>
             <span>iphone 16 pro</span>
         </div>
 
         <div className="jm-product-item">
             <div className="jm-product-item-img">
-              <img src="https://via.placeholder.com/150" />
+              <img src="https://via.placeholder.com/150" alt='item-img'/>
             </div>
             <span>iphone 16 pro</span>
         </div>
 
         <div className="jm-product-item">
             <div className="jm-product-item-img">
-              <img src="https://via.placeholder.com/150" />
+              <img src="https://via.placeholder.com/150" alt='item-img'/>
             </div>
             <span>iphone 16 pro</span>
         </div>
 
         <div className="jm-product-item">
             <div className="jm-product-item-img">
-              <img src="https://via.placeholder.com/150" />
+              <img src="https://via.placeholder.com/150" alt='item-img'/>
             </div>
             <span>iphone 16 pro</span>
         </div>
