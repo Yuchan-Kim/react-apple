@@ -40,7 +40,7 @@ function App() {
     <BrowserRouter>
         <Routes>
           <Route path='/mainlist' element={<MainList />} />
-          <Route path='/search' element={<Search />} />
+          <Route path='/search/:keyword' element={<Search />} /> 
           <Route path='/purchaseAcc' element={<PurchaseAcc />} />
           <Route path='/purchase' element={<Purchase />} />
 

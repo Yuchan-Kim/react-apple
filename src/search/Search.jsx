@@ -1,138 +1,151 @@
-    import React, { useState } from 'react';
-    import { Link } from 'react-router-dom';
-    import '../css/search.css';
+import React, { useEffect, useState } from 'react';
+import { useParams, Link } from 'react-router-dom';
+import '../css/search.css';
 
-    import Header from '../include/Header';
-    import Footer from '../include/Footer';
+import Header from '../include/Header';
+import Footer from '../include/Footer';
+import axios from 'axios';
 
-    const storeData = [
-    { name: 'Apple Store 명동', address: '서울, 명동 1가', image: 'https://via.placeholder.com/300x200' },
-    { name: 'Apple Store 강남', address: '서울, 강남구', image: 'https://via.placeholder.com/300x200' },
-    { name: 'Apple Store 가로수길', address: '서울, 가로수길', image: 'https://via.placeholder.com/300x200' },
-    { name: 'Apple Store 잠실', address: '서울, 잠실', image: 'https://via.placeholder.com/300x200' },
-    { name: 'Apple Store 홍대', address: '서울, 홍대', image: 'https://via.placeholder.com/300x200' },
-    { name: 'Apple Store 여의도', address: '서울, 여의도', image: 'https://via.placeholder.com/300x200' },
-    { name: 'Apple Store 서초', address: '서울, 서초', image: 'https://via.placeholder.com/300x200' },
-    { name: 'Apple Store 광화문', address: '서울, 광화문', image: 'https://via.placeholder.com/300x200' },
-    { name: 'Apple Store 수원', address: '수원, 경기', image: 'https://via.placeholder.com/300x200' },
-    { name: 'Apple Store 부산', address: '부산, 해운대구', image: 'https://via.placeholder.com/300x200' },
-    ];
+const SearchPage = () => {
+    const { keyword } = useParams(); // URL 파라미터로 검색어 가져오기
+    const [products, setProducts] = useState([]); // 제품 검색 결과 상태
+    const [stores, setStores] = useState([]); // 매장 검색 결과 상태
+    const [communities, setCommunities] = useState([]); // 커뮤니티 검색 결과 상태
+    const [activeTab, setActiveTab] = useState('products'); // 기본 활성 탭을 'products'로 설정
 
-    const SearchPage = () => {
-    const [activeTab, setActiveTab] = useState('products');
+    useEffect(() => {
+        // 제품 검색
+        axios.get(`http://localhost:9000/api/search/products/${keyword}`)
+            .then(response => {
+                console.log('제품 응답:', response);
+                const data = response.data;
+                if (data.result === 'success') {
+                    setProducts(data.apiData);
+                } else {
+                    console.error('제품 검색 결과가 없습니다:', data.message);
+                }
+            }).catch(error => {
+                console.error('제품 검색 오류:', error);
+            });
 
+        // 매장 검색
+        axios.get(`http://localhost:9000/api/search/stores/${keyword}`)
+            .then(response => {
+                console.log('매장 응답:', response);
+                const data = response.data;
+                if (data.result === 'success') {
+                    setStores(data.apiData);
+                } else {
+                    console.error('매장 검색 결과가 없습니다:', data.message);
+                }
+            }).catch(error => {
+                console.error('매장 검색 오류:', error);
+            });
+
+        // 커뮤니티 검색
+        axios.get(`http://localhost:9000/api/search/communities/${keyword}`)
+            .then(response => {
+                console.log('커뮤니티 응답:', response);
+                const data = response.data;
+                if (data.result === 'success') {
+                    setCommunities(data.apiData);
+                } else {
+                    console.error('커뮤니티 검색 결과가 없습니다:', data.message);
+                }
+            }).catch(error => {
+                console.error('커뮤니티 검색 오류:', error);
+            });
+    }, [keyword]);
+    
     const handleTabClick = (tab) => {
-        setActiveTab(tab);
+        setActiveTab(tab); // 활성 탭 변경
     };
 
     return (
         <>
-        <Header />
-        <div className="wrap">
-            {/* Tab Navigation Menu */}
-            <div className="yc-tabs-menu">
-            <ul>
-                <li
-                className={activeTab === 'products' ? 'yc-active' : ''}
-                onClick={() => handleTabClick('products')}
-                >
-                iPhone
-                </li>
-                <li
-                className={activeTab === 'accessories' ? 'yc-active' : ''}
-                onClick={() => handleTabClick('accessories')}
-                >
-                ACC
-                </li>
-                <li
-                className={activeTab === 'community' ? 'yc-active' : ''}
-                onClick={() => handleTabClick('community')}
-                >
-                커뮤니티
-                </li>
-                <li
-                className={activeTab === 'findStore' ? 'yc-active' : ''}
-                onClick={() => handleTabClick('findStore')}
-                >
-                매장 찾기
-                </li>
-            </ul>
+            <Header />
+            <div className="wrap">
+                {/* Tab Navigation Menu */}
+                <div className="yc-tabs-menu">
+                    <ul>
+                        <li
+                            className={activeTab === 'products' ? 'yc-active' : ''}
+                            onClick={() => handleTabClick('products')}
+                        >
+                            제품
+                        </li>
+                        <li
+                            className={activeTab === 'community' ? 'yc-active' : ''}
+                            onClick={() => handleTabClick('community')}
+                        >
+                            커뮤니티
+                        </li>
+                        <li
+                            className={activeTab === 'findStore' ? 'yc-active' : ''}
+                            onClick={() => handleTabClick('findStore')}
+                        >
+                            매장 찾기
+                        </li>
+                    </ul>
+                    <h2>검색 결과: "{keyword}"</h2>
+                </div>
+
+                {/* Dynamic Content Based on Selected Tab */}
+                <div className="yc-tab-content">
+                    {activeTab === 'products' && (
+                        <div className="yc-product-grid">
+                            {products.length > 0 ? (
+                                products.map((product) => (
+                                    <div key={product.productNum} className="yc-product-item">
+                                        <img src={product.mainImages || "https://via.placeholder.com/200"} alt={product.productName} />
+                                        <h3>{product.productName}</h3>
+                                        <p>가격: {product.productPrice} 원</p>
+                                        <Link to={`/product/${product.productNum}`}>자세히 보기</Link>
+                                    </div>
+                                ))
+                            ) : (
+                                <p>제품 검색 결과가 없습니다.</p>
+                            )}
+                        </div>
+                    )}
+
+                    {activeTab === 'community' && (
+                        <div>
+                            {communities.length > 0 ? (
+                                communities.map((community) => (
+                                    <div key={community.boardNum} className="community-item">
+                                        <h3>{community.boardTitle}</h3>
+                                        <p>조회수: {community.boardViews} | 날짜: {community.boardDate}</p>
+                                        <Link to={`/community/${community.boardNum}`}>자세히 보기</Link>
+                                    </div>
+                                ))
+                            ) : (
+                                <p>커뮤니티 검색 결과가 없습니다.</p>
+                            )}
+                        </div>
+                    )}
+
+                    {activeTab === 'findStore' && (
+                        <div className="yc-store-locator">
+                            {stores.length > 0 ? (
+                                stores.map((store) => (
+                                    <div key={store.storeNum} className="yc-store-item">
+                                        <img src={store.storeImage || "https://via.placeholder.com/200"} alt={store.storeName} />
+                                        <h3>{store.storeName}</h3>
+                                        <p>{store.storeaddress}</p>
+                                        <Link to={`/store/${store.storeNum}`}>자세히 보기</Link>
+                                    </div>
+                                ))
+                            ) : (
+                                <p>매장 검색 결과가 없습니다.</p>
+                            )}
+                        </div>
+                    )}
+                </div>
             </div>
-
-            {/* Dynamic Content Based on Selected Tab */}
-            <div className="yc-tab-content">
-            {activeTab === 'products' && (
-                <div>
-                <h2>iPhone 살펴보기</h2>
-                <div className="yc-product-grid">
-                    <div className="yc-product-item">
-                    <img src="https://via.placeholder.com/200" alt="iPhone 15" />
-                    <h3>iPhone 15</h3>
-                    <p>최신 iPhone 15, 향상된 성능과 카메라.</p>
-                    </div>
-                    <div className="yc-product-item">
-                    <img src="https://via.placeholder.com/200" alt="iPhone 14" />
-                    <h3>iPhone 14</h3>
-                    <p>iPhone 14, 강력한 성능과 세련된 디자인.</p>
-                    </div>
-                    <div className="yc-product-item">
-                    <img src="https://via.placeholder.com/200" alt="iPhone SE" />
-                    <h3>iPhone SE</h3>
-                    <p>iPhone SE, 가성비 최고의 스마트폰.</p>
-                    </div>
-                </div>
-                </div>
-            )}
-
-            {activeTab === 'accessories' && (
-                <div>
-                <h2>액세서리</h2>
-                <div className="yc-product-grid">
-                    <div className="yc-product-item">
-                    <img src="https://via.placeholder.com/200" alt="AirPods" />
-                    <h3>AirPods</h3>
-                    <p>무선 이어폰, 깨끗한 음질.</p>
-                    </div>
-                    <div className="yc-product-item">
-                    <img src="https://via.placeholder.com/200" alt="iPhone Case" />
-                    <h3>iPhone 케이스</h3>
-                    <p>iPhone 보호를 위한 스타일리시한 케이스.</p>
-                    </div>
-                </div>
-                </div>
-            )}
-
-            {activeTab === 'community' && (
-                <div>
-                <h2>커뮤니티</h2>
-                <p>Apple 커뮤니티는 다양한 제품에 대해 토론하고 질문할 수 있는 공간입니다.</p>
-                <ul>
-                    <li><Link to="/community/support">Apple 지원 커뮤니티로 이동하기</Link></li>
-                    <li><Link to="/community/iphone-forum">iPhone 사용자 포럼 보기</Link></li>
-                    <li><Link to="/community/events">Apple 이벤트 정보</Link></li>
-                </ul>
-                </div>
-            )}
-
-            {activeTab === 'findStore' && (
-                <div>
-                <h2>매장 찾기</h2>
-                <div className="yc-store-locator">
-                    {storeData.map((store, index) => (
-                    <div key={index} className="yc-store-item">
-                        <img src={store.image} alt={store.name} />
-                        <h3>{store.name}</h3>
-                        <p>{store.address}</p>
-                    </div>
-                    ))}
-                </div>
-                </div>
-            )}
-            </div>
-        </div>
-        <Footer />
+            <Footer />
         </>
     );
-    };
+};
 
-    export default SearchPage;
+export default SearchPage;
