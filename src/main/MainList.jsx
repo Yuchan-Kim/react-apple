@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 import Header from '../include/Header';
@@ -13,6 +13,7 @@ const MainList = () => {
     const [products, setProducts] = useState([]);
     const [error, setError] = useState(null);  // State to track errors
     const [loading, setLoading] = useState(true);  // State to handle loading
+    const navigate = useNavigate();  // Added navigate
 
     // Handle modal open
     const handleModalOpen = (product) => {
@@ -40,7 +41,7 @@ const MainList = () => {
         axios({
             method: 'get',
             url: 'http://localhost:9000/api/main/mainproducts',
-            responseType: 'json',
+            responseType: 'unionVo',
         })
         .then(response => {
             if (Array.isArray(response.data)) {
@@ -57,6 +58,30 @@ const MainList = () => {
             setLoading(false);  // Stop loading on error
         });
     }, []);  
+
+    // Function to navigate to purchase page
+    const handleProductClick = (productDetailNum) => {
+        navigate(`/purchase/${productDetailNum}`);
+    };
+
+    // Categories and Product Filtering
+    const proAndProMax = products.filter(product => 
+        product.seriesName.includes('Pro') || product.seriesName.includes('Pro Max')
+    );
+
+    const seAndOther = products.filter(product => 
+        !product.seriesName.includes('Pro') && 
+        !product.seriesName.includes('Pro Max') && 
+        !product.seriesName.includes('SE')
+    );
+
+    const seModels = products.filter(product => 
+        product.seriesName.includes('SE')
+    );
+
+    const otherModels = products.filter(product => 
+        product.seriesName.includes('악세사리') 
+    );
 
     return (
         <>
@@ -93,31 +118,27 @@ const MainList = () => {
                                 <h2>PRO & PRO MAX</h2>
                                 <div className="yc-scroll-container">
                                     <div className="yc-product-list">
-                                        {products.map((product, index) => (
-                                            <div className="yc-product-card" key={index}>
+                                        {proAndProMax.map(product => (
+                                            <div
+                                                className="yc-product-card"
+                                                key={product.productDetailNum}
+                                                onClick={() => handleProductClick(product.productDetailNum)}  // Navigate to purchase page
+                                            >
                                                 <span className="yc-new-label">NEW</span>
-                                                <h3>{product.name}</h3>
-                                                <img src={product.image} alt={product.name} />
-                                                
-                                                {/* Color options */}
-                                                <div className="yc-color-selection">
-                                                    {product.colors.map((color, index) => (
-                                                        <span
-                                                            key={index}
-                                                            className="yc-color-dot"
-                                                            style={{ backgroundColor: color }}
-                                                        ></span>
-                                                    ))}
-                                                </div>
+                                                <h3>{product.productName}</h3>
+                                                <img src={product.mainImages} alt={product.productName} />
 
                                                 <div className="yc-price-button-container">
-                                                    <p>{product.price}부터</p>
+                                                    <p>{product.productPrice}부터</p>
                                                     <button className="yc-buy-button">구입하기</button>
                                                 </div>
 
                                                 <div className="yc-hover-button-container">
                                                     <button
-                                                        onClick={() => handleModalOpen(product)}
+                                                        onClick={(e) => {
+                                                            e.stopPropagation();  // Prevent navigation when detail button clicked
+                                                            handleModalOpen(product);
+                                                        }}
                                                         className="yc-detail-button"
                                                     >
                                                         제품 자세히 살펴보기
@@ -129,36 +150,32 @@ const MainList = () => {
                                 </div>
                             </div>
 
-                            {/* Category 2: 보급형 */}
+                            {/* Category 2: SE and Other Models */}
                             <div className="yc-category">
                                 <h2>BASIC</h2>
                                 <div className="yc-scroll-container">
                                     <div className="yc-product-list">
-                                        {products.map((product, index) => (
-                                            <div className="yc-product-card" key={index}>
+                                        {seAndOther.map(product => (
+                                            <div
+                                                className="yc-product-card"
+                                                key={product.productDetailNum}
+                                                onClick={() => handleProductClick(product.productDetailNum)}  // Navigate to purchase page
+                                            >
                                                 <span className="yc-new-label">NEW</span>
-                                                <h3>{product.name}</h3>
-                                                <img src={product.image} alt={product.name} />
-                                                
-                                                {/* Color options */}
-                                                <div className="yc-color-selection">
-                                                    {product.colors.map((color, index) => (
-                                                        <span
-                                                            key={index}
-                                                            className="yc-color-dot"
-                                                            style={{ backgroundColor: color }}
-                                                        ></span>
-                                                    ))}
-                                                </div>
+                                                <h3>{product.productName}</h3>
+                                                <img src={product.mainImages} alt={product.productName} />
 
                                                 <div className="yc-price-button-container">
-                                                    <p>{product.price}부터</p>
+                                                    <p>{product.productPrice}부터</p>
                                                     <button className="yc-buy-button">구입하기</button>
                                                 </div>
 
                                                 <div className="yc-hover-button-container">
                                                     <button
-                                                        onClick={() => handleModalOpen(product)}
+                                                        onClick={(e) => {
+                                                            e.stopPropagation();  // Prevent navigation when detail button clicked
+                                                            handleModalOpen(product);
+                                                        }}
                                                         className="yc-detail-button"
                                                     >
                                                         제품 자세히 살펴보기
@@ -170,36 +187,32 @@ const MainList = () => {
                                 </div>
                             </div>
 
-                            {/* Category 3: 이전 모델 */}
+                            {/* Category 3: SE Models */}
                             <div className="yc-category">
-                                <h2>SPECIAL EDITION</h2>
+                                <h2>SE MODELS</h2>
                                 <div className="yc-scroll-container">
                                     <div className="yc-product-list">
-                                        {products.map((product, index) => (
-                                            <div className="yc-product-card" key={index}>
+                                        {seModels.map(product => (
+                                            <div
+                                                className="yc-product-card"
+                                                key={product.productDetailNum}
+                                                onClick={() => handleProductClick(product.productDetailNum)}  // Navigate to purchase page
+                                            >
                                                 <span className="yc-new-label">NEW</span>
-                                                <h3>{product.name}</h3>
-                                                <img src={product.image} alt={product.name} />
-                                                
-                                                {/* Color options */}
-                                                <div className="yc-color-selection">
-                                                    {product.colors.map((color, index) => (
-                                                        <span
-                                                            key={index}
-                                                            className="yc-color-dot"
-                                                            style={{ backgroundColor: color }}
-                                                        ></span>
-                                                    ))}
-                                                </div>
+                                                <h3>{product.productName}</h3>
+                                                <img src={product.mainImages} alt={product.productName} />
 
                                                 <div className="yc-price-button-container">
-                                                    <p>{product.price}부터</p>
+                                                    <p>{product.productPrice}부터</p>
                                                     <button className="yc-buy-button">구입하기</button>
                                                 </div>
 
                                                 <div className="yc-hover-button-container">
                                                     <button
-                                                        onClick={() => handleModalOpen(product)}
+                                                        onClick={(e) => {
+                                                            e.stopPropagation();  // Prevent navigation when detail button clicked
+                                                            handleModalOpen(product);
+                                                        }}
                                                         className="yc-detail-button"
                                                     >
                                                         제품 자세히 살펴보기
@@ -211,36 +224,32 @@ const MainList = () => {
                                 </div>
                             </div>
 
-                            {/* Category 4: ACC */}
+                            {/* Category 4: Accessories */}
                             <div className="yc-category">
-                                <h2>ACC</h2>
+                                <h2>ACCESSORIES</h2>
                                 <div className="yc-scroll-container">
                                     <div className="yc-product-list">
-                                        {products.map((product, index) => (
-                                            <div className="yc-product-card" key={index}>
+                                        {otherModels.map(product => (
+                                            <div
+                                                className="yc-product-card"
+                                                key={product.productDetailNum}
+                                                onClick={() => handleProductClick(product.productDetailNum)}  // Navigate to purchase page
+                                            >
                                                 <span className="yc-new-label">NEW</span>
-                                                <h3>{product.name}</h3>
-                                                <img src={product.image} alt={product.name} />
-                                                
-                                                {/* Color options */}
-                                                <div className="yc-color-selection">
-                                                    {product.colors.map((color, index) => (
-                                                        <span
-                                                            key={index}
-                                                            className="yc-color-dot"
-                                                            style={{ backgroundColor: color }}
-                                                        ></span>
-                                                    ))}
-                                                </div>
+                                                <h3>{product.productName}</h3>
+                                                <img src={product.mainImages} alt={product.productName} />
 
                                                 <div className="yc-price-button-container">
-                                                    <p>{product.price}부터</p>
+                                                    <p>{product.productPrice}부터</p>
                                                     <button className="yc-buy-button">구입하기</button>
                                                 </div>
 
                                                 <div className="yc-hover-button-container">
                                                     <button
-                                                        onClick={() => handleModalOpen(product)}
+                                                        onClick={(e) => {
+                                                            e.stopPropagation();  // Prevent navigation when detail button clicked
+                                                            handleModalOpen(product);
+                                                        }}
                                                         className="yc-detail-button"
                                                     >
                                                         제품 자세히 살펴보기
@@ -265,20 +274,21 @@ const MainList = () => {
                         <span className="yc-close-button" onClick={handleModalClose}>&times;</span>
                         <div className="yc-modal-container">
                             <div className="yc-modal-image-slider">
-                                <img src={selectedProduct.image} alt={selectedProduct.name} />
+                                <img src={selectedProduct.mainImages} alt={selectedProduct.productName} />
                                 <div className="yc-image-indicator">
                                     <span className="yc-dot active"></span>
                                     <span className="yc-dot"></span>
                                     <span className="yc-dot"></span>
                                 </div>
-                                <p className="yc-image-caption">3개 색상으로 제공</p>
+                                <p className="yc-image-caption">여러 색상으로 제공됩니다</p>
                             </div>
                             <div className="yc-modal-details">
-                                <h2>{selectedProduct.name}</h2>
+                                <h2>{selectedProduct.productName}</h2>
                                 <div className="yc-price-buy-container">
-                                    <p className="yc-price">{selectedProduct.price}</p>
+                                    <p className="yc-price">{selectedProduct.productPrice} 원부터</p>
                                     <button className="yc-buy-button">구입하기</button>
                                 </div>
+                                {/* Add static features here */}
                                 <ul className="yc-features">
                                     <li><img src="/path/to/icon.png" alt="icon" /> 11.9cm Retina HD 디스플레이</li>
                                     <li><img src="/path/to/icon.png" alt="icon" /> A15 Bionic 칩 탑재</li>
@@ -295,10 +305,7 @@ const MainList = () => {
                                 <p><img src="/path/to/icon1.png" alt="icon" /> 할부 방식: 무이자 구매</p>
                             </div>
                             <div className="yc-modal-footer-section">
-                                <p><img src="/path/to/icon3.png" alt="icon" /> 무료 익일 배송: 오후 3시 이전 주문 시</p>
-                            </div>
-                            <div className="yc-modal-footer-section">
-                                <p><img src="/path/to/icon3.png" alt="icon" /> 무료 익일 배송: 오후 3시 이전 주문 시</p>
+                                <p><img src="/path/to/icon2.png" alt="icon" /> 무료 익일 배송: 오후 3시 이전 주문 시</p>
                             </div>
                         </div>
                     </div>
