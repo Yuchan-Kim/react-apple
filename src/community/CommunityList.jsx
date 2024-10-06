@@ -1,7 +1,8 @@
 //import 라이브러리
-import React from "react";
+import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import { FaSearch } from 'react-icons/fa';
+import axios from 'axios';	
 
 import '../css/reset.css';
 import '../css/communityList.css';
@@ -13,12 +14,33 @@ const CommunityList = () => {
     /*---라우터 관련-------------------------------*/
     
     /*---상태관리 변수들(값이 변화면 화면 랜더링 )---*/
+    const [communityList, setCommunityList] = useState([]);
+    const [token, setToken] = useState(localStorage.getItem('token')); 
 
     /*---일반 변수--------------------------------*/
     
     /*---일반 메소드 -----------------------------*/
     
     /*---훅(useEffect)+이벤트(handle)메소드-------*/
+    // 마운트됐을때
+    useEffect(()=>{
+        console.log("마운트 됐어요");
+
+        // 서버로 데이터 전송
+        axios({
+            method: 'get',
+            url: `${process.env.REACT_APP_API_URL}/api/communitys`,
+
+            responseType: 'json' //수신타입 받을때
+        }).then(response => {
+            console.log(response); //수신데이타
+            setCommunityList(response.data.apiData);
+
+        }).catch(error => {
+            console.log(error);
+        });
+
+    }, []);
     
     return (
         <>
@@ -56,7 +78,13 @@ const CommunityList = () => {
 
                         <div id="filter" className="clearfix">
                             <div id="action-left">
-                                <Link to="/community/write" rel="noreferrer noopener">커뮤니티에 질문하기</Link>
+                                {
+                                    (token != null)?( //로그인 했을때
+                                        <Link to="/community/write" rel="noreferrer noopener">커뮤니티에 질문하기</Link>
+                                    ):(         //로그인 안했을때
+                                        <div></div>
+                                    )
+                                }
                             </div>
                             <div id="action-right">
                                 <span>페이지1</span>
@@ -78,74 +106,32 @@ const CommunityList = () => {
                         </div> */}
 
                         {/* 반복구간 */}
-                        <div id="community-post" className="clearfix">
-                            <div className="hjy-profile">
-                                <img src="/images/profile.jpg" alt="프로필"/>
-                            </div>
-                            <div className="hjy-title">
-                                아이폰16프로 카메라 튕김
-                            </div>
-                            <div id="content" className="clearfix">
-                                <div className="hjy-time">
-                                    마지막 답글 20시간 전 작성자: gotohome
-                                </div>
-                                <div className="hjy-comment">
-                                    댓글: 13
+                        {communityList.map((communityVo)=>{
+                            return(
+                                <div id="community-post" className="clearfix">
+                                    <div className="hjy-profile">
+                                        <img src="/images/profile.jpg" alt="프로필"/>
                                     </div>
-                                <div className="hjy-hit">
-                                    조회: 100
+                                    <div className="hjy-title">
+                                        <Link className="hjy-title" to={`/community/comment/${communityVo.boardNum}`} rel="noreferrer noopener">{communityVo.boardTitle}</Link>
                                     </div>
-                                <div className="hjy-question">
-                                    질문자: 홍길동
+                                    <div id="content" className="clearfix">
+                                        <div className="hjy-time">
+                                            {communityVo.boardDate}  작성자: {communityVo.id}
+                                        </div>
+                                        <div className="hjy-comment">
+                                            댓글: ~
+                                            </div>
+                                        <div className="hjy-hit">
+                                            조회: {communityVo.boardViews}
+                                            </div>
+                                        <div className="hjy-question">
+                                            질문자: {communityVo.name}
+                                        </div>
+                                    </div>  
                                 </div>
-                            </div>
-                        </div>
-
-                        <div id="community-post" className="clearfix">
-                            <div className="hjy-profile">
-                                <img src="/images/profile.jpg" alt="프로필"/>
-                            </div>
-                            <div className="hjy-title">
-                                아이폰16프로 카메라 튕김
-                            </div>
-                            <div id="content" className="clearfix">
-                                <div className="hjy-time">
-                                    마지막 답글 20시간 전 작성자: gotohome
-                                </div>
-                                <div className="hjy-comment">
-                                    댓글: 13
-                                    </div>
-                                <div className="hjy-hit">
-                                    조회: 100
-                                    </div>
-                                <div className="hjy-question">
-                                    질문자: 홍길동
-                                </div>
-                            </div>
-                        </div>
-
-                        <div id="community-post" className="clearfix">
-                            <div className="hjy-profile">
-                                <img src="/images/profile.jpg" alt="프로필"/>
-                            </div>
-                            <div className="hjy-title">
-                                아이폰16프로 카메라 튕김
-                            </div>
-                            <div id="content" className="clearfix">
-                                <div className="hjy-time">
-                                    마지막 답글 20시간 전 작성자: gotohome
-                                </div>
-                                <div className="hjy-comment">
-                                    댓글: 13
-                                    </div>
-                                <div className="hjy-hit">
-                                    조회: 100
-                                    </div>
-                                <div className="hjy-question">
-                                    질문자: 홍길동
-                                </div>
-                            </div>
-                        </div>
+                            )
+                        })}
                         {/* //반복구간 */}
 
                     </div>

@@ -190,12 +190,16 @@
 }
 
 /* 커뮤니티 제목 */
-#community #community-post .title {
+#community #community-post .hjy-title{
     float: left;
     width: 80%;
     color: #242426;
     font-weight: bold;
-    
+    text-decoration: none; /* 밑줄 제거 */
+}
+
+#community #community-post .hjy-title:visited {
+    color: #242426;
 }
 
 /* 마지막답글, 작성자 */

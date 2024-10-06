@@ -50,7 +50,7 @@ function App() {
 					<Route path='/user/mypage' element={<Mypage />} />
 					<Route path='/user/purchaselist' element={<PurchaseList />} />
           <Route path='/community' element={<CommunityList />} />
-					<Route path='/community/comment' element={<Comment />} />
+					<Route path='/community/comment/:boardNum' element={<Comment />} />
           <Route path='/community/write' element={<CommunityWriteForm />} />
 
           {/* 메인 */}

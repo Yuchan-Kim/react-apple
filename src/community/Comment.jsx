@@ -1,6 +1,7 @@
 //import 라이브러리
-import React, {useState} from 'react';
-import { Link } from 'react-router-dom';	
+import React, {useState, useEffect} from 'react';
+import { Link, useParams, useNavigate } from 'react-router-dom';	
+import axios from 'axios';
 // import { useSearchParams} from 'react-router-dom';	파라미터값사용하는 라우터
 
 //import 컴포넌트
@@ -17,11 +18,24 @@ const Comment = () => {
 
 	/*---일반 변수 --------------------------------------------*/
 
+    /*---라우터 관련------------------------------------------*/
+    const { boardNum } = useParams();
+    const navigate = useNavigate();
+
 	/*---상태관리 변수들(값이 변화면 화면 랜더링) ----------*/
     // 답글 영역의 표시 여부를 관리하는 상태
     const [showReplyForm, setShowReplyForm] = useState(false);
     // 작성된 댓글 목록을 저장하는 상태
     const [comments, setComments] = useState([]);
+
+    const [token, setToken] = useState(localStorage.getItem('token')); 
+
+    const [id, setId] = useState("");
+    const [name, setName] = useState("");
+    const [productName, setProductName] = useState("");
+    const [boardTitle, setBoardTitle] = useState("");
+    const [boardContent, setBoardContent] = useState("");
+    const [boardDate, setBoardDate] = useState("");
 
 
 	/*---일반 메소드 -----------------------------------------*/
@@ -43,6 +57,45 @@ const Comment = () => {
     const handleCancel = () => {
         setShowReplyForm(false); // 폼 숨기기
     };
+
+
+    // 마운트됐을때
+    useEffect(()=>{
+        console.log(boardNum);
+
+        // 서버로 no값 보내서 no데이터 받기 그리고 화면에 출력하기 
+        // 서버로 데이터 전송
+        axios({
+            method: 'get', // put, post, delete  수정폼-> 데이터 가져오기
+            url: `${process.env.REACT_APP_API_URL}/api/communitys/${boardNum}`,
+
+            responseType: 'json' //수신타입 받을때
+        }).then(response => {
+            console.log(response.data.result); //수신데이타  성공실패
+            // console.log(response.data.apiData.name); //수신데이타   수정할사람의 이름
+
+            if(response.data.result === 'success') {
+                // 성공로직
+                // useSate 사용해서 값 대입
+                setId(response.data.apiData.id);
+                setName(response.data.apiData.name);
+                setProductName(response.data.apiData.productName);
+                setBoardTitle(response.data.apiData.boardTitle);
+                setBoardContent(response.data.apiData.boardContent);
+                setBoardDate(response.data.apiData.boardDate);
+
+
+            }else {
+                // 실패로직 -> 리스트로 보내기
+                navigate("/community");
+
+            }
+
+        }).catch(error => {
+            console.log(error);
+        }); 
+
+    }, []); 
 
 
     return (
@@ -68,24 +121,28 @@ const Comment = () => {
                     <div id="content">
                         <div className="DA-writer-info">
                             <img className="DA-join-png" src="/images/person.svg" alt="프로필사진"/>
-                            <span>userId</span>
+                            <span>{id}</span>
                             <span>작성자</span>
                             <br />
-                            <span>상품이름 ex_ iPhone 16</span>
+                            <span>{productName}</span>
                         </div>
 
                         <div className="DA-contents">
-                            <p>제목 ex_아이폰 16 카메라 튕김</p>
-                            <p>내용 ex_카메라 켜서 촬영하면 먹통이되고 바탕화면으로 자동으로 튕깁니다…
-                                20일에 구매하였고 재부팅하면 또 안그러는데 구매 후 이틀만에 이런 현상이 두번이나 일어났습니다… 개인 메일주소를 남겨주시면 보다 자세한 동영상을 
-                                첨부해 드리겠습니다. 왜그럴까요?
+                            <p>{boardTitle}</p>
+                            <p>{boardContent}
                             </p>
-                            <p>게시일: 2024.9.22 오후 02:16</p>
+                            <p>{boardDate}</p>
                         </div>
                         {/* // contents */}
 
                         {/* 답글 버튼 */}
-                        <button className='DA-contents-btn' type='button' onClick={toggleReplyForm}>답글</button>
+                        {
+                            (token != null)?( //로그인 했을때
+                                <button className='DA-contents-btn' type='button' onClick={toggleReplyForm}>답글</button>
+                            ):(         //로그인 안했을때
+                                <div></div>
+                            )
+                        }
 
                         {/* 답글 입력 폼 */}
                         {showReplyForm && (
@@ -97,7 +154,7 @@ const Comment = () => {
 
                         <div id="comment">
                             <div className="DA-clearfix">
-                                <span>댓글: 10</span>
+                                <span>댓글: ~</span>
                                 <span>정렬기준: 최신순</span>
                             </div>
 

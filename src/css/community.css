@@ -18,7 +18,7 @@
 
 #nav {
     margin: 0px auto;
-    width: 100%; /* 100% 대신 90%로 줄여서 양쪽에 여백 확보 */
+    width: 60%; /* 100% 대신 90%로 줄여서 양쪽에 여백 확보 */
     max-width: 65%;
     margin-bottom: 100px;
     box-sizing: border-box; /* 패딩을 포함한 전체 너비 계산 */
@@ -42,12 +42,13 @@
 #nav .DA-tip {
     width: 100%;
     margin-bottom: 30px;
-    padding: 10px;
+    padding: 20px;
     box-sizing: border-box;
     border: 1px solid #d3d3d3;
     border-radius: 10px;
     background-color: #FBFBFD;
     font-size: 15px;
+    line-height: 2.0;
 }
 
 #nav .DA-tip p{
@@ -77,7 +78,7 @@
 /* ------------------------------------------------------------------ */
 
 #content {
-    width: 65%;
+    width: 60%;
     margin: 0 auto;
     margin-top: 80px;
     /* background-color: bisque; */

@@ -59,6 +59,16 @@
     padding-left: 10px; /* 약간의 패딩 추가 */
 }
 
+/* 암호체크 글씨 */
+#user #joinForm .DA-form-group #DA-message {
+    text-align: left;
+    margin: 3px 0px;
+}
+#user #joinForm .DA-form-group #DA-message #Da-F-message{
+    color: rgb(233, 69, 69);
+}
+
+
 /* 전화번호 안내 텍스트 */
 #user #joinForm .DA-form-group #tel-txt {
     font-size: 12px;

@@ -75,8 +75,11 @@
     outline: none;
     border: 1px solid #d3d3d3;
     border-radius: 8px; 
-    color: #d3d3d3;
+    color: #000000;
+}
 
+#community-write .hjy-title input::placeholder {
+    color: #d3d3d3;
 }
 
 #community-write input[type="text"]:focus {
@@ -97,16 +100,17 @@
     font-size: 18px;
 }
 
-#community-write .hjy-device input {
-    width: 97%;
+#community-write .hjy-device select {
+    width: 98%;
     height: 40px;
     margin-left: 20px;
     padding-left: 10px;
     outline: none;
     border: 1px solid #d3d3d3;
     border-radius: 8px; 
-    color: #d3d3d3;
+    color: #000000;
 }
+
 
 /* 3번 */
 #community-write .hjy-content {
@@ -127,6 +131,10 @@
     outline: none;
     border: 1px solid #d3d3d3;
     border-radius: 8px; 
+    color: #000000;
+}
+
+#community-write .hjy-content textarea::placeholder {
     color: #d3d3d3;
 }
 
