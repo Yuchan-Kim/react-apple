@@ -3,24 +3,27 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 import '../css/reset.css';
-import '../css/productAddForm2.css';
+import '../css/productAddForm5.css';
 import Header from '../include/Header';
 import Footer from "../include/Footer";
 
-const ProductAddForm2 = () => {
-    const [seriesNum, setSeriesNum] = useState(''); // 선택한 시리즈 번호 상태
-    const [productName, setProductName] = useState(''); // 상품명 상태
+const ProductAddForm = () => {
+    const [seriesNum, setSeriesNum] = useState('');
     const [seriesList, setSeriesList] = useState([]); // 시리즈 목록 상태
-    const [mainImages, setMainImages] = useState([]); // 여러 파일을 배열로 저장
+    const [productNum, setProductNum] = useState(''); 
+    const [productList, setProductList] = useState([]); 
+    const [storageSize, setStorageSize] = useState('');
 
     const navigate = useNavigate();
 
-    const handleProductName = (e) => {
-        setProductName(e.target.value); // 상품명 입력 처리
-    }
-
-    const handleMainImages = (e) => {
-        setMainImages([...e.target.files]); // 여러 파일을 배열로 저장
+    // 시리즈 선택 시 상품 목록 불러오기
+    const handleSeriesChange = (e) => {
+        setSeriesNum(e.target.value);
+        getProductList(e.target.value);  
+    };
+    
+    const handlStorageSize = (e) => {
+        setStorageSize(e.target.value);
     }
 
     // 시리즈 목록을 가져오는 함수
@@ -32,8 +35,20 @@ const ProductAddForm2 = () => {
         }).then(response => {
             console.log(response.data.apiDat);
             setSeriesList(response.data.apiData); // 응답 데이터로 시리즈 목록 설정
-            console.log(response.data.apiData.seriesName);
-            console.log(response.data.apiData.seriesNum);
+        }).catch(error => {
+            console.log(error);
+        });
+    };
+
+    // 상품명 목록을 가져오는 함수
+    const getProductList = (seriesNum) => {
+        axios({
+            method: 'get',
+            url: `${process.env.REACT_APP_API_URL}/api/product/${seriesNum}`,
+            responseType: 'json',
+        }).then(response => {
+            console.log(response.data.apiDat);
+            setProductList(response.data.apiData); // 응답 데이터로 시리즈 목록 설정
         }).catch(error => {
             console.log(error);
         });
@@ -44,44 +59,39 @@ const ProductAddForm2 = () => {
         getSeriesList();
     }, []);
 
-    const handleSubmit = (e) => {
+    // 용량 등록
+    const handleSubmit = async (e) => {
         e.preventDefault();
         
-        // FormData 객체 생성
-        const formData = new FormData();
+        const storageVo = {
+            productNum: productNum,
+            seriesNum: seriesNum,
+            storageSize: storageSize
+        }
 
-        // unionVo 데이터를 JSON 형태로 변환하여 FormData에 추가
-        const unionVo = {
-            seriesNum: seriesNum, // 시리즈 번호
-            productName: productName // 상품명
-        };
-
-        // JSON 데이터를 Blob 형태로 추가
-        formData.append("unionVo", new Blob([JSON.stringify(unionVo)], { type: "application/json" }));
-
-        // 선택한 이미지 파일들을 FormData에 추가
-        mainImages.forEach((file) => {
-            formData.append("mainImages", file);
-        });
-
-        // Axios를 사용하여 데이터 전송
         axios({
-            method: 'post',
-            url: `${process.env.REACT_APP_API_URL}/api/add/product`,
-            headers: { "Content-Type": "multipart/form-data" }, // multipart/form-data 헤더 설정
-            data: formData,
-            responseType: 'json'
-        }).then(response => {
-            console.log(response); // 응답 데이터 로그
-            if (response.data.result === 'success') {
-                // 성공 시 리다이렉트
-                navigate("/admin/product");
+            method: 'post', 			// put, post, delete                   
+            url: `${process.env.REACT_APP_API_URL}/api/add/storage`,
+            headers: { "Content-Type": "application/json; charset=utf-8" },
+            
+            data: storageVo,
+        
+            responseType: 'json' //수신타입
+          }).then(response => {
+            console.log(response); //수신데이타
+            console.log(response.data); //수신데이타
+        
+            if(response.data.result === 'success') {
+                //리다이렉트
+              navigate("/admin/product");
             } else {
                 alert("등록 실패");
             }
-        }).catch(error => {
+              
+          }).catch(error => {
             console.log(error);
-        });
+        }); 
+        
     }
 
     return (
@@ -114,33 +124,42 @@ const ProductAddForm2 = () => {
                                     <h2 className="hjy-add-link"><Link to="/admin/product/add6">상품상세 등록</Link></h2>
                                 <div id="product_add_item" className="clearfix hjy-series">
                                     <form onSubmit={handleSubmit}>
-                                    <p>상품 등록</p>
-                                        <div className="hjy_product_content">
-                                            <label htmlFor="product_series">시리즈:</label>
-                                            <select id="product_series" value={seriesNum} onChange={(e) => setSeriesNum(e.target.value)}>
+                                    <p>용량 등록</p>
+                                    <div className="hjy_product_content">
+                                        <label htmlFor="product_series">시리즈:</label>
+                                            <select id="product_series" value={seriesNum} onChange={handleSeriesChange}>
                                                 <option value="">선택하세요</option>
                                                 {seriesList.map((series) => (
                                                     <option key={series.seriesNum} value={series.seriesNum}>
                                                         {series.seriesName}
                                                     </option>
                                                 ))}
+                                            </select>  
+                                        </div>
+
+                                        <div className="hjy_product_content">
+                                            <label htmlFor="product_productName">상품명:</label>
+                                            <select id="product_productName" value={productNum} onChange={(e) => setProductNum(e.target.value)}>
+                                                <option value="">선택하세요</option>
+                                                {productList.map((product) => (
+                                                    <option key={product.productNum} value={product.productNum}>
+                                                        {product.productName}
+                                                    </option>
+                                                ))}
                                             </select>
                                         </div>
 
                                         <div className="hjy_product_content">
-                                            <label htmlFor="product_name">상품명:</label>
+                                            <label htmlFor="product_storage">용량:</label>
                                             <input 
                                                 type="text" 
-                                                id="product_name" 
-                                                value={productName} 
-                                                placeholder="상품명을 입력하세요" 
-                                                onChange={handleProductName}
+                                                id="product_storage" 
+                                                value={storageSize}
+                                                placeholder="용량을 입력하세요"
+                                                onChange={handlStorageSize} 
                                             />
                                         </div>
-                                        <div className="hjy_product_content">
-                                            <label htmlFor="product_image">본문 이미지:</label>
-                                            <input type="file" id="product_image" name="file" multiple onChange={handleMainImages}/>
-                                        </div>
+
                                         <div className="hjy_product_add_btnbox">
                                             <div className="hjy_product_add_btn">
                                                 <button type="submit">등록</button>
@@ -161,4 +180,4 @@ const ProductAddForm2 = () => {
     );
 }
 
-export default ProductAddForm2;
+export default ProductAddForm;

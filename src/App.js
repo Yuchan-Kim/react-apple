@@ -30,6 +30,10 @@ import UserModifyForm from './admin/UserModifyForm';
 import StoreAddForm from './admin/StoreAddForm';
 import ProductAddForm from './admin/ProductAddForm';
 import ProductAddForm2 from './admin/ProductAddForm2';
+import ProductAddForm3 from './admin/ProductAddForm3';
+import ProductAddForm4 from './admin/ProductAddForm4';
+import ProductAddForm5 from './admin/ProductAddForm5';
+import ProductAddForm6 from './admin/ProductAddForm6';
 import DeliveryList from './admin/DeliveryList';
 import HistoryList from './admin/HistoryList';
 
@@ -73,6 +77,10 @@ function App() {
           <Route path='/admin/store/add' element={<StoreAddForm />} />
           <Route path='/admin/product/add' element={<ProductAddForm />} />
           <Route path='/admin/product/add2' element={<ProductAddForm2 />} />
+          <Route path='/admin/product/add3' element={<ProductAddForm3 />} />
+          <Route path='/admin/product/add4' element={<ProductAddForm4 />} />
+          <Route path='/admin/product/add5' element={<ProductAddForm5 />} />
+          <Route path='/admin/product/add6' element={<ProductAddForm6 />} />
           <Route path='/admin/dilivery' element={<DeliveryList />} />
           <Route path='/admin/history' element={<HistoryList />} />
         </Routes>
