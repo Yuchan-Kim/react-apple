@@ -19,8 +19,9 @@ const LoginForm = () => {
     /*---라우터 관련------------------------------------------*/
 
     /*---상태관리 변수들(값이 변화면 화면 랜더링) ----------*/
-    const [id, setId] = useState(""); 
-    const [password, setPassword] = useState("");
+    const [userId, setUserId] = useState(""); 
+    const [userPw, setUserPw] = useState("");
+    const [error, setError] = useState(""); 
 
     const navigate = useNavigate();
 
@@ -29,12 +30,12 @@ const LoginForm = () => {
     /*---생명주기 + 이벤트 관련 메소드 ----------------------*/
     // 아이디 입력
     const handleId = (e) => {
-        setId(e.target.value);
+        setUserId(e.target.value);
     }
 
     // 비밀번호 입력
     const handlePassword = (e) => {
-        setPassword(e.target.value);
+        setUserPw(e.target.value);
     }
 
     // 로그인버튼 클릭했을때 (전송)
@@ -42,8 +43,8 @@ const LoginForm = () => {
         e.preventDefault(); 
 
         const userVo = {
-            id: id,
-            password: password
+            userId: userId,
+            userPw: userPw
         }
         console.log(userVo);
 
@@ -59,23 +60,28 @@ const LoginForm = () => {
             responseType: 'json' //수신타입 받을때
         }).then(response => {
             console.log(response.data); //수신데이타
-
-            JSON.stringify(response.data.apiData); 
-
-            const token = response.headers['authorization'].split(' ')[1];
-            console.log(token);
-
-            localStorage.setItem("token", token);
-            
-            localStorage.setItem("authUser", JSON.stringify(response.data.apiData));
+            // console.log(response.data.apiData);
 
             // 응답처리
             if (response.data.result ==='success') {
-                // 리다이렉트
-                navigate("/");       
+
+                JSON.stringify(response.data.apiData); 
+
+                const token = response.headers['authorization'].split(' ')[1];
+    
+                localStorage.setItem("token", token);
+                
+                localStorage.setItem("authUser", JSON.stringify(response.data.apiData));
+
+                if (response.data.apiData.userStatus === "회원") {
+                    // 리다이렉트
+                    navigate("/");
+                }else if (response.data.apiData.userStatus === "관리자") {
+                    navigate("/admin/main");
+                }
                 
             }else {
-                alert("로그인 실패");
+                setError(response.data.message || "로그인 실패");
             }
 
         }).catch(error => {
@@ -111,15 +117,20 @@ const LoginForm = () => {
 
                                     {/* 아이디 */}
                                     <div className='DA-form-group' >
-                                        <input type='text' id='' name='' value={id} onChange={handleId} placeholder='아이디' />
+                                        <input type='text' id='' name='' value={userId} onChange={handleId} placeholder='아이디' />
                                         {/* <button type='button' name='check' onClick='' >중복체크</button> */}
                                     </div>
 
                                     {/* 비밀번호 */}
                                     <div className='DA-form-group'>
-                                        <input type='password' id='' name='input-pw' value={password} onChange={handlePassword} placeholder='암호' />
+                                        <input type='password' id='' name='input-pw' value={userPw} onChange={handlePassword} placeholder='암호' />
                                         <div id="message"></div>
                                     </div>
+
+                                    {/* 오류 메시지 */}
+                                    {error && (
+                                        <div className="DA-error-message">{error}</div> 
+                                    )}
 
                                     {/* <!-- 버튼영역 --> */}
                                     <div className="DA-form-group">

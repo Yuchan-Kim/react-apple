@@ -6,6 +6,8 @@ import React, { useState } from 'react';
 // import css
 import '../css/community.css';
 
+/// 안쓰는 폼 한페이지에 합쳤음
+
 const ItemComment = ({ onSubmit, onCancel }) => {
 
     /*---상태관리 변수들(값이 변화면 화면 랜더링) ----------*/

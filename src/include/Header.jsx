@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect  } from 'react';
 import { Link, useNavigate } from 'react-router-dom'; // useNavigate 추가
 import { FaSearch, FaShoppingBag } from 'react-icons/fa';
 import '../css/header.css';
@@ -9,11 +9,18 @@ const Header = () => {
     const [searchTerm, setSearchTerm] = useState(''); // 검색어 상태 추가
     const navigate = useNavigate(); // navigate 훅 추가
 
+    useEffect(() => {
+        if (!token) {
+            navigate("/user/loginform");
+        }
+    }, [token, navigate]);
+
     const handleLogout = () => {
         localStorage.removeItem('token');
         localStorage.removeItem('authUser');
         setToken(null);
         setAuthUser(null);
+        navigate("/user/loginform");
     };
 
     const handleSearch = (e) => {

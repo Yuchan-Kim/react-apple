@@ -1,6 +1,7 @@
 //import 라이브러리
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 // import { useSearchParams} from 'react-router-dom';	파라미터값사용하는 라우터
 
 //import 컴포넌트
@@ -14,12 +15,53 @@ const PurchaseList = () => {
 
     /*---일반 변수 --------------------------------------------*/
     const buy = true; 
+    const token = localStorage.getItem('token'); 
 
     /*---상태관리 변수들(값이 변화면 화면 랜더링) ----------*/
+    const [purchaseList, setPurchaseList] = useState([]);
 
     /*---일반 메소드 -----------------------------------------*/
+    const getPurchaseList = ()=> {
+
+        // 서버로 데이터 전송
+        axios({
+            method: 'get',   // 한명데이터 가져와
+            url: `${process.env.REACT_APP_API_URL}/api/purchaselist`,  // 수정폼의 역할
+            headers: { "Authorization": `Bearer ${token}` },		// 토큰받기
+
+            responseType: 'json' //수신타입 받을때
+        }).then(response => {
+            console.log(response.data.apiData); //수신데이타
+
+            const unionVo = response.data.apiData;
+
+            if (response.data.result === 'success') {
+                // // 가져온데이터 화면에 반영
+                // setUserId(unionVo.userId);
+                // setUserName(unionVo.userName);
+                // setUserHp(unionVo.userHp);
+                // setUserAddress(unionVo.userAddress);
+                
+            }else {
+                alert('회원정보 가져오기 실패');
+            }
+
+        }).catch(error => {
+            console.log(error);
+        });
+        
+
+    }
+
 
     /*---생명주기 + 이벤트 관련 메소드 ----------------------*/
+    useEffect(()=>{
+        console.log("마운트 되었을때"); 
+
+        getPurchaseList();
+
+    }, []);
+
 
     return (
         <>
@@ -47,9 +89,9 @@ const PurchaseList = () => {
                         <div id="content-3"> 
                             <h2>주문하신 제품.</h2>
 
-                            {/* 삼항연산자 */}
-                            {
-                                (buy !== true) ? (   // 거짓일때
+                            {/* 삼항연산자 purchaseList.length === 0 */}
+                            {   
+                                (buy != true) ? (   // 거짓일때
                                     // 구매물품이 없을때
                                     <div id='DA-buy-none'>
                                         <p>

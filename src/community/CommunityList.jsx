@@ -106,27 +106,28 @@ const CommunityList = () => {
                         </div> */}
 
                         {/* 반복구간 */}
-                        {communityList.map((communityVo)=>{
+                        {communityList.map((commentVo)=>{
                             return(
                                 <div id="community-post" className="clearfix">
                                     <div className="hjy-profile">
                                         <img src="/images/profile.jpg" alt="프로필"/>
                                     </div>
                                     <div className="hjy-title">
-                                        <Link className="hjy-title" to={`/community/comment/${communityVo.boardNum}`} rel="noreferrer noopener">{communityVo.boardTitle}</Link>
+                                        <Link className="hjy-title" to={`/community/comment/${commentVo.boardNum}`} rel="noreferrer noopener">{commentVo.boardTitle}</Link>
                                     </div>
                                     <div id="content" className="clearfix">
                                         <div className="hjy-time">
-                                            {communityVo.boardDate}  작성자: {communityVo.id}
+                                            {commentVo.boardDate}  작성자: {commentVo.userId}
                                         </div>
                                         <div className="hjy-comment">
                                             댓글: ~
+                                            {/* {commentVo.length} */}
                                             </div>
                                         <div className="hjy-hit">
-                                            조회: {communityVo.boardViews}
+                                            조회: {commentVo.boardViews}
                                             </div>
                                         <div className="hjy-question">
-                                            질문자: {communityVo.name}
+                                            질문자: {commentVo.userName}
                                         </div>
                                     </div>  
                                 </div>

@@ -69,14 +69,14 @@ const CommunityWriteForm = () => {
         e.preventDefault();    
 
         // 데이터 모으고 묶기
-        const communityVo = {
+        const unionVo = {
             userNum: userNum,
             boardTitle: boardTitle,
             productNum:parseInt(selectedProduct),
             boardContent: boardContent
 
         }
-        console.log("communityVo" +communityVo);
+        console.log("unionVo" +unionVo);
 
         // 서버로 데이터 전송
         axios({
@@ -85,12 +85,12 @@ const CommunityWriteForm = () => {
 
             headers: { "Content-Type": "application/json; charset=utf-8" }, 	// post put 보낼때
 
-            data: communityVo, // put, post, JSON(자동변환됨)
+            data: unionVo, // put, post, JSON(자동변환됨)
 
             responseType: 'json' //수신타입 받을때
         }).then(response => {
             //console.log(response.data); //수신데이타
-            console.log(communityVo);
+            console.log(unionVo);
 
             if (response.data.result ==='success') {
                 // 리다이렉트
@@ -137,9 +137,9 @@ const CommunityWriteForm = () => {
                                 <p>② 사용 중인 기기를 입력하세요.</p>
                                 <label className="hjy-form-text" htmlFor="txt-device"></label>
                                 <select id="txt-device" name="productName" value={selectedProduct} onChange={handleProduct}>
-                                    <option value="">예: iPhone 16 Pro</option>
-                                    {productName.map((communityVo) => (
-                                        <option key={communityVo.productNum} value={communityVo.productNum}>{communityVo.productName}</option> 
+                                    <option value="">선택 필수</option>
+                                    {productName.map((unionVo) => (
+                                        <option key={unionVo.productNum} value={unionVo.productNum}>{unionVo.productName}</option> 
                                     ))}
                                 </select>
                             </div>

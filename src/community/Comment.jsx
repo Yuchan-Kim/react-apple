@@ -7,8 +7,8 @@ import axios from 'axios';
 //import 컴포넌트
 import Header from '../include/Header';
 import Footer from '../include/Footer';
-import ItemComment from './ItemComment';
-
+// import ItemComment from './ItemComment';
+///////////////////////////////////////////////////
 
 //import css
 import '../css/community.css';
@@ -24,46 +24,30 @@ const Comment = () => {
 
 	/*---상태관리 변수들(값이 변화면 화면 랜더링) ----------*/
     // 답글 영역의 표시 여부를 관리하는 상태
-    const [showReplyForm, setShowReplyForm] = useState(false);
+    const [showCommentForm, setShowCommentForm] = useState(false);
     // 작성된 댓글 목록을 저장하는 상태
-    const [comments, setComments] = useState([]);
+    const [commentList, setCommentList] = useState([]);
+    const [comment, setComment] = useState(''); // 댓글 입력 상태
+    const [commentNum, setCommentNum] = useState(''); // 댓글 입력 상태
 
     const [token, setToken] = useState(localStorage.getItem('token')); 
+    const [authUser, setAuthUser] = useState(JSON.parse(localStorage.getItem('authUser')));
 
-    const [id, setId] = useState("");
-    const [name, setName] = useState("");
+
+    const [userId, setUserId] = useState("");
+    const [userName, setUserName] = useState("");
+    const [userNum, setUserNum] = useState("");
     const [productName, setProductName] = useState("");
     const [boardTitle, setBoardTitle] = useState("");
     const [boardContent, setBoardContent] = useState("");
     const [boardDate, setBoardDate] = useState("");
+    const [commentDateTime, setCommentDateTime] = useState("");
 
 
 	/*---일반 메소드 -----------------------------------------*/
+    // 답글리스트 뽑는 메소드
+    const getCommentList = ()=> {
 
-	/*---생명주기 + 이벤트 관련 메소드 ----------------------*/
-    // 댓글 작성 후 처리        ...comments는 기존의 comments 배열을 복사한 후, 그 뒤에 새 댓글을 추가하는 형태, newComment는 새로운댓글내용,  toLocaleString는 현재 시각
-    const handleSubmitComment = (newComment) => {
-        setComments([...comments, { id: comments.length + 1, text: newComment, date: new Date().toLocaleString() }]);
-        setShowReplyForm(false); // 댓글 작성 후 입력 폼 숨기기
-    };
-
-
-    // 답글 폼 보이기/숨기기 토글
-    const toggleReplyForm = () => {
-        setShowReplyForm((prev) => !prev);
-    };
-
-    // 취소 시 처리
-    const handleCancel = () => {
-        setShowReplyForm(false); // 폼 숨기기
-    };
-
-
-    // 마운트됐을때
-    useEffect(()=>{
-        console.log(boardNum);
-
-        // 서버로 no값 보내서 no데이터 받기 그리고 화면에 출력하기 
         // 서버로 데이터 전송
         axios({
             method: 'get', // put, post, delete  수정폼-> 데이터 가져오기
@@ -72,30 +56,104 @@ const Comment = () => {
             responseType: 'json' //수신타입 받을때
         }).then(response => {
             console.log(response.data.result); //수신데이타  성공실패
-            // console.log(response.data.apiData.name); //수신데이타   수정할사람의 이름
 
             if(response.data.result === 'success') {
                 // 성공로직
                 // useSate 사용해서 값 대입
-                setId(response.data.apiData.id);
-                setName(response.data.apiData.name);
+                setUserId(response.data.apiData.userId);
+                setUserName(response.data.apiData.userName);
+                setUserNum(response.data.apiData.userNum);
                 setProductName(response.data.apiData.productName);
                 setBoardTitle(response.data.apiData.boardTitle);
                 setBoardContent(response.data.apiData.boardContent);
                 setBoardDate(response.data.apiData.boardDate);
 
+                setCommentList(response.data.apiData.commentList);  // 댓글 목록을 상태에 설정
 
+                console.log(response.data.apiData.commentList);
             }else {
                 // 실패로직 -> 리스트로 보내기
                 navigate("/community");
-
             }
 
         }).catch(error => {
             console.log(error);
         }); 
 
+    }
+
+	/*---생명주기 + 이벤트 관련 메소드 ----------------------*/
+
+
+    // 답글 폼 보이기/숨기기 토글
+    const toggleCommentForm = () => {
+        setShowCommentForm((prev) => !prev);
+    };
+
+    // 댓글 입력 핸들러
+    const handleComment = (e) => {
+        setComment(e.target.value);
+    };
+
+    // 취소 시 처리
+    const handleCancel = () => {
+        setComment('');
+        setShowCommentForm(false); // 폼 숨기기
+    };
+
+
+    // 마운트됐을때
+    useEffect(()=>{
+        console.log(boardNum);
+
+        getCommentList();
+        
     }, []); 
+
+
+    // 글쓰기 (답글)
+    const handleSubmitComment = (e)=> {
+        e.preventDefault();    
+        if (!comment.trim()) return alert('댓글을 입력하세요.');
+
+        // 데이터 모으고 묶기
+        const commentVo  = {
+            comment: comment,
+            boardNum: boardNum,
+            userNum: authUser.userNum
+        }
+        console.log(commentVo);
+
+        // 서버로 데이터 전송
+        axios({
+            method: 'post',         // 저장 (등록)
+            url: `${process.env.REACT_APP_API_URL}/api/comments`,
+
+            headers: { "Content-Type": "application/json; charset=utf-8" }, 	// post put 보낼때
+
+            data: commentVo, // put, post, JSON(자동변환됨)
+
+            responseType: 'json' //수신타입 받을때
+        }).then(response => {
+            console.log("-----",response.data); //수신데이타
+            console.log("-----",response.data.apiData.comment); //수신데이타
+
+            if (response.data.result ==='success') {
+
+                setComment('');
+                setShowCommentForm(false); // 폼 숨기기
+                
+                getCommentList();
+                
+            }else {
+                alert("댓글 등록실패");
+            }
+
+        }).catch(error => {
+            console.log(error);
+        });
+
+    }
 
 
     return (
@@ -121,7 +179,7 @@ const Comment = () => {
                     <div id="content">
                         <div className="DA-writer-info">
                             <img className="DA-join-png" src="/images/person.svg" alt="프로필사진"/>
-                            <span>{id}</span>
+                            <span>{userId}</span>
                             <span>작성자</span>
                             <br />
                             <span>{productName}</span>
@@ -138,68 +196,49 @@ const Comment = () => {
                         {/* 답글 버튼 */}
                         {
                             (token != null)?( //로그인 했을때
-                                <button className='DA-contents-btn' type='button' onClick={toggleReplyForm}>답글</button>
+                                <button className='DA-contents-btn' type='button' onClick={toggleCommentForm}>답글</button>
                             ):(         //로그인 안했을때
                                 <div></div>
                             )
                         }
 
                         {/* 답글 입력 폼 */}
-                        {showReplyForm && (
-                            <ItemComment 
-                                onSubmit={handleSubmitComment}  // 부모로 댓글 전송
-                                onCancel={handleCancel}  // 취소 시 처리
-                            />
-                        )}
+                        <form action='' method='' onSubmit={handleSubmitComment}>
+                            {showCommentForm && (
+                                <div className='DA-commentClick'>
+                                    <textarea value={comment} onChange={handleComment} placeholder="의견을 알려 주십시오."></textarea>
+                                    <br />
+                                    <button className='DA-commentWrite-btn' type='submit' >글쓰기</button>
+                                    <button className='DA-commentCancel-btn' type='button' onClick={handleCancel}>취소</button>
+                                </div>
+                            )}
+                        </form>
+
 
                         <div id="comment">
                             <div className="DA-clearfix">
-                                <span>댓글: ~</span>
+                                <span>댓글: {commentList.length}</span>
                                 <span>정렬기준: 최신순</span>
                             </div>
 
-                            <form action='' method='' onSubmit="">
-
                                 {/* 댓글 목록 */}
-                                {comments.map((comment) => (
-                                    <div key={comment.id}>
-                                        <div className="DA-user-info">
-                                            <img className="DA-join-png" src="/images/person.svg" alt="프로필사진" />
-                                            <span>userId</span>
+                                {commentList && commentList.length > 0 ? (
+                                    commentList.map((commentList) => (
+                                        <div key={commentList.commentNum}>
+                                            <div className="DA-user-info">
+                                                <img className="DA-join-png" src="/images/person.svg" alt="프로필사진" />
+                                                <span>{commentList.userId}</span>
+                                            </div>
+                                            <p className='DA-whoComment'>{commentList.commentDateTime}</p>
+                                            <div className="DA-contents">
+                                                <p>{commentList.comment}</p>
+                                            </div>
                                         </div>
-                                        <p className='DA-whoComment'>{`누구~님에게 답변 ${comment.date}`}</p>
-                                        <div className="DA-contents">
-                                            <p>{comment.text}</p>
-                                        </div>
-                                    
-                                    </div>
-                                ))}
-
-                                <div className="DA-user-info">
-                                    <img className="DA-join-png" src="/images/person.svg" alt="프로필사진"/>
-                                    <span>userId</span>
-                                </div>
-                                <p className='DA-whoComment'>누구~님에게 답변 2024.9.22 오후 02:16</p>
-                                <div className="DA-contents">
-                                    <p>
-                                        저도 그런증상인데 하드웨어는 문제없고 소프트웨어 문제인것 같다고 고객센터 문의해서 답변 받았어요 ㅠㅠ 카메라앱을 지우고 다시 깔거나 핸드폰 초기화 하라고 
-                                        하네요... 기본앱이라 지워지지도 않던데..ㅠㅠ 핸드폰 반품하고 싶어요 진짜 짜증나서 ㅠㅠ
-                                    </p>
-                                </div>
+                                    ))
+                                ) : (
+                                    <div className="DA-user-info">댓글이 없습니다.</div>  // 댓글이 없을 경우 표시할 내용
+                                )}
                                 
-                                <div className="DA-user-info">
-                                    <img className="DA-join-png" src="/images/person.svg" alt="프로필사진"/>
-                                    <span>userId</span>
-                                </div>
-                                <p className='DA-whoComment'>누구~님에게 답변 2024.11.19 오후 07:43</p>
-                                <div className="DA-contents">
-                                    <p>
-                                        저도 똑같아요. 이게 전체적으로 소프트웨어 문제인가요.. 초기화 힘든데..
-                                    </p>
-                                </div>
-                                
-
-                            </form>
                         </div>
                         {/* // comment */}
 
