@@ -200,6 +200,12 @@
 body.yc-modal-open {
     overflow: hidden;
 }
+/* 모달이 열렸을 때, 헤더와 메인 콘텐츠에 색상이 들어간 필터 적용 */
+body.yc-modal-open .yc-apple-header,
+body.yc-modal-open .wrap {
+    filter: blur(5px) brightness(0.6); /* 필터 적용 */
+    transition: filter 0.3s ease-in-out;
+}
 
 /* 배경 흐리기 */
 body.yc-modal-open .yc-wrap, 
@@ -209,17 +215,17 @@ body.yc-modal-open footer {
     transition: filter 0.3s ease-in-out;
 }
 
-/* Modal overlay with a darker background and scrolling enabled */
+/* 기존 모달 오버레이 z-index를 헤더보다 높게 설정 */
 .yc-modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.85);
+    background: rgba(0, 0, 0, 0.85); /* 어두운 배경 */
     display: flex;
     flex-direction: column;
-    z-index: 1000;
+    z-index: 1100; /* 헤더보다 높은 z-index */
     overflow-y: auto;
     padding: 20px;
     box-sizing: border-box;

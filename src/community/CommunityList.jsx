@@ -66,13 +66,13 @@ const CommunityList = () => {
                                 <div className="hjy-tip-text">
                                     iPhone/ACC
                                 </div>
-                                <form action="" method="">
+                                {/* <form action="" method="">
                                     <div className="hjy-input-container">
                                         <button type="button"><FaSearch /></button>
                                         <label htmlFor="keyword"></label>
                                         <input type="text" id="keyword" name="" value="" placeholder="검색 또는 질문하기"/>
                                     </div>
-                                </form>
+                                </form> */}
                             </div>
                         </div>
 
@@ -106,28 +106,27 @@ const CommunityList = () => {
                         </div> */}
 
                         {/* 반복구간 */}
-                        {communityList.map((commentVo)=>{
+                        {communityList.map((communityVo)=>{
                             return(
                                 <div id="community-post" className="clearfix">
                                     <div className="hjy-profile">
                                         <img src="/images/profile.jpg" alt="프로필"/>
                                     </div>
                                     <div className="hjy-title">
-                                        <Link className="hjy-title" to={`/community/comment/${commentVo.boardNum}`} rel="noreferrer noopener">{commentVo.boardTitle}</Link>
+                                        <Link className="hjy-title" to={`/community/comment/${communityVo.boardNum}`} rel="noreferrer noopener">{communityVo.boardTitle}</Link>
                                     </div>
                                     <div id="content" className="clearfix">
                                         <div className="hjy-time">
-                                            {commentVo.boardDate}  작성자: {commentVo.userId}
+                                            작성일자: {communityVo.boardDate}  작성자: {communityVo.userId}
                                         </div>
                                         <div className="hjy-comment">
-                                            댓글: ~
-                                            {/* {commentVo.length} */}
+                                            댓글: {communityVo.commentCount}
                                             </div>
                                         <div className="hjy-hit">
-                                            조회: {commentVo.boardViews}
+                                            조회: {communityVo.boardViews}
                                             </div>
                                         <div className="hjy-question">
-                                            질문자: {commentVo.userName}
+                                            질문자: {communityVo.userName}
                                         </div>
                                     </div>  
                                 </div>

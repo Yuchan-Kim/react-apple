@@ -169,6 +169,7 @@
 
 #community-write .hjy-btns a:link {
     color: #ffffff;
+    text-decoration: none;
 }
 
 #community-write .hjy-btns a:visited {

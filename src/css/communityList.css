@@ -119,18 +119,26 @@
     border-radius: 8px; 
 }
 
-#community #action-left {
+#community .action-left {
     float: left;
     margin-top: 30px;
 }
 
-#community #action-left a {
+#community .action-left a {
     float: left;
     padding: 10px 17px 10px 17px;
     font-size: 15px;
     border: none;
     border-radius: 20px;
     background-color: #0171E3;
+    color: #ffffff;
+}
+
+#community .action-left a:link {
+    text-decoration: none;
+}
+
+#community .action-left a:hover {
     color: #ffffff;
 }
 
@@ -145,22 +153,26 @@
     font-size: 16px;
 }
 
-#community #action-right {
+#community .action-right {
     float: right;
     padding-top: 40px;
     color: #b5b5b5;
 }
 
-#community #action-right span {
+#community .action-right span {
     font-size: 15px;
 }
 
-#community #action-right a {
+#community .action-right a {
     margin-left: 20px;
     padding: 0px 5px 4px 7px;
     border: 1px solid #d3d3d3;
     border-radius: 3px;
     color: #0071e3;
+}
+
+#community .action-right a:link {
+    text-decoration: none;
 }
 
 #community #community-post {

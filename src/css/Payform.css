@@ -36,6 +36,8 @@
 display: flex;
 justify-content: center;
 margin: 20px 0;
+padding-bottom: 30px;
+border-bottom: 1px solid #d2d2d7;
 }
 
 .jm-delivery-btn {
@@ -171,8 +173,11 @@ width: 40%;
   border-radius: 10px;
   padding-left: 20px;
   padding-top: 10px;
+  padding-bottom: 10px;
   display: flex;
   width: 50%;
+  height: 90%;
+  margin-top: 35px;
   text-align: left;
 }
 
@@ -197,6 +202,11 @@ width: 40%;
   font-size: 12px;
 }
 
+.jm-shipping-massage ul {
+  margin-top: 20px;
+  padding: 10px;
+}
+
 .jm-massage-box {
   text-align: left;
 }
@@ -208,6 +218,10 @@ width: 40%;
 
 .jm-massage-text {
   margin-top: 5px;
+}
+
+.jm-massage-text ul {
+  padding: px;
 }
 
 .jm-massage-text li {
@@ -223,25 +237,31 @@ width: 40%;
 width: 100%;
 }
 
+.jm-pickup-store-main {
+  display: flex;
+  justify-content: center;
+  
+}
+
+.jm-pickup-store-map {
+  text-align: left;
+  width: 50%;
+  margin-left: 40px;
+  margin-top: 30px;
+}
+
+.jm-pickup-store-map img {
+  width: 100%;
+  margin-block: 10px;
+}
+
 /* Pickup store list styles */
 .jm-pickup-store-list {
   margin-top: 20px;
   width: 50%;
 }
 
-.jm-pickup-store-map {
-  text-align: center;
-  width: 50%;
-  margin-left: 20px;
-  margin-top: 20px;
-}
-
-.jm-pickup-store-map img {
-  width: 100%;
-}
-
 #jm-pickup-store {
-  width: 80%;
   padding: 15px;
   border: 2px solid #d2d2d7; /* Default border */
   border-radius: 12px;
@@ -302,7 +322,7 @@ width: 100%;
   justify-content: space-between;
 }
 
-.jm-pickup-storeselected {
+/* .jm-pickup-store .selected {
   height: 39px;
   padding: 10px;
   border: 2px solid #0071e3;
@@ -311,7 +331,7 @@ width: 100%;
   cursor: pointer;
   display: flex;
   justify-content: space-between;
-}
+} */
 
 .jm-pickup-storeselected .jm-pickup-store-details {
   display: flex;
@@ -342,7 +362,10 @@ margin: 0px;
   margin-top: 20px;
   font-size: 24px;
   font-weight: bold;
-  text-align: center;
+  text-align: left;
+}
+.jm-store-list-title {
+  font-weight: bold;
 }
 
 .jm-continue-button {
@@ -369,3 +392,9 @@ margin: 0px;
 .jm-map-ping {
   background-image: url(https://store.storeimages.cdn-apple.com/8756/store.apple.com/static-resources/rs-checkout-5.4.1-33660/dist/assets/react-trans/store-locator/apple-selector-marker.png);
 }
+
+.jm-pickup-store-map-info {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+

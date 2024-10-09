@@ -167,7 +167,7 @@ const Comment = () => {
 
                     <div id='nav'>
                         <div className="DA-tip_catrgory">
-                            <Link className='DA-link' to="#" rel="noreferrer noopener">Community</Link>
+                            <Link className='DA-link' to="/community" rel="noreferrer noopener">Community</Link>
                         </div>
                         <div className="DA-tip">
                             <p className="DA-tip1">유용한 답변을 다른 사람들과도 공유하고 싶으신가요? 그렇다면 추천 기능을 이용해보세요!</p>

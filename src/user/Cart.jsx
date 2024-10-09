@@ -1,64 +1,263 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-
-//css import
-import '../css/reset.css';
-import '../css/cart.css'; // Separate CSS for checkout
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import Header from '../include/Header'; 
 import Footer from '../include/Footer';
+import '../css/reset.css';
+import '../css/cart.css'; // Separate CSS for checkout
 
 const Cart = () => {
+  const [cartList, setCartList] = useState([]);
+  const [acceList, setAcceList] = useState([]);
+  const [quantities, setQuantities] = useState([]); // 각 상품의 수량을 관리하는 상태
+  const [totalPrice, setTotalPrice] = useState(0); // 총 가격 관리 상태
+  const [appleCareSelected, setAppleCareSelected] = useState([]); // 애플케어 선택 여부
+
+  const navigate = useNavigate(); // 페이지 이동을 위한 useNavigate 훅 추가
+  // 결제 폼으로 이동
+  const handleMoveToPayform = () => {
+    navigate(`/user/payform`);
+  };
+
+
+  /*---유저 카트리스트 가져오기---*/
+  const getCartList = () => {
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+      console.log("토큰이 없습니다. 로그인하세요.");
+      return; // 토큰이 없으면 요청을 보내지 않음
+    }
+
+    axios({
+      method: 'get', 			// put, post, delete                   
+      url: 'http://localhost:9000/api/user/cart',
+      headers: {
+        'Authorization': `Bearer ${token}`, 
+      },
+      responseType: 'json' 
+    }).then(response => {
+      if (response.data.result === "success") {
+        setCartList(response.data.apiData); // 서버에서 가져온 카트 리스트 저장
+        setQuantities(response.data.apiData.map(item => item.count)); // 서버에서 가져온 수량을 설정
+        setAppleCareSelected(response.data.apiData.map(() => false)); // 애플케어 초기화
+      } else {
+        console.log(response.data.message); // 실패 시 에러 메시지 출력
+      }
+    }).catch(error => {
+      console.log(error);
+    });
+  };
+
+  /*---악세사리 리스트 가져오기---*/
+  const getAcceList = () => {
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+      console.log("토큰이 없습니다. 로그인하세요.");
+      return;
+    }
+
+    axios({
+      method: 'get',
+      url: 'http://localhost:9000/api/user/cartAcce',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      },
+      responseType: 'json'
+    }).then(response => {
+      if (response.data.result === "success") {
+        setAcceList(response.data.apiData); 
+      } else {
+        console.log(response.data.message); 
+      }
+    }).catch(error => {
+      console.log(error);
+    });
+  };
+
+  /*---수량 변경 핸들러---*/
+  const handleQuantityChange = (index, value) => {
+    const newQuantities = [...quantities];
+    newQuantities[index] = value;
+    setQuantities(newQuantities); 
+    calculateTotalPrice(newQuantities, appleCareSelected); 
+
+    // 수량 변경 시 서버로 수량 업데이트 요청
+    const token = localStorage.getItem('token');
+    if (!token) {
+      console.log("토큰이 없습니다. 로그인하세요.");
+      return;
+    }
+
+    axios({
+      method: 'post',
+      url: 'http://localhost:9000/api/user/cart/update',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      },
+      data: {
+        cartNum: cartList[index].cartNum,  // 각 cartNum을 전송
+        count: value  // 선택한 수량을 서버로 전송
+      }
+    })
+    .then(response => {
+      if (response.data.result === "success") {
+        console.log("수량 업데이트 성공");
+      } else {
+        console.log(response.data.message);
+      }
+    })
+    .catch(error => {
+      console.log("수량 업데이트 실패", error);
+    });
+  };
+
+  /*---애플케어 선택 핸들러---*/
+  const handleAppleCareChange = (index) => {
+    const newAppleCareSelected = [...appleCareSelected];
+    newAppleCareSelected[index] = !newAppleCareSelected[index];
+    setAppleCareSelected(newAppleCareSelected);
+    calculateTotalPrice(quantities, newAppleCareSelected);
+  };
+
+  /*---총 가격 계산 함수---*/
+  const calculateTotalPrice = (quantities, appleCareSelected) => {
+    const newTotalPrice = cartList.reduce((sum, cartVo, index) => {
+      const itemTotal = cartVo.productPrice * quantities[index];
+      const appleCarePrice = appleCareSelected[index] ? 259000 : 0; 
+      return sum + itemTotal + appleCarePrice;
+    }, 0);
+    setTotalPrice(newTotalPrice); 
+  };
+
+  useEffect(() => {
+    getCartList(); 
+    getAcceList(); 
+  }, []);
+
+  useEffect(() => {
+    calculateTotalPrice(quantities, appleCareSelected);
+  }, [cartList]);
+
+  // 삭제버튼 핸들러
+  const handleRemoveItem = (cartNum) => {
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+      console.log("토큰이 없습니다. 로그인하세요.");
+      return;
+    }
+
+    axios({
+      method: 'delete',
+      url: `http://localhost:9000/api/user/cart/${cartNum}`,
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      },
+    })
+      .then(response => {
+        if (response.data.result === "success") {
+          console.log("삭제 성공");
+          getCartList(); 
+        } else {
+          console.log(response.data.message); 
+        }
+      })
+      .catch(error => {
+        console.log("삭제 실패", error);
+      });
+  };
+
+  // 장바구니에 담기 핸들러
+  const handleAddToCart = (acceVo) => {
+    const token = localStorage.getItem('token');
+  
+    if (!token) {
+      console.log("토큰이 없습니다. 로그인하세요.");
+      return;  // 오류가 있으면 함수 중단
+    }
+  
+    // axios 요청 반환
+    return axios({  // 반드시 return으로 axios Promise 반환
+      method: 'post',
+      url: 'http://localhost:9000/api/user/cart',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      },
+      data: {
+        productDetailNum: acceVo.productDetailNum,  // undefined 확인 필요
+      }
+    })
+    .then(response => {
+      if (response.data.result === "success") {
+        console.log("장바구니 추가 성공");
+        window.location.reload();  // 새로고침
+      } else {
+        console.log(response.data.message);
+        window.location.reload();  // 새로고침
+      }
+    })
+    .catch(error => {
+      console.log("장바구니 추가 실패", error);
+    });
+  };
+  
+
   return (
     <>
     <Header/>
     <div className="wrap">
     <div className="jm-checkout-page">
-      {/* Cart Summary Section */}
       <section className="jm-cart-summary">
-        <h1 className="jm-cart-total">장바구니 총액: ₩1,509,000</h1>
+        <h1 className="jm-cart-total">장바구니 총액: ₩{totalPrice.toLocaleString()}</h1> 
         <p className="jm-free-shipping">모든 주문에 무료 배송 서비스가 제공됩니다.</p>
         <div className="jm-continue-button">
-            <button className="jm-checkout-button">결제</button>
+          <button to="/user/payform" className="jm-checkout-button" onClick={handleMoveToPayform}>결제</button>
         </div>
-        <div className="jm-cart-item">
-            <div className="jm-item-image">
-          <img
-            src="../images/iphone-test.png"
-            alt="iPhone 15 Plus"
-            className="jm-product-image"
-          />
-            </div>
-            {/* 반복문 영역 */}
-            <div className="jm-item-info">
+
+        {cartList.map((cartVo, index) => (
+          <div key={cartVo.cartNum}>
+            <div className="jm-cart-item">
+              <div className="jm-item-image">
+                <img
+                  src={cartVo.imageSavedName}
+                  alt={cartVo.imageSavedName}
+                  className="jm-product-image"
+                />
+              </div>
+              <div className="jm-item-info">
                 <div className="jm-item-details">
-                    <div className='jm-item-name'><h2>iPhone 15 Plus 128GB 블랙</h2></div>
-                    <div className='jm-item-options'>
-                    <select data-autom="item-quantity-dropdown">
-                        <option value="1" aria-label="1 ,  수량">1</option>
-                        <option value="2" aria-label="2 ,  수량">2</option>
-                        <option value="3" aria-label="3 ,  수량">3</option>
-                        <option value="4" aria-label="4 ,  수량">4</option>
-                        <option value="5" aria-label="5 ,  수량">5</option>
-                        <option value="6" aria-label="6 ,  수량">6</option>
-                        <option value="7" aria-label="7 ,  수량">7</option>
-                        <option value="8" aria-label="8 ,  수량">8</option>
-                        <option value="9" aria-label="9 ,  수량">9</option>
-                        <option value="10" aria-label="10+ ,  수량">10+</option>
+                  <div className='jm-item-name'><h2> {cartVo.productName} {cartVo.storageSize} {cartVo.colorName} </h2></div>
+                  <div className='jm-item-options'>
+                    <select
+                      value={quantities[index]}  // 서버에서 받은 수량을 기본값으로 설정
+                      onChange={(e) => handleQuantityChange(index, Number(e.target.value))} // 수량 선택 시 서버로 전송
+                      data-autom="item-quantity-dropdown"
+                    >
+                      {[...Array(10).keys()].map(i => (
+                        <option key={i+1} value={i+1}>{i+1}</option>
+                      ))}
                     </select>
-                    <span class="arrow" aria-hidden="true"></span>
-                    </div>
-                    <div className='jm-item-price'>
-                        <p>₩1,250,000</p>
-                        <button className="jm-remove-item">삭제</button>
-                    </div>
+                    <span className="arrow" aria-hidden="true"></span>
+                  </div>
+                  <div className='jm-item-price'>
+                    <p>₩{(cartVo.productPrice * quantities[index]).toLocaleString()}</p> 
+                    <button className="jm-remove-item" onClick={() => handleRemoveItem(cartVo.cartNum)}>삭제</button>
+                  </div>
                 </div>
+                
+                {/* 애플케어 UI는 시리즈네임이 악세사리가 아닐 때만 표시 */}
+                {cartVo.seriesName !== "악세사리" && (
                 <div className="jm-cart-item">
                     <div className="jm-as-icondetails-detail">
                     <div>
                         <h3 className='jm-apple-care-tatle'>
                         <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/APPLECARE-plus_ICON?wid=800&amp;hei=800&amp;fmt=jpeg&amp;qlt=90&amp;fit=constrain&amp;.v=1527725457537" alt='applecare'/>
-                        iPad&nbsp;Pro 13(M4 모델)을 위한 AppleCare+ 추가, 
-                            <span>₩259,000</span>
+                        iPad&nbsp;{cartVo.productName}을 위한 AppleCare+ 추가, 
+                            <span className='jm-apple-care-price'> ₩259,000</span>
                         </h3>
                         
                             <p className="jm-apple-care">
@@ -67,14 +266,11 @@ const Cart = () => {
                                 <span> Apple 전문가가 우선적으로 지원 제공</span><br/>
                                 <span> iPad Pro, Apple Pencil, Apple 키보드까지 모두 포함하는 하나의 보증 서비스</span>
                             </p>
-                            <button className="jm-plus" type="button">
-                                <span>더 알아보기</span>
+                            <button className="jm-plus" type="button" onClick={() => handleAppleCareChange(index)}>
+                                <span>{appleCareSelected[index] ? '애플케어 제거' : '애플케어 추가'}</span>
                             </button>
                         </div>
-                    </div>
-                </div>
-
-                <div className="jm-cart-shipping-info">
+                        <div className="jm-cart-shipping-info">
                     <div className='jm-pickup'>
                         <div class="jm-rc-segmented-control-icon"><svg viewBox="0 0 35 35" class="as-svgicon as-svgicon-applestorepickup as-svgicon-base as-svgicon-applestorepickupbase" role="img" aria-hidden="true" width="20px" height="20px"><path fill="none" d="M0 0h35v35H0z"></path><path d="M25.5 7h-2.529a5.493 5.493 0 0 0-10.942 0H9.5A3.5 3.5 0 0 0 6 10.5v15A3.5 3.5 0 0 0 9.5 29h16a3.5 3.5 0 0 0 3.5-3.5v-15A3.5 3.5 0 0 0 25.5 7Zm-8-4a4.488 4.488 0 0 1 4.446 4h-8.892A4.488 4.488 0 0 1 17.5 3ZM28 25.5a2.5 2.5 0 0 1-2.5 2.5h-16A2.5 2.5 0 0 1 7 25.5v-15A2.5 2.5 0 0 1 9.5 8h16a2.5 2.5 0 0 1 2.5 2.5Z"></path><path d="M20.272 17.075a2.326 2.326 0 0 1 1.078-1.94 2.348 2.348 0 0 0-2-1c-.759 0-1.375.463-1.782.463s-.968-.441-1.65-.441a2.719 2.719 0 0 0-2.541 3.021 6.311 6.311 0 0 0 1.056 3.363c.506.717.946 1.29 1.584 1.29s.9-.419 1.672-.419c.8 0 .968.408 1.661.408s1.155-.628 1.584-1.246a4.733 4.733 0 0 0 .693-1.444 2.215 2.215 0 0 1-1.355-2.055ZM17.621 14.021A1.966 1.966 0 0 0 19 13.294a2.328 2.328 0 0 0 .528-1.422 1.076 1.076 0 0 0-.011-.2 2.19 2.19 0 0 0-1.485.772 2.26 2.26 0 0 0-.561 1.378c0 .077.011.154.011.187.04.001.084.012.139.012Z"></path></svg></div>
                         <p>가까운 Apple Store에서 픽업하세요.</p>
@@ -84,59 +280,46 @@ const Cart = () => {
                 <p>오늘 주문: 금 2024/10/04 도착<br/>무료 배송</p>
                 </div>
                 </div>
+                    </div>
+                </div>
+                
+                )}
+              </div>
             </div>
-            {/* 반복문 영역 끝 */}
-
-        </div>
+          </div>
+        ))}
 
         <div className="jm-price-summary">
           <div className="jm-summary-details">
-            <p>소계: ₩1,509,000</p>
+            <p>소계: ₩{totalPrice.toLocaleString()}</p>
             <p>배송: 무료</p>
           </div>
-          <h1>총계: ₩1,509,000</h1>
+          <h1>총계: ₩{totalPrice.toLocaleString()}</h1>
           <div className="jm-continue-button1">
-          <button className="jm-checkout-button1">결제</button>
+            <button to="/user/payform" className="jm-checkout-button1" onClick={handleMoveToPayform}>결제</button>
           </div>
         </div>
       </section>
 
-      {/* Recommended Accessories Section */}
-      <section className="jm-recommended-accessories">
+      <section className="jm-recommended-x">
         <h2 className="jm-section-title">마음에 들 만한 액세서리</h2>
         <div className="jm-accessory-list">
-          <div className="jm-accessory-item">
+        {acceList.map((acceVo) => (
+          <div className="jm-accessory-item" key={acceVo.productDetailNum}>
             <img
-              src="https://via.placeholder.com/100"
-              alt="20W USB-C Adapter"
+              src={acceVo.imageSavedName}
+              alt={acceVo.imageSavedName}
               className="jm-accessory-image"
             />
-            <p>20W USB-C 전원 어댑터</p>
-            <p>₩28,000</p>
-            <button className="jm-add-to-cart-button">장바구니에 담기</button>
+            <p>{acceVo.productName}</p>
+            <p>₩{acceVo.productPrice.toLocaleString()}</p>
+            <button className="jm-add-to-cart-button" onClick={() => handleAddToCart(acceVo)}>
+              장바구니에 담기
+            </button>
           </div>
-          <div className="jm-accessory-item">
-            <img
-              src="https://via.placeholder.com/100"
-              alt="MagSafe Case"
-              className="jm-accessory-image"
-            />
-            <p>MagSafe형 iPhone 15 Plus 투명 케이스</p>
-            <p>₩69,000</p>
-            <button className="jm-add-to-cart-button">장바구니에 담기</button>
-          </div>
-          <div className="jm-accessory-item">
-            <img
-              src="https://via.placeholder.com/100"
-              alt="USB-C Lightning Adapter"
-              className="jm-accessory-image"
-            />
-            <p>USB-C-Lightning 어댑터</p>
-            <p>₩45,000</p>
-            <button className="jm-add-to-cart-button">장바구니에 담기</button>
-          </div>
+        ))}
         </div>
-        <Link to="" className="jm-more-products-button">더 많은 제품</Link>
+        <Link to="/mainlistacc" className="jm-more-products-button">더 많은 제품</Link>
       </section>
     </div>
     </div>

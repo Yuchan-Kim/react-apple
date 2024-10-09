@@ -170,17 +170,17 @@
 /* joinform 사용했음 */
 
 #user #joinForm .DA-form-group #DA-link {
-    margin-bottom: 300px;
+    margin-bottom: 150px;
     display: block; /* 블록으로 설정하여 세로로 쌓이도록 */
     color: #0071e3;
     text-decoration: none; /* 밑줄 제거 */
 }
 
 #user #joinForm .DA-error-message {
-    text-align: left;
-    padding-left: 70px;
+    text-align: center;
     color: #e32200;
 }
+
 
 /****************************************************************/
 /* 마이페이지폼 **********************************************/

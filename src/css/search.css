@@ -3,6 +3,7 @@
     border-bottom: 1px solid #ddd;
     padding: 10px 0;
     margin-bottom: 20px;
+    margin-right: 40px;
 }
 
 .yc-tabs-menu ul {
@@ -18,11 +19,20 @@
     font-size: 16px;
     color: #86868b;
     position: relative;
+    cursor: pointer;
+    
+}
+.yc-tabs-menu ul li:hover {
+    color: #000;
 }
 
-.yc-tabs-menu ul li.active {
-    color: #000;
+.yc-tabs-menu ul li.yc-active {
+    color: #000; /* 선택된 탭의 텍스트 색상 */
     font-weight: bold;
+    background-color: #fff; /* 선택된 탭의 배경색 */
+    border-radius: 5px 5px 0 0; /* 선택된 탭의 상단 모서리 둥글게 */
+    
+    border-radius: 0 0 5px 5px; /* 강조선의 하단 모서리 둥글게 */
 }
 
 .yc-tabs-menu ul li.active::after {

@@ -76,7 +76,8 @@
     height: 165px;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 20px 20px 20px;
+    padding: 10px 20px 30px 20px;
+    margin-top: 20px;
     margin-bottom: 20px;
     background-color: #f9f9f9;
     border-radius: 10px;
@@ -91,22 +92,23 @@
 
 /* 매장 이미지 */
 #history #sotre_Img {
-    width: 120px; /* 이미지 크기를 적절하게 조정 */
+    width: 170px; /* 이미지 크기를 적절하게 조정 */
     height: auto;
     border-radius: 8px;
     margin-right: 30px;
 }
 
-/* 매장 정보 */
-#history .hjy_history_info {
+/* 매장 정보 및 구매자 정보 공통 스타일 */
+.hjy_history_info, .hjy_buyer_info {
     flex: 1;
     font-size: 16px;
+    padding: 10px; /* 동일한 패딩 적용 */
 }
 
-#history .hjy_history_info p {
-    margin-bottom: 8px;
+.hjy_history_info p, .hjy_buyer_info p {
+    margin-bottom: 4px; /* 글씨 간의 간격을 더 좁게 설정 */
 }
 
-#history .hjy_history_info strong {
+.hjy_history_info strong, .hjy_buyer_info strong {
     font-weight: bold;
 }

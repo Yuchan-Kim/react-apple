@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate} from 'react-router-dom';
 import '../css/search.css';
 
 import Header from '../include/Header';
@@ -18,6 +18,9 @@ const SearchPage = () => {
     const [communities, setCommunities] = useState([]); 
     // 현재 활성화된 탭 상태 ('products', 'community', 'findStore' 중 하나)
     const [activeTab, setActiveTab] = useState('products'); 
+
+    const navigate =useNavigate();
+
 
     // 컴포넌트가 마운트되거나 keyword가 변경될 때마다 실행되는 Effect
     useEffect(() => {
@@ -107,13 +110,13 @@ const SearchPage = () => {
                                 products.map((product) => (
                                     <div key={product.productNum} className="yc-product-item">
                                         {/* 제품 이미지 */}
-                                        <img src={product.mainImages || "https://via.placeholder.com/200"} alt={product.productName} />
+                                        <img src={product.imageSavedName || "https://via.placeholder.com/200"} alt={product.productName} />
                                         {/* 제품 이름 */}
                                         <h3>{product.productName}</h3>
                                         {/* 제품 가격 */}
-                                        <p>가격: {product.productPrice} 원</p>
+                                        <p>가격: {(product.productPrice).toLocaleString()} 원 부터</p>
                                         {/* 제품 상세 페이지 링크 */}
-                                        <Link to={`/product/${product.productNum}`}>자세히 보기</Link>
+                                        <Link to={`/purchase/${product.productNum}`}>자세히 보기</Link>
                                     </div>
                                 ))
                             ) : (
@@ -133,7 +136,7 @@ const SearchPage = () => {
                                         {/* 조회수 및 날짜 */}
                                         <p>조회수: {community.boardViews} | 날짜: {community.boardDate}</p>
                                         {/* 게시글 상세 페이지 링크 */}
-                                        <Link to={`/community/${community.boardNum}`}>자세히 보기</Link>
+                                        <Link to={`/community/comment/${community.boardNum}`}>자세히 보기</Link>
                                     </div>
                                 ))
                             ) : (

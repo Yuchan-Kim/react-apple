@@ -50,6 +50,7 @@
     margin-bottom: 10px;
 }
 
+
 .jm-iphone-btn {
     padding: 12px 24px;
     font-size: 1rem;
@@ -62,11 +63,12 @@
     margin-bottom: 10px;
 }
 
-.jm-iphone-btn p {
+.jm-more{
     color: #0071e3;
+    text-decoration: none;
 }
 
-.jm-iphone-btn p:hover {
+.jm-iphone-btn span:hover {
     color: white;
 }
 
@@ -81,7 +83,7 @@
 }
 
 .jm-iphone-caption {
-    color: #666;
+    color: #7c7a7a;
     font-size: 0.9rem;
     font-weight: bold;
     margin-top: 10px;

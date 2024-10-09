@@ -67,6 +67,7 @@
     align-items: center;
     margin-top: 20px;
     width: 100%;
+    
   }
 
   .jm-checkout-button1:hover {
@@ -82,6 +83,7 @@
 
   .jm-as-icondetails-detail {
     display: block;
+    width: 100%;
   }
 
   .jm-as-icondetails-detail h3 {
@@ -275,6 +277,10 @@
 
   .jm-delivery p {
     font-size: 12px;
+  }
+
+  .jm-apple-care-price{
+    margin-left: 5px;
   }
   
   

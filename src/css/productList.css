@@ -126,7 +126,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 20px;
+    padding: 10px;
     margin-bottom: 20px;
     background-color: #f9f9f9;
     border-radius: 10px;
@@ -140,8 +140,8 @@
 }
 
 /* 매장 이미지 */
-#product #sotre_Img {
-    width: 160px; /* 이미지 크기를 적절하게 조정 */
+#product #store_Img {
+    width: 190px; /* 이미지 크기를 적절하게 조정 */
     height: auto;
     border-radius: 8px;
     margin-right: 30px;
@@ -193,7 +193,7 @@
 
 /* 삭제 버튼 */
 #product .hjy_del_btn {
-    margin-left: 10px;
+    margin: 0px 8px;
 }
 
 #product .hjy_del_btn button {

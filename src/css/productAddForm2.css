@@ -144,8 +144,16 @@
     transition: border-color 0.3s ease, box-shadow 0.3s ease; /* 부드러운 전환 효과 추가 */
 }
 
-#product_add .hjy_product_content input[type="file"] {
+/* 첨부파일 */
+#product_add .hjy-file-box {
     color: #727272;
+    width: 677px;
+}
+
+#product_add .hjy-file-box input[type="file"] {
+    color: #727272;
+    width: 100%;
+    margin-top: 10px;
 }
 
 /* input 필드가 클릭될 때 */
@@ -154,22 +162,51 @@
     border-color: #727272; /* 포커스 시 초록색 테두리 */
 }
 
-/* 출시일 */
-#product_add .hjy_product_content input[type="date"] {
-    color: #7e7e7e; /* placeholder 색상과 동일한 색상 적용 */
+/* select 스타일 */
+#product_add .hjy_product_content select {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background-color: white;
+    color: #727272;
+    outline: none;
+    appearance: auto; /* 브라우저 기본 화살표 사용 */
 }
 
-/* 웹킷 기반 브라우저에서 달력 아이콘 색상도 변경 */
-#product_add .hjy_product_content input[type="date"]::-webkit-calendar-picker-indicator {
-    filter: grayscale(100%); /* 아이콘을 회색 톤으로 변경 */
+
+/* select 필드가 포커스될 때 */
+#product_add .hjy_product_content select:focus {
+    border-color: #727272; 
+    box-shadow: 0 0 5px rgba(219, 219, 219, 0.5);
 }
 
+/* disabled 상태에서의 스타일 */
+#product_add .hjy_product_content select:disabled {
+    background-color: #f0f0f0;
+    color: #999;
+}
 
 #product_add .hjy_product_add_btnbox {
     display: flex; /* 버튼을 한 줄에 배치 */
     justify-content: center; /* 버튼들을 중앙에 배치 */
     align-items: center; /* 버튼을 수직으로 중앙에 배치 */
     margin: 30px 0px 3px 0px;
+}
+
+/* 이미지 추가 버튼 */
+#product_add .hjy-imgAdd button {
+    background-color: #7d7d7d;
+    color: white; 
+    border: none; 
+    border-radius: 25px; 
+    padding: 10px 15px; 
+    font-size: 12px; 
+    font-weight: bold;
+    cursor: pointer; 
+    transition: background-color 0.3s ease; /* 호버 시 부드러운 배경 전환 효과 */
 }
 
 /* 등록 버튼 */
@@ -239,4 +276,56 @@
 #product_add .hjy_product_cancel_btn a:visited {
     color: white; 
     text-decoration: none;
+}
+
+
+/* 테이블 전체 스타일 */
+.hjy-seriesList table {
+    width: 75%;
+    margin-left: 19%;
+    border-collapse: collapse; /* 중복된 보더 제거 */
+    margin-top: 20px; /* 테이블 위쪽에 여백 추가 */
+    font-size: 16px; /* 글씨 크기 */
+}
+
+.hjy-seriesList a:link {
+    color: #333;
+    text-decoration: none;
+}
+
+.hjy-seriesList a:visited {
+    color: #333;
+}
+
+.hjy-seriesList button {
+    color: #333;
+    background-color: transparent;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* 테이블 헤더 스타일 */
+.hjy-seriesList th {
+    background-color: #f9f9f9; /* 헤더 배경 색 */
+    text-align: left; /* 헤더 텍스트 정렬 */
+    padding: 10px; /* 패딩 추가 */
+    font-weight: bold; /* 텍스트 굵게 */
+    border: 1px solid #ddd; /* 헤더 보더 */
+}
+
+.hjy-seriesList tr {
+    font-size: 18px;
+}
+
+/* 테이블 본문 스타일 */
+.hjy-seriesList td {
+    padding: 10px;
+    border: 1px solid #ddd; 
+    font-size: 15px;
+}
+
+/* 테이블 행에 마우스를 올렸을 때 */
+.hjy-seriesList tr:hover {
+    background-color: #f1f1f1; 
 }

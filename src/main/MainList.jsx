@@ -29,9 +29,9 @@ const featuresData = {
     'iPhone 12 mini': ['13.7cm Super Retina XDR 디스플레이', 'A14 Bionic 칩 탑재', '듀얼 카메라 시스템', '5G 연결', 'Face ID'],
     'iPhone 12 Pro': ['15.5cm Super Retina XDR 디스플레이', 'A14 Bionic 칩 탑재', 'Pro 카메라 시스템', 'ProMotion 기술', '5G 연결'],
     'iPhone 12 Pro Max': ['17.0cm Super Retina XDR 디스플레이', 'A14 Bionic 칩 탑재', 'Pro 카메라 시스템', 'ProMotion 기술', '5G 연결'],
-    'iPhone SE 3세대': ['11.9cm Retina HD 디스플레이', 'A15 Bionic 칩 탑재', '고속 다운로드 및 스트리밍', '12MP 카메라', 'Touch ID 홈 버튼'],
-    'iPhone SE 2세대': ['11.9cm Retina HD 디스플레이', 'A13 Bionic 칩 탑재', '고속 다운로드 및 스트리밍', '12MP 카메라', 'Touch ID 홈 버튼'],
-    'iPhone SE 1세대': ['10.2cm Retina 디스플레이', 'A9 칩 탑재', '12MP 카메라', '4G LTE', 'Touch ID 홈 버튼'],
+    'iPhone SE3': ['11.9cm Retina HD 디스플레이', 'A15 Bionic 칩 탑재', '고속 다운로드 및 스트리밍', '12MP 카메라', 'Touch ID 홈 버튼'],
+    'iPhone SE2': ['11.9cm Retina HD 디스플레이', 'A13 Bionic 칩 탑재', '고속 다운로드 및 스트리밍', '12MP 카메라', 'Touch ID 홈 버튼'],
+    'iPhone SE1': ['10.2cm Retina 디스플레이', 'A9 칩 탑재', '12MP 카메라', '4G LTE', 'Touch ID 홈 버튼'],
 };
 
 const MainList = () => {
@@ -54,6 +54,7 @@ const MainList = () => {
     const handleModalClose = () => {
         setIsModalOpen(false);
         setSelectedProduct(null);
+        document.body.classList.remove('yc-modal-open'); // 모달이 닫히면 yc-modal-open 클래스를 제거
     };
 
     // Handle modal toggle classes
@@ -132,6 +133,47 @@ const MainList = () => {
         navigate(`/purchase/${productDetailNum}`);
     };
 
+      // 장바구니에 담기 핸들러
+    const handleAddToCart = (acceVo) => {
+        const token = localStorage.getItem('token');
+
+        if (!token) {
+        console.log("토큰이 없습니다. 로그인하세요.");
+        alert("로그인이 필요합니다. 로그인 페이지로 이동합니다.");
+        navigate('/user/loginform');
+        return;  // 오류가 있으면 함수 중단
+        }
+
+        // axios 요청 반환
+        return axios({  // 반드시 return으로 axios Promise 반환
+        method: 'post',
+        url: 'http://localhost:9000/api/product/addtocart',
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+        },
+        data: {
+            productDetailNum: acceVo.productDetailNum,  // undefined 확인 필요
+        }
+        })
+        .then(response => {
+        if (response.data.result === "success") {
+            alert("상품이 장바구니에 추가되었습니다.");
+            setIsModalOpen(false); // 모달 닫기
+            navigate("/user/cart");
+            
+        } else {
+            console.log(response.data.message);
+            setIsModalOpen(false); // 모달 닫기
+            navigate("/user/cart");
+        }
+        })
+        .catch(error => {
+        console.log("장바구니 추가 실패", error);
+        alert("장바구니 추가 중 오류가 발생했습니다.");
+        });
+    };
+
     return (
         <>
             <Header />
@@ -173,12 +215,12 @@ const MainList = () => {
                                                 key={product.productDetailNum}
                                                 onClick={() => handleProductClick(product.productDetailNum)}  // Navigate to purchase page
                                             >
-                                                <span className="yc-new-label">NEW</span>
+                                                {product.productName.includes('16') && <span className="yc-new-label">NEW</span>}
                                                 <h3>{product.productName}</h3>
-                                                <img src={product.mainImages || "https://via.placeholder.com/300"} alt={product.productName} />
+                                                <img src={product.imageSavedName || "https://via.placeholder.com/300"} alt={product.productName} />
 
                                                 <div className="yc-price-button-container">
-                                                    <p>{product.productPrice}원 부터</p>
+                                                    <p>{(product.productPrice).toLocaleString()}원 부터</p>
                                                     <button className="yc-buy-button">구입하기</button>
                                                 </div>
 
@@ -210,12 +252,12 @@ const MainList = () => {
                                                 key={product.productDetailNum}
                                                 onClick={() => handleProductClick(product.productDetailNum)}  // Navigate to purchase page
                                             >
-                                                <span className="yc-new-label">NEW</span>
+                                                {product.productName.includes('16') && <span className="yc-new-label">NEW</span>}
                                                 <h3>{product.productName}</h3>
-                                                <img src={product.mainImages || "https://via.placeholder.com/300"} alt={product.productName} />
+                                                <img src={product.imageSavedName || "https://via.placeholder.com/300"} alt={product.productName} />
 
                                                 <div className="yc-price-button-container">
-                                                    <p>{product.productPrice}원 부터</p>
+                                                    <p>{(product.productPrice).toLocaleString()}원 부터</p>
                                                     <button className="yc-buy-button">구입하기</button>
                                                 </div>
 
@@ -247,12 +289,12 @@ const MainList = () => {
                                                 key={product.productDetailNum}
                                                 onClick={() => handleProductClick(product.productDetailNum)}  // 구매 페이지로 이동
                                             >
-                                                <span className="yc-new-label">NEW</span>
+                                                {product.productName.includes('16') && <span className="yc-new-label">NEW</span>}
                                                 <h3>{product.productName}</h3>
-                                                <img src={product.mainImages || "https://via.placeholder.com/300"} alt={product.productName} />
+                                                <img src={product.imageSavedName || "https://via.placeholder.com/300"} alt={product.productName} />
 
                                                 <div className="yc-price-button-container">
-                                                    <p>{product.productPrice}원 부터</p>
+                                                    <p>{(product.productPrice).toLocaleString()}원 부터</p>
                                                     <button className="yc-buy-button">구입하기</button>
                                                 </div>
 
@@ -286,21 +328,21 @@ const MainList = () => {
                         <span className="yc-close-button" onClick={handleModalClose}>&times;</span>
                         <div className="yc-modal-container">
                             <div className="yc-modal-image-slider">
-                                <img src={selectedProduct.mainImages || "https://via.placeholder.com/300"} alt={selectedProduct.productName} />
+                                <img src={selectedProduct.imageSavedName || "https://via.placeholder.com/300"} alt={selectedProduct.productName} />
                                 <p className="yc-image-caption">여러 색상으로 제공됩니다</p>
                             </div>
                             <div className="yc-modal-details">
                                 <h2>{selectedProduct.productName}</h2>
                                 <div className="yc-price-buy-container">
-                                    <p className="yc-price">{selectedProduct.productPrice} 원부터</p>
-                                    <button className="yc-buy-button">구입하기</button>
+                                    <p className="yc-price">{(selectedProduct.productPrice).toLocaleString()} 원부터</p>
+                                    <button className="yc-buy-button" onClick={() => handleAddToCart({ productDetailNum: selectedProduct.productDetailNum })}>장바구니에 담기</button>
                                 </div>
                                 {/* Dynamic features based on product name */}
                                 <ul className="yc-features">
-                                    {featuresData[selectedProduct.productName] ? (
-                                        featuresData[selectedProduct.productName].map((feature, index) => (
+                                    {featuresData[selectedProduct.productName.toLowerCase()] ? (
+                                        featuresData[selectedProduct.productName.toLowerCase()].map((feature, index) => (
                                             <li key={index}>
-                                                {feature}
+                                                <img src="/path/to/icon1.png" alt="icon" /> {feature}
                                             </li>
                                         ))
                                     ) : (
@@ -308,8 +350,18 @@ const MainList = () => {
                                     )}
                                 </ul>
                                 
-                                <Link to="#" className="yc-learn-more-link">{selectedProduct.productName} 더 살펴보기</Link>
-                            </div>
+                                <Link
+                                    to={`/purchase/${selectedProduct.productDetailNum}`}
+                                    className="yc-learn-more-link"
+                                    onClick={() => {
+                                        setIsModalOpen(false); // 모달 닫기
+                                        document.body.classList.remove('yc-modal-open'); // blur 효과 제거
+                                    }}
+                                >
+                                    {selectedProduct.productName} 더 살펴보기
+                                </Link>
+                
+                                </div>
                         </div>
                         <div className="yc-modal-footer">
                             <div className="yc-modal-footer-section">

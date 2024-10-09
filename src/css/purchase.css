@@ -101,6 +101,11 @@
     background-color: #f0f8ff;
 }
 
+.yc-model-option.yc-selected {
+    border-color: #0070c9;
+    background-color: #f0f8ff;
+  }
+
 .yc-model-option p {
     margin: 0;
     font-weight: bold;
@@ -159,7 +164,7 @@
 /* Selected Color Circle */
 .yc-color-circle.yc-selected {
     border: 2px solid #0070c9;
-    transform: scale(1.1);
+    transform: scale(0.5);
 }
 
 /* Capacity Selection */
@@ -191,7 +196,10 @@
     border-color: #0070c9;
     background-color: #f0f8ff;
 }
-
+.yc-capacity-option.yc-selected {
+    border-color: #0070c9;
+    background-color: #f0f8ff;
+  }
 .yc-capacity-option p:last-child {
     font-size: 12px;
     color: rgb(176, 174, 174);
@@ -202,18 +210,15 @@
     padding: 15px;
     background-color: rgb(251, 251, 251);
     border-radius: 10px;
-    font-size: 14px;
     color: #6e6e73;
     width: 410px;
-    display: flex;
-    justify-content: space-between;
     align-items: center;
 }
 
 .yc-storage-info-box p {
-    margin: 0;
-    font-size: 12px;
-    flex: 1;
+    display: block; /* 각 문장을 한 줄씩 배치 */
+    margin-bottom: 10px; /* 각 문장 사이에 간격 추가 */
+    font-size: 12px; /* 필요에 따라 글꼴 크기 조정 */
 }
 
 .yc-info-button {
@@ -257,15 +262,11 @@
     transition: border-color 0.3s, background-color 0.3s;
 }
 
-.yc-applecare-option:hover {
-    border-color: #0070c9;
-    background-color: #f0f8ff;
-}
 
 .yc-applecare-option-nocare {
     width: 60%;
     padding: 20px;
-    padding-top: 0px;
+    padding-top: 6px;
     border: 1px solid #e5e5e5;
     border-radius: 10px;
     background-color: white;
@@ -278,10 +279,7 @@
     transition: border-color 0.3s, background-color 0.3s;
 }
 
-.yc-applecare-option-nocare:hover {
-    border-color: #0070c9;
-    background-color: #f0f8ff;
-}
+
 
 .yc-applecare-logo {
     width: 100%;
@@ -300,12 +298,15 @@
     color: #1d1d1f;
 }
 
-.yc-applecare-info {
-    width: 35%;
-    display: flex;
-    flex-direction: column;
+
+.yc-acc-applecare-info {
+    width: 100%;
+    padding: 20px;
     border-radius: 10px;
-    font-size: 10px;
+    background-color: rgb(251, 251, 251);
+    font-size: 12px;
+    color: #6e6e73;
+    text-align: left;
 }
 
 .yc-info-box {
@@ -320,8 +321,9 @@
 }
 
 .yc-applecare-addons {
-    font-size: 13px;
+    font-size: 11px;
     color: #6e6e73;
+    
 }
 
 /* Final Purchase Section */
@@ -382,20 +384,17 @@
     margin-left: 90px;
 }
 
-.yc-shipping-options .yc-option {
-    list-style: none;
-    padding: 0;
-    font-size: 14px;
-    color: #6e6e73;
-    margin-bottom: 150px;
+.yc-shipping-options .yc-option li {
+    display: flex;
+    align-items: center; /* 아이콘과 텍스트를 수직 정렬 */
+    margin-bottom: 10px; /* 각 리스트 아이템 간 간격 */
 }
 
-.yc-shipping-options .yc-icon {
-    margin-right: 10px;
-    font-size: 17px;
+.yc-shipping-options .yc-option li svg {
+    margin-right: 10px; /* 아이콘과 텍스트 사이의 간격 */
 }
 
-.yc-continue {
+.yc-shipping-options .yc-continue {
     padding: 10px 20px;
     background-color: #0070c9;
     border: 1px solid #0070c9;
@@ -417,7 +416,7 @@
 }
 
 /* Model Images 2-7 Sections */
-.yc-model-images2,
+
 .yc-model-images3,
 .yc-model-images4,
 .yc-model-images5,
@@ -435,8 +434,7 @@
     margin: 0 auto;
 }
 
-.yc-model-images2 .yc-phone-image,
-.yc-model-images3 .yc-phone-image,
+
 .yc-model-images4 .yc-phone-image,
 .yc-model-images5 .yc-phone-image,
 .yc-model-images6 .yc-phone-image,

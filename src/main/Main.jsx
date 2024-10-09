@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 // css import
 import '../css/reset.css';
@@ -8,6 +8,7 @@ import Header from '../include/Header';
 import Footer from '../include/Footer';
 
 const Wishlist = () => {
+    const navigate = useNavigate(); // 페이지 이동을 위한 useNavigate 훅 추가
     const [currentIndex, setCurrentIndex] = useState(0);
     const images = [
         'https://is1-ssl.mzstatic.com/image/thumb/hCfBMF1R8mitgipZtRrJIw/1250x703.jpg',
@@ -15,6 +16,13 @@ const Wishlist = () => {
         'https://is1-ssl.mzstatic.com/image/thumb/0JHAH9rqI68Wcs6W-7ImKQ/1250x703.jpg',
         'https://is1-ssl.mzstatic.com/image/thumb/fFOltSfH_F9HhYQHU1yDeg/1250x703.jpg',
     ];
+
+    const handleIphone16ProClick = () => {
+        navigate(`/purchase/1208`);
+    };
+    const handleIphone16Click = () => {
+        navigate(`/purchase/1148`);
+    };
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -40,9 +48,9 @@ const Wishlist = () => {
             <h1 className="jm-iphone-title">iPhone 16 Pro</h1>
             <div className="jm-iphone-link"><Link to=""></Link></div>
             <div className="jm-iphone-buttons">
-                <Link to="/mainList" className="jm-iphone-btn learn-more"><p>더 알아보기</p></Link>
+                <button className="jm-iphone-btn learn-more" onClick={handleIphone16ProClick}><span>더 알아보기</span></button>
             </div>
-            <p className="iphone-caption">Apple Intelligence, 연내 미국 영어로 우선 출시 예정*</p>
+            <p className="jm-iphone-caption">Apple Intelligence, 연내 미국 영어로 우선 출시 예정*</p>
             </div>
 
             {/* iPhone 16 Section */}
@@ -50,7 +58,7 @@ const Wishlist = () => {
             <h1 className="jm-iphone-title">iPhone 16</h1>
             <div className="jm-iphone-link"><Link to=""></Link></div>
             <div className="jm-iphone-buttons">
-            <Link to="/mainList" className="jm-iphone-btn learn-more"><p>더 알아보기</p></Link>
+            <button to="/purchase/1148" className="jm-iphone-btn learn-more" onClick={handleIphone16Click}><span className='jm-more'>더 알아보기</span></button>
             </div>
             <p className="jm-iphone-caption">Apple Intelligence, 연내 미국 영어로 우선 출시 예정*</p>
             </div>

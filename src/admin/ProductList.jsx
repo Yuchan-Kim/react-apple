@@ -1,6 +1,7 @@
 //import 라이브러리
-import React from "react";
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 import '../css/reset.css';
 import '../css/productList.css';
@@ -12,23 +13,70 @@ const ProductList = () => {
     /*---라우터 관련-------------------------------*/
     
     /*---상태관리 변수들(값이 변화면 화면 랜더링 )---*/
+    const [productList, setProductList] = useState([]);
+
+    const navigate = useNavigate();  // 페이지 이동을 위한 useNavigate 추가
+    const authUser = JSON.parse(localStorage.getItem('authUser'));  // authUser 정보 가져오기
+
+    // 관리자인지 확인하여 관리자 아닌 경우 리다이렉트
+    useEffect(() => {
+        if (!authUser || authUser.userStatus !== '관리자') {
+            // alert("관리자만 접근할 수 있습니다.");
+            navigate("/");  // 메인 페이지로 리다이렉트
+        }
+    }, [authUser, navigate]);
 
     /*---일반 변수--------------------------------*/
     
     /*---일반 메소드 -----------------------------*/
     
     /*---훅(useEffect)+이벤트(handle)메소드-------*/
+    const getProductList = () => {
+        axios({
+            method: 'get',
+            url: `${process.env.REACT_APP_API_URL}/api/productList`,
+            responseType: 'json',
+        }).then(response => {
+            console.log(response.data.apiData);
+            setProductList(response.data.apiData); // 응답 데이터로 시리즈 목록 설정
+        }).catch(error => {
+            console.log(error);
+        });
+    };
+
+    useEffect(() => {
+        // 컴포넌트가 마운트되면 시리즈 리스트 가져오기
+        getProductList();
+    }, []);
+
+    // 상품 리스트 삭제
+    const handleDeleteProduct = (productDetailNum) => {
+        // 삭제 확인 창
+        const confirmDelete = window.confirm('정말 삭제하시겠습니까?');
+      
+        if (confirmDelete) {
+          axios
+            .delete(`${process.env.REACT_APP_API_URL}/api/delete/productList/${productDetailNum}`)
+            .then(response => {
+              if (response.data.result === 'success') {
+                // 삭제 성공 시
+                alert('삭제되었습니다.');
+                getProductList();
+              } else {
+                // History 테이블에 해당 productDetailNum이 있으면 삭제 불가
+                alert(response.data.message); // 서버에서 반환된 메시지를 사용자에게 알림
+              }
+            })
+            .catch(error => {
+              console.error('삭제 중 오류 발생:', error);
+              alert('삭제 중 오류가 발생했습니다.');
+            });
+        }
+      };
     
     return (
         <>
             <Header/>
-
-            {/* nav */}
-            {/* <div id="admin_nav">
-                <ul className="clearfix">
-                    <li><Link to="#" rel="noreferrer noopener">Apple 관리자 계정</Link></li>
-                </ul>
-            </div> */}
 
             <div id="wrap">
 
@@ -44,7 +92,7 @@ const ProductList = () => {
                                     <li><Link to="/admin/store" rel="noreferrer noopener">매장 관리</Link></li>
                                     <li><Link to="/admin/product" rel="noreferrer noopener">상품 관리</Link></li>
                                     <li><Link to="/admin/user" rel="noreferrer noopener">유저 관리</Link></li>
-                                    <li><Link to="/admin/dilivery" rel="noreferrer noopener">배송 관리</Link></li>
+                                    <li><Link to="/admin/delivery" rel="noreferrer noopener">배송 관리</Link></li>
                                     <li><Link to="/admin/history" rel="noreferrer noopener">판매 관리</Link></li>
                                 </ul>
                             </div>
@@ -58,89 +106,30 @@ const ProductList = () => {
                                 <h2>상품 관리</h2>
                                 <button type="button" className="hjy_add_product_btn"><Link to="/admin/product/add" rel="noreferrer noopener">상품 등록</Link></button>
                             </div>
-                            {/* 반복 구간 */}
-                            <div id="product_item" className="clearfix" >
-                                <img id="sotre_Img" src="/images/iPhone.png" alt="상품이미지"/>
-                                <div className="hjy_product_info">
-                                    <p>
-                                        <strong>모델명: </strong> iPhone 16 Pro
-                                    </p>
-                                    <p>
-                                        <strong>디스플레이: </strong> 15.9cm
-                                    </p>
-                                    <p>
-                                        <strong>색상: </strong> White
-                                    </p>
-                                    <p>
-                                        <strong>가격: </strong> 1,550,000\
-                                    </p>
-                                    <p>
-                                        <strong>용량: </strong> 256GB
-                                    </p>
-                                </div>
-                                <div className="hjy_edit_btns">
-                                    <button type="button"><Link to="/admin/product/modify" rel="noreferrer noopener">수정</Link></button>
-                                </div>
-                                <div className="hjy_del_btn">
-                                    <button type="button">삭제</button>
-                                </div>
-                            </div>
-
-                            <div id="product_item" className="clearfix" >
-                                <img id="sotre_Img" src="/images/iPhone.png" alt="상품이미지"/>
-                                <div className="hjy_product_info">
-                                    <p>
-                                        <strong>모델명: </strong> iPhone 16 Pro
-                                    </p>
-                                    <p>
-                                        <strong>디스플레이: </strong> 15.9cm
-                                    </p>
-                                    <p>
-                                        <strong>색상: </strong> White
-                                    </p>
-                                    <p>
-                                        <strong>가격: </strong> 1,550,000\
-                                    </p>
-                                    <p>
-                                        <strong>용량: </strong> 256GB
-                                    </p>
-                                </div>
-                                <div className="hjy_edit_btns">
-                                    <button type="button"><Link to="/admin/product/modify" rel="noreferrer noopener">수정</Link></button>
-                                </div>
-                                <div className="hjy_del_btn">
-                                    <button type="button">삭제</button>
-                                </div>
-                            </div>
-
-                            <div id="product_item" className="clearfix" >
-                                <img id="sotre_Img" src="/images/iPhone.png" alt="상품이미지"/>
-                                <div className="hjy_product_info">
-                                    <p>
-                                        <strong>모델명: </strong> iPhone 16 Pro
-                                    </p>
-                                    <p>
-                                        <strong>디스플레이: </strong> 15.9cm
-                                    </p>
-                                    <p>
-                                        <strong>색상: </strong> White
-                                    </p>
-                                    <p>
-                                        <strong>가격: </strong> 1,550,000\
-                                    </p>
-                                    <p>
-                                        <strong>용량: </strong> 256GB
-                                    </p>
-                                </div>
-                                <div className="hjy_edit_btns">
-                                    <button type="button"><Link to="/admin/product/modify" rel="noreferrer noopener">수정</Link></button>
-                                </div>
-                                <div className="hjy_del_btn">
-                                    <button type="button">삭제</button>
-                                </div>
-                            </div>
-                            
-                            {/* //반복구간 */}
+                             {/* 반복 구간 - productList 데이터를 활용해 각 상품을 보여줌 */}
+                             {productList.map((product, index) => (
+                                    <div id="product_item" className="clearfix" key={index}>
+                                        <img id="store_Img" src={`${process.env.REACT_APP_API_URL}/upload/${product.imageSavedName}`} alt="상품이미지" />
+                                        <div className="hjy_product_info">
+                                            <p><strong>시리즈: </strong>{product.seriesName}</p>
+                                            <p><strong>모델명: </strong>{product.productName}</p>
+                                            <p><strong>디스플레이: </strong>{product.displaySize}</p>
+                                            <p><strong>색상: </strong>{product.colorName}</p>
+                                            <p><strong>가격: </strong>{product.productPrice.toLocaleString()}원</p>
+                                            <p><strong>용량: </strong>{product.storageSize}</p>
+                                        </div>
+                                        {/* 수정폼 구현 안되어있음 */}
+                                        <div className="hjy_edit_btns">
+                                            {/* <button type="button"> 
+                                                <Link to={`/admin/product/modify/${product.productDetailNum}`} rel="noreferrer noopener">수정</Link>
+                                            </button> */}
+                                        </div>
+                                        <div className="hjy_del_btn">
+                                        <button type="button" onClick={() => handleDeleteProduct(product.productDetailNum)}>삭제</button>
+                                        </div>
+                                    </div>
+                                ))}
+                                {/* //반복구간 */}
                         </div>
                         {/* //product_list */}
 

@@ -212,7 +212,7 @@ const JoinForm = () => {
 
                                     {/* <!-- 약관동의 --> */}
                                     <div className="DA-form-group">
-                                        <input type="checkbox" id="chk-agree" value="" name="" />
+                                        <input type="checkbox" id="chk-agree" value="" name="" required />
                                         <label htmlFor="chk-agree">Apple의 개인정보 처리방침에 따라 개인 정보를 수집, 사용, 타사에  
                                             <br />대한 제공 및 처리하는 데 동의합니다.
                                         </label> 

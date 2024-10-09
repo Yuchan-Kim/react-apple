@@ -154,16 +154,32 @@
     border-color: #727272; /* 포커스 시 초록색 테두리 */
 }
 
-/* 출시일 */
-#product_add .hjy_product_content input[type="date"] {
-    color: #7e7e7e; /* placeholder 색상과 동일한 색상 적용 */
+/* select 스타일 */
+#product_add .hjy_product_content select {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background-color: white;
+    color: #727272;
+    outline: none;
+    appearance: auto; /* 브라우저 기본 화살표 사용 */
 }
 
-/* 웹킷 기반 브라우저에서 달력 아이콘 색상도 변경 */
-#product_add .hjy_product_content input[type="date"]::-webkit-calendar-picker-indicator {
-    filter: grayscale(100%); /* 아이콘을 회색 톤으로 변경 */
+
+/* select 필드가 포커스될 때 */
+#product_add .hjy_product_content select:focus {
+    border-color: #727272; 
+    box-shadow: 0 0 5px rgba(219, 219, 219, 0.5);
 }
 
+/* disabled 상태에서의 스타일 */
+#product_add .hjy_product_content select:disabled {
+    background-color: #f0f0f0;
+    color: #999;
+}
 
 #product_add .hjy_product_add_btnbox {
     display: flex; /* 버튼을 한 줄에 배치 */

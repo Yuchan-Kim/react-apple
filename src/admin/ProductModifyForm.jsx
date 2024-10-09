@@ -1,6 +1,6 @@
 //import 라이브러리
-import React from "react";
-import { Link } from 'react-router-dom';
+import React, { useEffect} from "react";
+import { Link, useNavigate } from 'react-router-dom';
 
 import '../css/reset.css';
 import '../css/productModifyForm.css';
@@ -18,6 +18,16 @@ const ProductModifyForm = () => {
     /*---일반 메소드 -----------------------------*/
     
     /*---훅(useEffect)+이벤트(handle)메소드-------*/
+    const navigate = useNavigate();  // 페이지 이동을 위한 useNavigate 추가
+    const authUser = JSON.parse(localStorage.getItem('authUser'));  // authUser 정보 가져오기
+
+    // 관리자인지 확인하여 관리자 아닌 경우 리다이렉트
+    useEffect(() => {
+        if (!authUser || authUser.userStatus !== '관리자') {
+            // alert("관리자만 접근할 수 있습니다.");
+            navigate("/");  // 메인 페이지로 리다이렉트
+        }
+    }, [authUser, navigate]);
     
     return (
         <>
@@ -37,7 +47,7 @@ const ProductModifyForm = () => {
                                     <li><Link to="/admin/store" rel="noreferrer noopener">매장 관리</Link></li>
                                     <li><Link to="/admin/product" rel="noreferrer noopener">상품 관리</Link></li>
                                     <li><Link to="/admin/user" rel="noreferrer noopener">유저 관리</Link></li>
-                                    <li><Link to="/admin/dilivery" rel="noreferrer noopener">배송 관리</Link></li>
+                                    <li><Link to="/admin/delivery" rel="noreferrer noopener">배송 관리</Link></li>
                                     <li><Link to="/admin/history" rel="noreferrer noopener">판매 관리</Link></li>
                                 </ul>
                             </div>

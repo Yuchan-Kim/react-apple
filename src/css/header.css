@@ -26,6 +26,10 @@
   height: 16px; /* 로고 크기를 줄임 */
 }
 
+.yc-dropdown-menu ul{
+
+}
+
 /* 검색창을 중앙에 배치 */
 .yc-search-bar {
   display: flex;
@@ -88,10 +92,15 @@
   transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
+.yc-icon-container {
+  display: flex;
+}
+
 .yc-icon {
   font-size: 18px;
   color: #6e6e73;
   cursor: pointer;
+  margin-left: 40px;
 }
 
 /* 하단 헤더 네비게이션 스타일 */
@@ -146,3 +155,114 @@
   transform: scale(1.05);
   color: #0071e3;
 }
+
+/* cartDropdown.css */
+
+.hd-cart-dropdown {
+  display: flex;
+  align-content: stretch;
+  justify-content: space-around;
+  flex-wrap: nowrap;
+  width: 1000px;
+  position: absolute;
+  margin-top: 35px;
+  top: 100%;
+  right: 0;
+   /* This will ensure the dropdown is as wide as the header */
+  background-color: #f7f7f7;
+  border: 1px solid #ddd;
+  border-radius: 0 0 5px 5px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  
+}
+
+.hd-user-cart {
+  margin-left: 10px;
+}
+
+.hd-cart-dropdown h2{
+  margin-left: 25px;
+}
+
+.hd-cart-items {
+  display: flex;
+  flex-direction: column;
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 10px;
+}
+
+.hd-cart-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.hd-cart-item img {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+.hd-cart-item p {
+  font-size: 14px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.hd-checkout-button {
+  width: 20%;
+  margin-top: 60px;
+  text-align: right;
+}
+
+.hd-checkout-button button {
+  background-color: #0071e3;
+  border-color: #0071e3;
+  border-style: none;
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  text-align: center;
+  padding: 10px;
+}
+
+.hd-checkout-button button:hover {
+  background-color: #005bb5;
+}
+
+.profile-tag-tatle {
+  font-weight: bold;
+  padding-left: 40px;
+}
+
+.profile-tag ul {
+  padding: 0px;
+  
+  list-style: none;
+}
+
+.profile-tag ul li {
+  margin-bottom: 5px;
+  text-decoration: none;
+}
+
+.profile-tag ul li button{
+
+  background: none; /* 배경 없애기 */
+    border: none; /* 테두리 없애기 */
+    box-shadow: none; /* 그림자 없애기 */
+    padding: 0; /* 기본 패딩 제거 */
+    margin: 0; /* 기본 마진 제거 */
+    cursor: pointer; /* 마우스를 버튼 위에 올렸을 때 포인터 모양 변경 */
+    outline: none; /* 포커스 시 생기는 외곽선 없애기 */
+
+}
+
+.profile-tag {
+  margin-top: 20px;
+  padding-bottom: 15px;
+}
+
+

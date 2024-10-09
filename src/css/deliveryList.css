@@ -70,12 +70,12 @@
 }
 
 /* 매장 목록 */
-#product #product_item {
+.product-item {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding: 20px;
+    padding: 10px 15px 10px 15px;
     margin-bottom: 20px;
     background-color: #f9f9f9;
     border-radius: 10px;
@@ -83,7 +83,7 @@
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-#product #product_item:hover {
+.product-item:hover {
     transform: scale(1.02);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
@@ -134,43 +134,28 @@
 }
 
 /* 승인 버튼 */
-#product .hjy_modify_btn {
+#product .hjy_modify_btns {
     margin-left: 10px;
 }
 
-#product .hjy_modify_btn button {
+#product .hjy_modify_btns button {
     border: none;
     background-color: #0071e3;
     border-radius: 5px;
-    padding: 10px 20px;
+    padding: 10px 0px;
+    padding-inline-end: 0px;
+    padding-inline-start: 0px;
     color: white;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
-#product .hjy_modify_btn button:hover {
+#product .hjy_modify_btns button:hover {
     background-color: #005bb5;
     transform: translateY(-1px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* 거부 버튼 */
-#product .hjy_del_btn {
-    margin-left: 10px;
-}
-
-#product .hjy_del_btn button {
-    border: none;
-    color: white;
-    background-color: #ff6b6b;
-    border-radius: 5px;
-    padding: 10px 20px;
-    transition: background-color 0.3s ease;
-    cursor: pointer;
-}
-
-#product .hjy_del_btn button:hover {
-    background-color: #ff4c4c;
-    transform: translateY(-1px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+.hjy_modify_btns .hjy-mbtn {
+    width: 100px;
 }

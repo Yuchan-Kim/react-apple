@@ -23,8 +23,12 @@ const Mypage = () => {
     const [userId, setUserId] = useState('');
     const [userPw, setUserPw] = useState('');
     const [userName, setUserName] = useState('');
+    const [modalName, setModalName] = useState('');
     const [userAddress, setUserAddress] = useState('');
     const [userHp, setUserHp] = useState('');
+    const [purchaseList, setPurchaseList] = useState([]); // 구매 내역 상태
+    const [likeList, setLikeList] = useState([]); // 관심 목록 상태
+    const [imageSavedName, setImageSavedName] = useState('');
 
 
     /*---일반 메소드 -----------------------------------------*/
@@ -46,8 +50,11 @@ const Mypage = () => {
                 // 가져온데이터 화면에 반영
                 setUserId(unionVo.userId);
                 setUserName(unionVo.userName);
+                setModalName(unionVo.userName);
                 setUserHp(unionVo.userHp);
                 setUserAddress(unionVo.userAddress);
+                setPurchaseList(unionVo.purchaseList || []); // 구매 내역
+                setLikeList(unionVo.likeList || []); // 관심 목록
                 
             }else {
                 alert('회원정보 가져오기 실패');
@@ -60,9 +67,13 @@ const Mypage = () => {
     }
 
     /*---생명주기 + 이벤트 관련 메소드 ----------------------*/
-    const openModal = () => setIsModalOpen(true);
+    const openModal = () => {
+        setModalName(userName);
+        setIsModalOpen(true);
+    };
     const closeModal = () => {
         setIsModalOpen(false);  // 모달 닫기
+        setUserPw("");
         getMypage(); 
     };
 
@@ -74,6 +85,12 @@ const Mypage = () => {
     // 이름
     const handleName =(e)=> {
         setUserName(e.target.value);
+    }
+
+    
+    // 이름
+    const handleModalName =(e)=> {
+        setModalName(e.target.value);
     }
 
     // 전화번호
@@ -103,7 +120,7 @@ const Mypage = () => {
         // 바뀌는 값 모으기
         const unionVo = {
             userPw: userPw,
-            userName: userName,
+            userName: modalName,
             userHp: userHp,
             userAddress: userAddress
         };
@@ -188,51 +205,51 @@ const Mypage = () => {
                             <div className="DA-favorite-section">
                                 <div className="DA-favorite-header">
                                     <h3>관심 상품</h3>
-                                    <Link to='user/wishlist' className="DA-link" rel="noreferrer noopener">더보기</Link>
+                                    <Link to='/user/wishlist' className="DA-link" rel="noreferrer noopener">더보기</Link>
                                 </div>
                                 <div className="DA-favorite-products">
-                                    {/* <form action="" method="" onSubmit=""> */}
-                                        <div className="DA-product-info">
-                                            <img src="../images/USB.png" alt="상품사진" />
+                                    {likeList.map((like, index) => (
+                                        <div className="DA-product-info" key={index}>
+                                            <img src={`${process.env.REACT_APP_API_URL}/upload/${imageSavedName}`} alt="상품사진" />
                                             <div className="DA-product-details">
-                                                <h4>USB-C 전원 어댑터</h4>
-                                                <p>28,000</p>
+                                                <h4>{like.productName}</h4>
+                                                <p>{like.productPrice}</p>
                                             </div>
                                         </div>
-                                        <div className="DA-product-info">
+                                    ))}
+                                        {/* <div className="DA-product-info">
                                             <img src="../images/case.png" alt="상품사진" />
                                             <div className="DA-product-details">
                                                 <h4>실리콘 케이스</h4>
                                                 <p>69,000</p>
                                             </div>
-                                        </div>
-                                    {/* </form> */}
+                                        </div> */}
                                 </div>
                             </div>
                             {/* // favorite-section */}
 
                             <div className="DA-purchaseList-section">
                                 <div className="DA-purchaseList-header">
-                                    <h3>구매내역</h3>
+                                    <h3>구매 내역</h3>
                                     <Link to='/user/purchaselist' className="DA-link" rel="noreferrer noopener">더보기</Link>
                                 </div>
                                 <div className="DA-purchaseList-products">
-                                    {/* <form action="" method="" onSubmit=""> */}
-                                        <div className="DA-purchaseList-info">
-                                            <img src="../images/USB.png" alt="상품사진" />
+                                    {purchaseList.map((purchase, index) => (
+                                        <div className="DA-purchaseList-info" key={index}>
+                                            <img src={`${process.env.REACT_APP_API_URL}/upload/${imageSavedName}`} alt="상품사진" />
                                             <div className="DA-purchaseList-details">
-                                                <h4>USB-C 전원 어댑터</h4>
-                                                <p>28,000</p>
+                                                <h4>{purchase.productName}</h4>
+                                                <p>{purchase.totalPrice}</p>
                                             </div>
                                         </div>
-                                        <div className="DA-purchaseList-info">
+                                    ))}
+                                        {/* <div className="DA-purchaseList-info">
                                             <img src="../images/case.png" alt="상품사진" />
                                             <div className="DA-purchaseList-details">
                                                 <h4>실리콘 케이스</h4>
                                                 <p>69,000</p>
                                             </div>
-                                        </div>
-                                    {/* </form> */}
+                                        </div> */}
                                 </div>
                                 {/* // purchaseList-products */}
                             </div>
@@ -246,7 +263,7 @@ const Mypage = () => {
                                     <form action="" method="" onSubmit={handleModify}>
                                         <input type='password' id='' name='input-pw' value={userPw} onChange={handlePassword} placeholder='암호' />
                                         <br /><br />
-                                        <input type='text' id='' name='' value={userName} onChange={handleName} placeholder='이름' />
+                                        <input type='text' id='' name='' value={modalName} onChange={handleModalName} placeholder='이름' />
                                         <br /><br />
                                         <input type='text' id='' name='' value={userHp} onChange={handlePhoneNumber} placeholder='전화번호' />
                                         <br /><br />
