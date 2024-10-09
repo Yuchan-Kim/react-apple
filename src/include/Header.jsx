@@ -9,11 +9,11 @@ const Header = () => {
     const [searchTerm, setSearchTerm] = useState(''); // 검색어 상태 추가
     const navigate = useNavigate(); // navigate 훅 추가
 
-    useEffect(() => {
-        if (!token) {
-            navigate("/user/loginform");
-        }
-    }, [token, navigate]);
+    // useEffect(() => {
+    //     if (!token) {
+    //         navigate("/user/loginform");
+    //     }
+    // }, [token, navigate]);
 
     const handleLogout = () => {
         localStorage.removeItem('token');
