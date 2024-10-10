@@ -23,7 +23,7 @@ function PurchaseACC() {
 
   useEffect(() => {
     // 제품 기본 정보 가져오기
-    axios.get(`http://localhost:9000/api/productAcc/${productDetailNum}/info`)
+    axios.get(`http://${process.env.REACT_APP_API_URL}/api/productAcc/${productDetailNum}/info`)
       .then(response => {
         setProductAccInfo(response.data.apiData);
       })
@@ -32,7 +32,7 @@ function PurchaseACC() {
       });
 
     // 제품 이미지 가져오기
-    axios.get(`http://localhost:9000/api/productAcc/${productDetailNum}/productimages`)
+    axios.get(`http://${process.env.REACT_APP_API_URL}/api/productAcc/${productDetailNum}/productimages`)
       .then(response => {
         setProductImagesAcc(response.data.apiData);
       })
@@ -41,7 +41,7 @@ function PurchaseACC() {
       });
 
     // 추가 이미지 가져오기
-    axios.get(`http://localhost:9000/api/productAcc/${productDetailNum}/infoImages`)
+    axios.get(`http://${process.env.REACT_APP_API_URL}/api/productAcc/${productDetailNum}/infoImages`)
       .then(response => {
         setInfoImagesAcc(response.data.apiData);
       })
@@ -50,7 +50,7 @@ function PurchaseACC() {
       });
 
       // 관련 악세사리 가져오기
-    axios.get(`http://localhost:9000/api/product/${productDetailNum}/relatedProducts`)
+    axios.get(`http://${process.env.REACT_APP_API_URL}/api/product/${productDetailNum}/relatedProducts`)
     .then(response => {
       setRelatedModelAcc(response.data.apiData);
     })
@@ -86,7 +86,7 @@ function PurchaseACC() {
     // axios 요청 반환
     return axios({
       method: 'post',
-      url: 'http://localhost:9000/api/product/addtocart',
+      url: `http://${process.env.REACT_APP_API_URL}/api/product/addtocart`,
       headers: {
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'
@@ -126,7 +126,7 @@ function PurchaseACC() {
     // axios 요청 반환
     return axios({
       method: 'put',
-      url: 'http://localhost:9000/api/user/addtoliked',
+      url: `http://${process.env.REACT_APP_API_URL}/api/user/addtoliked`,
       headers: {
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'
