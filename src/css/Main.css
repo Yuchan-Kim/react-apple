@@ -9,6 +9,34 @@
     background-color: #f9f9f9;
 }
 
+.welcome-video-video {
+    color: rgb(29, 29, 31);
+    display: block;
+    font-family :"SF Pro KR", "SF Pro Text", "SF Pro Icons", "Apple Gothic", "HY Gulim", MalgunGothic, "HY Dotum", "Lexi Gulim", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 17px;
+    font-style: normal;
+    font-synthesis-small-caps: none;
+    font-synthesis-style: none;
+    font-synthesis-weight: none;
+    font-weight: 400;
+    height: 723.195px;
+    left: 0px;
+    letter-spacing: normal;
+    line-height: 27px;
+    object-fit: cover;
+    overflow-clip-margin: content-box;
+    overflow-x: clip;
+    overflow-y: clipl;
+    position: relative;
+    text-size-adjust: 100%;
+    top: 361.594px;
+    transform: matrix(1, 0, 0, 1, 0, -361.598);
+    vertical-align: baseline;
+    width: 1142px;
+    word-break: keep-all;
+    -webkit-font-smoothing: antialiased;
+}
+
 /* iPhone 16 Pro Section */
 .jm-iphone-section {
     text-align: center;

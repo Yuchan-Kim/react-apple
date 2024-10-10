@@ -51,8 +51,11 @@
     grid-template-columns: repeat(5, 1fr);
     justify-content: center;
     align-items: center;
-    background-color: #f9f9f9;
     text-align: center;
+  }
+
+  .jm-null-list {
+    font-size: 15px;
   }
 
   .jm-product-item {

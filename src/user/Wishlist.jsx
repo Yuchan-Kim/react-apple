@@ -149,7 +149,7 @@ const handleAddAllToCart = () => {
 
                 </div>
               )) : (
-                <p>관심 목록에 담긴 제품이 없습니다.</p>
+                <p className='jm-null-list'>관심 목록에 담긴 제품이 없습니다.</p>
               )}
               
             </div>

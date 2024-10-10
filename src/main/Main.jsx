@@ -56,7 +56,6 @@ const Wishlist = () => {
             {/* iPhone 16 Section */}
             <div className="jm-iphone-section1">
             <h1 className="jm-iphone-title">iPhone 16</h1>
-            <div className="jm-iphone-link"><Link to=""></Link></div>
             <div className="jm-iphone-buttons">
             <button to="/purchase/1148" className="jm-iphone-btn learn-more" onClick={handleIphone16Click}><span className='jm-more'>더 알아보기</span></button>
             </div>
