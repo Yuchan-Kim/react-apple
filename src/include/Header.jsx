@@ -135,7 +135,7 @@ const Header = () => {
                                             </div>
                                             <div className='profile-tag'>
                                                 <div className='profile-tag-title'><h4>내 프로필</h4></div>
-                                                <ul>
+                                                <ul className='profile-tag-list'>
                                                     <li><button onClick={handleWishlistmove}>관심상품</button></li>
                                                     <li><button onClick={handleUMypagemove}>my 페이지</button></li>
                                                 </ul>
