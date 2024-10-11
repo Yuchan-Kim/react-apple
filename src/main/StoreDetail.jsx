@@ -52,10 +52,10 @@ const StoreDetail = () => {
 
     return (
         <>
-            <div>
+            <div className="j-body-style">
                 <Header />
                 {/* Main Content */}
-                <main>
+                <main classname="j-main">
                     {/* Store Information */}
                     <section className="j-store-info">
                         <h1>{storeName}</h1>
