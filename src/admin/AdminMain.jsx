@@ -46,7 +46,7 @@ const AdminMain = () => {
     const getProductList = () => {
         axios({
             method: 'get', 
-            url: `${process.env.REACT_APP_API_URL}/api/admin/product`,
+            url: `${process.env.REACT_APP_API_URL}/api/productList`,
             responseType: 'json'
         }).then(response => {
             const limitedData = response.data.apiData.slice(-3);
