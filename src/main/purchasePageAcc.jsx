@@ -15,6 +15,7 @@ function PurchaseACC() {
   const [infoImagesAcc, setInfoImagesAcc] = useState([]);
   const [productImagesAcc, setProductImagesAcc] = useState([]);
   const [relatedModelsAcc, setRelatedModelAcc] = useState([]);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const navigate = useNavigate();
 
@@ -64,7 +65,18 @@ function PurchaseACC() {
     // 같은 항목을 클릭하면 선택 취소, 다른 항목 클릭 시 그 항목을 선택
     setSelectedAppleCareAcc(selectedAppleCareAcc === option ? null : option);
   }
+  // 이미지 넘기기
+  const handlePrevImage = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === 0 ? productImagesAcc.length - 1 : prevIndex - 1
+    );
+  };
 
+  const handleNextImage = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === productImagesAcc.length - 1 ? 0 : prevIndex + 1
+    );
+  };
   
   //장바구니 추가
 
@@ -173,16 +185,23 @@ function PurchaseACC() {
         <section className="yc-acc-model-images-section">
           <div className="yc-acc-model-images">
               {productImagesAcc.length > 0 ? (
-                  productImagesAcc.map((image, index) => (
-                    image?.imageSavedName ? (
-                      <img key={index} src={`${image.imageSavedName}`} alt={`${image.imageSavedName}`} className="yc-acc-image" />
-                    ) : (
-                      <p key={index}>이미지를 불러올 수 없습니다.</p>
-                    )
-                  ))
+                  <>
+                    <img
+                      src={`${process.env.REACT_APP_API_URL}/upload/${productImagesAcc[currentImageIndex].imageSavedName}`}
+                      alt={productImagesAcc[currentImageIndex].productName}
+                      className="yc-acc-image"
+                    />
+                    {/* 좌우 버튼 */}
+                    {productImagesAcc.length > 1 && (
+                      <>
+                        <button className="yc-prev-button" onClick={handlePrevImage}>&#10094;</button>
+                        <button className="yc-next-button" onClick={handleNextImage}>&#10095;</button>
+                      </>
+                    )}
+                  </>
                 ) : (
                   <p>이미지를 불러오는 중...</p>
-                )}          
+                )}  
           </div>
 
           {/* Selection Section */}
@@ -249,7 +268,7 @@ function PurchaseACC() {
 
         {infoImagesAcc.map((image, index) => (
           <div key={index} className={`yc-acc-model-images${index + 3}`}>
-            <img src={`${image.infoImageSavedName}`} alt={image.infoImageSavedName}className="yc-acc-image" />
+            <img key={index} src={`${process.env.REACT_APP_API_URL}/upload/${image.infoImageSavedName}`}alt = {image.infoImageSavedName}className="yc-acc-image"/>
           </div>
         ))}
 
@@ -261,11 +280,7 @@ function PurchaseACC() {
               relatedModelsAcc.map((acc, index) => (
                 <div key={index} className="yc-accessory-item">
                   <Link to={`/purchaseAcc/${acc.productDetailNum}`}>
-                    <img
-                      src={`/images/${acc.imageSavedName}`}
-                      alt={acc.productName}
-                      className="yc-accessory-image"
-                    />
+                    <img key={index} src={`${process.env.REACT_APP_API_URL}/upload/${acc.imageSavedName}`}alt = {acc.imageSavedName}className="yc-accessory-image"/>
                   </Link>
                   <p>{acc.productName}</p>
                   <p>₩{acc.productPrice}</p>

@@ -280,3 +280,30 @@
     border: 2px solid #0070c9;
     transform: scale(1.1);
 }
+.yc-prev-button,
+.yc-next-button {
+  position: absolute;
+  top: 50%;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  transform: translateY(-50%);
+  height:40px;
+  width:40px;
+}
+
+.yc-prev-button {
+  left: 10px;
+}
+
+.yc-next-button {
+  right: 10px;
+}
+
+.yc-prev-button:hover,
+.yc-next-button:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}

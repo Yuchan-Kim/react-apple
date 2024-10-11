@@ -110,7 +110,7 @@ const SearchPage = () => {
                                 products.map((product) => (
                                     <div key={product.productNum} className="yc-product-item">
                                         {/* 제품 이미지 */}
-                                        <img src={`${process.env.REACT_APP_API_URL}/upload/${products.storeImage}`}alt = {product.productName}/>
+                                        <img src={`${process.env.REACT_APP_API_URL}/upload/${product.imageSavedName}`}alt = {product.productName}/>
                                         {/* 제품 이름 */}
                                         <h3>{product.productName}</h3>
                                         {/* 제품 가격 */}
@@ -152,7 +152,7 @@ const SearchPage = () => {
                                 stores.map((store) => (
                                     <div key={store.storeNum} className="yc-store-item">
                                         {/* 매장 이미지 */}
-                                        <img src={`${process.env.REACT_APP_API_URL}/upload/${stores.storeImage}`}alt = {stores.productName}/>
+                                        <img src={`${process.env.REACT_APP_API_URL}/upload/${store.storeImage}`}alt = {store.productName}/>
                                         {/* 매장 이름 */}
                                         <h3>{store.storeName}</h3>
                                         {/* 매장 주소 */}

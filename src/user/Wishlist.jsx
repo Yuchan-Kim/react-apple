@@ -141,7 +141,7 @@ const handleAddAllToCart = () => {
               {wishlistItems.length > 0 ? wishlistItems.map((item, index) => (
                 <div className="jm-product-item" key={index}>
                   <div className="jm-product-item-img">
-                    <img src={item.imageSavedName || "https://via.placeholder.com/150"} alt={item.productName}/>
+                    <img key={index} src={`${process.env.REACT_APP_API_URL}/upload/${item.imageSavedName}`}alt = {item.imageSavedName}/>
                   </div>
                   <span>{item.productName}</span>
                   <span>{item.storageSize}</span>

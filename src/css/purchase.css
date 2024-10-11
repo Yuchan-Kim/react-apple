@@ -578,3 +578,48 @@
 .yc-continue:active {
     transform: scale(0.95);
 }
+
+
+.yc-model-images-slider {
+    position: relative;
+    max-width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.yc-phone-image {
+    max-width: 100%;
+    height: auto;
+}
+
+.yc-prev-button,
+.yc-next-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.2);
+    color: white;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 100%;
+    z-index: 1;
+    height:40px;
+    width:40px;
+}
+
+.yc-prev-button {
+    left: 20px;
+}
+
+.yc-next-button {
+    right: 20px;
+}
+
+.yc-prev-button:hover,
+.yc-next-button:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+}

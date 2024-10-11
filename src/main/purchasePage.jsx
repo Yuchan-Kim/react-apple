@@ -28,7 +28,7 @@ function FAQItem({ question, answer }) {
 
 function PurchasePage() {
   const { productDetailNum } = useParams(); // URL에서 productDetailNum 가져오기
-
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [selectedProductDetailNum, setSelectedProductDetailNum] = useState(productDetailNum); // 선택된 productDetailNum 관리
   const [productBasicInfo, setProductBasicInfo] = useState(null);
   const [productImages, setProductImages] = useState([]);
@@ -37,7 +37,17 @@ function PurchasePage() {
   const [infoImages, setInfoImages] = useState([]);
   const [relatedModels, setRelatedModels] = useState([]);
   
-  const navigate =useNavigate();
+  const navigate =useNavigate()
+  
+  // 이미지 슬라이더의 이전 버튼 핸들러
+  const handlePrevImage = () => {
+    setCurrentImageIndex((prevIndex) => (prevIndex === 0 ? productImages.length - 1 : prevIndex - 1));
+  };
+
+  // 이미지 슬라이더의 다음 버튼 핸들러
+  const handleNextImage = () => {
+    setCurrentImageIndex((prevIndex) => (prevIndex === productImages.length - 1 ? 0 : prevIndex + 1));
+  };;
 
   // AppleCare 선택 상태 관리
   const [selectedAppleCare, setSelectedAppleCare] = useState(null); // null일 경우 아무것도 선택되지 않은 상태
@@ -47,6 +57,9 @@ function PurchasePage() {
     // 같은 항목을 클릭하면 선택 취소, 다른 항목 클릭 시 그 항목을 선택
     setSelectedAppleCare(selectedAppleCare === option ? null : option);
   }
+
+
+  
   // productDetailNum을 기반으로 데이터를 가져오는 함수
   const fetchProductData = (detailNum) => {
     // 제품 기본 정보 가져오기
@@ -278,18 +291,20 @@ const handleAddToLiked = (acceVo) => {
         {/* Model Images Section */}
         <section className="yc-model-images-section">
             <div className="yc-model-images">
-                {productImages.length > 0 ? (
-                  productImages.map((image, index) => (
-                    image?.imageSavedName ? (
-                      <img key={index} src={`${image.imageSavedName}`} alt={`${image.imageSavedName}`} className="yc-phone-image" />
-                    ) : (
-                      <p key={index}>이미지를 불러올 수 없습니다.</p>
-                    )
-                  ))
-                ) : (
-                  <p>이미지를 불러오는 중...</p>
-                )}
-              </div>
+              {productImages.length > 0 ? (
+                <>
+                  <img
+                    src={`${process.env.REACT_APP_API_URL}/upload/${productImages[currentImageIndex].imageSavedName}`}
+                    alt={productImages[currentImageIndex].imageSavedName}
+                    className="yc-phone-image"
+                  />
+                  <button className="yc-prev-button" onClick={handlePrevImage}>&#10094;</button>
+                  <button className="yc-next-button" onClick={handleNextImage}>&#10095;</button>
+                </>
+              ) : (
+                <p>이미지를 불러오는 중...</p>
+              )}
+            </div>
 
           {/* Model, Color, and Capacity Selection Section */}
           <div className="yc-selection-section">
@@ -401,11 +416,7 @@ const handleAddToLiked = (acceVo) => {
               <span>당신의 새<br />{productBasicInfo.productName}입니다.</span>
               <p className="yc-imageDesc">당신이 원하는 대로</p>
               {productImages.length > 0 && productImages[0].imageSavedName ? (
-                <img
-                  src={`${productImages[0].imageSavedName}`}
-                  alt={productImages[0].imageSavedName}
-                  className="yc-final-iphone-image"
-                />
+                <img  src={`${process.env.REACT_APP_API_URL}/upload/${productImages[0].imageSavedName}`}alt = {productImages[0].imageSavedName}className="yc-final-iphone-image" /> 
               ) : (
                 <p>이미지를 불러올 수 없습니다.</p>
               )}
@@ -453,7 +464,7 @@ const handleAddToLiked = (acceVo) => {
 
         {infoImages.length > 0 && (
           <div className="yc-model-images2">
-            <img src={`${infoImages[0].infoImageSavedName}`} alt={infoImages[0].infoImageSavedName} className="yc-phone-image" />
+            <img  src={`${process.env.REACT_APP_API_URL}/upload/${infoImages[0].infoImageSavedName}`}alt = {infoImages[0].infoImageSavedName}className="yc-phone-image" />
           </div>
         )}
 
@@ -469,7 +480,7 @@ const handleAddToLiked = (acceVo) => {
 
         {infoImages.slice(1).map((image, index) => (
           <div key={index} className={`yc-model-images${index + 3}`}>
-            <img src={`${image.infoImageSavedName}`} alt={image.infoImageSavedName}className="yc-phone-image" />
+            <img  key={index} src={`${process.env.REACT_APP_API_URL}/upload/${image.infoImageSavedName}`}alt = {image.infoImageSavedName}className="yc-phone-image" />
           </div>
         ))}
 
