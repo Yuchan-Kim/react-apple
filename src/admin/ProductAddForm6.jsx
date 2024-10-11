@@ -399,20 +399,26 @@ const ProductAddForm6 = () => {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {productDetailList.map((productDetail, index) => (
-                                            <tr key={index}>
-                                                <td>{productDetail.productDetailNum}</td>
-                                                <td>{productDetail.seriesName}</td>
-                                                <td>{productDetail.productName}</td>
-                                                <td>{productDetail.colorName}</td>
-                                                <td>{productDetail.displaySize}</td>
-                                                <td>{productDetail.storageSize}</td>
-                                                <td>{productDetail.productPrice}</td>
-                                                {/* <td style={{ width: '40px' }} className="hjy-action-btn"><Link to="/#">수정</Link></td> */}
-                                                <td style={{ width: '40px' }} className="hjy-action-btn"><button type="button" onClick={() => handleProductDetailDelete(productDetail.productDetailNum)}>삭제</button></td>
-                                            </tr>
-                                        ))}
-                                    </tbody>
+                                    {productDetailList.map((productDetail, index) => (
+                                        <tr key={index}>
+                                            <td>{productDetail.productDetailNum}</td>
+                                            <td>{productDetail.seriesName}</td>
+                                            <td>{productDetail.productName}</td>
+                                            <td>{productDetail.colorName}</td>
+                                            <td>{productDetail.displaySize}</td>
+                                            <td>{productDetail.storageSize}</td>
+                                            <td>{productDetail.productPrice}</td>
+                                            <td style={{ width: '40px' }} className="hjy-action-btn">
+                                                <Link 
+                                                    to={`/admin/product/modify6?productDetailNum=${productDetail.productDetailNum}`} rel="noreferrer noopener">수정
+                                                </Link>
+                                            </td>
+                                            <td style={{ width: '40px' }} className="hjy-action-btn">
+                                                <button type="button" onClick={() => handleProductDetailDelete(productDetail.productDetailNum)}>삭제</button>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
                                 </table>
                             </div>
                         )}

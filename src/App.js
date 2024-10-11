@@ -26,7 +26,7 @@ import StoreList from './admin/StoreList';
 import ProductList from './admin/ProductList';
 import UserList from './admin/UserList';
 import StoreModifyForm from './admin/StoreModifyForm';
-import ProductModifyForm from './admin/ProductModifyForm';
+import ProductModifyForm6 from './admin/ProductModifyForm6';
 import UserModifyForm from './admin/UserModifyForm';
 import StoreAddForm from './admin/StoreAddForm';
 import ProductAddForm from './admin/ProductAddForm';
@@ -74,7 +74,7 @@ function App() {
           <Route path='/admin/product' element={<ProductList />} />
           <Route path='/admin/user' element={<UserList />} />
           <Route path='/admin/store/modify' element={<StoreModifyForm />} />
-          <Route path='/admin/product/modify' element={<ProductModifyForm />} />
+          <Route path='/admin/product/modify6' element={<ProductModifyForm6 />} />
           <Route path='/admin/user/modify' element={<UserModifyForm />} />
           <Route path='/admin/store/add' element={<StoreAddForm />} />
           <Route path='/admin/product/add' element={<ProductAddForm />} />
