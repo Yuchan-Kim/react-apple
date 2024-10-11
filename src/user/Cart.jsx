@@ -12,12 +12,25 @@ const Cart = () => {
   const [quantities, setQuantities] = useState([]); // 각 상품의 수량을 관리하는 상태
   const [totalPrice, setTotalPrice] = useState(0); // 총 가격 관리 상태
   const [appleCareSelected, setAppleCareSelected] = useState([]); // 애플케어 선택 여부
+  const [expectedDeliveryDate, setExpectedDeliveryDate] = useState(''); // 예상 배송일 저장
 
   const navigate = useNavigate(); // 페이지 이동을 위한 useNavigate 훅 추가
   // 결제 폼으로 이동
   const handleMoveToPayform = () => {
     navigate(`/user/payform`);
   };
+
+  /*---현재 날짜에서 3일 후의 날짜를 계산---*/
+  const calculateExpectedDeliveryDate = () => {
+    const currentDate = new Date();
+    currentDate.setDate(currentDate.getDate() + 3); // 3일을 더함
+    const options = { year: 'numeric', month: '2-digit', day: '2-digit' }; // 날짜 포맷 설정
+    return currentDate.toLocaleDateString('ko-KR', options).replace(/\./g, '/').trim(); // 포맷 변환
+  };
+
+  useEffect(() => {
+    setExpectedDeliveryDate(calculateExpectedDeliveryDate()); // 예상 배송일 설정
+  }, []);
 
 
   /*---유저 카트리스트 가져오기---*/
@@ -277,7 +290,7 @@ const Cart = () => {
                     </div>
                     <div className='jm-delivery'>
                     <div class="jm-rc-segmented-control-icon"><svg class="as-svgicon-rtl-mirrored as-svgicon as-svgicon-boxtruck as-svgicon-reduced as-svgicon-boxtruckreduced" viewBox="0 0 25 25" role="img" aria-hidden="true" width="20px" height="20px"><path fill="none" d="M0 0h25v25H0z"></path><path fill="#1d1d1f" d="m23.482 12.847-2.92-3.209A1.947 1.947 0 0 0 18.985 9H17V6.495a2.5 2.5 0 0 0-2.5-2.5h-11a2.5 2.5 0 0 0-2.5 2.5v9.75a2.5 2.5 0 0 0 2.5 2.5h.548A2.746 2.746 0 0 0 6.75 21.02 2.618 2.618 0 0 0 9.422 19h6.681a2.744 2.744 0 0 0 5.347-.23h.735A1.656 1.656 0 0 0 24 16.98v-2.808a1.937 1.937 0 0 0-.518-1.325ZM8.426 18.745a1.74 1.74 0 0 1-3.352 0 1.577 1.577 0 0 1 .015-1 1.738 1.738 0 0 1 3.322 0 1.578 1.578 0 0 1 .015 1ZM9.447 18a2.726 2.726 0 0 0-5.394-.255H3.5a1.502 1.502 0 0 1-1.5-1.5v-9.75a1.502 1.502 0 0 1 1.5-1.5h11a1.502 1.502 0 0 1 1.5 1.5V18Zm10.972.77a1.738 1.738 0 0 1-3.337 0 1.573 1.573 0 0 1 0-1 1.742 1.742 0 1 1 3.337 1ZM23 16.98c0 .569-.229.79-.815.79h-.735A2.73 2.73 0 0 0 17 16.165V10h1.986a.976.976 0 0 1 .838.314l2.927 3.214a.95.95 0 0 1 .249.644Zm-1.324-3.36a.512.512 0 0 1 .174.38h-3.306a.499.499 0 0 1-.544-.528V11h1.073a.76.76 0 0 1 .594.268Z"></path></svg></div>
-                <p>오늘 주문: 금 2024/10/04 도착<br/>무료 배송</p>
+                <p>오늘 주문: {expectedDeliveryDate} 도착<br/>무료 배송</p>
                 </div>
                 </div>
                     </div>
