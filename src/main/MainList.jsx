@@ -240,7 +240,7 @@ const MainList = () => {
                                             >
                                                 {product.productName.includes('16') && <span className="yc-new-label">NEW</span>}
                                                 <h3>{product.productName}</h3>
-                                                <img src={product.imageSavedName || "https://via.placeholder.com/300"} alt={product.productName} />
+                                                <img src={`${process.env.REACT_APP_API_URL}/upload/${product.storeImage}`}alt = {product.productName}/>
 
                                                 <div className="yc-price-button-container">
                                                     <p>{(product.productPrice).toLocaleString()}원 부터</p>
@@ -277,7 +277,7 @@ const MainList = () => {
                                             >
                                                 {product.productName.includes('16') && <span className="yc-new-label">NEW</span>}
                                                 <h3>{product.productName}</h3>
-                                                <img src={product.imageSavedName || "https://via.placeholder.com/300"} alt={product.productName} />
+                                                <img src={`${process.env.REACT_APP_API_URL}/upload/${product.storeImage}`}alt = {product.productName}/>
 
                                                 <div className="yc-price-button-container">
                                                     <p>{(product.productPrice).toLocaleString()}원 부터</p>
@@ -314,7 +314,7 @@ const MainList = () => {
                                             >
                                                 {product.productName.includes('16') && <span className="yc-new-label">NEW</span>}
                                                 <h3>{product.productName}</h3>
-                                                <img src={product.imageSavedName || "https://via.placeholder.com/300"} alt={product.productName} />
+                                                <img src={`${process.env.REACT_APP_API_URL}/upload/${product.storeImage}`}alt = {product.productName}/>
 
                                                 <div className="yc-price-button-container">
                                                     <p>{(product.productPrice).toLocaleString()}원 부터</p>
@@ -352,7 +352,7 @@ const MainList = () => {
                                                 >
                                                     {product.productName.includes('16') && <span className="yc-new-label">NEW</span>}
                                                     <h3>{product.productName}</h3>
-                                                    <img src={product.imageSavedName || "https://via.placeholder.com/300"} alt={product.productName} />
+                                                    <img src={`${process.env.REACT_APP_API_URL}/upload/${product.storeImage}`}alt = {product.productName}/>
 
                                                     <div className="yc-price-button-container">
                                                         <p>{(product.productPrice).toLocaleString()}원 부터</p>
@@ -389,7 +389,7 @@ const MainList = () => {
                         <span className="yc-close-button" onClick={handleModalClose}>&times;</span>
                         <div className="yc-modal-container">
                             <div className="yc-modal-image-slider">
-                                <img src={selectedProduct.imageSavedName || "https://via.placeholder.com/300"} alt={selectedProduct.productName} />
+                                <img src={`${process.env.REACT_APP_API_URL}/upload/${selectedProduct.storeImage}`}alt = {selectedProduct.productName}/>
                                 <p className="yc-image-caption">여러 색상으로 제공됩니다</p>
                             </div>
                             <div className="yc-modal-details">
