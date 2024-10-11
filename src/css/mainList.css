@@ -110,6 +110,7 @@
     position: relative;
     margin: 10px;
     overflow: hidden;
+    
 }
 
 .yc-product-card:hover {
@@ -117,12 +118,13 @@
 }
 
 .yc-product-card img {
-    width: 100%;
-    height: auto;
+    width: 350px;
+    height: 100%;
     margin-bottom: 15px;
     border-radius: 12px;
     position: relative;
     z-index: 0;
+    
 }
 
 .yc-product-card h3 {
@@ -137,6 +139,7 @@
     justify-content: space-between;
     align-items: center;
     margin-top: 15px;
+    
 }
 
 .yc-product-card p {
@@ -167,6 +170,7 @@
     transition: opacity 0.4s ease-in-out;
     opacity: 0;
     z-index: 1;
+    
 }
 
 .yc-product-card:hover .yc-hover-button-container {
@@ -215,14 +219,13 @@ body.yc-modal-open footer {
     transition: filter 0.3s ease-in-out;
 }
 
-/* 기존 모달 오버레이 z-index를 헤더보다 높게 설정 */
 .yc-modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.85); /* 어두운 배경 */
+    background: rgba(0, 0, 0, 0.85); 
     display: flex;
     flex-direction: column;
     z-index: 1100; /* 헤더보다 높은 z-index */

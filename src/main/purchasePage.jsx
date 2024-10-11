@@ -291,19 +291,22 @@ const handleAddToLiked = (acceVo) => {
         {/* Model Images Section */}
         <section className="yc-model-images-section">
             <div className="yc-model-images">
-              {productImages.length > 0 ? (
-                <>
+            {productImages.length > 0 ? (
+              <>
+                {productImages.slice(0, -2).map((image, index) => (
                   <img
-                    src={`${process.env.REACT_APP_API_URL}/upload/${productImages[currentImageIndex].imageSavedName}`}
-                    alt={productImages[currentImageIndex].imageSavedName}
+                    key={index}
+                    src={`${process.env.REACT_APP_API_URL}/upload/${image.imageSavedName}`}
+                    alt={image.imageSavedName}
                     className="yc-phone-image"
                   />
-                  <button className="yc-prev-button" onClick={handlePrevImage}>&#10094;</button>
-                  <button className="yc-next-button" onClick={handleNextImage}>&#10095;</button>
-                </>
-              ) : (
-                <p>이미지를 불러오는 중...</p>
-              )}
+                ))}
+                <button className="yc-prev-button" onClick={handlePrevImage}>&#10094;</button>
+                <button className="yc-next-button" onClick={handleNextImage}>&#10095;</button>
+              </>
+            ) : (
+              <p>이미지를 불러오는 중...</p>
+            )}
             </div>
 
           {/* Model, Color, and Capacity Selection Section */}
@@ -415,8 +418,15 @@ const handleAddToLiked = (acceVo) => {
             <div className="yc-final-image">
               <span>당신의 새<br />{productBasicInfo.productName}입니다.</span>
               <p className="yc-imageDesc">당신이 원하는 대로</p>
-              {productImages.length > 0 && productImages[0].imageSavedName ? (
-                <img  src={`${process.env.REACT_APP_API_URL}/upload/${productImages[0].imageSavedName}`}alt = {productImages[0].imageSavedName}className="yc-final-iphone-image" /> 
+              {productImages.length > 0 ? (
+                productImages.slice(-2).map((image, index) => (
+                  <img
+                    key={index}
+                    src={`${process.env.REACT_APP_API_URL}/upload/${image.imageSavedName}`}
+                    alt={image.imageSavedName}
+                    className="yc-final-iphone-image"
+                  />
+                ))
               ) : (
                 <p>이미지를 불러올 수 없습니다.</p>
               )}
