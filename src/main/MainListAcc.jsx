@@ -20,7 +20,7 @@
         useEffect(() => {
             axios({
                 method: 'get',
-                url: 'http://localhost:9000/api/main/products/acc',
+                url: `http://${process.env.REACT_APP_API_URL}/api/main/products/acc`,
                 responseType: 'json',
             })
             .then(response => {
