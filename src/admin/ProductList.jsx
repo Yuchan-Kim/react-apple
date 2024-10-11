@@ -74,7 +74,7 @@ const ProductList = () => {
         }
     };
 
-    // 검색
+    // 검색  
     const handleSearch = (e) => {
         e.preventDefault();
         getProductList(keyword); // 키워드를 이용하여 상품 목록 가져오기
