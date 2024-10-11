@@ -160,7 +160,7 @@ const ProductAddForm2 = () => {
                 let newArray = productList.filter((product) => (
                     product.productNum !== productNum
                 ));
- 
+  
                 setProductList(newArray);
              } else {
                 alert(response.data.message); // 서버에서 반환된 메시지를 사용자에게 알림
