@@ -86,10 +86,10 @@ const CommunityList = () => {
                                     )
                                 }
                             </div>
-                            <div id="action-right">
+                            {/* <div id="action-right">
                                 <span>페이지1</span>
                                 <Link to="#" rel="noreferrer noopener">&gt;</Link>
-                            </div>
+                            </div> */}
                         </div>
 
                         {/* <div id="filter" className="clearfix">
