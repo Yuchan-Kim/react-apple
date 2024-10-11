@@ -234,13 +234,14 @@ const Cart = () => {
         {cartList.map((cartVo, index) => (
           <div key={cartVo.cartNum}>
             <div className="jm-cart-item">
-              <div className="jm-item-image">
+              <div className="jm-item-image-box">
                 <img
-                  src={cartVo.imageSavedName}
+                  src={`${process.env.REACT_APP_API_URL}/upload/${cartVo.imageSavedName}`}
                   alt={cartVo.imageSavedName}
                   className="jm-product-image"
                 />
               </div>
+            
               <div className="jm-item-info">
                 <div className="jm-item-details">
                   <div className='jm-item-name'><h2> {cartVo.productName} {cartVo.storageSize} {cartVo.colorName} </h2></div>
@@ -266,10 +267,10 @@ const Cart = () => {
                 {cartVo.seriesName !== "악세사리" && (
                 <div className="jm-cart-item">
                     <div className="jm-as-icondetails-detail">
-                    <div>
+                    <div className='jm-apple-care-box'>
                         <h3 className='jm-apple-care-tatle'>
                         <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/APPLECARE-plus_ICON?wid=800&amp;hei=800&amp;fmt=jpeg&amp;qlt=90&amp;fit=constrain&amp;.v=1527725457537" alt='applecare'/>
-                        iPad&nbsp;{cartVo.productName}을 위한 AppleCare+ 추가, 
+                        &nbsp;{cartVo.productName}을 위한 AppleCare+ 추가, &nbsp;
                             <span className='jm-apple-care-price'> ₩259,000</span>
                         </h3>
                         
@@ -320,7 +321,7 @@ const Cart = () => {
         {acceList.map((acceVo) => (
           <div className="jm-accessory-item" key={acceVo.productDetailNum}>
             <img
-              src={acceVo.imageSavedName}
+              src={`${process.env.REACT_APP_API_URL}/upload/${acceVo.imageSavedName}`}
               alt={acceVo.imageSavedName}
               className="jm-accessory-image"
             />

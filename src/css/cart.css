@@ -124,8 +124,16 @@
     color: #0071e3;
 }
 
-  .jm-product-image {
-    width: 300px;
+.jm-item-image-box {
+  width: 40%;
+  height: 300px;
+  align-items: center;
+  
+}
+
+  .jm-product-image{
+    height: 100%;
+    width: auto;
   }
   
   .jm-item-info {
@@ -140,12 +148,15 @@
 
   .jm-item-name {
     text-align: left;
+    width: 250px;
+    margin-left: 10px;
   }
 
   .jm-item-options {
     display: flex;
     align-items: center;
     margin-left: 20px;
+    width: 100px;
   }
 
   .jm-item-options select {
@@ -158,10 +169,10 @@
   }
 
   .jm-item-price {
-    margin-left: 25%;
     text-align: right;
     font-size: 20px;
     font-weight: bold;
+    width: 200px;
   }
   
   .jm-remove-item {
@@ -218,7 +229,7 @@
   }
   
   .jm-accessory-image {
-    width: 100%;
+    width: 70%;
     margin-bottom: 10px;
   }
   
@@ -259,10 +270,12 @@
 
   .jm-pickup {
     display: flex;
+    margin-left: 10px;
   }
 
   .jm-rc-segmented-control-icon {
     margin-top: 10px;
+    margin-right: 5px;
   }
   
 
@@ -281,6 +294,10 @@
 
   .jm-apple-care-price{
     margin-left: 5px;
+  }
+
+  .jm-apple-care-box {
+    margin-left: 10px;
   }
   
   

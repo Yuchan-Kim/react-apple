@@ -323,7 +323,7 @@ const CheckoutPage = () => {
                     {cartList.map((cartVo) => (
                       <li key={cartVo.cartNum} className="jm-product-details">
                         <div className="jm-product-img">
-                          <img src={cartVo.imageSavedName} alt="product" />
+                          <img src={`${process.env.REACT_APP_API_URL}/upload/${cartVo.imageSavedName}`} alt="product" />
                         </div>
                         <div className="jm-product-info">
                           <p>{cartVo.productName} {cartVo.storageSize}</p>
@@ -422,7 +422,7 @@ const CheckoutPage = () => {
                       <div><h5> 매장 내</h5></div>
                       <div className="jm-pickup-store-map-info">온라인으로 주문하신 제품을 픽업하세요. 기기 설정과 관련한 도움도 받고, 액세서리도 쇼핑하실 수 있습니다.</div>
                       <div className="jm-pickup-store-map-info">주문하신 제품이 준비되면 자세한 픽업 안내를 이메일로 보내 드립니다. 새 기기 설정과 관련하여 도움이 필요하시면 Apple 스페셜리스트가 진행하는 무료 온라인 세션을 예약하세요.</div>
-                      <img src={selectedStoreData.storeMapImage} alt={selectedStoreData.storeMapImage} />
+                      <img src="../../images/Apple Store Map 강남.png" alt={selectedStoreData.storeMapImage} />
                       </div>
                     )}
                   </div>
