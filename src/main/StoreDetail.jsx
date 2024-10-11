@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import { useParams,Link, useNavigate, useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 
 // CSS imports
@@ -11,14 +11,15 @@ import Footer from '../include/Footer';
 
 
 const StoreDetail = () => {
-    const [searchParams] = useSearchParams();
-    const storeNum = searchParams.get('storeNum');
+    
+    const {storeNum} =- useParams();
 
     const [storeName, setStoreName] = useState('');
     const [storeAddress, setStoreAddress] = useState('');
     const [storeNumber, setStoreNumber] = useState('');
     const [storeImage, setstoreImg] = useState(); 
     const [storeMapImage, setMapImg] = useState();
+
 
     const getStoreList = () => {
         if (storeNum) {  // storeNum이 유효한 경우에만 실행

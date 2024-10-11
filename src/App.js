@@ -86,7 +86,7 @@ function App() {
           <Route path='/admin/delivery' element={<DeliveryList />} />
           <Route path='/admin/history' element={<HistoryList />} />
 
-          <Route path='/store/detail' element={<StoreDetail />} />
+          <Route path='/store/detail/:storeNo' element={<StoreDetail />} />
         </Routes>
     </BrowserRouter>
   );
