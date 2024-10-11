@@ -291,21 +291,25 @@ const handleAddToLiked = (acceVo) => {
         {/* Model Images Section */}
         <section className="yc-model-images-section">
             <div className="yc-model-images">
-            {productImages.length > 0 ? (
+            {productImages.length > 1 ? (
               <>
-                {productImages.slice(0, -2).map((image, index) => (
-                  <img
-                    key={index}
-                    src={`${process.env.REACT_APP_API_URL}/upload/${image.imageSavedName}`}
-                    alt={image.imageSavedName}
-                    className="yc-phone-image"
-                  />
-                ))}
                 <button className="yc-prev-button" onClick={handlePrevImage}>&#10094;</button>
+                <img
+                  src={`${process.env.REACT_APP_API_URL}/upload/${productImages[currentImageIndex].imageSavedName}`}
+                  alt={productImages[currentImageIndex].imageSavedName}
+                  className="yc-phone-image"
+                />
                 <button className="yc-next-button" onClick={handleNextImage}>&#10095;</button>
               </>
             ) : (
-              <p>이미지를 불러오는 중...</p>
+              productImages.slice(0, 1).map((image, index) => (
+                <img
+                  key={index}
+                  src={`${process.env.REACT_APP_API_URL}/upload/${image.imageSavedName}`}
+                  alt={image.imageSavedName}
+                  className="yc-phone-image"
+                />
+              ))
             )}
             </div>
 
@@ -419,7 +423,7 @@ const handleAddToLiked = (acceVo) => {
               <span>당신의 새<br />{productBasicInfo.productName}입니다.</span>
               <p className="yc-imageDesc">당신이 원하는 대로</p>
               {productImages.length > 0 ? (
-                productImages.slice(-2).map((image, index) => (
+                productImages.slice(-2, -1).map((image, index) => (
                   <img
                     key={index}
                     src={`${process.env.REACT_APP_API_URL}/upload/${image.imageSavedName}`}
@@ -472,9 +476,13 @@ const handleAddToLiked = (acceVo) => {
           </div>
         </section>
 
-        {infoImages.length > 0 && (
+        {productImages.length > 0 && (
           <div className="yc-model-images2">
-            <img  src={`${process.env.REACT_APP_API_URL}/upload/${infoImages[0].infoImageSavedName}`}alt = {infoImages[0].infoImageSavedName}className="yc-phone-image" />
+            <img
+              src={`${process.env.REACT_APP_API_URL}/upload/${productImages[productImages.length - 1].imageSavedName}`}
+              alt={productImages[productImages.length - 1].imageSavedName}
+              className="yc-phone-image"
+            />
           </div>
         )}
 
@@ -488,7 +496,7 @@ const handleAddToLiked = (acceVo) => {
           </p>
         </div>
 
-        {infoImages.slice(1).map((image, index) => (
+        {infoImages.map((image, index) => (
           <div key={index} className={`yc-model-images${index + 3}`}>
             <img  key={index} src={`${process.env.REACT_APP_API_URL}/upload/${image.infoImageSavedName}`}alt = {image.infoImageSavedName}className="yc-phone-image" />
           </div>
