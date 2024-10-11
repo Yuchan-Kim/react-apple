@@ -140,7 +140,7 @@ const AdminMain = () => {
                             {/* User Management Summary */}
                             <div className="hjy-list-section">
                                 <div className="hjy-list-header">
-                                    <h3>회원 관리</h3>
+                                    <h3>유저 관리</h3>
                                     <Link to="/admin/user" rel="noreferrer noopener">더보기</Link>
                                 </div>
                                 <div className="hjy-list-status">
