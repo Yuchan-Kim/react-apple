@@ -51,16 +51,18 @@
     position: sticky;
     top: 100px;
     padding-right: 50px;
+    width:100%;
 }
 
 .yc-phone-image {
-    max-width: 100%;
     height: auto;
+    
+    
 }
 
 /* Selection Section */
 .yc-selection-section {
-    width: 65%;
+    width: 50%;
     overflow-y: scroll;
     max-height: 680px;
 }
@@ -347,6 +349,7 @@
     font-size: 24px;
     text-align: left;
     font-weight: bold;
+    
 }
 
 .yc-imageDesc {
@@ -431,8 +434,15 @@
 }
 
 .yc-model-images2 {
-    width: 60%;
+    display: flex;
+    justify-content: center; /* 가로 중앙 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+    width: 120%; /* 컨테이너 너비를 120%로 설정 */
     margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+    left: 50%; /* 왼쪽 기준으로 50% 이동 */
+    transform: translateX(-50%); /* 중앙으로 이동 */
 }
 
 
@@ -594,6 +604,8 @@
     height: auto;
 }
 
+
+
 .yc-prev-button,
 .yc-next-button {
     position: absolute;
@@ -607,8 +619,11 @@
     padding: 10px;
     border-radius: 100%;
     z-index: 1;
-    height:40px;
-    width:40px;
+    height: 40px;
+    width: 40px;
+    display: flex; /* 중앙 정렬을 위한 flexbox 사용 */
+    justify-content: center; /* 가로 중앙 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
 }
 
 .yc-prev-button {
@@ -617,9 +632,12 @@
 
 .yc-next-button {
     right: 20px;
+    margin-right: 50px;
+    
 }
 
 .yc-prev-button:hover,
 .yc-next-button:hover {
     background-color: rgba(0, 0, 0, 0.3);
+    
 }

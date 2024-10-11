@@ -41,14 +41,19 @@ function PurchasePage() {
   
   // 이미지 슬라이더의 이전 버튼 핸들러
   const handlePrevImage = () => {
-    setCurrentImageIndex((prevIndex) => (prevIndex === 0 ? productImages.length - 1 : prevIndex - 1));
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === 0 ? productImages.length - 3 : prevIndex - 1
+    );
   };
 
   // 이미지 슬라이더의 다음 버튼 핸들러
   const handleNextImage = () => {
-    setCurrentImageIndex((prevIndex) => (prevIndex === productImages.length - 1 ? 0 : prevIndex + 1));
-  };;
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === productImages.length - 3 ? 0 : prevIndex + 1
+    );
+  };
 
+  
   // AppleCare 선택 상태 관리
   const [selectedAppleCare, setSelectedAppleCare] = useState(null); // null일 경우 아무것도 선택되지 않은 상태
 
@@ -265,7 +270,7 @@ const handleAddToLiked = (acceVo) => {
     },
   ];
 
-
+  const validImages = productImages.slice(0, -2);
   if (!productBasicInfo) {
     // 아직 productBasicInfo가 로드되지 않았다면 로딩 상태를 표시
     return <p>제품 정보를 불러오는 중...</p>;
@@ -273,7 +278,14 @@ const handleAddToLiked = (acceVo) => {
 
   // 'New' 배지 표시 여부 결정
   const isNewProduct = productBasicInfo.productName.includes('16');
+  if (!productImages || productImages.length === 0) {
+    return <p>No images available.</p>;
+  }
 
+  if (!productImages || productImages.length === 0) {
+    return <p>No images available.</p>;
+  }
+  
   return (
     <>
       <Header />
@@ -288,29 +300,38 @@ const handleAddToLiked = (acceVo) => {
           </div>
         </section>
 
-        {/* Model Images Section */}
-        <section className="yc-model-images-section">
-            <div className="yc-model-images">
-            {productImages.length > 1 ? (
-              <>
-                <button className="yc-prev-button" onClick={handlePrevImage}>&#10094;</button>
-                <img
-                  src={`${process.env.REACT_APP_API_URL}/upload/${productImages[currentImageIndex].imageSavedName}`}
-                  alt={productImages[currentImageIndex].imageSavedName}
-                  className="yc-phone-image"
-                />
-                <button className="yc-next-button" onClick={handleNextImage}>&#10095;</button>
-              </>
-            ) : (
-              productImages.slice(0, 1).map((image, index) => (
-                <img
-                  key={index}
-                  src={`${process.env.REACT_APP_API_URL}/upload/${image.imageSavedName}`}
-                  alt={image.imageSavedName}
-                  className="yc-phone-image"
-                />
-              ))
+          {/* Model Images Section */}
+          <section className="yc-model-images-section">
+              <div className="yc-model-images">
+              {validImages.length > 0 ? (
+          <>
+            {/* 이전 버튼: 첫 번째 이미지가 아니면 표시 */}
+            {currentImageIndex > 0 && (
+              <button className="yc-prev-button" onClick={handlePrevImage}>
+                &#10094;
+              </button>
             )}
+            
+            {validImages[currentImageIndex] && (
+              <img
+                src={`${process.env.REACT_APP_API_URL}/upload/${validImages[currentImageIndex].imageSavedName}`}
+                alt={validImages[currentImageIndex].imageSavedName}
+                className="yc-phone-image"
+              />
+            )}
+
+            {/* 다음 버튼: 마지막 이미지가 아니면 표시 */}
+            {currentImageIndex < validImages.length - 1 && (
+              <button className="yc-next-button" onClick={handleNextImage}>
+                &#10095;
+              </button>
+            )}
+          </>
+        ) : (
+          <p>No images to display.</p>
+        )}
+
+
             </div>
 
           {/* Model, Color, and Capacity Selection Section */}
