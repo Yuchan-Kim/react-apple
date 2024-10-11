@@ -64,7 +64,7 @@ const Header = () => {
 
         axios({
             method: 'get', 	
-            url: 'http://localhost:9000/api/user/cart',
+            url: `http://${process.env.REACT_APP_API_URL}/api/user/cart`,
             headers: {
                 'Authorization': `Bearer ${token}`, 
             },
