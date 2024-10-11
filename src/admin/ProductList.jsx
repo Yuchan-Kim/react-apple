@@ -126,8 +126,8 @@ const ProductList = () => {
                                             <p><strong>모델명: </strong>{product.productName}</p>
                                             <p><strong>디스플레이: </strong>{product.displaySize}</p>
                                             <p><strong>색상: </strong>{product.colorName}</p>
-                                            <p><strong>가격: </strong>{product.productPrice.toLocaleString()}원</p>
                                             <p><strong>용량: </strong>{product.storageSize}</p>
+                                            <p><strong>가격: </strong>{product.productPrice.toLocaleString()}원</p>
                                         </div>
                                         <div className="hjy_edit_btns">
                                         </div>
