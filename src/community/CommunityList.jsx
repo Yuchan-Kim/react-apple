@@ -106,9 +106,9 @@ const CommunityList = () => {
                         </div> */}
 
                         {/* 반복구간 */}
-                        {communityList.map((communityVo)=>{
+                        {communityList.map((communityVo, index)=>{
                             return(
-                                <div id="community-post" className="clearfix">
+                                <div id="community-post" className="clearfix" key={index}>
                                     <div className="hjy-profile">
                                         <img src="/images/profile.jpg" alt="프로필"/>
                                     </div>

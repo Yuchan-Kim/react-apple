@@ -309,7 +309,7 @@
     display: grid; /* 그리드 설정 */
     gap: 10px; /* 간격 설정 */
     grid-template-columns: repeat(3, 1fr); /* 3개의 컬럼 설정 */
-    height: 220px;
+    /* height: 220px; */
     /* grid-auto-rows: auto; 자동 높이 설정 */
 }
 

@@ -44,17 +44,17 @@ const Mypage = () => {
         }).then(response => {
             console.log(response.data); //수신데이타
 
-            const unionVo = response.data.apiData;
+            const userVo = response.data.apiData;
 
             if (response.data.result === 'success') {
                 // 가져온데이터 화면에 반영
-                setUserId(unionVo.userId);
-                setUserName(unionVo.userName);
-                setModalName(unionVo.userName);
-                setUserHp(unionVo.userHp);
-                setUserAddress(unionVo.userAddress);
-                setPurchaseList(unionVo.purchaseList || []); // 구매 내역
-                setLikeList(unionVo.likeList || []); // 관심 목록
+                setUserId(userVo.userId);
+                setUserName(userVo.userName);
+                setModalName(userVo.userName);
+                setUserHp(userVo.userHp);
+                setUserAddress(userVo.userAddress);
+                setPurchaseList(userVo.purchaseList || []); // 구매 내역
+                setLikeList(userVo.likeList || []); // 관심 목록
                 
             }else {
                 alert('회원정보 가져오기 실패');
@@ -118,13 +118,13 @@ const Mypage = () => {
         e.preventDefault();
 
         // 바뀌는 값 모으기
-        const unionVo = {
+        const userVo = {
             userPw: userPw,
             userName: modalName,
             userHp: userHp,
             userAddress: userAddress
         };
-        console.log(unionVo);
+        console.log(userVo);
 
         // 서버로 데이터 전송
         axios({
@@ -135,7 +135,7 @@ const Mypage = () => {
             headers: { "Content-Type": "application/json; charset=utf-8",
                         "Authorization": `Bearer ${token}`                 // 토큰받기
                     }, 	
-            data: unionVo, // put, post, JSON(자동변환됨)
+            data: userVo, // put, post, JSON(자동변환됨)
 
             responseType: 'json' //수신타입 받을때
         }).then(response => {
@@ -208,15 +208,27 @@ const Mypage = () => {
                                     <Link to='/user/wishlist' className="DA-link" rel="noreferrer noopener">더보기</Link>
                                 </div>
                                 <div className="DA-favorite-products">
-                                    {likeList.map((like, index) => (
-                                        <div className="DA-product-info" key={index}>
-                                            <img src={`${process.env.REACT_APP_API_URL}/upload/${imageSavedName}`} alt="상품사진" />
-                                            <div className="DA-product-details">
-                                                <h4>{like.productName}</h4>
-                                                <p>{like.productPrice}</p>
+                                    {   (likeList.length == 0) ? (
+                                            <div>
+                                                <br />
+                                                관심상품이 없습니다.
                                             </div>
-                                        </div>
-                                    ))}
+                                        ) : (
+                                            <>
+                                                {likeList.map((like, index) => (
+                                                    <div className="DA-product-info" key={index}>
+                                                        <img src={`${process.env.REACT_APP_API_URL}/upload/${imageSavedName}`} alt="상품사진" />
+                                                        <div className="DA-product-details">
+                                                            <h4>{like.productName}</h4>
+                                                            <p>{like.productPrice}</p>
+                                                        </div>
+                                                    </div>
+                                                ))}
+                                            </>
+                                        )
+                                    }
+
+                                    
                                         {/* <div className="DA-product-info">
                                             <img src="../images/case.png" alt="상품사진" />
                                             <div className="DA-product-details">
@@ -234,15 +246,25 @@ const Mypage = () => {
                                     <Link to='/user/purchaselist' className="DA-link" rel="noreferrer noopener">더보기</Link>
                                 </div>
                                 <div className="DA-purchaseList-products">
-                                    {purchaseList.map((purchase, index) => (
-                                        <div className="DA-purchaseList-info" key={index}>
-                                            <img src={`${process.env.REACT_APP_API_URL}/upload/${imageSavedName}`} alt="상품사진" />
-                                            <div className="DA-purchaseList-details">
-                                                <h4>{purchase.productName}</h4>
-                                                <p>{purchase.totalPrice}</p>
-                                            </div>
-                                        </div>
-                                    ))}
+                                    {   (purchaseList.length == 0) ? (
+                                                <div>
+                                                    <br />
+                                                    구매내역이 없습니다.
+                                                </div>
+                                            ) : (
+                                                <>
+                                                    {purchaseList.map((purchase, index) => (
+                                                        <div className="DA-purchaseList-info" key={index}>
+                                                            <img src="{`${process.env.REACT_APP_API_URL}/upload/${imageSavedName}`}" alt="상품사진" />
+                                                            <div className="DA-purchaseList-details">
+                                                                <h4>{purchase.productName}</h4>
+                                                                <p>{purchase.totalPrice}</p>
+                                                            </div>
+                                                        </div>
+                                                    ))}
+                                                </>
+                                        )
+                                    }
                                         {/* <div className="DA-purchaseList-info">
                                             <img src="../images/case.png" alt="상품사진" />
                                             <div className="DA-purchaseList-details">
