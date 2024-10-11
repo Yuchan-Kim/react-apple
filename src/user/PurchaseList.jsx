@@ -20,6 +20,7 @@ const PurchaseList = () => {
     const [purchaseList, setPurchaseList] = useState([]);
 
     const [userId, setUserId] = useState('');
+
     const [userName, setUserName] = useState('');
     const [userNum, setUserNum] = useState('');
     const [imageSavedName, setImageSavedName] = useState('');
@@ -38,14 +39,15 @@ const PurchaseList = () => {
         }).then(response => {
             console.log(response.data); //수신데이타
 
-            const productList = response.data.apiData;
+            const userVo = response.data.apiData;
+            console.log(userVo);
 
             if (response.data.result === 'success') {
                 // 가져온데이터 화면에 반영
-                setPurchaseList(productList);
-                setUserId(productList[0].userId);
-                setUserName(productList[0].userName);
-                setUserNum(productList[0].userNum);
+                setPurchaseList(userVo.purchaseList || []); 
+                setUserId(userVo.userId);
+                setUserName(userVo.userName);
+                setUserNum(userVo.userNum);
                 
             }else {
                 alert('구매이력 가져오기 실패');
@@ -93,15 +95,14 @@ const PurchaseList = () => {
                             <h2>주문하신 제품.</h2>
 
                             {/* 삼항연산자 */}
-                            {  
-                                (purchaseList.length === 0) ? (   // 거짓일때
+                            {  (purchaseList.length === 0) ? (   // 거짓일때
                                     // 구매물품이 없을때
                                     <div id='DA-buy-none'>
                                         <p>
                                             구매하신 제품이 없습니다.<br /><br /><br /><br />
                                             주문이 보이지 않습니까? <Link to='/user/mypage' className="DA-buyLink" rel="noreferrer noopener">지금 구매하기</Link>
                                             <br /><br />
-                                            현재 로그인되어 있는 계정은 {userId}입니다.
+                                            현재 로그인되어 있는 계정은 {userId} 입니다.
                                             <br /><br />
                                             간혹 Apple 계정이 여러 개인 분들이 계신데 고객님도 그런 경우일 수 있습니다. 다른 계정도 갖고 계시다면
                                             <br />로그아웃했다가 그 Apple ID로 다시 로그인해보세요.
