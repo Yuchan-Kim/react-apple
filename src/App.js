@@ -38,6 +38,8 @@ import ProductAddForm6 from './admin/ProductAddForm6';
 import DeliveryList from './admin/DeliveryList';
 import HistoryList from './admin/HistoryList';
 
+import StoreDetail from './main/StoreDetail';
+
 import './css/reset.css';
 
 function App() {
@@ -85,6 +87,8 @@ function App() {
           <Route path='/admin/product/add6' element={<ProductAddForm6 />} />
           <Route path='/admin/delivery' element={<DeliveryList />} />
           <Route path='/admin/history' element={<HistoryList />} />
+
+          <Route path='/store/detail' element={<StoreDetail />} />
         </Routes>
     </BrowserRouter>
   );
