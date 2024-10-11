@@ -71,7 +71,7 @@ const MainList = () => {
         // Fetch Pro/Pro Max products
         axios({
             method: 'get',
-            url: `http://${process.env.REACT_APP_API_URL}/api/main/products/pro`,
+            url: `${process.env.REACT_APP_API_URL}/api/main/products/pro`,
             responseType: 'json',
         })
         .then(response => {
@@ -90,7 +90,7 @@ const MainList = () => {
         // Fetch Regular products
         axios({
             method: 'get',
-            url: `http://${process.env.REACT_APP_API_URL}/api/main/products/regular`,
+            url: `${process.env.REACT_APP_API_URL}/api/main/products/regular`,
             responseType: 'json',
         })
         .then(response => {
@@ -109,7 +109,7 @@ const MainList = () => {
         // Fetch SE models
         axios({
             method: 'get',
-            url: `http://${process.env.REACT_APP_API_URL}/api/main/products/se`,
+            url: `${process.env.REACT_APP_API_URL}/api/main/products/se`,
             responseType: 'json',
         })
         .then(response => {
@@ -147,7 +147,7 @@ const MainList = () => {
         // axios 요청 반환
         return axios({  // 반드시 return으로 axios Promise 반환
         method: 'post',
-        url: `http://${process.env.REACT_APP_API_URL}/api/product/addtocart`,
+        url: `${process.env.REACT_APP_API_URL}/api/product/addtocart`,
         headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'

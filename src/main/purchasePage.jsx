@@ -50,7 +50,7 @@ function PurchasePage() {
   // productDetailNum을 기반으로 데이터를 가져오는 함수
   const fetchProductData = (detailNum) => {
     // 제품 기본 정보 가져오기
-    axios.get(`http://${process.env.REACT_APP_API_URL}/api/product/${detailNum}/info`)
+    axios.get(`${process.env.REACT_APP_API_URL}/api/product/${detailNum}/info`)
       .then(response => {
         console.log("제품 기본 정보:", response.data.apiData);
         setProductBasicInfo(response.data.apiData);
@@ -59,7 +59,7 @@ function PurchasePage() {
         
         if (productName.includes('pro')) {
           // pro가 포함된 제품 호출
-          axios.get(`http://${process.env.REACT_APP_API_URL}/api/product/${detailNum}/anotherPro`)
+          axios.get(`${process.env.REACT_APP_API_URL}/api/product/${detailNum}/anotherPro`)
           .then(response => {
             console.log("pro가 포함된 제품:", response.apiData);
             setRelatedModels(response.data.apiData);
@@ -69,7 +69,7 @@ function PurchasePage() {
           });
         } else if (productName.includes('se')) {
           // se가 포함된 제품 호출
-          axios.get(`http://${process.env.REACT_APP_API_URL}/api/product/${detailNum}/anotherSe`)
+          axios.get(`${process.env.REACT_APP_API_URL}/api/product/${detailNum}/anotherSe`)
           .then(response => {
             console.log("se가 포함된 제품:", response.apiData);
             setRelatedModels(response.data.apiData);
@@ -79,7 +79,7 @@ function PurchasePage() {
           });
         } else {
           // pro, se를 포함하지 않는 제품 호출
-          axios.get(`http://${process.env.REACT_APP_API_URL}/api/product/${detailNum}/anotherRegular`)
+          axios.get(`${process.env.REACT_APP_API_URL}/api/product/${detailNum}/anotherRegular`)
           .then(response => {
             console.log("pro, se가 포함되지 않은 제품:", response.apiData);
             setRelatedModels(response.data.apiData);
@@ -94,7 +94,7 @@ function PurchasePage() {
       });
 
     // 제품 이미지 가져오기
-    axios.get(`http://${process.env.REACT_APP_API_URL}/api/product/${detailNum}/productimages`)
+    axios.get(`${process.env.REACT_APP_API_URL}/api/product/${detailNum}/productimages`)
       .then(response => {
         console.log("제품 이미지:", response.data.apiData);
         setProductImages(response.data.apiData || []);
@@ -105,7 +105,7 @@ function PurchasePage() {
       });
 
     // 추가 이미지 가져오기
-    axios.get(`http://${process.env.REACT_APP_API_URL}/api/product/${detailNum}/infoImages`)
+    axios.get(`${process.env.REACT_APP_API_URL}/api/product/${detailNum}/infoImages`)
       .then(response => {
         console.log("추가 이미지:", response.data.apiData);
         setInfoImages(response.data.apiData);
@@ -115,7 +115,7 @@ function PurchasePage() {
       });
 
     // 색상 가져오기
-    axios.get(`http://${process.env.REACT_APP_API_URL}/api/product/${detailNum}/colors`)
+    axios.get(`${process.env.REACT_APP_API_URL}/api/product/${detailNum}/colors`)
       .then(response => {
         setProductColors(response.data.apiData);
       })
@@ -124,7 +124,7 @@ function PurchasePage() {
       });
 
     // 용량 가져오기
-    axios.get(`http://${process.env.REACT_APP_API_URL}/api/product/${detailNum}/storages`)
+    axios.get(`${process.env.REACT_APP_API_URL}/api/product/${detailNum}/storages`)
       .then(response => {
         setProductStorages(response.data.apiData);
       })
@@ -147,7 +147,7 @@ function PurchasePage() {
     // axios 요청 반환
     return axios({  // 반드시 return으로 axios Promise 반환
       method: 'post',
-      url: `http://${process.env.REACT_APP_API_URL}/api/product/addtocart`,
+      url: `${process.env.REACT_APP_API_URL}/api/product/addtocart`,
       headers: {
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'
@@ -186,7 +186,7 @@ const handleAddToLiked = (acceVo) => {
   // axios 요청 반환
   return axios({
     method: 'put',
-    url: `http://${process.env.REACT_APP_API_URL}/api/user/addtoliked`,
+    url: `${process.env.REACT_APP_API_URL}/api/user/addtoliked`,
     headers: {
       'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/json'

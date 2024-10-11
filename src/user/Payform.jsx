@@ -83,7 +83,7 @@ const CheckoutPage = () => {
 
     axios({
       method: 'get', 			// put, post, delete                   
-      url: 'http://localhost:9000/api/user/cart',
+      url: `${process.env.REACT_APP_API_URL}/api/user/cart`,
       headers: {
         'Authorization': `Bearer ${token}`, 
       },
@@ -113,7 +113,7 @@ const CheckoutPage = () => {
 
     axios({
       method: 'get',
-      url: 'http://localhost:9000/api/user/address',
+      url: `${process.env.REACT_APP_API_URL}/api/user/address`,
       headers: {
         'Authorization': `Bearer ${token}`,
       },
@@ -147,7 +147,7 @@ const CheckoutPage = () => {
 
     axios({
       method: 'get', 			// put, post, delete                   
-      url: 'http://localhost:9000/api/user/storelist',
+      url: `${process.env.REACT_APP_API_URL}/api/user/storelist`,
       headers: {
         'Authorization': `Bearer ${token}`, 
       },
@@ -187,7 +187,7 @@ const CheckoutPage = () => {
 
     axios({
       method: 'post',
-      url: 'http://localhost:9000/api/delivery', // Receipt 인서트 API 엔드포인트
+      url: `${process.env.REACT_APP_API_URL}/api/delivery`, // Receipt 인서트 API 엔드포인트
       headers: {
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json',
@@ -230,7 +230,7 @@ const CheckoutPage = () => {
   
     axios({
       method: 'post',
-      url: 'http://localhost:9000/api/pickup', // Receipt 인서트 API 엔드포인트
+      url: `${process.env.REACT_APP_API_URL}/api/pickup`, // Receipt 인서트 API 엔드포인트
       headers: {
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json',

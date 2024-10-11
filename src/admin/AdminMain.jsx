@@ -179,7 +179,12 @@ const AdminMain = () => {
                                 <div className="hjy-brief">
                                     {storeList.map((store) => {
                                         return (
-                                            <div className="hjy-card" key={store.storeNum}>
+                                            <Link
+                                                key={store.storeNum}
+                                                to={`/admin/store/modify?storeNum=${store.storeNum}`}
+                                                className="hjy-card"
+                                                rel="noreferrer noopener"
+                                            >
                                                 <img 
                                                     id="store_Img" 
                                                     src={`${process.env.REACT_APP_API_URL}/upload/${store.storeImage}`} 
@@ -188,7 +193,7 @@ const AdminMain = () => {
                                                 <div className="hjy-detail">                                                        
                                                     <p>{store.storeName}</p>
                                                 </div>
-                                            </div>
+                                            </Link>
                                         );
                                     })}
                                 </div>
