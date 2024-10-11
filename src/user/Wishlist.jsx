@@ -23,7 +23,7 @@ const Wishlist = () => {
 
     axios({
       method: 'get',
-      url: 'http://localhost:9000/api/user/wishlist',
+      url: `${process.env.REACT_APP_API_URL}/api/user/wishlist`,
       headers: {
         'Authorization': `Bearer ${token}`,
       }
@@ -48,7 +48,7 @@ const Wishlist = () => {
 
     axios({
       method: 'delete',
-      url: 'http://localhost:9000/api/product/unlike',
+      url: `${process.env.REACT_APP_API_URL}/api/product/unlike`,
       headers: {
         'Authorization': `Bearer ${token}`,
       }
@@ -80,7 +80,7 @@ const handleAddAllToCart = () => {
   const addToCartPromises = wishlistItems.map(item => {
     return axios({
       method: 'post',
-      url: 'http://localhost:9000/api/user/wishtocart',
+      url: `${process.env.REACT_APP_API_URL}/api/user/wishtocart`,
       headers: {
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'

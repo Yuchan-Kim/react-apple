@@ -31,7 +31,7 @@ const Cart = () => {
 
     axios({
       method: 'get', 			// put, post, delete                   
-      url: 'http://localhost:9000/api/user/cart',
+      url: `${process.env.REACT_APP_API_URL}/api/user/cart`,
       headers: {
         'Authorization': `Bearer ${token}`, 
       },
@@ -60,7 +60,7 @@ const Cart = () => {
 
     axios({
       method: 'get',
-      url: 'http://localhost:9000/api/user/cartAcce',
+      url: `${process.env.REACT_APP_API_URL}/api/user/cartAcce`,
       headers: {
         'Authorization': `Bearer ${token}`,
       },
@@ -92,7 +92,7 @@ const Cart = () => {
 
     axios({
       method: 'post',
-      url: 'http://localhost:9000/api/user/cart/update',
+      url: `${process.env.REACT_APP_API_URL}/api/user/cart/update`,
       headers: {
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'
@@ -152,7 +152,7 @@ const Cart = () => {
 
     axios({
       method: 'delete',
-      url: `http://localhost:9000/api/user/cart/${cartNum}`,
+      url: `${process.env.REACT_APP_API_URL}/api/user/cart/${cartNum}`,
       headers: {
         'Authorization': `Bearer ${token}`,
       },
@@ -182,7 +182,7 @@ const Cart = () => {
     // axios 요청 반환
     return axios({  // 반드시 return으로 axios Promise 반환
       method: 'post',
-      url: 'http://localhost:9000/api/user/cart',
+      url: `${process.env.REACT_APP_API_URL}/api/user/cart`,
       headers: {
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'
