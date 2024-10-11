@@ -147,7 +147,6 @@
 /* 첨부파일 */
 #product_add .hjy-file-box {
     color: #727272;
-    width: 677px;
 }
 
 #product_add .hjy-file-box input[type="file"] {
@@ -283,7 +282,7 @@
     display: flex;
     align-items: center;
     color: #727272;
-    width: 100%; /* 가로폭을 맞추기 위해 100%로 설정 */
+    width: 697px; /* 가로폭을 맞추기 위해 100%로 설정 */
 }
 
 #product_add .hjy-file-box input[type="file"] {
@@ -295,7 +294,7 @@
 /* 삭제 버튼 스타일 */
 #product_add .hjy-file-box button {
     margin-left: 10px;
-    background-color: red;
+    background-color: #ff6b6b;
     color: white;
     border: none;
     padding: 5px 10px;
@@ -305,5 +304,5 @@
 
 /* 삭제 버튼 hover 효과 */
 #product_add .hjy-file-box button:hover {
-    background-color: darkred;
+    background-color: #ff4c4c;
 }

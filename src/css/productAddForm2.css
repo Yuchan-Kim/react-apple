@@ -147,7 +147,6 @@
 /* 첨부파일 */
 #product_add .hjy-file-box {
     color: #727272;
-    width: 677px;
 }
 
 #product_add .hjy-file-box input[type="file"] {
@@ -330,3 +329,32 @@
     background-color: #f1f1f1; 
 }
 
+/* 파일 선택 필드와 삭제 버튼을 같은 줄에 배치 */
+#product_add .hjy-file-box {
+    display: flex;
+    align-items: center;
+    color: #727272;
+    width: 697px; /* 가로폭을 맞추기 위해 100%로 설정 */
+}
+
+#product_add .hjy-file-box input[type="file"] {
+    color: #727272;
+    flex: 1; /* 파일 입력 필드를 늘려줌 */
+    margin-bottom: 7px;
+}
+
+/* 삭제 버튼 스타일 */
+#product_add .hjy-file-box button {
+    margin-left: 10px;
+    background-color: #ff6b6b;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* 삭제 버튼 hover 효과 */
+#product_add .hjy-file-box button:hover {
+    background-color: #ff4c4c;
+}
