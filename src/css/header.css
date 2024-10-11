@@ -75,6 +75,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
+  cursor: pointer;
 }
 
 .yc-auth-btn {
@@ -90,6 +91,7 @@
   border-color: #0071e3;
   background-color: #ffffff;
   transition: background-color 0.3s ease, border-color 0.3s ease;
+  cursor: pointer;
 }
 
 .yc-icon-container {

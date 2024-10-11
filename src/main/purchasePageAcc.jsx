@@ -159,9 +159,13 @@ function PurchaseACC() {
         {/* ACC Purchase Header Section */}
         <section className="yc-acc-purchase-section">
           <div className="yc-acc-purchase-header">
-            <span className="yc-acc-new-badge">New</span>
-            <h1>{productAccInfo.productName} 구매하기</h1>
-            <p className="yc-acc-price">₩{productAccInfo.productPrice} 부터</p>
+            
+            <h1>{productAccInfo.productName || '제품 정보 없음'} 구매하기</h1>
+            <p className="yc-acc-price">
+              {productAccInfo.productPrice !== undefined 
+                ? `₩${productAccInfo.productPrice.toLocaleString()} 부터` 
+                : '가격 정보를 불러오는 중...'}
+            </p>
           </div>
         </section>
 
@@ -217,27 +221,28 @@ function PurchaseACC() {
             </div>
 
             {/* Price and Buttons */}
-            <div className="yc-acc-price-section">
-              {productAccInfo.productPrice !== undefined ? (
-                <>
-                  <p className="yc-acc-price">{(productAccInfo.productPrice).toLocaleString()} 원</p>
-                  <button 
-                    className="yc-acc-continue" 
-                    onClick={() => handleAddToLiked({ productDetailNum: productAccInfo.productDetailNum })}
-                  >
-                    관심상품 추가
-                  </button>
-                  <button
-                    className="yc-acc-continue" 
-                    onClick={() => handleAddToCart({ productDetailNum: productAccInfo.productDetailNum })}
-                  >
-                    장바구니에 추가
-                  </button>
-                </>
-              ) : (
-                <p>가격 정보를 불러오는 중...</p>
-              )}
-            </div>
+              <div className="yc-acc-price-section">
+                {productAccInfo && productAccInfo.productPrice !== undefined ? (
+                  <>
+                    <p className="yc-acc-price">{(productAccInfo.productPrice).toLocaleString()} 원</p>
+                    <button 
+                      className="yc-acc-continue" 
+                      onClick={() => handleAddToLiked({ productDetailNum: productAccInfo.productDetailNum })}
+                    >
+                      관심상품 추가
+                    </button>
+                    <button
+                      className="yc-acc-continue" 
+                      onClick={() => handleAddToCart({ productDetailNum: productAccInfo.productDetailNum })}
+                    >
+                      장바구니에 추가
+                    </button>
+                  </>
+                ) : (
+                  <p>가격 정보를 불러오는 중...</p>
+                )}
+              </div>
+
 
           </div>
         </section>

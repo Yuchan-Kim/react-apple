@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import MainList from './main/MainList.jsx';
-import MainListAcc from './main/MainListAcc.jsx';
 import Search from './search/Search.jsx';
 import PurchasePage from './main/purchasePage.jsx';
 import PurchaseAcc from './main/purchasePageAcc.jsx'
@@ -47,7 +46,6 @@ function App() {
     <BrowserRouter>
         <Routes>
           <Route path='/mainlist' element={<MainList />} />
-          <Route path='/mainlistacc' element={<MainListAcc />} />
           <Route path='/search/:keyword' element={<Search />} /> 
           <Route path='/purchaseAcc/:productDetailNum' element={<PurchaseAcc />} />
           <Route path='/purchase/:productDetailNum' element={<PurchasePage />} />

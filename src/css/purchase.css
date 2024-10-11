@@ -136,6 +136,7 @@
     cursor: pointer;
     position: relative;
     transition: transform 0.2s, border 0.3s;
+    border: 2px solid lightgrey; /* 기본 테두리 추가 */
 }
 
 .yc-color-circle::after {
@@ -517,8 +518,13 @@
 
 /* Tooltip Styling for Color Circles */
 .yc-color-circle {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    cursor: pointer;
     position: relative;
-    margin-left:5px;
+    transition: transform 0.2s, border 0.3s;
+    border: 2px solid lightgrey !important; /* 기본 테두리를 강제로 적용 */
 }
 
 .yc-color-circle::after {
@@ -546,7 +552,7 @@
 
 /* Selected Color Circle */
 .yc-color-circle.yc-selected {
-    border: 2px solid #0070c9;
+    border: 2px solid #0070c9 !important;
     transform: scale(1.1);
 }
 

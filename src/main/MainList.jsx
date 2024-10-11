@@ -40,6 +40,7 @@ const MainList = () => {
     const [proAndProMaxProducts, setProAndProMaxProducts] = useState([]);
     const [regularProducts, setRegularProducts] = useState([]);
     const [seModels, setSeModels] = useState([]);
+    const [acc, setAcc] = useState([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
@@ -126,11 +127,33 @@ const MainList = () => {
             setError('Failed to fetch SE models');
             setLoading(false);  // Stop loading on error
         });
+
+
+        axios({
+            method: 'get',
+            url: `${process.env.REACT_APP_API_URL}/api/main/products/acc`,
+            responseType: 'json',
+        })
+        .then(response => {
+            if (Array.isArray(response.data.apiData)) {
+                setAcc(response.data.apiData);
+            } else {
+                console.error('API response for acc is not an array', response.data);
+                setAcc([]);  
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching acc products:', error);
+            setError('Failed to fetch acc products');
+        });
     }, []);
 
     // Function to navigate to purchase page
     const handleProductClick = (productDetailNum) => {
         navigate(`/purchase/${productDetailNum}`);
+    };
+    const handleProductAccClick = (productDetailNum) => {
+        navigate(`/purchaseAcc/${productDetailNum}`);
     };
 
       // 장바구니에 담기 핸들러
@@ -180,7 +203,7 @@ const MainList = () => {
             <div className="wrap">
                 {/* Main Banner */}
                 <div className="yc-main-banner">
-                    <h1>iPhone 쇼핑하기</h1>
+                    <h1>iPhone / ACC 쇼핑하기</h1>
                     <p>가장 최신의 iPhone을 만나보세요.</p>
                 </div>
 
@@ -314,6 +337,44 @@ const MainList = () => {
                                     </div>
                                 </div>
                             </div>
+
+
+
+                            <div className="yc-category">
+                                    <h2>ACC</h2>
+                                    <div className="yc-scroll-container">
+                                        <div className="yc-product-list">
+                                            {acc.map(product => (
+                                                <div
+                                                    className="yc-product-card"
+                                                    key={product.productDetailNum}
+                                                    onClick={() => handleProductAccClick(product.productDetailNum)}  
+                                                >
+                                                    {product.productName.includes('16') && <span className="yc-new-label">NEW</span>}
+                                                    <h3>{product.productName}</h3>
+                                                    <img src={product.imageSavedName || "https://via.placeholder.com/300"} alt={product.productName} />
+
+                                                    <div className="yc-price-button-container">
+                                                        <p>{(product.productPrice).toLocaleString()}원 부터</p>
+                                                        <button className="yc-buy-button">구입하기</button>
+                                                    </div>
+
+                                                    <div className="yc-hover-button-container">
+                                                    <button
+                                                        onClick={(e) => {
+                                                            e.stopPropagation();  // 상세 버튼 클릭 시 이동 방지
+                                                            handleModalOpen(product);
+                                                        }}
+                                                        className="yc-detail-button"
+                                                    >
+                                                        제품 자세히 살펴보기
+                                                    </button>
+                                                </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
                         </>
                     )}
                 </div>
@@ -364,14 +425,22 @@ const MainList = () => {
                                 </div>
                         </div>
                         <div className="yc-modal-footer">
-                            <div className="yc-modal-footer-section">
-                                <p><img src="/path/to/icon1.png" alt="icon" /> 할부 방식: 무이자 구매</p>
-                            </div>
-                            <div className="yc-modal-footer-section">
-                                <p><img src="/path/to/icon2.png" alt="icon" /> 무료 익일 배송: 오후 3시 이전 주문 시</p>
-                            </div>
+                        <div className="yc-modal-footer-section">
+                            <p>
+                                <img src="/mnt/data/A_set_of_two_modern_and_minimalist_icons._The_firs.png" alt="icon1" style={{ width: '20px', height: '20px' }} />
+                                할부 방식: 무이자 구매
+                            </p>
+                        </div>
+                        <div className="yc-modal-footer-section">
+                            <p>
+                                <img src="/mnt/data/A_set_of_two_modern_and_minimalist_icons._The_firs.png" alt="icon2" style={{ width: '20px', height: '20px' }} />
+                                무료 익일 배송: 오후 3시 이전 주문 시
+                            </p>
+                        </div>
                         </div>
                     </div>
+
+                   
                     <div className="yc-terms-section">
                         <p><strong>* 이용 약관</strong></p>
                         <p>위 할부 서비스는 Apple 온라인 스토어, Apple 전화 판매 및 Apple 리테일 매장에서 구입하는 경우에만 이용할 수 있습니다.</p>

@@ -169,8 +169,7 @@ const Header = () => {
             </div>
             <div className="yc-header-bottom">
                 <nav className="yc-nav-links">
-                    <Link to="/mainlist">iPhone</Link>
-                    <Link to="/mainlistacc">Accessories</Link>
+                    <Link to="/mainlist">Product</Link>
                     <Link to="/community">Community</Link>
                 </nav>
             </div>

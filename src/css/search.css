@@ -117,7 +117,9 @@
 /* Community Section */
 .yc-tab-content ul {
     list-style: none;
-    padding: 0;
+    gap: 40px;
+    margin-top: 20px;
+
 }
 
 .yc-tab-content ul li {
