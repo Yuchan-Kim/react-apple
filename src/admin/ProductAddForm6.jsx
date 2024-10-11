@@ -29,7 +29,6 @@ const ProductAddForm6 = () => {
     // 관리자인지 확인하여 관리자 아닌 경우 리다이렉트
     useEffect(() => {
         if (!authUser || authUser.userStatus !== '관리자') {
-            // alert("관리자만 접근할 수 있습니다.");
             navigate("/");  // 메인 페이지로 리다이렉트
         }
     }, [authUser, navigate]);
@@ -37,12 +36,8 @@ const ProductAddForm6 = () => {
     // 시리즈 선택 시 상품 목록 불러오기
     const handleSeriesChange = (e) => {
         const selectedSeriesNum = e.target.value;
-
-        console.log('선택한 시리즈번호');
-        console.log(selectedSeriesNum);
-
         setSeriesNum(selectedSeriesNum);
-        setIsSeriesSelected(!!selectedSeriesNum); // 시리즈가 선택되면 true, 아니면 false
+        setIsSeriesSelected(!!selectedSeriesNum); 
         getProductList(selectedSeriesNum);
         getProductDetailList(selectedSeriesNum);
     };
@@ -50,10 +45,6 @@ const ProductAddForm6 = () => {
     // 상품 선택 시 색상, 디스플레이, 용량 목록 불러오기
     const handleProductChange = (e) => {
         const selectedProductNum = e.target.value;
-
-        console.log('선택한 상품번호');
-        console.log(selectedProductNum);
-
         setProductNum(selectedProductNum);
         if (seriesNum && selectedProductNum) {
             getColorList(seriesNum, selectedProductNum);
@@ -62,113 +53,109 @@ const ProductAddForm6 = () => {
         }
     };
 
-    // 가격 입력
     const handleProductPrice = (e) => {
         setProductPrice(e.target.value);
     }
 
-    // 시리즈 목록을 가져오는 함수
     const getSeriesList = () => {
         axios({
             method: 'get',
             url: `${process.env.REACT_APP_API_URL}/api/series`,
             responseType: 'json',
         }).then(response => {
-            setSeriesList(response.data.apiData); // 응답 데이터로 시리즈 목록 설정
+            setSeriesList(response.data.apiData); 
         }).catch(error => {
             console.log(error);
         });
     };
 
-    // 상품명 목록을 가져오는 함수
     const getProductList = (seriesNum) => {
         axios({
             method: 'get',
             url: `${process.env.REACT_APP_API_URL}/api/product/${seriesNum}`,
             responseType: 'json',
         }).then(response => {
-            setProductList(response.data.apiData); // 응답 데이터로 상품 목록 설정
+            setProductList(response.data.apiData); 
         }).catch(error => {
             console.log(error);
         });
     };
 
-    // 색상 목록을 가져오는 함수
     const getColorList = (seriesNum, productNum) => {
         axios({
             method: 'get',
             url: `${process.env.REACT_APP_API_URL}/api/color/${seriesNum}/${productNum}`,
             responseType: 'json',
         }).then(response => {
-            setColorList(response.data.apiData); // 응답 데이터로 색상 목록 설정
+            setColorList(response.data.apiData); 
         }).catch(error => {
             console.log(error);
         });
     };
 
-    // 디스플레이 목록을 가져오는 함수
     const getDisplayList = (seriesNum, productNum) => {
-        
         axios({
             method: 'get',
             url: `${process.env.REACT_APP_API_URL}/api/display/${seriesNum}/${productNum}`,
             responseType: 'json',
         }).then(response => {
-            setDisplayList(response.data.apiData); // 응답 데이터로 디스플레이 목록 설정
+            setDisplayList(response.data.apiData); 
         }).catch(error => {
             console.log(error);
         });
     };
 
-    // 용량 목록을 가져오는 함수
     const getStorageList = (seriesNum, productNum) => {
         axios({
             method: 'get',
             url: `${process.env.REACT_APP_API_URL}/api/storage/${seriesNum}/${productNum}`,
             responseType: 'json',
         }).then(response => {
-            setStorageList(response.data.apiData); // 응답 데이터로 용량 목록 설정
+            setStorageList(response.data.apiData); 
         }).catch(error => {
             console.log(error);
         });
     };
 
-    // 상품 상세정보 목록을 가져오는 함수
     const getProductDetailList = (seriesNum) => {
         axios({
             method: 'get',
             url: `${process.env.REACT_APP_API_URL}/api/product/details/${seriesNum}`,
             responseType: 'json',
         }).then(response => {
-            setProductDetailList(response.data.apiData); // 응답 데이터로 상품 상세정보 목록 설정
+            setProductDetailList(response.data.apiData); 
         }).catch(error => {
             console.log(error);
         });
     };
 
     useEffect(() => {
-        // 컴포넌트가 마운트되면 시리즈 리스트 가져오기
         getSeriesList();
-        console.log(imageSavedName);
     }, []);
 
     // 파일 입력 필드를 업데이트하는 함수
     const handleMainImages = (e, index) => {
         const updatedImages = [...imageSavedName];
-        updatedImages[index] = e.target.files[0];  // 선택한 파일을 업데이트
+        updatedImages[index] = e.target.files[0];
         setImageSavedName(updatedImages);
     };
 
     // 이미지 입력 필드를 추가하는 함수
     const handleImgAdd = () => {
-        setImageSavedName([...imageSavedName, null]);  // 새로운 필드 추가
+        setImageSavedName([...imageSavedName, null]);  
+    };
+
+    // 이미지 입력 필드를 제거하는 함수
+    const handleRemoveFileInput = (index) => {
+        const updatedImages = [...imageSavedName];
+        updatedImages.splice(index, 1);  // 해당 파일 입력 필드 제거
+        setImageSavedName(updatedImages);
     };
 
     // 상품 상세정보 등록
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // 필수 입력값 확인
         const requiredFields = [
             { value: seriesNum, message: "시리즈를 선택해주세요." },
             { value: productNum, message: "상품명을 선택해주세요." },
@@ -196,7 +183,7 @@ const ProductAddForm6 = () => {
 
         imageSavedName.forEach((file) => {
             if (file) {
-                formData.append("imageSavedName", file);  // 동일한 이름으로 파일 추가
+                formData.append("imageSavedName", file); 
             }
         });
 
@@ -224,7 +211,6 @@ const ProductAddForm6 = () => {
         });
     };
 
-    // 상품 상세정보 삭제
     const handleProductDetailDelete = (productDetailNum) => {
         if (!window.confirm("정말로 삭제하시겠습니까?")) return;
 
@@ -364,6 +350,9 @@ const ProductAddForm6 = () => {
                                                             name={`imageSavedName${index}`}
                                                             onChange={(e) => handleMainImages(e, index)}
                                                         />
+                                                        <button type="button" onClick={() => handleRemoveFileInput(index)} >
+                                                            삭제
+                                                        </button>
                                                     </div>
                                                 ))}
                                             </div>
@@ -383,7 +372,6 @@ const ProductAddForm6 = () => {
                             </div>
                         </div>
 
-                        {/* 시리즈가 선택되었을 때만 테이블 표시 */}
                         {isSeriesSelected && (
                             <div className="hjy-seriesList">
                                 <table border="1">

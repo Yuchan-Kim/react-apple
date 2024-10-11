@@ -21,7 +21,6 @@ const ProductAddForm2 = () => {
     // 관리자인지 확인하여 관리자 아닌 경우 리다이렉트
     useEffect(() => {
         if (!authUser || authUser.userStatus !== '관리자') {
-            // alert("관리자만 접근할 수 있습니다.");
             navigate("/");  // 메인 페이지로 리다이렉트
         }
     }, [authUser, navigate]);
@@ -58,10 +57,8 @@ const ProductAddForm2 = () => {
             url: `${process.env.REACT_APP_API_URL}/api/products/${seriesNum}`,
             responseType: 'json',
         }).then(response => {
-            console.log(response.data.apiData);
             if (response.data.result === 'success') {
                 setProductList(response.data.apiData); // 응답 데이터로 시리즈 목록 설정
-
             } else {
                 alert("등록 실패");
             }
@@ -71,8 +68,7 @@ const ProductAddForm2 = () => {
     };
 
     useEffect(() => {
-        // 컴포넌트가 마운트되면 시리즈 리스트 가져오기
-        getSeriesList();
+        getSeriesList(); // 컴포넌트가 마운트되면 시리즈 리스트 가져오기
     }, []);
 
     // 파일 입력 필드를 업데이트하는 함수
@@ -82,57 +78,59 @@ const ProductAddForm2 = () => {
         setInfoImageSaved(updatedImages);
     };
 
-    // 이미지 입력 필드를 추가하는 함수 (중복된 필드 추가 방지)
+    // 이미지 입력 필드를 추가하는 함수
     const handleImgAdd = () => {
         setInfoImageSaved([...infoImageSaved, null]);  // 새로운 필드 추가
+    };
+
+    // 이미지 입력 필드를 제거하는 함수
+    const handleRemoveFileInput = (index) => {
+        const updatedImages = [...infoImageSaved];
+        updatedImages.splice(index, 1);  // 해당 파일 입력 필드 제거
+        setInfoImageSaved(updatedImages);
     };
 
     // 상품 등록
     const handleSubmit = (e) => {
         e.preventDefault();
 
-     // 필수 입력값 확인
-     if (!seriesNum) {
-        alert("시리즈를 선택해주세요.");
-        return; // 시리즈가 선택되지 않았을 때 제출 중단
-    }
+        if (!seriesNum) {
+            alert("시리즈를 선택해주세요.");
+            return;
+        }
 
-    if (!productName.trim()) {
-        alert("상품명을 입력해주세요.");
-        return; // 상품명이 비어 있을 때 제출 중단
-    }
+        if (!productName.trim()) {
+            alert("상품명을 입력해주세요.");
+            return;
+        }
 
-    // 이미지가 선택되지 않았을 경우 경고창 표시
-    if (infoImageSaved.length === 0 || infoImageSaved.every(file => file === null)) {
-        alert("최소 한 개의 이미지를 선택해주세요.");
-        return; // 이미지가 없을 때 제출 중단
-    }
+        if (infoImageSaved.length === 0 || infoImageSaved.every(file => file === null)) {
+            alert("최소 한 개의 이미지를 선택해주세요.");
+            return;
+        }
 
-        // FormData 생성
         const formData = new FormData();
         formData.append("seriesNum", seriesNum);
         formData.append("productName", productName);
 
-        // 선택한 이미지 파일들을 FormData에 추가 (동일한 이름으로 추가)
         infoImageSaved.forEach((file) => {
             if (file) {
-                formData.append("infoImageSavedName", file);  // 동일한 이름으로 파일 추가
+                formData.append("infoImageSavedName", file);
             }
         });
 
-        // Axios를 사용하여 데이터 전송
         axios({
-            method: 'post', 			// put, post, delete                   
+            method: 'post',                   
             url: `${process.env.REACT_APP_API_URL}/api/infoImage/upload`,
-            headers: { "Content-Type": "multipart/form-data" }, //첨부파일
-            data: formData,           // 첨부파일  multipart방식
-            responseType: 'json' //수신타입
+            headers: { "Content-Type": "multipart/form-data" },
+            data: formData,
+            responseType: 'json'
         }).then(response => {
             if (response.data.result === 'success') {
                 setIsSeriesSelected(false); // 리스트 숨기기
-                setSeriesNum(''); // 선택 필드 초기화
-                setProductName(''); // 입력 필드 초기화
-                setInfoImageSaved([]); // 이미지 입력 초기화
+                setSeriesNum('');
+                setProductName('');
+                setInfoImageSaved([]);
             } else {
                 alert("등록 실패");
             }
@@ -143,33 +141,29 @@ const ProductAddForm2 = () => {
 
     // 상품 삭제
     const handleProductDelete = (productNum) => {
-         // 삭제 확인 메시지
-         const confirmDelete = window.confirm("정말로 삭제하시겠습니까?");
-         if (!confirmDelete) return;
-     
-         // axios 요청으로 서버에 삭제 요청 보내기
-         axios({
-             method: 'delete',
-             url: `${process.env.REACT_APP_API_URL}/api/delete/product/${productNum}`,
-             responseType: 'json',
-         })
-         .then((response) => {
-             if (response.data.result === 'success') {
+        const confirmDelete = window.confirm("정말로 삭제하시겠습니까?");
+        if (!confirmDelete) return;
+
+        axios({
+            method: 'delete',
+            url: `${process.env.REACT_APP_API_URL}/api/delete/product/${productNum}`,
+            responseType: 'json',
+        })
+        .then((response) => {
+            if (response.data.result === 'success') {
                 alert("삭제되었습니다.");
-                // 삭제 후 UI 업데이트 (필요하다면 데이터 다시 불러오기)
-                let newArray = productList.filter((product) => (
+                const newArray = productList.filter((product) => (
                     product.productNum !== productNum
                 ));
-  
                 setProductList(newArray);
-             } else {
-                alert(response.data.message); // 서버에서 반환된 메시지를 사용자에게 알림
-             }
-         })
-         .catch((error) => {
-             console.error("삭제 요청 중 오류 발생:", error);
-             alert("삭제 중 오류가 발생했습니다.");
-         });
+            } else {
+                alert(response.data.message);
+            }
+        })
+        .catch((error) => {
+            console.error("삭제 요청 중 오류 발생:", error);
+            alert("삭제 중 오류가 발생했습니다.");
+        });
     }
 
     return (
@@ -232,15 +226,19 @@ const ProductAddForm2 = () => {
                                                 <div className="hjy-imgAdd">
                                                     <button type="button" onClick={handleImgAdd}>이미지 추가</button>
                                                 </div>
-                                            {infoImageSaved.map((image, index) => (
-                                                <div className="hjy-file-box" key={index}>
-                                                    <input id="main-img"
-                                                        type="file" 
-                                                        name={`infoImageSaved${index}`}
-                                                        onChange={(e) => handleMainImages(e, index)}
-                                                    />
-                                                </div>
-                                            ))}
+                                                {infoImageSaved.map((image, index) => (
+                                                    <div className="hjy-file-box" key={index}>
+                                                        <input 
+                                                            id="main-img"
+                                                            type="file" 
+                                                            name={`infoImageSaved${index}`}
+                                                            onChange={(e) => handleMainImages(e, index)}
+                                                        />
+                                                        <button type="button" className="hjy-input-del-btn" onClick={() => handleRemoveFileInput(index)} >
+                                                            삭제
+                                                        </button>
+                                                    </div>
+                                                ))}
                                             </div>
                                         </div>
 
@@ -257,7 +255,6 @@ const ProductAddForm2 = () => {
                             </div>
                         </div>
 
-                        {/* 시리즈가 선택되었을 때만 테이블 표시 */}
                         {isSeriesSelected && (
                             <div className="hjy-seriesList">
                                 <table border="1">
@@ -274,7 +271,6 @@ const ProductAddForm2 = () => {
                                                 <td>{product.productNum}</td>
                                                 <td>{product.seriesName}</td>
                                                 <td>{product.productName}</td>
-                                                {/* <td style={{ width: '70px' }} className="hjy-action-btn"><Link to="/#">수정</Link></td> */}
                                                 <td style={{ width: '70px' }} className="hjy-action-btn"><button type="button" onClick={() => handleProductDelete(product.productNum)}>삭제</button></td>
                                             </tr>
                                         ))}
