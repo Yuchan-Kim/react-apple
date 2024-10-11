@@ -54,6 +54,19 @@ const CheckoutPage = () => {
   const [viewPickup, setViewPickup] = useState(false);
   const [selectedStore, setSelectedStore] = useState(null); // 선택된 매장 상태
   const [userAddress, setUserAddress] = useState(''); // 유저 주소 상태
+  const [expectedDeliveryDate, setExpectedDeliveryDate] = useState(''); // 예상 배송일 저장
+
+   /*---현재 날짜에서 3일 후의 날짜를 계산---*/
+   const calculateExpectedDeliveryDate = () => {
+    const currentDate = new Date();
+    currentDate.setDate(currentDate.getDate() + 3); // 3일을 더함
+    const options = { year: 'numeric', month: '2-digit', day: '2-digit' }; // 날짜 포맷 설정
+    return currentDate.toLocaleDateString('ko-KR', options).replace(/\./g, '/').trim(); // 포맷 변환
+  };
+
+  useEffect(() => {
+    setExpectedDeliveryDate(calculateExpectedDeliveryDate()); // 예상 배송일 설정
+  }, []);
 
   const navigate = useNavigate(); // 페이지 이동을 위한 useNavigate 훅 추가
 
@@ -324,7 +337,7 @@ const CheckoutPage = () => {
                 <div className="jm-shipping-bottom">
                   <div className="jm-shipping-info">
                     <div className='jm-d-date-box'>
-                      <p className='jm-d-date'>배송: 금 2024/10/04</p>
+                      <p className='jm-d-date'>배송:{expectedDeliveryDate}</p>
                       <p className='jm-d-date-p'>표준배송</p>
                     </div>
                     <div>
