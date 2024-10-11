@@ -211,3 +211,79 @@
     transform: translateY(-1px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
+
+/* 검색 */
+.hjy_header_with_buttons {
+    display: flex;
+    justify-content: space-between; /* 요소 간에 공간을 균등하게 분배 */
+    align-items: center; /* 세로 중앙 정렬 */
+    margin-bottom: 20px;
+}
+
+.hjy_search_form {
+    display: flex;
+    align-items: center; /* input과 검색 버튼을 수직으로 중앙 정렬 */
+    gap: 10px; /* input과 버튼 사이의 간격 */
+    position: relative;
+    top: -5px; /* input과 버튼을 위로 약간 올리기 */
+}
+
+.hjy_header_with_buttons h2 {
+    margin: 0;
+    padding: 0;
+}
+
+/* 키워드 입력창 */
+.hjy_search_form input {
+    width: 320px;
+    height: 35px;
+    border: 1px solid #d1d1d1;
+    border-radius: 8px;
+    padding-left: 10px;
+    background-color: #ffffff;
+    position: relative;
+    left: 80px; 
+}
+
+.hjy_header_with_buttons input:focus {
+    border: 1px solid #a2a2a2;
+    outline: none;
+}
+
+.hjy_search_form button {
+    border: none;
+    border-radius: 20px;
+    padding: 10px 15px;
+    cursor: pointer;
+    background-color: #0071e3;
+    color: white;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    position: relative;
+    left: 80px; 
+}
+
+.hjy_search_form button:hover {
+    background-color: #005bb5;
+}
+
+.hjy_add_product_btn {
+    margin-left: auto; 
+    padding: 10px 15px;
+    background-color: #0071e3;
+    color: white;
+    border-radius: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    position: relative;
+    top: -5px; /* 상품 등록 버튼을 위로 약간 올리기 */
+}
+
+.hjy_add_product_btn a {
+    color: white;
+    text-decoration: none;
+}
+
+.hjy_add_product_btn a:hover {
+    text-decoration: none;
+}

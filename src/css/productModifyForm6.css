@@ -279,10 +279,27 @@
 }
 
 /* 상품 상세 이미지 */
-#hjy-productDetail-imgs .hjy-productDetail-img {
-    float: left;
+.hjy-bodify-product-img {
+    display: flex;
+    flex-wrap: wrap; /* 세트들이 가로로 나란히 배치되고 공간이 부족하면 줄바꿈 */
+    justify-content: space-between; /* 세트 간의 공간을 적절히 배분 */
 }
 
-#hjy-productDetail-imgs .hjy-productDetail-img {
-    width: 40%;
+.hjy-image-container {
+    display: flex;
+    flex-direction: column; /* 한 세트는 위아래로 배치 */
+    align-items: center; /* 세로 중앙 정렬 */
+    margin: 10px; /* 세트 간의 간격 */
+    width: 45%; /* 한 세트의 너비 조정 */
+}
+
+.hjy-productDetail-img {
+    width: 200px; /* 원하는 고정된 너비로 설정 */
+    height: 200px; /* 원하는 고정된 높이로 설정 */
+    object-fit: cover; /* 이미지가 고정된 크기에 맞게 비율을 유지하며 자르기 */
+    margin-bottom: 10px; /* 이미지와 파일 선택 버튼 간격 */
+}
+
+.hjy-file-input-container {
+    text-align: center;
 }

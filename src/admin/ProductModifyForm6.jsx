@@ -144,6 +144,7 @@ const ProductAddForm6 = () => {
     return (
         <>
             <Header />
+
             <div id="wrap">
                 <div id="contents">
                     <div id="product_add" className="clearfix">
@@ -278,17 +279,18 @@ const ProductAddForm6 = () => {
                                     </form>
                                 </div>
 
+                                <div className="hjy-bodify-product-img">
                                 {/* 이미지를 표시하고 수정할 수 있는 부분 */}
                                 {productDetailList.map((imgs) => {
                                     return (
-                                        <div id="hjy-productDetail-imgs" key={imgs.imagePrimary}>
+                                        <div id="hjy-productDetail-imgs" key={imgs.imagePrimary} className="hjy-image-container">
                                             <img
                                                 className="hjy-productDetail-img"
                                                 src={`${process.env.REACT_APP_API_URL}/upload/${imgs.imageSavedName}`}
                                                 alt="상품사진"
                                             />
                                             {/* 이미지 수정 필드 추가 */}
-                                            <div>
+                                            <div className="hjy-file-input-container">
                                                 <input
                                                     type="file"
                                                     name={`imageSavedName${imgs.imagePrimary}`}
@@ -299,10 +301,12 @@ const ProductAddForm6 = () => {
                                     );
                                 })}
                             </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+
             <Footer />
         </>
     );

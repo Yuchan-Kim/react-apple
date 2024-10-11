@@ -10,10 +10,9 @@ import Footer from "../include/Footer";
 
 const ProductList = () => {
 
-    /*---라우터 관련-------------------------------*/
-    
     /*---상태관리 변수들(값이 변화면 화면 랜더링 )---*/
     const [productList, setProductList] = useState([]);
+    const [keyword, setKeyword] = useState(''); // 수정: keyword 초기값 설정
 
     const navigate = useNavigate();  // 페이지 이동을 위한 useNavigate 추가
     const authUser = JSON.parse(localStorage.getItem('authUser'));  // authUser 정보 가져오기
@@ -21,20 +20,25 @@ const ProductList = () => {
     // 관리자인지 확인하여 관리자 아닌 경우 리다이렉트
     useEffect(() => {
         if (!authUser || authUser.userStatus !== '관리자') {
-            // alert("관리자만 접근할 수 있습니다.");
             navigate("/");  // 메인 페이지로 리다이렉트
         }
     }, [authUser, navigate]);
 
-    /*---일반 변수--------------------------------*/
-    
     /*---일반 메소드 -----------------------------*/
-    
+
     /*---훅(useEffect)+이벤트(handle)메소드-------*/
-    const getProductList = () => {
+    const handleKeyword = (e) => {
+        setKeyword(e.target.value); // 수정: 키워드 상태 업데이트
+    };
+
+    // 상품 리스트 가져오기
+    const getProductList = (searchKeyword = '') => {
         axios({
             method: 'get',
             url: `${process.env.REACT_APP_API_URL}/api/productList`,
+            params: {
+                keyword: searchKeyword // 서버로 키워드 전달
+            },
             responseType: 'json',
         }).then(response => {
             console.log(response.data.apiData);
@@ -45,13 +49,11 @@ const ProductList = () => {
     };
 
     useEffect(() => {
-        // 컴포넌트가 마운트되면 시리즈 리스트 가져오기
-        getProductList();
+        getProductList(); // 컴포넌트가 마운트되면 기본 상품 리스트 가져오기
     }, []);
 
     // 상품 리스트 삭제
     const handleDeleteProduct = (productDetailNum) => {
-        // 삭제 확인 창
         const confirmDelete = window.confirm('정말 삭제하시겠습니까?');
       
         if (confirmDelete) {
@@ -59,12 +61,10 @@ const ProductList = () => {
             .delete(`${process.env.REACT_APP_API_URL}/api/delete/productList/${productDetailNum}`)
             .then(response => {
               if (response.data.result === 'success') {
-                // 삭제 성공 시
                 alert('삭제되었습니다.');
-                getProductList();
+                getProductList(); // 삭제 후에도 최신 목록을 불러옴
               } else {
-                // History 테이블에 해당 productDetailNum이 있으면 삭제 불가
-                alert(response.data.message); // 서버에서 반환된 메시지를 사용자에게 알림
+                alert(response.data.message);
               }
             })
             .catch(error => {
@@ -72,14 +72,19 @@ const ProductList = () => {
               alert('삭제 중 오류가 발생했습니다.');
             });
         }
-      };
-    
+    };
+
+    // 검색
+    const handleSearch = (e) => {
+        e.preventDefault();
+        getProductList(keyword); // 키워드를 이용하여 상품 목록 가져오기
+    };
+
     return (
         <>
             <Header/>
 
             <div id="wrap">
-
                 {/* 컨텐츠 */}
                 <div id="contents">
                     {/* product */}
@@ -97,17 +102,23 @@ const ProductList = () => {
                                 </ul>
                             </div>
                         </div>
-                    {/* //aside */}
+                        {/* //aside */}
 
-                    {/* 매장 리스트관련 내용 */}
-                    <div id="product_area">
-                        <div id="product_list" >
+                        {/* 매장 리스트관련 내용 */}
+                        <div id="product_area">
+                            <div id="product_list">
                             <div className="hjy_header_with_buttons">
                                 <h2>상품 관리</h2>
-                                <button type="button" className="hjy_add_product_btn"><Link to="/admin/product/add" rel="noreferrer noopener">상품 등록</Link></button>
+                                <form onSubmit={handleSearch} className="hjy_search_form">
+                                    <input type="text" value={keyword} placeholder="검색" onChange={handleKeyword}/>
+                                    <button type="submit">검색</button>
+                                </form>
+                                <button type="button" className="hjy_add_product_btn">
+                                    <Link to="/admin/product/add" rel="noreferrer noopener">상품 등록</Link>
+                                </button>
                             </div>
-                             {/* 반복 구간 - productList 데이터를 활용해 각 상품을 보여줌 */}
-                             {productList.map((product, index) => (
+                                {/* 반복 구간 - productList 데이터를 활용해 각 상품을 보여줌 */}
+                                {productList.map((product, index) => (
                                     <div id="product_item" className="clearfix" key={index}>
                                         <img id="store_Img" src={`${process.env.REACT_APP_API_URL}/upload/${product.imageSavedName}`} alt="상품이미지" />
                                         <div className="hjy_product_info">
@@ -118,29 +129,22 @@ const ProductList = () => {
                                             <p><strong>가격: </strong>{product.productPrice.toLocaleString()}원</p>
                                             <p><strong>용량: </strong>{product.storageSize}</p>
                                         </div>
-                                        {/* 수정폼 구현 안되어있음 */}
                                         <div className="hjy_edit_btns">
-                                            {/* <button type="button"> 
-                                                <Link to={`/admin/product/modify/${product.productDetailNum}`} rel="noreferrer noopener">수정</Link>
-                                            </button> */}
                                         </div>
                                         <div className="hjy_del_btn">
-                                        <button type="button" onClick={() => handleDeleteProduct(product.productDetailNum)}>삭제</button>
+                                            <button type="button" onClick={() => handleDeleteProduct(product.productDetailNum)}>삭제</button>
                                         </div>
                                     </div>
                                 ))}
                                 {/* //반복구간 */}
+                            </div>
+                            {/* //product_list */}
                         </div>
-                        {/* //product_list */}
-
+                        {/* product_area */}
                     </div>
-                    {/* product_area */}
-
-                    </div>
-                    {/* //product */}                    
+                    {/* product */}
                 </div>
                 {/* contents */}
-
             </div>
             <Footer/>
         </>
