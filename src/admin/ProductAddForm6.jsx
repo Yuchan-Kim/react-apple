@@ -211,6 +211,7 @@ const ProductAddForm6 = () => {
         });
     };
 
+    // 삭제
     const handleProductDetailDelete = (productDetailNum) => {
         if (!window.confirm("정말로 삭제하시겠습니까?")) return;
 
@@ -396,11 +397,11 @@ const ProductAddForm6 = () => {
                                             <td>{productDetail.displaySize}</td>
                                             <td>{productDetail.storageSize}</td>
                                             <td>{productDetail.productPrice}</td>
-                                            <td style={{ width: '60px' }} className="hjy-action-btn">
+                                            {/* <td style={{ width: '60px' }} className="hjy-action-btn">
                                                 <Link 
                                                     to={`/admin/product/modify6?productDetailNum=${productDetail.productDetailNum}`} rel="noreferrer noopener">수정
                                                 </Link>
-                                            </td>
+                                            </td> */}
                                             <td style={{ width: '60px' }} className="hjy-action-btn">
                                                 <button type="button" onClick={() => handleProductDetailDelete(productDetail.productDetailNum)}>삭제</button>
                                             </td>
