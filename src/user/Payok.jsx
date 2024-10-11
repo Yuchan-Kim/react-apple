@@ -23,7 +23,7 @@ const Payok = () => {
 
     axios({
       method: 'get', 			// put, post, delete                   
-      url: 'http://localhost:9000/api/user/payok',
+      url: `${process.env.REACT_APP_API_URL}/api/user/payok`,
       headers: {
         'Authorization': `Bearer ${token}`, 
       },
