@@ -214,7 +214,7 @@ const Mypage = () => {
                                                 관심상품이 없습니다.
                                             </div>
                                         ) : (
-                                            <div>
+                                            <>
                                                 {likeList.map((like, index) => (
                                                     <div className="DA-product-info" key={index}>
                                                         <img src={`${process.env.REACT_APP_API_URL}/upload/${imageSavedName}`} alt="상품사진" />
@@ -224,7 +224,7 @@ const Mypage = () => {
                                                         </div>
                                                     </div>
                                                 ))}
-                                            </div>
+                                            </>
                                         )
                                     }
 
@@ -252,17 +252,17 @@ const Mypage = () => {
                                                     구매내역이 없습니다.
                                                 </div>
                                             ) : (
-                                                <div>
+                                                <>
                                                     {purchaseList.map((purchase, index) => (
                                                         <div className="DA-purchaseList-info" key={index}>
-                                                            <img src={`${process.env.REACT_APP_API_URL}/upload/${imageSavedName}`} alt="상품사진" />
+                                                            <img src="{`${process.env.REACT_APP_API_URL}/upload/${imageSavedName}`}" alt="상품사진" />
                                                             <div className="DA-purchaseList-details">
                                                                 <h4>{purchase.productName}</h4>
                                                                 <p>{purchase.totalPrice}</p>
                                                             </div>
                                                         </div>
                                                     ))}
-                                                </div>
+                                                </>
                                         )
                                     }
                                         {/* <div className="DA-purchaseList-info">
