@@ -25,7 +25,7 @@ const SearchPage = () => {
     // 컴포넌트가 마운트되거나 keyword가 변경될 때마다 실행되는 Effect
     useEffect(() => {
         // 제품 검색 API 호출
-        axios.get(`http://${process.env.REACT_APP_API_URL}/api/search/products/${keyword}`)
+        axios.get(`${process.env.REACT_APP_API_URL}/api/search/products/${keyword}`)
             .then(response => {
                 console.log('제품 응답:', response);
                 const data = response.data;
@@ -39,7 +39,7 @@ const SearchPage = () => {
             });
 
         // 매장 검색 API 호출
-        axios.get(`http://${process.env.REACT_APP_API_URL}/api/search/stores/${keyword}`)
+        axios.get(`${process.env.REACT_APP_API_URL}/api/search/stores/${keyword}`)
             .then(response => {
                 console.log('매장 응답:', response);
                 const data = response.data;
@@ -53,7 +53,7 @@ const SearchPage = () => {
             });
 
         // 커뮤니티 검색 API 호출
-        axios.get(`http://${process.env.REACT_APP_API_URL}/api/search/communities/${keyword}`)
+        axios.get(`${process.env.REACT_APP_API_URL}/api/search/communities/${keyword}`)
             .then(response => {
                 console.log('커뮤니티 응답:', response);
                 const data = response.data;
