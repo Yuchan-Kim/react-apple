@@ -163,7 +163,7 @@
   align-content: stretch;
   justify-content: space-around;
   flex-wrap: nowrap;
-  width: 1000px;
+  width: 980px;
   position: absolute;
   margin-top: 35px;
   top: 100%;
@@ -184,12 +184,14 @@
   display: flex;
   align-items: center;
   border-bottom: 1px solid #ddd;
+
 }
 
 .hd-cart-item img {
   width: 50px;
   height: 50px;
   margin-right: 10px;
+  margin-bottom: 4px;;
 }
 
 .hd-cart-item p {
@@ -219,9 +221,8 @@
   background-color: #005bb5;
 }
 
-.profile-tag-tatle {
+.profile-tag-title {
   font-weight: bold;
-  padding-left: 40px;
 }
 
 .profile-tag ul {

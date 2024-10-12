@@ -125,7 +125,7 @@ const Header = () => {
                                                     <div key={index} className="hd-cart-item">
                                                         <img src={`${process.env.REACT_APP_API_URL}/upload/${cartVo.imageSavedName}`}alt = {cartVo.productName}/>
 
-                                                        <p>{cartVo.productName} {cartVo.storageSize} {cartVo.colorName} </p>
+                                                        <p>{cartVo.productName} </p>
                                                     </div>
                                                 ))}
                                                 {cartList.length > 4 && (
