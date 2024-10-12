@@ -246,3 +246,16 @@
     object-fit: cover; /* Ensures the image covers the area while maintaining aspect ratio */
     border-radius: 8px; /* Optional: add rounded corners for styling */
 }
+
+#admin_main .hjy-sections {
+    grid-column: 1 / -1;
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-height: 420px; /* 3개의 카드만 보이도록 높이 제한 */
+    overflow: hidden; /* 넘치는 부분 숨김 */
+}

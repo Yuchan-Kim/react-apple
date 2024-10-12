@@ -49,8 +49,8 @@ const AdminMain = () => {
             url: `${process.env.REACT_APP_API_URL}/api/productList3`,
             responseType: 'json'
         }).then(response => {
-            const limitedData = response.data.apiData.slice(-3);
-            setProductList(limitedData);
+           // const limitedData = response.data.apiData.slice(-3);
+            setProductList(response.data.apiData);
         }).catch(error => {
             console.log(error);
         });
@@ -200,7 +200,7 @@ const AdminMain = () => {
                             </div>
 
                             {/* Product Management Summary */}
-                            <div className="hjy-section">
+                            <div className="hjy-sections">
                                 <div className="hjy-header">
                                     <h3>상품 관리</h3>
                                     <Link to="/admin/product" rel="noreferrer noopener">더보기</Link>
