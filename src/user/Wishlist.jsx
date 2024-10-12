@@ -145,9 +145,9 @@ const Wishlist = () => {
                     <img src={`${process.env.REACT_APP_API_URL}/upload/${item.imageSavedName}`} alt={item.productName !== 'N/A' ? item.productName : '관심 상품'}/>
                   </div>
                   <div className="jm-product-details">
-                    {item.productName !== 'N/A' && <span className="jm-product-detail">{item.productName}</span>}
-                    {item.storageSize !== 'N/A' && <span className="jm-product-detail">{item.storageSize}</span>}
-                    {item.colorName !== 'N/A' && <span className="jm-product-detail">{item.colorName}</span>}
+                    {item.productName !== 'N/A' && <span className="jm-wish-product-detail">{item.productName}</span>}
+                    {item.storageSize !== 'N/A' && <span className="jm-wish-product-detail">{item.storageSize}</span>}
+                    {item.colorName !== 'N/A' && <span className="jm-wish-product-detail">{item.colorName}</span>}
                   </div>
                 </div>
               )) : (

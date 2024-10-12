@@ -127,7 +127,7 @@
 }
 
 /* 제품 상세 정보 스타일 */
-.jm-product-details {
+.jm-wish-product-details {
   display: block; /* 기본 블록 레이아웃 */
   text-align: left; /* 왼쪽 정렬 */
   margin-top: 10px; /* 상단 간격 추가 */

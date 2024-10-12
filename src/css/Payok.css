@@ -102,8 +102,23 @@
   }
 
   .jm-pickup-StoreAddress-info {
-    margin-top: 150px;
+    margin-top: 100px;
+    text-align: left;
+    margin-right: 20px;
   }
+
+  .jm-span-tatle {
+    font-weight: bold;
+    color: #9a9a9a;
+  }
+
+  .jm-pickup-StoreAddress-info p {
+    font-size: 13px;
+    font-weight: bold;
+    color: #9a9a9a;
+  }
+
+
 
   .jm-order-number {
     margin-bottom: 20px;
@@ -150,4 +165,12 @@
       padding-top: 15px;
     }
   
+    .jm-payment-info-StoreMApImg {
+      width: 400px;
+    }
+
+    .jm-payment-info-StoreMApImg img {
+      width: 100%;
+    }
+
   

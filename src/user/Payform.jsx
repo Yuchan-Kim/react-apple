@@ -393,9 +393,7 @@ const CheckoutPage = () => {
                         onClick={() => handleStoreClick(storeVo.storeNum)}
                         style={{
                           border: selectedStore === storeVo.storeNum ? '1px solid #0071e3' : '1px solid gray',
-                          padding: '10px',
-                          margin: '10px 0',
-                          cursor: 'pointer'
+                          
                         }}
                       >
                         <div className="jm-pickup-store-details">

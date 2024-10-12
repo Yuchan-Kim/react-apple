@@ -18,10 +18,10 @@ const Wishlist = () => {
     ];
 
     const handleIphone16ProClick = () => {
-        navigate(`/purchase/1208`);
+        navigate(`/purchase/128`);
     };
     const handleIphone16Click = () => {
-        navigate(`/purchase/1148`);
+        navigate(`/purchase/98`);
     };
 
     useEffect(() => {

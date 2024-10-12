@@ -344,6 +344,27 @@ const Cart = () => {
               </div>
             </div>
           </section>
+
+          <section className="jm-recommended-x">
+        <h2 className="jm-section-title">마음에 들 만한 액세서리</h2>
+        <div className="jm-accessory-list">
+        {acceList.map((acceVo) => (
+          <div className="jm-accessory-item" key={acceVo.productDetailNum}>
+            <img
+              src={`${process.env.REACT_APP_API_URL}/upload/${acceVo.imageSavedName}`}
+              alt={acceVo.imageSavedName}
+              className="jm-accessory-image"
+            />
+            <p>{acceVo.productName}</p>
+            <p>₩{acceVo.productPrice.toLocaleString()}</p>
+            <button className="jm-add-to-cart-button" onClick={() => handleAddToCart(acceVo)}>
+              장바구니에 담기
+            </button>
+          </div>
+        ))}
+        </div>
+        <Link to="/mainlistacc" className="jm-more-products-button">더 많은 제품</Link>
+      </section>
         </div>
       </div>
       <Footer/>
