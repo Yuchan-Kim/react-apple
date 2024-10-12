@@ -110,13 +110,15 @@ const SearchPage = () => {
                                 products.map((product) => (
                                     <div key={product.productNum} className="yc-product-item">
                                         {/* 제품 이미지 */}
-                                        <img src={`${process.env.REACT_APP_API_URL}/upload/${product.imageSavedName}`}alt = {product.productName}/>
+                                        <img src={`${process.env.REACT_APP_API_URL}/upload/${product.imageSavedName}`} alt={product.productName} />
                                         {/* 제품 이름 */}
                                         <h3>{product.productName}</h3>
                                         {/* 제품 가격 */}
                                         <p>{(product.productPrice).toLocaleString()}원 부터</p>
-                                        {/* 제품 상세 페이지 링크 */}
-                                        <Link to={`/purchase/${product.productNum}`}>자세히 보기</Link>
+                                        {/* 제품 상세 페이지 링크 - 조건부로 경로 설정 */}
+                                        <Link to={product.seriesName === '악세사리' ? `/purchaseacc/${product.productDetailNum}` : `/purchase/${product.productNum}`}>
+                                            자세히 보기
+                                        </Link>
                                     </div>
                                 ))
                             ) : (
