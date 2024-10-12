@@ -1,97 +1,241 @@
+/* Wishlist.css */
+
+/* 기본 컨테이너 스타일 */
+.jm-wishlist-container {
+  max-width: 60%;
+  margin: 40px auto; /* 상하 간격 증가 */
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 12px; /* 모서리 둥글게 */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* 섬세한 그림자 추가 */
+  transition: box-shadow 0.3s ease;
+}
+
+.jm-wishlist-container:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); /* 호버 시 그림자 강화 */
+}
+
+/* 제목 스타일 */
+.jm-title {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 2.5rem; /* 폰트 크기 증가 */
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+/* 설명 텍스트 스타일 */
+.jm-description {
+  color: #666;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+/* 섹션 스타일 */
+.jm-wishlist-section {
+  margin-top: 30px;
+}
+
+/* 섹션 헤더 스타일 */
+.jm-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.jm-section-header h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #333;
+}
+
+/* 편집 링크 스타일 */
+.jm-edit-link {
+  font-size: 1rem;
+  color: #0071e3;
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+  transition: color 0.3s ease;
+  cursor: pointer; /* 클릭 가능 표시 */
+}
+
+.jm-edit-link::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background: #0071e3;
+  transition: width 0.3s;
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+}
+
+.jm-edit-link:hover {
+  color: #005bb5;
+}
+
+.jm-edit-link:hover::after {
+  width: 100%;
+}
+
+/* 그리드 레이아웃 변경 */
+.jm-wish-item {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* 반응형 그리드 */
+  gap: 25px; /* 간격 증가 */
+  justify-content: center;
+  align-items: start;
+  text-align: center;
+}
+
+/* 관심 목록 비어있을 때 메시지 스타일 */
+.jm-null-list {
+  font-size: 1rem;
+  color: #999;
+  text-align: center;
+  padding: 20px;
+}
+
+/* 제품 아이템 스타일 */
+.jm-product-item {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s, box-shadow 0.3s;
+  display: flex; /* 자식 요소를 flex 컨테이너로 설정 */
+  flex-direction: column; /* 세로 방향 정렬 */
+  align-items: center; /* 자식 요소 가운데 정렬 */
+}
+
+.jm-product-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* 제품 이미지 스타일 */
+.jm-product-item-img {
+  width: 100%;
+  height: 150px; /* 고정된 높이 */
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  overflow: hidden; /* 이미지가 컨테이너를 벗어나지 않도록 */
+  position: relative;
+}
+
+.jm-product-item-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+/* 제품 상세 정보 스타일 */
+.jm-product-details {
+  display: block; /* 기본 블록 레이아웃 */
+  text-align: left; /* 왼쪽 정렬 */
+  margin-top: 10px; /* 상단 간격 추가 */
+}
+
+.jm-product-detail {
+  display: inline-block; /* 인라인 블록으로 설정 */
+  
+  font-size: 0.9rem; /* 폰트 크기 */
+  text-align: center;
+  margin-right: 10px; /* 오른쪽 간격 추가 */
+  margin-bottom: 5px; /* 하단 간격 추가 */
+  /* 애니메이션과 호버 효과 제거 */
+}
+
+.jm-product-detail:last-child {
+  margin-right: 0; /* 마지막 항목의 오른쪽 간격 제거 */
+}
+
+/* 호버 효과 제거 */
+.jm-product-detail:hover {
+  background-color: #f0f0f0;
+  color: #555;
+}
+
+/* 위시리스트 정보 섹션 스타일 */
+.jm-wishlist-info {
+  text-align: left;
+  color: #555;
+  line-height: 1.8;
+  margin-top: 30px;
+}
+
+.jm-wishlist-info p {
+  margin-bottom: 15px;
+  font-size: 1rem;
+}
+
+/* 상세 링크 스타일 */
+.jm-detail-link {
+  color: #0071e3;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  position: relative;
+  transition: color 0.3s ease;
+  cursor: pointer; /* 클릭 가능 표시 */
+}
+
+.jm-detail-link::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background: #0071e3;
+  transition: width 0.3s;
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+}
+
+.jm-detail-link:hover {
+  color: #005bb5;
+}
+
+.jm-detail-link:hover::after {
+  width: 100%;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 1200px) {
   .jm-wishlist-container {
-    max-width: 60%;
-    margin: 0 auto;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-  }
-  
-  .jm-title {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  
-  .jm-description {
-    color: #555;
-    font-size: 1.1rem;
-    line-height: 1.5;
-  }
-  
-  .jm-wishlist-section {
-    margin-top: 20px;
-  }
-  
-  .jm-section-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .jm-section-header h2 {
-    font-size: 1.5rem;
-    font-weight: bold;
-  }
-  
-  .jm-edit-link {
-    font-size: 1rem;
-    color: #0071e3;
-    text-decoration: none;
-  }
-  
-  .jm-product-list {
-    display: flex;
-    gap: 20px;
-    margin-bottom: 20px;
+    max-width: 80%;
   }
 
   .jm-wish-item {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* 최소 150px 크기의 셀을 만들고, 자동으로 채워짐 */
-    gap: 20px; /* 그리드 아이템 사이에 간격 */
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .jm-wishlist-container {
+    max-width: 95%;
+    padding: 20px;
   }
 
-  .jm-null-list {
-    font-size: 15px;
+  .jm-wish-item {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   }
 
-  .jm-product-item {
-    margin-bottom: 40px;
-    width: 100px;
-    height: 100px;;
-    object-fit: cover; 
+  .jm-title {
+    font-size: 2rem;
   }
-  
-  .jm-product-item span {
-    font-size: 17px;
-    font-weight: bold;
+
+  .jm-section-header h2 {
+    font-size: 1.3rem;
   }
-  
-  .jm-product-item-img {
-    
-   /* 이미지 비율을 유지하며 고정된 크기에 맞춰 자름 */
-    margin-bottom: 10px;
-    border-radius: 8px; /* 이미지 모서리 둥글게 */
-    margin-bottom: 10px;
+
+  .jm-description {
+    font-size: 1rem;
   }
-  
-  .jm-wishlist-info {
-    text-align: left;
-    color: #555;
-    line-height: 1.6;
-  }
-  
-  .jm-wishlist-info p {
-    margin-bottom: 10px;
-  }
-  
-  .jm-detail-link {
-    color: #0071e3;
-    text-decoration: none;
-    font-weight: bold;
-  }
-  
+}

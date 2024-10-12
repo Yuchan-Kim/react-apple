@@ -244,7 +244,12 @@ const Cart = () => {
             
               <div className="jm-item-info">
                 <div className="jm-item-details">
-                  <div className='jm-item-name'><h2> {cartVo.productName} {cartVo.storageSize} {cartVo.colorName} </h2></div>
+                  <div className='jm-item-name'>
+                  <h2>
+                        {cartVo.productName !== 'N/A' && cartVo.productName} 
+                        {cartVo.storageSize !== 'N/A' && ` ${cartVo.storageSize}`} 
+                        {cartVo.colorName !== 'N/A' && ` ${cartVo.colorName}`}
+                      </h2></div>
                   <div className='jm-item-options'>
                     <select
                       value={quantities[index]}  // 서버에서 받은 수량을 기본값으로 설정

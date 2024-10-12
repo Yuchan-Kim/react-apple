@@ -2,15 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-// css import
-import '../css/Wishlist.css'; // CSS 파일 import
+// CSS import
+import '../css/Wishlist.css';
 import Header from '../include/Header'; 
 import Footer from '../include/Footer';
 
-
 const Wishlist = () => {
   const [wishlistItems, setWishlistItems] = useState([]);
-  const navigate =useNavigate();
+  const navigate = useNavigate();
 
   // 관심 목록 데이터를 가져오는 함수
   const fetchWishlistItems = () => {
@@ -66,44 +65,42 @@ const Wishlist = () => {
     });
   };
 
-
   // 장바구니에 모든 관심 상품 담기 핸들러
-const handleAddAllToCart = () => {
-  const token = localStorage.getItem('token');
+  const handleAddAllToCart = () => {
+    const token = localStorage.getItem('token');
 
-  if (!token) {
-    console.log("토큰이 없습니다. 로그인하세요.");
-    return;  // 오류가 있으면 함수 중단
-  }
+    if (!token) {
+      console.log("토큰이 없습니다. 로그인하세요.");
+      return;  // 오류가 있으면 함수 중단
+    }
 
-  // 모든 관심 상품을 장바구니에 추가하는 요청
-  const addToCartPromises = wishlistItems.map(item => {
-    return axios({
-      method: 'post',
-      url: `${process.env.REACT_APP_API_URL}/api/user/wishtocart`,
-      headers: {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json'
-      },
-      data: {
-        productDetailNum: item.productDetailNum,  // 각 상품의 productDetailNum 사용
-      }
+    // 모든 관심 상품을 장바구니에 추가하는 요청
+    const addToCartPromises = wishlistItems.map(item => {
+      return axios({
+        method: 'post',
+        url: `${process.env.REACT_APP_API_URL}/api/user/wishtocart`,
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+        data: {
+          productDetailNum: item.productDetailNum,  // 각 상품의 productDetailNum 사용
+        }
+      });
     });
-  });
 
-  // 모든 요청이 완료되면 새로고침
-  Promise.all(addToCartPromises)
-    .then(responses => {
-      // 모든 응답이 성공적으로 처리되었을 때
-      console.log("모든 관심 상품을 장바구니에 추가했습니다.");
-      window.location.reload();  // 새로고침
-    })
-    .catch(error => {
-      // 오류 처리
-      console.log("장바구니 추가 실패", error);
-    });
-};
-
+    // 모든 요청이 완료되면 새로고침
+    Promise.all(addToCartPromises)
+      .then(responses => {
+        // 모든 응답이 성공적으로 처리되었을 때
+        console.log("모든 관심 상품을 장바구니에 추가했습니다.");
+        window.location.reload();  // 새로고침
+      })
+      .catch(error => {
+        // 오류 처리
+        console.log("장바구니 추가 실패", error);
+      });
+  };
 
   // 페이지 로드시 관심 목록 데이터를 가져옴
   useEffect(() => {
@@ -139,19 +136,23 @@ const handleAddAllToCart = () => {
             <div className="jm-wish-item">
               {/* 반복되는 제품 아이템 */}
               {wishlistItems.length > 0 ? wishlistItems.map((item, index) => (
-                <div className="jm-product-item" key={index}>
+                <div 
+                  className="jm-product-item" 
+                  key={item.productDetailNum}
+                  style={{ '--animation-delay': `${index * 0.1}s` }}
+                >
                   <div className="jm-product-item-img">
-                    <img key={index} src={`${process.env.REACT_APP_API_URL}/upload/${item.imageSavedName}`}alt = {item.imageSavedName}/>
+                    <img src={`${process.env.REACT_APP_API_URL}/upload/${item.imageSavedName}`} alt={item.productName}/>
                   </div>
-                  <span>{item.productName}</span>
-                  <span>{item.storageSize}</span>
-                  <span>{item.colorName}</span>
-
+                  <div className="jm-product-details">
+                    {item.productName !== 'N/A' && <span className="jm-product-detail">{item.productName}</span>}
+                    {item.storageSize !== 'N/A' && <span className="jm-product-detail">{item.storageSize}</span>}
+                    {item.colorName !== 'N/A' && <span className="jm-product-detail">{item.colorName}</span>}
+                  </div>
                 </div>
               )) : (
                 <p className='jm-null-list'>관심 목록에 담긴 제품이 없습니다.</p>
               )}
-              
             </div>
 
             <div className="jm-wishlist-info">
