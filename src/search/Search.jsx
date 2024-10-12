@@ -116,7 +116,7 @@ const SearchPage = () => {
                                         {/* 제품 가격 */}
                                         <p>{(product.productPrice).toLocaleString()}원 부터</p>
                                         {/* 제품 상세 페이지 링크 - 조건부로 경로 설정 */}
-                                        <Link to={product.seriesName === '악세사리' ? `/purchaseacc/${product.productDetailNum}` : `/purchase/${product.productNum}`}>
+                                        <Link to={product.seriesName === '악세사리' ? `/purchaseacc/${product.productDetailNum}` : `/purchase/${product.productDetailNum}`}>
                                             자세히 보기
                                         </Link>
                                     </div>
