@@ -123,7 +123,8 @@ const Header = () => {
                                             <div className="hd-cart-items">
                                                 {cartList.slice(0, 4).map((cartVo, index) => (
                                                     <div key={index} className="hd-cart-item">
-                                                        <img src={cartVo.imageSavedName} alt={cartVo.imageSavedName} />
+                                                        <img src={`${process.env.REACT_APP_API_URL}/upload/${cartVo.imageSavedName}`}alt = {cartVo.productName}/>
+
                                                         <p>{cartVo.productName} {cartVo.storageSize} {cartVo.colorName} </p>
                                                     </div>
                                                 ))}
