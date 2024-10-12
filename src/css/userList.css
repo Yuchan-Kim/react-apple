@@ -6,8 +6,6 @@
 /* #user 레이아웃 수정 */
 #user {
     margin: 20px auto;
-    width: 100%;
-    max-width: 1200px; /* 헤더의 로고와 맞추기 위해 최대 너비 설정 */
     padding: 20px 20px; /* 양쪽에 약간의 패딩을 추가해 정돈된 느낌 */
     margin-bottom: 100px;
 }

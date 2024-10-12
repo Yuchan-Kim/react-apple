@@ -125,7 +125,7 @@ const handleAddAllToCart = () => {
           </header>
 
           {/* 관심 제품 섹션 */}
-          <section className="jm-wishlist-sec`  tion">
+          <section className="jm-wishlist-section">
             <div className="jm-section-header">
               <h2>관심 제품</h2>
               <Link 

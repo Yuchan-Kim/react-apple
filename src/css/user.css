@@ -21,7 +21,7 @@
 /* 회원가입폼 ***************************************************/
 /****************************************************************/
 #user {
-    max-width: 800px;
+    
     margin: 0 auto; /* 자동 마진으로 수평 중앙 정렬 */
 }
 
@@ -74,7 +74,6 @@
 
 /* 중복체크 */
 #user #joinForm .DA-form-group .DA-idcheck {
-    margin-left: 10px;
     background-color: #0071e3;
     color: white;
     height: 37px;
@@ -288,7 +287,8 @@
     color: white;
     width: 100px; /* 고정 너비 설정 */
     border-radius: 30px;
-    margin-left: 30px;
+    margin-left: 20px;
+    
     cursor: pointer;
     border: none; /* 테두리 제거 */
     text-align: center;
