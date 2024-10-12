@@ -388,10 +388,12 @@ body.yc-modal-open footer {
 
 /* Ensure sections take up equal width and are centered */
 .yc-modal-footer-section {
-    text-align: center;
     font-size: 14px;
-    padding: 10px;
+    padding-left: 100px;
+    padding-right: 10px;
     flex-basis: 30%;
+    align-items: center;
+    display:flex;
 }
 
 /* Close button styling */

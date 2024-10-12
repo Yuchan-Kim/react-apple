@@ -4,35 +4,24 @@ import axios from 'axios';
 
 import Header from '../include/Header';
 import Footer from '../include/Footer';
+import { FaCheckCircle, FaCreditCard, FaTruck } from 'react-icons/fa';
 
 import '../css/mainList.css';
 
 // Define the feature data for each product
 const featuresData = {
+    'iPhone SE': ['11.9cm Retina HD 디스플레이', 'A15 Bionic 칩 탑재', '고속 다운로드 및 스트리밍', '12MP 카메라', 'Touch ID 홈 버튼'],
+    'iPhone 14': ['15.5cm Super Retina XDR 디스플레이', 'A16 Bionic 칩 탑재', '듀얼 카메라 시스템', '5G 연결', 'Face ID'],
+    'iPhone 14 Plus': ['17.0cm Super Retina XDR 디스플레이', 'A16 Bionic 칩 탑재', '듀얼 카메라 시스템', '5G 연결', 'Face ID'],
+    'iPhone 15': ['15.5cm Super Retina XDR 디스플레이', 'A18 Bionic 칩 탑재', 'Pro 카메라 시스템', '5G 연결', 'Face ID'],
+    'iPhone 15 Plus': ['17.0cm Super Retina XDR 디스플레이', 'A18 Bionic 칩 탑재', 'Pro 카메라 시스템', '5G 연결', 'Face ID'],
     'iPhone 16': ['16.5cm Super Retina XDR 디스플레이', 'A18 Bionic 칩 탑재', 'Pro 카메라 시스템', '5G 연결', 'Face ID'],
     'iPhone 16 Plus': ['17.0cm Super Retina XDR 디스플레이', 'A18 Bionic 칩 탑재', 'Pro 카메라 시스템', '5G 연결', 'Face ID'],
     'iPhone 16 Pro': ['15.5cm Super Retina XDR 디스플레이', 'A18 Pro 칩 탑재', 'ProMotion 기술', '5G 연결', 'Face ID'],
     'iPhone 16 Pro Max': ['17.0cm Super Retina XDR 디스플레이', 'A18 Pro 칩 탑재', 'ProMotion 기술', '5G 연결', 'Face ID'],
-    'iPhone 15': ['15.5cm Super Retina XDR 디스플레이', 'A16 Bionic 칩 탑재', '듀얼 카메라 시스템', '5G 연결', 'Face ID'],
-    'iPhone 15 Plus': ['17.0cm Super Retina XDR 디스플레이', 'A16 Bionic 칩 탑재', '듀얼 카메라 시스템', '5G 연결', 'Face ID'],
-    'iPhone 15 Pro': ['15.5cm Super Retina XDR 디스플레이', 'A17 Pro 칩 탑재', 'Pro 카메라 시스템', 'ProMotion 기술', '5G 연결'],
-    'iPhone 15 Pro Max': ['17.0cm Super Retina XDR 디스플레이', 'A17 Pro 칩 탑재', 'Pro 카메라 시스템', 'ProMotion 기술', '5G 연결'],
-    'iPhone 14': ['15.5cm Super Retina XDR 디스플레이', 'A15 Bionic 칩 탑재', '듀얼 카메라 시스템', '5G 연결', 'Face ID'],
-    'iPhone 14 Plus': ['17.0cm Super Retina XDR 디스플레이', 'A15 Bionic 칩 탑재', '듀얼 카메라 시스템', '5G 연결', 'Face ID'],
-    'iPhone 14 Pro': ['15.5cm Super Retina XDR 디스플레이', 'A16 Bionic 칩 탑재', 'Pro 카메라 시스템', 'ProMotion 기술', '5G 연결'],
-    'iPhone 14 Pro Max': ['17.0cm Super Retina XDR 디스플레이', 'A16 Bionic 칩 탑재', 'Pro 카메라 시스템', 'ProMotion 기술', '5G 연결'],
-    'iPhone 13': ['15.4cm Super Retina XDR 디스플레이', 'A15 Bionic 칩 탑재', '듀얼 카메라 시스템', '5G 연결', 'Face ID'],
-    'iPhone 13 mini': ['13.7cm Super Retina XDR 디스플레이', 'A15 Bionic 칩 탑재', '듀얼 카메라 시스템', '5G 연결', 'Face ID'],
-    'iPhone 13 Pro': ['15.5cm Super Retina XDR 디스플레이', 'A15 Bionic 칩 탑재', 'Pro 카메라 시스템', 'ProMotion 기술', '5G 연결'],
-    'iPhone 13 Pro Max': ['17.0cm Super Retina XDR 디스플레이', 'A15 Bionic 칩 탑재', 'Pro 카메라 시스템', 'ProMotion 기술', '5G 연결'],
-    'iPhone 12': ['15.4cm Super Retina XDR 디스플레이', 'A14 Bionic 칩 탑재', '듀얼 카메라 시스템', '5G 연결', 'Face ID'],
-    'iPhone 12 mini': ['13.7cm Super Retina XDR 디스플레이', 'A14 Bionic 칩 탑재', '듀얼 카메라 시스템', '5G 연결', 'Face ID'],
-    'iPhone 12 Pro': ['15.5cm Super Retina XDR 디스플레이', 'A14 Bionic 칩 탑재', 'Pro 카메라 시스템', 'ProMotion 기술', '5G 연결'],
-    'iPhone 12 Pro Max': ['17.0cm Super Retina XDR 디스플레이', 'A14 Bionic 칩 탑재', 'Pro 카메라 시스템', 'ProMotion 기술', '5G 연결'],
-    'iPhone SE3': ['11.9cm Retina HD 디스플레이', 'A15 Bionic 칩 탑재', '고속 다운로드 및 스트리밍', '12MP 카메라', 'Touch ID 홈 버튼'],
-    'iPhone SE2': ['11.9cm Retina HD 디스플레이', 'A13 Bionic 칩 탑재', '고속 다운로드 및 스트리밍', '12MP 카메라', 'Touch ID 홈 버튼'],
-    'iPhone SE1': ['10.2cm Retina 디스플레이', 'A9 칩 탑재', '12MP 카메라', '4G LTE', 'Touch ID 홈 버튼'],
 };
+
+
 
 const MainList = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -411,10 +400,10 @@ const MainList = () => {
                                 </div>
                                 {/* Dynamic features based on product name */}
                                 <ul className="yc-features">
-                                    {featuresData[selectedProduct.productName.toLowerCase()] ? (
-                                        featuresData[selectedProduct.productName.toLowerCase()].map((feature, index) => (
+                                    {featuresData[selectedProduct.productName] ? (
+                                        featuresData[selectedProduct.productName].map((feature, index) => (
                                             <li key={index}>
-                                                <img src="/path/to/icon1.png" alt="icon" /> {feature}
+                                                <FaCheckCircle style={{ color: 'green', marginRight: '8px' }} /> {feature}
                                             </li>
                                         ))
                                     ) : (
@@ -436,19 +425,22 @@ const MainList = () => {
                                 </div>
                         </div>
                         <div className="yc-modal-footer">
-                        <div className="yc-modal-footer-section">
-                            <p>
-                                <img src="/mnt/data/A_set_of_two_modern_and_minimalist_icons._The_firs.png" alt="icon1" style={{ width: '20px', height: '20px' }} />
-                                할부 방식: 무이자 구매
-                            </p>
+                            <div className="yc-modal-footer-section">
+                                <p>
+                                    <FaCreditCard style={{ width: '20px', height: '20px', marginRight: '8px' }} />
+                                   
+                                </p>
+                                <p> 할부 방식: 무이자 구매</p>
+                            </div>
+                            <div className="yc-modal-footer-section">
+                                <p>
+                                    <FaTruck style={{ width: '20px', height: '20px', marginRight: '8px' }} />
+                                    
+                                </p>
+                                <p>무료 익일 배송: 오후 3시 이전 주문 시</p>
+                            </div>
                         </div>
-                        <div className="yc-modal-footer-section">
-                            <p>
-                                <img src="/mnt/data/A_set_of_two_modern_and_minimalist_icons._The_firs.png" alt="icon2" style={{ width: '20px', height: '20px' }} />
-                                무료 익일 배송: 오후 3시 이전 주문 시
-                            </p>
-                        </div>
-                        </div>
+
                     </div>
 
                    
