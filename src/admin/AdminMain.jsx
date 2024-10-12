@@ -46,7 +46,7 @@ const AdminMain = () => {
     const getProductList = () => {
         axios({
             method: 'get', 
-            url: `${process.env.REACT_APP_API_URL}/api/productList`,
+            url: `${process.env.REACT_APP_API_URL}/api/productList3`,
             responseType: 'json'
         }).then(response => {
             const limitedData = response.data.apiData.slice(-3);
@@ -212,6 +212,7 @@ const AdminMain = () => {
                                                 <img id="sotre_Img" src={`${process.env.REACT_APP_API_URL}/upload/${product.imageSavedName}`} alt="상품이미지" />
                                                 <div className="hjy-detail">                                                        
                                                     <p>{product.productName}</p>
+                                                    <p>{product.storageSize}</p>
                                                 </div>
                                             </div>
                                         );
