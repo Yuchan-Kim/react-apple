@@ -39,7 +39,6 @@
 #user #joinForm {
     text-align: center;
     margin-top: 30px;
-    margin-left: 500px; /* 최소 왼쪽 마진 */
     margin-right: 300px; /* 최소 오른쪽 마진 */
     box-sizing: border-box; /* 패딩을 포함하여 너비 계산 */
     margin: 0 auto; /* 자동 마진으로 수평 중앙 정렬 */
@@ -69,7 +68,8 @@
 
 /* 아이디 */
 #user #joinForm .DA-form-group .DA-id {
-    width: 80%;
+    width: 70%;
+    float: left;
 }
 
 /* 중복체크 */
@@ -78,8 +78,10 @@
     background-color: #0071e3;
     color: white;
     height: 37px;
+    
+    margin-left: 65px;
     width: 70px;
-    border-radius: 5px;
+    border-radius: 20px;
     cursor: pointer; /* 마우스 포인터 변경 */
     border: none; /* 테두리 제거 */ 
 }
@@ -91,8 +93,8 @@
 /* 암호체크 글씨 */
 #user #joinForm .DA-form-group #DA-message {
     text-align: left;
-    margin: 3px 0px;
 }
+
 #user #joinForm .DA-form-group #DA-message #Da-F-message{
     color: rgb(233, 69, 69);
 }
@@ -102,7 +104,7 @@
 #user #joinForm .DA-form-group #tel-txt {
     font-size: 12px;
     line-height: 1.5; /* 원하는 줄간격으로 조절 */
-    text-align: left; /* 텍스트 왼쪽 정렬 */
+    text-align: center; /* 텍스트 왼쪽 정렬 */
     margin-top: 10px;
 }
 
@@ -270,7 +272,27 @@
     height: 230px; /* max-height 3개의 카드만 보이도록 높이 제한 */
     overflow: hidden; /* 넘치는 부분 숨김 */
 }
+/* 아이디와 중복체크 버튼을 한 줄에 배치하고, 버튼을 오른쪽에 붙이기 */
+#user #joinForm .DA-form-group.id-check-group {
+    display: flex;
+    align-items: center; /* 수직 중앙 정렬 */
+    justify-content: space-between; /* 아이디 입력과 중복체크 버튼 사이 공간 확보 */
+    width: 480px; /* 고정 너비 설정 */
+    margin: 30px auto; /* 위아래 마진 조정 및 수평 중앙 정렬 */
+}
 
+
+
+#user #joinForm .DA-form-group.id-check-group .DA-idcheck {
+    background-color: #0071e3;
+    color: white;
+    width: 100px; /* 고정 너비 설정 */
+    border-radius: 30px;
+    margin-left: 30px;
+    cursor: pointer;
+    border: none; /* 테두리 제거 */
+    text-align: center;
+}
 .DA-favorite-section, .DA-purchaseList-section {
     background-color: white;
     padding: 0px 20px;

@@ -348,7 +348,7 @@ const handleAddToLiked = (acceVo) => {
                   >
                     <p>
                       {model.productName}<br />
-                      <span>{model.displaySize} 디스플레이</span>
+                      <span>{model.displaySize} </span>
                     </p>
                     <p className="yc-modelPrice">₩{(model.productPrice).toLocaleString()}부터</p>
                   </div>

@@ -1,6 +1,6 @@
 /* 상단 및 하단 헤더 스타일 */
 .yc-apple-header {
-  background-color: #f7f7f7;
+  background-color: #ffffff;
   width: 100%; /* 전체 화면 너비 */
   z-index: 1050;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -26,9 +26,6 @@
   height: 16px; /* 로고 크기를 줄임 */
 }
 
-.yc-dropdown-menu ul{
-
-}
 
 /* 검색창을 중앙에 배치 */
 .yc-search-bar {
@@ -45,7 +42,7 @@
   padding: 6px 35px 6px 12px;
   border: 1px solid #d2d2d7;
   border-radius: 20px;
-  background-color: #f1f1f1;
+  background-color: #f5f5F7;
   font-size: 12px;
   outline: none;
   transition: all 0.3s ease;
@@ -84,6 +81,7 @@
   font-size: 12px;
   padding: 4px 12px;
   border: 1px solid #d2d2d7;
+  background-color: #ffffff;
   border-radius: 16px;
 }
 
@@ -107,7 +105,7 @@
 
 /* 하단 헤더 네비게이션 스타일 */
 .yc-header-bottom {
-  background-color: #f7f7f7;
+  background-color:#ffffff;
   padding: 8px 0;
   width: 58%; /* 하단 헤더의 너비를 70%로 설정 */
   margin: 0 auto; /* 중앙 정렬 */
@@ -171,7 +169,7 @@
   top: 100%;
   right: 0;
    /* This will ensure the dropdown is as wide as the header */
-  background-color: #f7f7f7;
+  background-color: #ffffff;
   border: 1px solid #ddd;
   border-radius: 0 0 5px 5px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);

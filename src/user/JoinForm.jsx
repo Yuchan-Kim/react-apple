@@ -167,7 +167,7 @@ const JoinForm = () => {
                                 <form action='' method='' onSubmit={handleJoin}> 
 
                                     {/* 아이디 */}
-                                    <div className='DA-form-group' >
+                                    <div className='DA-form-group id-check-group'>
                                         <input type='text' id='' className='DA-id' value={userId} onChange={handleId} placeholder='아이디' />
                                         <button type='button' className='DA-idcheck' onClick={handleCheck} >중복체크</button> 
                                     </div>
