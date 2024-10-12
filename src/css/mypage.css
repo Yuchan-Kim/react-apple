@@ -1,0 +1,274 @@
+@charset "UTF-8";
+/****************************************************************/
+/* 회원 입력폼 공통 ***************************************************/
+/****************************************************************/
+
+.DA-link {
+    color: black; /* 기본 링크 색상 */
+    text-decoration: none; /* 밑줄 제거 */
+}
+
+.DA-link:visited {
+    color: black; /* 방문한 링크 색상을 기본 색상과 동일하게 설정 */
+}
+
+#mypage .DA-link:hover {
+    color: #0071e3;
+    text-decoration: none; /* 밑줄 제거 */
+}
+
+/****************************************************************/
+/* 마이페이지폼 **********************************************/
+/****************************************************************/
+/* 왼쪽메뉴(aside) */
+#container > #mypage {
+    display: flex; /* Flexbox로 설정 */
+    border: 1px solid #f0f0f0;
+    border-radius: 10px;
+    background-color: #fdfdfd;
+    width: 1200px;
+    margin: 50px auto;
+}
+
+#aside {
+    float: left; 
+    width: 120px; 
+    margin: 50px 0px 0px 0px; 
+    display: block;
+    padding-left: 50px;
+}
+
+#aside .DA-aside-txt {
+    margin-top: 10px;
+}
+
+#aside .DA-aside-txt span:nth-of-type(1) {
+    margin-left: 10px;
+    display: block;
+    padding-top: 7px; 
+    font-weight: bold;
+    font-size: 20px;
+}
+
+#aside .DA-aside-txt span:nth-of-type(2) {
+    margin-left: 10px;
+    display: block;
+    padding-top: 7px; 
+    font-size: 20px;
+}
+
+#aside ul {
+    width: 140px;
+    padding-left: 0px;
+    margin-top: 70px;
+}
+
+#aside ul > li {
+    font-weight: 250;
+    margin: 5px 0px 0px 0px; 
+    padding: 3px 0px 3px 10px; 
+    font-size: 18px; 
+    text-align: left; 
+    list-style-type: none;
+}
+
+#content-2 {
+    float: left;
+    width: 800px; 
+    min-width: 800px;
+    margin: 50px 0px 0px 70px; 
+}
+
+#content-2 h2 {
+    width: 160px; 
+    height: 25px; 
+    font-size: 20px; 
+    font-weight: bold; 
+}
+
+/* 섹션마다 */
+.DA-info-section {
+    background-color: white;
+    padding: 0px 20px;
+    border: 1px solid #e0e0e0;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    height: 230px; /* max-height 3개의 카드만 보이도록 높이 제한 */
+    overflow: hidden; /* 넘치는 부분 숨김 */
+}
+/* 아이디와 중복체크 버튼을 한 줄에 배치하고, 버튼을 오른쪽에 붙이기 */
+#user #joinForm .DA-form-group.id-check-group {
+    display: flex;
+    align-items: center; /* 수직 중앙 정렬 */
+    justify-content: space-between; /* 아이디 입력과 중복체크 버튼 사이 공간 확보 */
+    width: 480px; /* 고정 너비 설정 */
+    margin: 30px auto; /* 위아래 마진 조정 및 수평 중앙 정렬 */
+}
+
+
+
+#user #joinForm .DA-form-group.id-check-group .DA-idcheck {
+    background-color: #0071e3;
+    color: white;
+    width: 100px; /* 고정 너비 설정 */
+    border-radius: 30px;
+    margin-left: 20px;
+    
+    cursor: pointer;
+    border: none; /* 테두리 제거 */
+    text-align: center;
+}
+.DA-favorite-section, .DA-purchaseList-section {
+    background-color: white;
+    padding: 0px 20px;
+    border: 1px solid #e0e0e0;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    height: 310px; /* max-height 3개의 카드만 보이도록 높이 제한 */
+    overflow: hidden; /* 넘치는 부분 숨김 */
+}
+
+.DA-info-header, .DA-favorite-header, .DA-purchaseList-header {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 0px;
+    align-items: center;
+}
+
+.DA-info-header #DA-modal-btn {
+    border: none;
+    background-color: white;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+.DA-info-header #DA-modal-btn:hover {
+    color: #0071e3;
+}
+
+.DA-info-status {
+    background-color: #f7f7f7;
+    padding: 5px;
+    border-radius: 7px;
+    color: #727272;
+    margin-bottom: 10px;
+}
+
+.DA-info-status p {
+    padding: 3px;
+    font-size: 15px;
+}
+
+.DA-favorite-products, .DA-purchaseList-products {
+    display: grid; /* 그리드 설정 */
+    gap: 10px; /* 간격 설정 */
+    grid-template-columns: repeat(3, 1fr); /* 3개의 컬럼 설정 */
+    /* height: 220px; */
+    /* grid-auto-rows: auto; 자동 높이 설정 */
+}
+
+.DA-product-info, .DA-purchaseList-info {
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    transition: box-shadow 0.3s ease;
+}
+
+.DA-product-info img, .DA-purchaseList-info img {
+    width: 100%;
+    height: 150px;
+    border-radius: 10px;
+}
+
+.DA-product-details, .DA-purchaseList-details {
+    margin-top: 10px;
+}
+
+.DA-product-details h4, .DA-purchaseList-details h4 {
+    margin: 0;
+    font-size: 14px;
+}
+
+.DA-product-details p, .DA-purchaseList-details p {
+    margin: 5px 0;
+    font-size: 12px;
+    color: #666;
+}
+
+.DA-purchaseList-section {
+    margin-bottom: 50px;
+}
+
+/* 모달창 */
+/* 창 떴을때 뒤에 배경 */
+.DA-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 모달창 전체 */
+.DA-modal-content {
+    background: white;
+    width: 600px;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 모달창닫기버튼 */
+.DA-modal-content button {
+    background-color: white;
+    border: none;
+    font-size: 25px;
+}
+
+.DA-modal-content button:hover {
+    cursor: pointer;
+    color: #0071e3;
+}
+
+.DA-modal-content #DA-modalContent {
+    text-align: center;
+}
+
+/* 사람모양사진 */
+.DA-modal-content #DA-modalContent img {
+    width: 50px;
+}
+
+.DA-modal-content #DA-modalContent p {
+    font-size: 25px;
+    margin: 0px;
+    margin-bottom: 35px;
+}
+
+.DA-modal-content #DA-modalContent input {
+    width: 250px;
+    height: 40px;
+    border-radius: 7px;
+    border: 1px solid black;
+}
+
+/* 수정버튼 */
+.DA-modal-content #DA-modalContent button {
+    width: 80px;
+    height: 30px;
+    font-size: 17px;
+    border-radius: 7px;
+    background-color: #0071e3;
+    color: white;
+}
+
+.DA-modal-content #DA-modalContent button:hover {
+    background-color: #005bb5;
+}

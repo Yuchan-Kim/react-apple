@@ -9,7 +9,7 @@ import Header from '../include/Header';
 import Footer from '../include/Footer';
 
 //import css
-import '../css/user.css';
+import '../css/purchaseList.css';
 
 const PurchaseList = () => {
 

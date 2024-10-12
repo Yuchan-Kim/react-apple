@@ -1,0 +1,107 @@
+@charset "UTF-8";
+/****************************************************************/
+/* 회원 입력폼 공통 ***************************************************/
+/****************************************************************/
+
+.DA-link {
+    color: black; /* 기본 링크 색상 */
+    text-decoration: none; /* 밑줄 제거 */
+}
+
+.DA-link:visited {
+    color: black; /* 방문한 링크 색상을 기본 색상과 동일하게 설정 */
+}
+
+#mypage .DA-link:hover {
+    color: #0071e3;
+    text-decoration: none; /* 밑줄 제거 */
+}
+
+/****************************************************************/
+/* 구매내역폼 **********************************************/
+/****************************************************************/
+/* 구매물품없을때 */
+#content-3 {
+    float: left;
+    width: 800px; 
+    min-width: 800px;
+    margin: 50px 0px 0px 70px; 
+}
+
+#content-3 h2 {
+    width: 160px; 
+    height: 25px; 
+    font-size: 20px; 
+    font-weight: bold; 
+}
+
+#content-3 #DA-buy-none {
+    margin-top: 110px;
+    margin-bottom: 250px;
+}
+
+#content-3 #DA-buy-none p {
+    line-height: 1.5;
+}
+
+#content-3 #DA-buy-none p .DA-buyLink {
+    color: #0071e3;
+    text-decoration: none;
+}
+
+#content-3 #DA-buy-none p .DA-buyLink:visited {
+    color: #0071e3;
+    text-decoration: none;
+}
+
+#content-3 #DA-buy-none p .DA-buyLink:hover {
+    color: #015ebb;
+    text-decoration: none; /* 밑줄 제거 */
+}
+
+/* 구매물품있을때 */
+.DA-purchaseList {
+    background-color: white;
+    padding: 0px 20px;
+    border: 1px solid #e0e0e0;
+    margin-top: 100px;
+    margin-bottom: 50px;
+    border-radius: 10px;
+}
+
+.DA-purchaseList .DA-products {
+    padding: 0px 20px;
+    margin-bottom: 40px;
+}
+
+.DA-purchaseList .DA-products .DA-clearfix {
+    border: 1px solid #e7e7e7;
+    border-radius: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.DA-clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.DA-purchaseList .DA-products .DA-clearfix img {
+    float: left;
+    margin: 20px 0px 20px 20px;
+    width: 200px;
+    height: 200px;
+}
+
+.DA-purchaseList .DA-products .DA-clearfix .DA-details {
+    float: left;
+    margin-top: 40px;
+    margin-left: 90px;
+}
+
+.DA-purchaseList .DA-clearfix .DA-details p {
+    margin: 5px 0;
+    font-size: 20px;
+    color: #666;
+}

@@ -10,7 +10,7 @@ import Footer from '../include/Footer';
 import Modal from './UserInfo-Modal';
 
 //import css
-import '../css/user.css';
+import '../css/mypage.css';
 
 const Mypage = () => {
 
