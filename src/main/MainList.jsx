@@ -49,6 +49,25 @@ const MainList = () => {
     const handleModalOpen = (product) => {
         setSelectedProduct(product);
         setIsModalOpen(true);
+    
+        // imagePrimary가 2인 이미지를 가져오는 API 호출
+        axios({
+            method: 'get',
+            url: `${process.env.REACT_APP_API_URL}/api/product/${product.productDetailNum}/primaryImage2`,
+            responseType: 'json',
+        })
+        .then(response => {
+            if (response.data.apiData && response.data.apiData.length > 0) {
+                const imageForPrimary2 = response.data.apiData[0].imageSavedName;
+                setSelectedProduct(prevProduct => ({
+                    ...prevProduct,
+                    imageSavedName: imageForPrimary2 // imageSavedName 업데이트
+                }));
+            }
+        })
+        .catch(error => {
+            console.error("Error fetching image with primary 2:", error);
+        });
     };
 
     // Handle modal close
@@ -229,7 +248,7 @@ const MainList = () => {
                         <>
                             {/* Category 1: PRO & PRO MAX */}
                             <div className="yc-category">
-                                <h2>PRO & PRO MAX</h2>
+                                <h2>PRO & PRO MAX MODELS</h2>
                                 <div className="yc-scroll-container">
                                     <div className="yc-product-list">
                                         {proAndProMaxProducts.map(product => (
@@ -355,20 +374,12 @@ const MainList = () => {
                                                     <img src={`${process.env.REACT_APP_API_URL}/upload/${product.imageSavedName}`}alt = {product.productName}/>
 
                                                     <div className="yc-price-button-container">
-                                                        <p>{(product.productPrice).toLocaleString()}원 부터</p>
+                                                        <p>{(product.productPrice).toLocaleString()}원 </p>
                                                         <button className="yc-buy-button">구입하기</button>
                                                     </div>
 
                                                     <div className="yc-hover-button-container">
-                                                    <button
-                                                        onClick={(e) => {
-                                                            e.stopPropagation();  // 상세 버튼 클릭 시 이동 방지
-                                                            handleModalOpen(product);
-                                                        }}
-                                                        className="yc-detail-button"
-                                                    >
-                                                        제품 자세히 살펴보기
-                                                    </button>
+                                                    
                                                 </div>
                                                 </div>
                                             ))}

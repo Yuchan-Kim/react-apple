@@ -114,7 +114,7 @@ const SearchPage = () => {
                                         {/* 제품 이름 */}
                                         <h3>{product.productName}</h3>
                                         {/* 제품 가격 */}
-                                        <p>가격: {(product.productPrice).toLocaleString()} 원 부터</p>
+                                        <p>{(product.productPrice).toLocaleString()}원 부터</p>
                                         {/* 제품 상세 페이지 링크 */}
                                         <Link to={`/purchase/${product.productNum}`}>자세히 보기</Link>
                                     </div>
@@ -127,16 +127,20 @@ const SearchPage = () => {
 
                     {/* 커뮤니티 탭 콘텐츠 */}
                     {activeTab === 'community' && (
-                        <div>
+                        <div className="yc-community-grid">
                             {communities.length > 0 ? (
                                 communities.map((community) => (
-                                    <div key={community.boardNum} className="community-item">
+                                    <div key={community.boardNum} className="yc-community-item">
                                         {/* 게시글 제목 */}
-                                        <h3>{community.boardTitle}</h3>
+                                        <h3 className="yc-community-title">{community.boardTitle}</h3>
                                         {/* 조회수 및 날짜 */}
-                                        <p>조회수: {community.boardViews} | 날짜: {community.boardDate}</p>
+                                        <p className="yc-community-info">
+                                            조회수: {community.boardViews} | 날짜: {community.boardDate}
+                                        </p>
                                         {/* 게시글 상세 페이지 링크 */}
-                                        <Link to={`/community/comment/${community.boardNum}`}>자세히 보기</Link>
+                                        <Link className="yc-community-link" to={`/community/comment/${community.boardNum}`}>
+                                            자세히 보기
+                                        </Link>
                                     </div>
                                 ))
                             ) : (

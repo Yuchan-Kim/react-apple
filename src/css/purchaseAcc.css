@@ -1,309 +1,309 @@
-/* Global Purchase Section */
-.yc-acc-purchase-section {
-    padding: 50px 0;
-    background-color: white;
-    text-align: left;
-    width: 90%;
-    margin: auto;
-}
-
-.yc-acc-purchase-header {
-    margin-bottom: 30px;
-}
-
-.yc-acc-new-badge {
-    color: #d35400;
-    font-weight: bold;
-    font-size: 14px;
-    display: block;
-    margin-bottom: 10px;
-}
-
-.yc-acc-purchase-header h1 {
-    font-size: 40px;
-    font-weight: bold;
-    color: #1d1d1f;
-    margin: 0;
-}
-
-.yc-acc-price {
-    font-size: 22px;
-    color: #6e6e73;
-    margin-top: 10px;
-    font-weight: bold;
-}
-
-/* Model Images Section */
-.yc-acc-model-images-section {
-    display: flex;
-    justify-content: space-between;
-    width: 90%;
-    margin: auto;
-    margin-bottom: 100px;
-}
-
-.yc-acc-model-images {
-    position: sticky;
-    top: 100px;
-    padding-right: 50px;
-    width: 40%;
-}
-
-.yc-acc-phone-image {
-    max-width: 100%;
-    height: auto;
-}
-
-/* Selection Section */
-.yc-acc-selection-section {
-    width: 55%;
-    overflow-y: scroll;
-    max-height: 680px;
-}
-
-.yc-acc-model-selection h2,
-.yc-acc-applecare-selection h2 {
-    font-size: 23px;
-    margin-bottom: 20px;
-}
-
-.yc-acc-applecare-selection {
-    margin-bottom: 250px;
-}
-
-/* AppleCare Options */
-.yc-acc-applecare-options {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.yc-acc-applecare-option {
-        border: 1px solid #e5e5e5;
-        padding: 20px;
-        border-radius: 10px;
+    /* Global Purchase Section */
+    .yc-acc-purchase-section {
+        padding: 50px 0;
         background-color: white;
-        font-size: 12px;
-        color: rgb(83, 80, 80);
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between; /* 새로 정렬 */
-        cursor: pointer;
-        transition: border-color 0.3s, background-color 0.3s;
+        text-align: left;
+        width: 90%;
+        margin: auto;
     }
 
-    .yc-acc-applecare-option-nocare {
-      
-        padding: 20px;
-        padding-top: 0px;
-        border: 1px solid #e5e5e5;
-        border-radius: 10px;
-        background-color: white;
-        font-size: 18px;
+
+
+    .yc-acc-purchase-header {
+        margin-bottom: 30px;
+    }
+
+    .yc-acc-new-badge {
+        color: #d35400;
         font-weight: bold;
-        color: rgb(0, 0, 0);
+        font-size: 14px;
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    .yc-acc-purchase-header h1 {
+        font-size: 40px;
+        font-weight: bold;
+        color: #1d1d1f;
+        margin: 0;
+    }
+
+    .yc-acc-price {
+        font-size: 22px;
+        color: #6e6e73;
+        margin-top: 10px;
+        font-weight: bold;
+    }
+
+    /* Model Images Section */
+    .yc-acc-model-images-section {
+        display: flex;
+        justify-content: space-between;
+        width: 90%;
+        margin: auto;
+        margin-bottom: 100px;
+        position: relative;
+    }
+
+    .yc-acc-model-images {
+        position: sticky;
+        top: 100px;
+        
+        width: 47%;
+    }
+
+    .yc-acc-phone-image {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Selection Section */
+    .yc-acc-selection-section {
+        width: 42%;
+        overflow-y: scroll;
+        height: 600px;
+        margin-left: 40px;
+    }
+
+    .yc-acc-model-selection h2,
+    .yc-acc-applecare-selection h2 {
+        font-size: 23px;
+        margin-bottom: 20px;
+    }
+
+    .yc-acc-applecare-selection {
+        margin-bottom: 250px;
+    }
+
+    /* AppleCare Options */
+    .yc-acc-applecare-options {
         display: flex;
         flex-direction: column;
-        cursor: pointer;
-        transition: border-color 0.3s, background-color 0.3s;
+        gap: 20px;
     }
-.yc-acc-applecare-option:hover,
-.yc-acc-applecare-option-nocare:hover {
-    border-color: #0070c9;
-    background-color: #f0f8ff;
-}
 
-.yc-acc-applecare-option.yc-selected,
-.yc-acc-applecare-option-nocare.yc-selected {
-    border-color: #0070c9;
-    background-color: #f0f8ff;
-}
+    .yc-acc-applecare-option {
+            border: 1px solid #e5e5e5;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: white;
+            font-size: 12px;
+            color: rgb(83, 80, 80);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* 새로 정렬 */
+            
+            transition: border-color 0.3s, background-color 0.3s;
+        }
 
-.yc-acc-applecare-logo {
-    font-weight: bold;
-    font-size: 18px;
-    margin-bottom: 10px;
-}
+        .yc-acc-applecare-option-nocare {
+        
+            padding: 20px;
+            padding-top: 0px;
+            border: 1px solid #e5e5e5;
+            border-radius: 10px;
+            background-color: white;
+            font-size: 18px;
+            font-weight: bold;
+            color: rgb(0, 0, 0);
+            display: flex;
+            flex-direction: column;
+            
+            transition: border-color 0.3s, background-color 0.3s;
+        }
 
-.yc-acc-apple-logo {
-    color: #e74c3c;
-}
-.yc-acc-applecare-text {
-    color: #1d1d1f;
-}
 
-.yc-acc-applecare-info {
-    width: 100%;
-    padding: 20px;
-    border-radius: 10px;
-    background-color: rgb(251, 251, 251);
-    font-size: 12px;
-    color: #6e6e73;
-    text-align: left;
-}
 
-/* Price and Buttons */
-.yc-acc-price-section {
-    margin-bottom: 30px;
-    text-align: left;
-}
-.yc-acc-info-box {
-    background-color: rgb(251, 251, 251);
-    padding: 10px;
-    border-radius: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    font-size: 13px;
-}
-.yc-acc-info-button {
-    transition: transform 0.2s, color 0.3s;
-}
 
-.yc-acc-info-button:hover {
-    transform: rotate(45deg);
-    color: #0070c9;
-}
+    .yc-acc-applecare-logo {
+        font-weight: bold;
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
 
-.yc-acc-continue {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #0070c9;
-    border: none;
-    color: white;
-    border-radius: 8px;
-    cursor: pointer;
-    margin-right: 10px;
-    font-size: 14px;
-}
+    .yc-acc-apple-logo {
+        color: #e74c3c;
+    }
+    .yc-acc-applecare-text {
+        color: #1d1d1f;
+    }
 
-.yc-acc-continue:hover {
-    background-color: #005fa3;
-    transform: transform 0.2s,scale(1.05);
-}
+    .yc-acc-applecare-info {
+        width: 100%;
+        padding: 20px;
+        border-radius: 10px;
+        background-color: rgb(251, 251, 251);
+        font-size: 12px;
+        color: #6e6e73;
+        text-align: left;
+        margin-bottom: 30px;
+    }
 
-.yc-acc-continue:active {
-    transform: transform 0.2s,scale(0.95);
-}
+    /* Price and Buttons */
+    .yc-acc-price-section {
+        margin-bottom: 30px;
+        text-align: center;
+    }
+    .yc-acc-info-box {
+        background-color: rgb(251, 251, 251);
+        padding: 10px;
+        border-radius: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        font-size: 13px;
+    }
+    .yc-acc-info-button {
+        transition: transform 0.2s, color 0.3s;
+        
+    }
 
-/* Recommended Accessories Section */
-.yc-recommended-accessories {
-    margin-top: 40px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+    .yc-acc-info-button:hover {
+        transform: rotate(45deg);
+        color: #0070c9;
+    }
 
-.yc-section-title {
-    font-size: 22px;
-    margin-bottom: 20px;
-    font-weight: bold;
-}
+    .yc-acc-continue {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #0070c9;
+        border: none;
+        color: white;
+        border-radius: 20px;
+        cursor: pointer;
+        margin-right: 10px;
+        font-size: 14px;
+        float:right;
+    }
 
-.yc-accessory-list {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    width: 90%;
-}
+    .yc-acc-continue:hover {
+        background-color: #005fa3;
+        transform: transform 0.2s,scale(1.05);
+    }
 
-.yc-accessory-item {
-    text-align: center;
-    width: 30%;
-}
+    .yc-acc-continue:active {
+        transform: transform 0.2s,scale(0.95);
+    }
 
-.yc-accessory-image {
-    width: 100%;
-    margin-bottom: 10px;
-}
+    /* Recommended Accessories Section */
+    .yc-recommended-accessories {
+        margin-top: 40px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 
-.yc-add-to-cart-button {
-    background-color: #0071e3;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    
-}
+    .yc-section-title {
+        font-size: 22px;
+        margin-bottom: 20px;
+        font-weight: bold;
+    }
 
-.yc-add-to-cart-button:hover {
-    background-color: #005bb5;
-}
+    .yc-accessory-list {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        width: 90%;
+    }
 
-.yc-more-products-button {
-    display: block;
-    text-align: center;
-    margin: 20px auto;
-    background: none;
-    color: #0071e3;
-    text-decoration: none;
-    
-}
+    .yc-accessory-item {
+        text-align: center;
+        width: 300px;
+    }
 
-/* Tooltip Styling for Color Circles */
-.yc-color-circle {
-    position: relative;
-    margin-left: 5px;
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    cursor: pointer;
-    background-color: var(--color);
-    border: 1px solid transparent;
-    transition: border-color 0.3s, transform 0.3s;
-}
+    .yc-accessory-image {
+        width: 100%;
+        margin-bottom: 10px;
+    }
 
-.yc-color-circle::after {
-    content: attr(data-color);
+    .yc-add-to-cart-button {
+        background-color: #0071e3;
+        color: white;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        
+    }
+
+    .yc-add-to-cart-button:hover {
+        background-color: #005bb5;
+    }
+
+    .yc-more-products-button {
+        display: block;
+        text-align: center;
+        margin: 20px auto;
+        background: none;
+        color: #0071e3;
+        text-decoration: none;
+        
+    }
+
+    /* Tooltip Styling for Color Circles */
+    .yc-color-circle {
+        position: relative;
+        margin-left: 5px;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        cursor: pointer;
+        background-color: var(--color);
+        border: 1px solid transparent;
+        transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .yc-color-circle::after {
+        content: attr(data-color);
+        position: absolute;
+        bottom: 125%;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #333;
+        color: #fff;
+        padding: 5px 8px;
+        border-radius: 4px;
+        opacity: 0;
+        transition: opacity 0.3s;
+        pointer-events: none;
+        font-size: 12px;
+    }
+
+    .yc-color-circle:hover::after {
+        opacity: 1;
+    }
+
+    .yc-color-circle.yc-selected {
+        border: 2px solid #0070c9;
+        transform: scale(1.1);
+    }
+    .yc-accprev-button,
+    .yc-accnext-button {
     position: absolute;
-    bottom: 125%;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #333;
-    color: #fff;
-    padding: 5px 8px;
-    border-radius: 4px;
-    opacity: 0;
-    transition: opacity 0.3s;
-    pointer-events: none;
-    font-size: 12px;
-}
+    top: 50%;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    transform: translateY(-50%);
+    height:40px;
+    width:40px;
+    border-radius: 50%;
+    }
 
-.yc-color-circle:hover::after {
-    opacity: 1;
-}
+    .yc-accprev-button {
+ 
+    }
 
-.yc-color-circle.yc-selected {
-    border: 2px solid #0070c9;
-    transform: scale(1.1);
-}
-.yc-prev-button,
-.yc-next-button {
-  position: absolute;
-  top: 50%;
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  border: none;
-  padding: 10px;
-  cursor: pointer;
-  font-size: 18px;
-  transform: translateY(-50%);
-  height:40px;
-  width:40px;
-}
+    .yc-accnext-button {
+    right:10px;
+    }
 
-.yc-prev-button {
-  left: 10px;
-}
-
-.yc-next-button {
-  right: 10px;
-}
-
-.yc-prev-button:hover,
-.yc-next-button:hover {
-  background-color: rgba(0, 0, 0, 0.3);
-}
+    .yc-prev-button:hover,
+    .yc-next-button:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+    }

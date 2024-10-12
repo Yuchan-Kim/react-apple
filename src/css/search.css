@@ -4,6 +4,19 @@
     padding: 10px 0;
     margin-bottom: 20px;
     margin-right: 40px;
+    text-align: left;
+}
+.yc-tabs-menu h2 {
+    font-size: 28px; /* 더 큰 글꼴 크기 */
+    font-weight: bold; /* 굵은 글씨 */
+    text-align: center; /* 가운데 정렬 */
+    color: #333; /* 약간 더 어두운 텍스트 색상 */
+    margin-top: 20px; /* 위쪽에 여백 추가 */
+    margin-bottom: 30px; /* 아래쪽에 여백 추가 */
+    padding: 10px; /* 상하좌우 패딩 추가 */
+    width: fit-content; /* 텍스트 크기에 맞춰 너비 조정 */
+    margin-left: 320px;; /* 왼쪽 자동 여백 추가로 중앙 정렬 */
+    margin-right: auto; /* 오른쪽 자동 여백 추가로 중앙 정렬 */
 }
 
 .yc-tabs-menu ul {
@@ -60,30 +73,59 @@
 }
 
 /* Product Grid Styling */
+/* Product Grid Styling */
 .yc-product-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* 3 items per row */
-    gap: 40px;
-    margin-top: 20px;
+    gap: 30px; /* 요소 간의 간격 줄이기 */
+    margin-top: 30px; /* 상단 여백 */
 }
 
 .yc-product-item {
     text-align: center;
+    background-color: #ffffff; /* 은은한 배경색 추가 */
+    padding: 20px;
+    border-radius: 10px; /* 부드러운 모서리 */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.yc-product-item:hover {
+    transform: translateY(-2px); /* 마우스를 올렸을 때 살짝 올라오는 효과 */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* 가벼운 그림자 효과 */
 }
 
 .yc-product-item img {
     width: 100%;
     height: auto;
+    border-radius: 8px; /* 이미지 모서리 둥글게 */
+    margin-bottom: 15px;
 }
 
 .yc-product-item h3 {
-    font-size: 20px;
-    margin-top: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #1d1d1f; /* 애플 스타일의 진한 회색 */
+    margin-bottom: 8px;
+    font-family: 'Helvetica Neue', 'Arial', sans-serif; /* 애플 감성 폰트 */
 }
 
 .yc-product-item p {
     font-size: 16px;
-    color: #666;
+    color: #6e6e73; /* 부드러운 회색 톤 */
+    margin-bottom: 12px;
+    font-family: 'Helvetica Neue', 'Arial', sans-serif;
+}
+
+.yc-product-item a {
+    font-size: 14px;
+    color: #0070c9; /* 애플 블루 */
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.yc-product-item a:hover {
+    color: #005bb5; /* 진한 파란색으로 변경 */
 }
 
 /* Store Locator */
@@ -133,4 +175,62 @@
 
 .yc-tab-content ul li a:hover {
     text-decoration: underline;
+}
+
+
+/* 커뮤니티 리스트 */
+.yc-community-list {
+    display: flex;
+    flex-direction: column;
+    gap: 25px; /* 아이템 간의 간격 줄이기 */
+    margin-top: 30px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* 커뮤니티 아이템 */
+.yc-community-item {
+    background-color: #ffffff; /* 완전 흰색 배경 */
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #d6d6d6; /* 가벼운 회색 테두리 */
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    margin-bottom: 20px;;
+}
+
+.yc-community-item:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* 더 가벼운 그림자 효과 */
+    transform: translateY(-2px); /* 살짝 올라오는 효과 */
+}
+
+/* 커뮤니티 제목 */
+.yc-community-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333333; /* 덜 진한 회색 */
+    margin-bottom: 6px;
+    font-family: 'Helvetica Neue', 'Arial', sans-serif; /* 애플 감성 폰트 */
+}
+
+/* 커뮤니티 조회수 및 날짜 */
+.yc-community-info {
+    font-size: 13px;
+    color: #86868b;
+    font-family: 'Helvetica Neue', 'Arial', sans-serif;
+}
+
+/* 커뮤니티 '자세히 보기' 링크 */
+.yc-community-link {
+    font-size: 13px;
+    color: #0070c9; /* 애플의 블루 색상 */
+    text-decoration: none;
+    font-weight: 500;
+    display: inline-block;
+    margin-top: 10px;
+    transition: color 0.3s ease;
+}
+
+.yc-community-link:hover {
+    color: #005bb5; /* 더 진한 파란색 */
 }

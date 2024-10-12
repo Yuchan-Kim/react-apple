@@ -79,6 +79,7 @@ function PurchaseACC() {
   };
   
   //장바구니 추가
+  const validImages = productImagesAcc
 
   const handleAddToCart = () => {
     const token = localStorage.getItem('token');
@@ -160,7 +161,9 @@ function PurchaseACC() {
       console.log("관심 상품 추가 실패", error);
     });
   };
-  
+  if (!productImagesAcc || productImagesAcc.length === 0) {
+    return <p>No images available.</p>;
+  }
   
 
   return (
@@ -175,7 +178,7 @@ function PurchaseACC() {
             <h1>{productAccInfo.productName || '제품 정보 없음'} 구매하기</h1>
             <p className="yc-acc-price">
               {productAccInfo.productPrice !== undefined 
-                ? `₩${productAccInfo.productPrice.toLocaleString()} 부터` 
+                ? `₩ ${productAccInfo.productPrice.toLocaleString()}` 
                 : '가격 정보를 불러오는 중...'}
             </p>
           </div>
@@ -184,29 +187,38 @@ function PurchaseACC() {
         {/* Model Images Section */}
         <section className="yc-acc-model-images-section">
           <div className="yc-acc-model-images">
-              {productImagesAcc.length > 0 ? (
-                  <>
-                    <img
-                      src={`${process.env.REACT_APP_API_URL}/upload/${productImagesAcc[currentImageIndex].imageSavedName}`}
-                      alt={productImagesAcc[currentImageIndex].productName}
-                      className="yc-acc-image"
-                    />
-                    {/* 좌우 버튼 */}
-                    {productImagesAcc.length > 1 && (
-                      <>
-                        <button className="yc-prev-button" onClick={handlePrevImage}>&#10094;</button>
-                        <button className="yc-next-button" onClick={handleNextImage}>&#10095;</button>
-                      </>
-                    )}
-                  </>
-                ) : (
-                  <p>이미지를 불러오는 중...</p>
-                )}  
+            {validImages.length > 0 ? (
+            <>
+              {/* 이전 버튼: 첫 번째 이미지가 아니면 표시 */}
+              {currentImageIndex > 0 && (
+                <button className="yc-accprev-button" onClick={handlePrevImage}>
+                  &#10094;
+                </button>
+              )}
+              
+              {validImages[currentImageIndex] && (
+                <img
+                  src={`${process.env.REACT_APP_API_URL}/upload/${validImages[currentImageIndex].imageSavedName}`}
+                  alt={validImages[currentImageIndex].imageSavedName}
+                  className="yc-phone-image"
+                />
+              )}
+
+              {/* 다음 버튼: 마지막 이미지가 아니면 표시 */}
+              {currentImageIndex < validImages.length - 1 && (
+                <button className="yc-accnext-button" onClick={handleNextImage}>
+                  &#10095;
+                </button>
+              )}
+            </>
+          ) : (
+            <p>No images to display.</p>
+          )}
           </div>
 
           {/* Selection Section */}
           <div className="yc-acc-selection-section">
-            <h2>AppleCare+ 보증. 새로 구입한 iPhone을 보호하세요.</h2>
+            <h2>AppleCare+ 보증. 새로 구입한 악세사리를 보호하세요.</h2>
             <div className="yc-acc-applecare-options">
               {/* AppleCare+ 선택 */}
                 <div
@@ -243,7 +255,6 @@ function PurchaseACC() {
               <div className="yc-acc-price-section">
                 {productAccInfo && productAccInfo.productPrice !== undefined ? (
                   <>
-                    <p className="yc-acc-price">{(productAccInfo.productPrice).toLocaleString()} 원</p>
                     <button 
                       className="yc-acc-continue" 
                       onClick={() => handleAddToLiked({ productDetailNum: productAccInfo.productDetailNum })}
@@ -283,7 +294,7 @@ function PurchaseACC() {
                     <img key={index} src={`${process.env.REACT_APP_API_URL}/upload/${acc.imageSavedName}`}alt = {acc.imageSavedName}className="yc-accessory-image"/>
                   </Link>
                   <p>{acc.productName}</p>
-                  <p>₩{acc.productPrice}</p>
+                  <p>₩ {(acc.productPrice).toLocaleString()}</p>
                 </div>
               ))
             ) : (

@@ -1,3 +1,5 @@
+
+
 /* 메인 배너 */
 .yc-main-banner {
     width: 85%;
@@ -95,15 +97,16 @@
     display: inline-block;
     padding: 0;
     margin: 0;
+    
 }
 
 /* 제품 카드 스타일 */
 .yc-product-card {
     display: inline-block;
-    background-color: #faf9f9;
+    background-color: #ffffff;
     padding: 40px;
     border-radius: 16px;
-    box-shadow: none;
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.1);
     width: 350px;
     text-align: left;
     transition: box-shadow 0.3s ease;
