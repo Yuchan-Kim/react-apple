@@ -136,6 +136,15 @@
     color: #666;
 }
 
+#admin_main .hjy-brief a:link {
+    text-decoration: none;
+    color: #666;
+}
+
+#admin_main .hjy-brief a:visited {
+    color: #666;
+}
+
 #admin_main .hjy-price {
     font-weight: bold;
     margin: 5px 0;
