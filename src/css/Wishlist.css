@@ -2,17 +2,17 @@
 
 /* 기본 컨테이너 스타일 */
 .jm-wishlist-container {
-  max-width: 60%;
+  max-width: 1200px;
   margin: 40px auto; /* 상하 간격 증가 */
   background-color: #fff;
   padding: 30px;
   border-radius: 12px; /* 모서리 둥글게 */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* 섬세한 그림자 추가 */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* 섬세한 그림자 추가 */
   transition: box-shadow 0.3s ease;
 }
 
 .jm-wishlist-container:hover {
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); /* 호버 시 그림자 강화 */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05); /* 호버 시 그림자 강화 */
 }
 
 /* 제목 스타일 */
@@ -51,15 +51,15 @@
   color: #333;
 }
 
-/* 편집 링크 스타일 */
+/* 전체 삭제 버튼 스타일 */
 .jm-edit-link {
   font-size: 1rem;
-  color: #0071e3;
+  color: #ff3b30; /* 삭제는 보통 빨간색으로 표시 */
   text-decoration: none;
   font-weight: 500;
-  position: relative;
-  transition: color 0.3s ease;
   cursor: pointer; /* 클릭 가능 표시 */
+  transition: color 0.3s ease;
+  position: relative; /* 가상 요소 위치를 위해 필요 */
 }
 
 .jm-edit-link::after {
@@ -67,7 +67,7 @@
   display: block;
   width: 0;
   height: 2px;
-  background: #0071e3;
+  background: #ff3b30; /* 언더라인 색상 */
   transition: width 0.3s;
   position: absolute;
   bottom: -2px;
@@ -75,29 +75,21 @@
 }
 
 .jm-edit-link:hover {
-  color: #005bb5;
+  color: #c70000; /* 호버 시 색상 변경 */
 }
 
 .jm-edit-link:hover::after {
-  width: 100%;
+  width: 100%; /* 호버 시 언더라인 확장 */
 }
 
-/* 그리드 레이아웃 변경 */
+/* 제품 리스트 스타일 */
 .jm-wish-item {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* 반응형 그리드 */
+  grid-template-columns: repeat(5, 1fr); /* 5칸 고정 그리드 */
   gap: 25px; /* 간격 증가 */
   justify-content: center;
   align-items: start;
   text-align: center;
-}
-
-/* 관심 목록 비어있을 때 메시지 스타일 */
-.jm-null-list {
-  font-size: 1rem;
-  color: #999;
-  text-align: center;
-  padding: 20px;
 }
 
 /* 제품 아이템 스타일 */
@@ -119,19 +111,18 @@
 
 /* 제품 이미지 스타일 */
 .jm-product-item-img {
-  width: 100%;
+  width: 150px; /* 고정된 너비 */
   height: 150px; /* 고정된 높이 */
-  object-fit: cover;
+  overflow: hidden; /* 이미지가 컨테이너를 벗어나지 않도록 */
   border-radius: 8px;
   margin-bottom: 15px;
-  overflow: hidden; /* 이미지가 컨테이너를 벗어나지 않도록 */
   position: relative;
 }
 
 .jm-product-item-img img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover; /* 이미지가 컨테이너를 완전히 채우도록 설정 */
   border-radius: 8px;
 }
 
@@ -144,22 +135,22 @@
 
 .jm-product-detail {
   display: inline-block; /* 인라인 블록으로 설정 */
-  
   font-size: 0.9rem; /* 폰트 크기 */
   text-align: center;
   margin-right: 10px; /* 오른쪽 간격 추가 */
   margin-bottom: 5px; /* 하단 간격 추가 */
-  /* 애니메이션과 호버 효과 제거 */
 }
 
 .jm-product-detail:last-child {
   margin-right: 0; /* 마지막 항목의 오른쪽 간격 제거 */
 }
 
-/* 호버 효과 제거 */
-.jm-product-detail:hover {
-  background-color: #f0f0f0;
-  color: #555;
+/* 관심 목록 비어있을 때 메시지 스타일 */
+.jm-null-list {
+  font-size: 1rem;
+  color: #999;
+  text-align: center;
+  padding: 20px;
 }
 
 /* 위시리스트 정보 섹션 스타일 */
@@ -209,11 +200,17 @@
 /* 반응형 디자인 */
 @media (max-width: 1200px) {
   .jm-wishlist-container {
-    max-width: 80%;
+    max-width: 90%;
   }
 
   .jm-wish-item {
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-template-columns: repeat(5, 1fr); /* 여전히 5칸 유지 */
+  }
+}
+
+@media (max-width: 1024px) {
+  .jm-wish-item {
+    grid-template-columns: repeat(3, 1fr); /* 중간 크기에서는 3칸 */
   }
 }
 
@@ -224,7 +221,7 @@
   }
 
   .jm-wish-item {
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: repeat(2, 1fr); /* 작은 화면에서는 2칸 */
   }
 
   .jm-title {
@@ -238,4 +235,48 @@
   .jm-description {
     font-size: 1rem;
   }
+
+  .jm-product-item-img {
+    width: 100%;
+    height: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .jm-wish-item {
+    grid-template-columns: 1fr; /* 아주 작은 화면에서는 1칸 */
+  }
+}
+
+/* 추가: 버튼에 대한 스타일 */
+button.jm-edit-link {
+  background: none; /* 배경 없애기 */
+  border: none; /* 테두리 없애기 */
+  padding: 0; /* 패딩 제거 */
+  font: inherit; /* 부모 요소의 폰트 상속 */
+  cursor: pointer; /* 커서 포인터로 변경 */
+  color: #ff3b30; /* 텍스트 색상 빨간색 */
+  text-decoration: none; /* 텍스트 장식 제거 */
+  font-weight: 500; /* 글씨 두께 설정 */
+  position: relative; /* 포지셔닝 설정 */
+}
+
+button.jm-edit-link::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background: #ff3b30; /* 언더라인 색상 */
+  transition: width 0.3s;
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+}
+
+button.jm-edit-link:hover {
+  color: #c70000; /* 호버 시 색상 변경 */
+}
+
+button.jm-edit-link:hover::after {
+  width: 100%; /* 호버 시 언더라인 확장 */
 }

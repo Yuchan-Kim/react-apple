@@ -125,12 +125,12 @@ const Wishlist = () => {
           <section className="jm-wishlist-section">
             <div className="jm-section-header">
               <h2>관심 제품</h2>
-              <Link 
+              <button 
                 className="jm-edit-link" 
                 onClick={handleRemoveAllLikedProducts}
               >
                 전체 삭제
-              </Link>
+              </button>
             </div>
 
             <div className="jm-wish-item">
@@ -142,7 +142,7 @@ const Wishlist = () => {
                   style={{ '--animation-delay': `${index * 0.1}s` }}
                 >
                   <div className="jm-product-item-img">
-                    <img src={`${process.env.REACT_APP_API_URL}/upload/${item.imageSavedName}`} alt={item.productName}/>
+                    <img src={`${process.env.REACT_APP_API_URL}/upload/${item.imageSavedName}`} alt={item.productName !== 'N/A' ? item.productName : '관심 상품'}/>
                   </div>
                   <div className="jm-product-details">
                     {item.productName !== 'N/A' && <span className="jm-product-detail">{item.productName}</span>}

@@ -160,7 +160,6 @@ const Header = () => {
                                         <div className="hd-cart-items">
                                             <p>로그인 후 장바구니를 확인하세요.</p>
                                         </div>
-                                        <Link to="/user/cart" className="hd-checkout-button">장바구니 확인</Link>
                                     </div>
                                 )}
                             </div>
