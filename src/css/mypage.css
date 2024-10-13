@@ -1,274 +1,274 @@
 @charset "UTF-8";
 /****************************************************************/
-/* 회원 입력폼 공통 ***************************************************/
+/* 공통 링크 스타일 ********************************************/
 /****************************************************************/
-
 .DA-link {
-    color: black; /* 기본 링크 색상 */
-    text-decoration: none; /* 밑줄 제거 */
+    color: #333; /* 깔끔한 검정색 텍스트 */
+    text-decoration: none; /* 링크 밑줄 제거 */
+    transition: color 0.2s ease;
 }
 
 .DA-link:visited {
-    color: black; /* 방문한 링크 색상을 기본 색상과 동일하게 설정 */
+    color: #333; /* 방문한 링크도 동일한 색상 */
 }
 
-#mypage .DA-link:hover {
-    color: #0071e3;
-    text-decoration: none; /* 밑줄 제거 */
+.DA-link:hover {
+    color: #0071e3; /* 애플 블루 색상으로 변경 */
 }
 
 /****************************************************************/
-/* 마이페이지폼 **********************************************/
+/* 마이페이지 **************************************************/
 /****************************************************************/
-/* 왼쪽메뉴(aside) */
 #container > #mypage {
-    display: flex; /* Flexbox로 설정 */
+    display: flex;
     border: 1px solid #f0f0f0;
-    border-radius: 10px;
-    background-color: #fdfdfd;
-    width: 1200px;
+    border-radius: 12px;
+    background-color: #ffffff; /* 깔끔한 흰색 배경 */
+    width: 100%;
+    max-width: 1200px;
     margin: 50px auto;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1); /* 부드러운 그림자 */
+    padding: 30px;
 }
 
+/* 왼쪽 메뉴 */
 #aside {
-    float: left; 
-    width: 120px; 
-    margin: 50px 0px 0px 0px; 
-    display: block;
-    padding-left: 50px;
+    width: 100px;
+    margin-right: 50px;
+    padding: 20px;
 }
 
 #aside .DA-aside-txt {
-    margin-top: 10px;
+    text-align: center;
 }
 
-#aside .DA-aside-txt span:nth-of-type(1) {
-    margin-left: 10px;
+#aside .DA-aside-txt span {
     display: block;
-    padding-top: 7px; 
-    font-weight: bold;
-    font-size: 20px;
-}
-
-#aside .DA-aside-txt span:nth-of-type(2) {
-    margin-left: 10px;
-    display: block;
-    padding-top: 7px; 
-    font-size: 20px;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 15px;
 }
 
 #aside ul {
-    width: 140px;
-    padding-left: 0px;
-    margin-top: 70px;
+    list-style-type: none;
+    padding: 0;
+    margin-top: 30px;
 }
 
-#aside ul > li {
-    font-weight: 250;
-    margin: 5px 0px 0px 0px; 
-    padding: 3px 0px 3px 10px; 
-    font-size: 18px; 
-    text-align: left; 
-    list-style-type: none;
+#aside ul li {
+    margin-bottom: 15px;
+    font-size: 16px;
+    font-weight: 500;
 }
 
 #content-2 {
-    float: left;
-    width: 800px; 
-    min-width: 800px;
-    margin: 50px 0px 0px 70px; 
+    flex-grow: 1;
 }
 
 #content-2 h2 {
-    width: 160px; 
-    height: 25px; 
-    font-size: 20px; 
-    font-weight: bold; 
-}
-
-/* 섹션마다 */
-.DA-info-section {
-    background-color: white;
-    padding: 0px 20px;
-    border: 1px solid #e0e0e0;
-    margin-top: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    height: 230px; /* max-height 3개의 카드만 보이도록 높이 제한 */
-    overflow: hidden; /* 넘치는 부분 숨김 */
-}
-/* 아이디와 중복체크 버튼을 한 줄에 배치하고, 버튼을 오른쪽에 붙이기 */
-#user #joinForm .DA-form-group.id-check-group {
-    display: flex;
-    align-items: center; /* 수직 중앙 정렬 */
-    justify-content: space-between; /* 아이디 입력과 중복체크 버튼 사이 공간 확보 */
-    width: 480px; /* 고정 너비 설정 */
-    margin: 30px auto; /* 위아래 마진 조정 및 수평 중앙 정렬 */
-}
-
-
-
-#user #joinForm .DA-form-group.id-check-group .DA-idcheck {
-    background-color: #0071e3;
-    color: white;
-    width: 100px; /* 고정 너비 설정 */
-    border-radius: 30px;
-    margin-left: 20px;
-    
-    cursor: pointer;
-    border: none; /* 테두리 제거 */
-    text-align: center;
-}
-.DA-favorite-section, .DA-purchaseList-section {
-    background-color: white;
-    padding: 0px 20px;
-    border: 1px solid #e0e0e0;
-    margin-top: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    height: 310px; /* max-height 3개의 카드만 보이도록 높이 제한 */
-    overflow: hidden; /* 넘치는 부분 숨김 */
-}
-
-.DA-info-header, .DA-favorite-header, .DA-purchaseList-header {
-    display: flex;
-    justify-content: space-between;
-    padding-top: 0px;
-    align-items: center;
-}
-
-.DA-info-header #DA-modal-btn {
-    border: none;
-    background-color: white;
-    font-size: 17px;
-    cursor: pointer;
-}
-
-.DA-info-header #DA-modal-btn:hover {
-    color: #0071e3;
-}
-
-.DA-info-status {
-    background-color: #f7f7f7;
-    padding: 5px;
-    border-radius: 7px;
-    color: #727272;
+    font-size: 28px;
+    font-weight: 600;
+    color: #333;
     margin-bottom: 10px;
 }
 
-.DA-info-status p {
-    padding: 3px;
-    font-size: 15px;
-}
-
-.DA-favorite-products, .DA-purchaseList-products {
-    display: grid; /* 그리드 설정 */
-    gap: 10px; /* 간격 설정 */
-    grid-template-columns: repeat(3, 1fr); /* 3개의 컬럼 설정 */
-    /* height: 220px; */
-    /* grid-auto-rows: auto; 자동 높이 설정 */
-}
-
-.DA-product-info, .DA-purchaseList-info {
-    border: 1px solid #e0e0e0;
-    border-radius: 10px;
-    padding: 10px;
-    background-color: #f9f9f9;
-    transition: box-shadow 0.3s ease;
-}
-
-.DA-product-info img, .DA-purchaseList-info img {
-    width: 100%;
-    height: 150px;
-    border-radius: 10px;
-}
-
-.DA-product-details, .DA-purchaseList-details {
-    margin-top: 10px;
-}
-
-.DA-product-details h4, .DA-purchaseList-details h4 {
-    margin: 0;
-    font-size: 14px;
-}
-
-.DA-product-details p, .DA-purchaseList-details p {
-    margin: 5px 0;
-    font-size: 12px;
-    color: #666;
-}
-
+/* 섹션 스타일 */
+.DA-info-section,
+.DA-favorite-section,
 .DA-purchaseList-section {
-    margin-bottom: 50px;
-}
-
-/* 모달창 */
-/* 창 떴을때 뒤에 배경 */
-.DA-modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* 모달창 전체 */
-.DA-modal-content {
-    background: white;
-    width: 600px;
+    background-color: #ffffff;
     padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e0e0e0;
+    margin-bottom: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* 모달창닫기버튼 */
-.DA-modal-content button {
-    background-color: white;
+.DA-info-header,
+.DA-favorite-header,
+.DA-purchaseList-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.DA-info-header h3,
+.DA-favorite-header h3,
+.DA-purchaseList-header h3 {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.DA-info-header #DA-modal-btn {
+    color: black;
+    padding: 8px 16px;
     border: none;
-    font-size: 25px;
-}
-
-.DA-modal-content button:hover {
+    border-radius: 8px;
     cursor: pointer;
-    color: #0071e3;
 }
 
-.DA-modal-content #DA-modalContent {
+
+
+/* 정보 상태 */
+.DA-info-status {
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+    color: #666;
+    font-size: 16px;
+}
+
+.DA-info-status p {
+    margin-bottom: 10px;
+}
+
+/* 관심 상품 & 구매 내역 */
+.DA-favorite-products,
+.DA-purchaseList-products {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.DA-product-info,
+.DA-purchaseList-info {
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
     text-align: center;
 }
 
-/* 사람모양사진 */
+.DA-product-info img,
+.DA-purchaseList-info img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.DA-product-details h4,
+.DA-purchaseList-details h4 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 5px 0;
+}
+
+.DA-product-details p,
+.DA-purchaseList-details p {
+    font-size: 14px;
+    color: #666;
+}
+
+/**********************************************/
+/* 모달창 */
+/**********************************************/
+
+.DA-modal-content {
+    background: white;
+    width: 100%;
+    max-width: 500px;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: relative;
+}
+
+.DA-modal-content .DA-close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #888;
+    transition: color 0.2s ease;
+}
+
+.DA-modal-content .DA-close-btn:hover {
+    color: #000;
+}
+
+/* 모달 내부 콘텐츠 */
+.DA-modal-content #DA-modalContent {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
 .DA-modal-content #DA-modalContent img {
-    width: 50px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .DA-modal-content #DA-modalContent p {
-    font-size: 25px;
-    margin: 0px;
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
     margin-bottom: 35px;
 }
 
+/* 입력 필드 */
 .DA-modal-content #DA-modalContent input {
-    width: 250px;
-    height: 40px;
-    border-radius: 7px;
-    border: 1px solid black;
+    width: 100%;
+    max-width: 350px;
+    padding: 12px 15px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease;
 }
 
-/* 수정버튼 */
+.DA-modal-content #DA-modalContent input:focus {
+    border-color: #0071e3;
+    box-shadow: 0 0 8px rgba(0, 113, 227, 0.3);
+    outline: none;
+}
+
+/* 수정 버튼 */
 .DA-modal-content #DA-modalContent button {
-    width: 80px;
-    height: 30px;
-    font-size: 17px;
-    border-radius: 7px;
+    width: 150px;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 8px;
     background-color: #0071e3;
     color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .DA-modal-content #DA-modalContent button:hover {
     background-color: #005bb5;
+}
+
+/* 반응형 처리 */
+@media (max-width: 768px) {
+    #container > #mypage {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .DA-favorite-products,
+    .DA-purchaseList-products {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .DA-modal-content {
+        width: 90%;
+        padding: 30px;
+    }
+
+    .DA-modal-content #DA-modalContent input {
+        max-width: 100%;
+    }
 }
