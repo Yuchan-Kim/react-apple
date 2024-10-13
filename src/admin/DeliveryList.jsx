@@ -156,8 +156,8 @@ const DeliveryList = () => {
                                                 <p><strong>모델명: </strong> {union.productName}</p>
                                                 <p><strong>디스플레이: </strong> {union.displaySize}</p>
                                                 <p><strong>색상: </strong> {union.colorName}</p>
-                                                <p><strong>가격: </strong> {union.productPrice}</p>
                                                 <p><strong>용량: </strong> {union.storageSize}</p>
+                                                <p><strong>가격: </strong> {union.productPrice}</p>
                                             </div>
 
                                             <div className="hjy_buyer_info">
