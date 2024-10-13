@@ -118,6 +118,47 @@ const DeliveryList = () => {
         });
     };
 
+    const handlePickUp = (receiptNum) => {
+        console.log('배송중 버튼 클릭');
+        console.log(receiptNum);
+
+        const requestData = {
+            receiptNum: receiptNum,
+            shippingStatus: "픽업 완료" // Updating status to '탈퇴' (which means withdrawal)
+        };
+
+        axios({
+            method: 'put',
+            url: `${process.env.REACT_APP_API_URL}/api/admin/delivery/pickup/${receiptNum}`, 
+            data: requestData, 
+            responseType: 'json' 
+        }).then(response => {
+            console.log("===============================");
+            console.log(response.data);
+            console.log(response.data.result);
+            console.log("===============================");
+
+            if (response.data.result === 'success') {
+                // Update the shipping status of the item in unionList
+                let newArray = unionList.map((union) => {
+                    if (union.receiptNum === receiptNum) {
+                        return {
+                            ...union,
+                            shippingStatus: requestData.shippingStatus // Update shipping status
+                        };
+                    }
+                    return union; // Return unchanged items
+                });
+                setUnionList(newArray);
+            } else {
+                alert(response.data.message);
+            }
+        }).catch(error => {
+            console.log(error);
+        });
+    };
+
+
     return (
         <>
             <Header/>
@@ -176,7 +217,7 @@ const DeliveryList = () => {
                                                 <button className="hjy-mbtn" type="button" onClick={() => handleArrive(union.receiptNum)}>배송완료</button>
                                             )}
                                             {union.shippingStatus === "픽업" && (
-                                                <button className="hjy-mbtn" type="button" onClick={() => handleArrive(union.receiptNum)}>픽업완료</button>
+                                                <button className="hjy-mbtn" type="button" onClick={() => handlePickUp(union.receiptNum)}>픽업완료</button>
                                             )}
                                          </div>
                                         </div>

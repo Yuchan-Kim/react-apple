@@ -17,6 +17,7 @@ const AdminMain = () => {
     const [userCount, setUserCount] = useState(0);
     const [waitingCount, setWaitingCount] = useState(0);
     const [deliveringCount, setDeliveringCount] = useState(0);
+    const [pickUpCount, setPickUpCount] = useState(0);
 
     const navigate = useNavigate();  // 페이지 이동을 위한 useNavigate 추가
     const authUser = JSON.parse(localStorage.getItem('authUser'));  // authUser 정보 가져오기
@@ -64,7 +65,7 @@ const AdminMain = () => {
         }).then(response => {
             const count = response.data.apiData.length;
             setHistoryCount(count);
-    
+
             const sum = response.data.apiData.reduce((acc, item) => acc + item.totalPrice, 0);
             setTotalPriceSum(sum);
         }).catch(error => {
@@ -84,8 +85,9 @@ const AdminMain = () => {
             const filteredData2 = response.data.apiData.filter(item => item.shippingStatus === '배송 중');
             setDeliveringCount(filteredData2.length);
 
-            const sum = response.data.apiData.reduce((acc, item) => acc + item.totalPrice, 0);
-            setTotalPriceSum(sum);
+            const filteredData3 = response.data.apiData.filter(item => item.shippingStatus === '픽업');
+            setPickUpCount(filteredData3.length);
+
         }).catch(error => {
             console.log(error);
         });
@@ -155,7 +157,7 @@ const AdminMain = () => {
                                     <Link to="/admin/delivery" rel="noreferrer noopener">더보기</Link>
                                 </div>
                                 <div className="hjy-list-status">
-                                    <p>배송 준비중: {waitingCount} &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;배송 중: {deliveringCount}</p>
+                                    <p>배송 준비중: {waitingCount} |배송 중: {deliveringCount}|픽업: {pickUpCount}</p>
                                 </div>
                             </div>
 
