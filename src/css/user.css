@@ -67,7 +67,7 @@
 
 /* 아이디 */
 #user #joinForm .DA-form-group .DA-id {
-    width: 70%;
+    width: 80%;
     float: left;
 }
 
@@ -75,9 +75,11 @@
 #user #joinForm .DA-form-group .DA-idcheck {
     background-color: #0071e3;
     color: white;
-    height: 37px;
-    margin-left: 65px;
+    height: 40px;
+    
     width: 70px;
+    margin-top: 5px;
+    margin-left: 7px;
     border-radius: 20px;
     cursor: pointer; /* 마우스 포인터 변경 */
     border: none; /* 테두리 제거 */
