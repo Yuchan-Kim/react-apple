@@ -12,7 +12,8 @@ import Footer from '../include/Footer';
 
 const StoreDetail = () => {
     
-    const {storeNum} = useParams();
+    const {storeNo} = useParams();
+    
 
     const [storeName, setStoreName] = useState('');
     const [storeAddress, setStoreAddress] = useState('');
@@ -21,34 +22,33 @@ const StoreDetail = () => {
     const [storeMapImage, setMapImg] = useState();
 
 
-    const getStoreList = () => {
-        if (storeNum) {  // storeNum이 유효한 경우에만 실행
+    const getStoreList = (storeNo) => {  // 변경
+        if (storeNo) {  // storeNo가 유효한 경우에만 실행
             axios({
-                method: 'get', // put, post, delete
-                url: `${process.env.REACT_APP_API_URL}/api/store/detail/${storeNum}`,
-                responseType: 'json' // 수신타입
+                method: 'get',
+                url: `${process.env.REACT_APP_API_URL}/api/store/detail/${storeNo}`,  // storeNo 사용
+                responseType: 'json'
             }).then(response => {
-                console.log(response.data); // 수신데이터 확인
-    
-                if(response.data.result === 'success') {
+                console.log(response.data);
+                if (response.data.result === 'success') {
                     setStoreName(response.data.apiData.storeName);
-                    setStoreAddress(response.data.apiData.storeAddress); // storeAddress로 수정
-                    setStoreNumber(response.data.apiData.storeNumber); // storeNumber로 수정
-                    setstoreImg(response.data.apiData.storeImage); // storeAddress로 수정
-                    setMapImg(response.data.apiData.storeMapImage); // storeNumber로 수정
+                    setStoreAddress(response.data.apiData.storeAddress);
+                    setStoreNumber(response.data.apiData.storeNumber);
+                    setstoreImg(response.data.apiData.storeImage);
+                    setMapImg(response.data.apiData.storeMapImage);
                 } else {
                     alert("매장 정보 가져오기 실패");
                 }
-    
             }).catch(error => {
                 console.log(error);
             });
         }
-    }
+    };
+    
     
     useEffect(() => {
-        getStoreList();
-    }, [storeNum]);  // storeNum이 변경될 때만 useEffect 재실행
+        getStoreList(storeNo);
+    }, [storeNo]);  // storeNum이 변경될 때만 useEffect 재실행
 
 
     return (
