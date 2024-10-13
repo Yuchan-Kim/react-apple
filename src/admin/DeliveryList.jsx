@@ -172,8 +172,11 @@ const DeliveryList = () => {
                                             {union.shippingStatus === "배송 준비중" && (
                                                 <button className="hjy-mbtn" type="button" onClick={() => handleSend(union.receiptNum)}>배송중</button>
                                             )}
-                                            {union.shippingStatus === "배송 중" && (
+                                            {union.shippingStatus === "배송 중"  && (
                                                 <button className="hjy-mbtn" type="button" onClick={() => handleArrive(union.receiptNum)}>배송완료</button>
+                                            )}
+                                            {union.shippingStatus === "픽업" && (
+                                                <button className="hjy-mbtn" type="button" onClick={() => handleArrive(union.receiptNum)}>픽업완료</button>
                                             )}
                                          </div>
                                         </div>
