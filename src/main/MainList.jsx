@@ -173,6 +173,7 @@ const MainList = () => {
         if (!token) {
         console.log("토큰이 없습니다. 로그인하세요.");
         alert("로그인이 필요합니다. 로그인 페이지로 이동합니다.");
+        handleModalClose(); // 모달 닫기
         navigate('/user/loginform');
         return;  // 오류가 있으면 함수 중단
         }
