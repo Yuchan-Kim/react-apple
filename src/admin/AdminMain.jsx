@@ -157,7 +157,7 @@ const AdminMain = () => {
                                     <Link to="/admin/delivery" rel="noreferrer noopener">더보기</Link>
                                 </div>
                                 <div className="hjy-list-status">
-                                    <p>배송 준비중: {waitingCount} |배송 중: {deliveringCount}|픽업: {pickUpCount}</p>
+                                    <p>배송 준비중: {waitingCount} &nbsp;&nbsp;|배송 중: {deliveringCount} &nbsp;&nbsp;|픽업: {pickUpCount}</p>
                                 </div>
                             </div>
 
