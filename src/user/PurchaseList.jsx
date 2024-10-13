@@ -81,7 +81,7 @@ const PurchaseList = () => {
                         <div id="aside">
                             <div className="DA-aside-txt">
                                 <span>{userName}</span>
-                                <span>{userId}</span>
+                                <span id ="mypage_userId-yc">{userId}</span>
                                 <ul>
                                     <li><Link to='/user/mypage' className="DA-link" rel="noreferrer noopener">개인정보</Link></li>
                                     <li><Link to='/user/wishlist' className="DA-link" rel="noreferrer noopener">관심상품</Link></li>
@@ -123,11 +123,11 @@ const PurchaseList = () => {
                                                             <img src={`${process.env.REACT_APP_API_URL}/upload/${purchase.imageSavedName}`} alt={purchase.imageSavedName} />
                                                             {/* imageSavedName */}
                                                             <div className="DA-details">
-                                                                <p>{purchase.productName}</p>
-                                                                <p>{purchase.colorName}</p>
-                                                                <p>{purchase.productCount}</p>
-                                                                <p>{purchase.productPrice.toLocaleString()}</p>
-                                                                <p>{purchase.purchasedDate}</p>
+                                                                <p><strong>상품 이름:</strong> {purchase.productName}</p>
+                                                                <p><strong>상품 컬러:</strong> {purchase.colorName}</p>
+                                                                <p><strong>구매 수량:</strong> {purchase.productCount}</p>
+                                                                <p><strong>구매 가격:</strong> {purchase.productPrice.toLocaleString()}</p>
+                                                                <p><strong>구매 날짜:</strong> {purchase.purchasedDate}</p>
                                                             </div>
                                                         </div>
                                                     )

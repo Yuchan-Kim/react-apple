@@ -174,7 +174,7 @@ const Mypage = () => {
                         <div id="aside">
                             <div className="DA-aside-txt">
                                 <span>{userName}</span>
-                                <span>{userId}</span>
+                                <span id="mypage_userId-yc">{userId}</span>
                                 <ul>
                                     <li><Link to='/user/mypage' className="DA-link" rel="noreferrer noopener">개인정보</Link></li>
                                     <li><Link to='/user/wishlist' className="DA-link" rel="noreferrer noopener">관심상품</Link></li>
@@ -281,7 +281,6 @@ const Mypage = () => {
 
                             <Modal isOpen={isModalOpen} onClose={closeModal}>
                                 <div id='DA-modalContent'>
-                                    <img src="../images/userInfo.png" alt="사람모양사진" />
                                     <p>개인 정보 수정</p>
 
                                     <form action="" method="" onSubmit={handleModify}>

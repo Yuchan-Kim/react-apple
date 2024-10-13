@@ -1,47 +1,62 @@
 @charset "UTF-8";
 /****************************************************************/
-/* 회원 입력폼 공통 ***************************************************/
+/* 공통 링크 스타일 ********************************************/
 /****************************************************************/
-
 .DA-link {
-    color: black; /* 기본 링크 색상 */
-    text-decoration: none; /* 밑줄 제거 */
+    color: #333; /* 깔끔한 검정색 텍스트 */
+    text-decoration: none; /* 링크 밑줄 제거 */
+    transition: color 0.2s ease;
 }
 
 .DA-link:visited {
-    color: black; /* 방문한 링크 색상을 기본 색상과 동일하게 설정 */
+    color: #333; /* 방문한 링크도 동일한 색상 */
 }
 
-#mypage .DA-link:hover {
-    color: #0071e3;
-    text-decoration: none; /* 밑줄 제거 */
+.DA-link:hover {
+    color: #0071e3; /* 애플 블루 색상으로 변경 */
 }
 
 /****************************************************************/
 /* 구매내역폼 **********************************************/
 /****************************************************************/
-/* 구매물품없을때 */
+/* 구매물품이 없을 때 */
 #content-3 {
     float: left;
-    width: 800px; 
-    min-width: 800px;
-    margin: 50px 0px 0px 70px; 
+    width: 100%;
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 20px;
 }
 
 #content-3 h2 {
-    width: 160px; 
-    height: 25px; 
-    font-size: 20px; 
-    font-weight: bold; 
+    font-size: 28px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 30px;
 }
 
+/* 구매물품이 없을 때 안내 메시지 */
 #content-3 #DA-buy-none {
-    margin-top: 110px;
-    margin-bottom: 250px;
+    margin-top: 80px;
+    text-align: center;
 }
 
 #content-3 #DA-buy-none p {
-    line-height: 1.5;
+    line-height: 1.6;
+    font-size: 18px;
+    color: #666;
+}
+
+#aside .DA-aside-txt span {
+    display: block;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+#aside .DA-aside-txt #mypage_userId-yc {
+    font-size: 14px;
+    color: rgb(130, 129, 129);
 }
 
 #content-3 #DA-buy-none p .DA-buyLink {
@@ -49,59 +64,88 @@
     text-decoration: none;
 }
 
-#content-3 #DA-buy-none p .DA-buyLink:visited {
-    color: #0071e3;
-    text-decoration: none;
-}
-
 #content-3 #DA-buy-none p .DA-buyLink:hover {
-    color: #015ebb;
-    text-decoration: none; /* 밑줄 제거 */
+    color: #005bb5;
 }
 
-/* 구매물품있을때 */
+/* 구매내역 리스트 */
 .DA-purchaseList {
-    background-color: white;
-    padding: 0px 20px;
+    background-color: #ffffff;
+    padding: 20px;
     border: 1px solid #e0e0e0;
-    margin-top: 100px;
-    margin-bottom: 50px;
-    border-radius: 10px;
+    margin-top: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* 부드러운 그림자 */
+    transition: box-shadow 0.3s ease;
 }
 
 .DA-purchaseList .DA-products {
-    padding: 0px 20px;
-    margin-bottom: 40px;
+    padding: 20px 0;
 }
 
 .DA-purchaseList .DA-products .DA-clearfix {
-    border: 1px solid #e7e7e7;
-    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
     margin-top: 20px;
-    margin-bottom: 20px;
+    background-color: #ffffff;
+    transition: box-shadow 0.3s ease;
 }
 
-.DA-clearfix::after {
-    content: "";
-    display: table;
-    clear: both;
+.DA-clearfix:hover {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1); /* 호버 시 그림자 강화 */
 }
 
+/* 상품 이미지 스타일 */
 .DA-purchaseList .DA-products .DA-clearfix img {
-    float: left;
-    margin: 20px 0px 20px 20px;
-    width: 200px;
-    height: 200px;
+    width: 160px;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-right: 30px;
 }
 
+/* 구매내역 상세 정보 */
 .DA-purchaseList .DA-products .DA-clearfix .DA-details {
-    float: left;
-    margin-top: 40px;
-    margin-left: 90px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .DA-purchaseList .DA-clearfix .DA-details p {
-    margin: 5px 0;
-    font-size: 20px;
-    color: #666;
+    margin: 0;
+    font-size: 16px;
+    color: #333;
+}
+
+
+
+/**********************************************/
+/* 애니메이션 효과 */
+/**********************************************/
+
+/* 상품 항목 등장 애니메이션 */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.DA-purchaseList .DA-products .DA-clearfix {
+    animation: fadeInUp 0.5s ease both;
+}
+
+/* 버튼 및 링크의 부드러운 상호작용 */
+.DA-link:hover {
+    color: #0071e3;
+    text-decoration: underline;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
 }
