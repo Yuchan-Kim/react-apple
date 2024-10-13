@@ -320,7 +320,7 @@ function PurchaseACC() {
               <p>추천 액세서리가 없습니다.</p>
             )}
           </div>
-          <Link to="/mainlistacc" className="yc-more-products-button">더 많은 제품</Link>
+          <Link to="/mainlist" className="yc-more-products-button">더 많은 제품</Link>
         </section>
 
         <Footer />

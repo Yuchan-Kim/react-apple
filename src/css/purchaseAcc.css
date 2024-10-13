@@ -6,11 +6,12 @@
 
 /* Global Purchase Section */
 .yc-acc-purchase-section {
-    padding: 50px 0;
+    padding-top: 50px;
     background-color: white;
     text-align: left;
     width: 90%;
     margin: auto;
+    padding-bottom: 0px;
 }
 
 .yc-acc-purchase-header {
@@ -43,9 +44,10 @@
 .yc-acc-model-images-section {
     width: 90%;
     margin: auto;
-    margin-bottom: 50px;
+    margin-bottom: 50px; /* Adjusted from 100px to 50px for better spacing */
     display: flex;
     justify-content: center;
+    align-items: center; /* Center vertically if needed */
 }
 
 /* Model Images Wrapper */
@@ -61,13 +63,13 @@
 /* Image Styling */
 .yc-acc-phone-image {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 80%;
     height: 80%;
     object-fit: contain;
     border-radius: 12px;
-    /* 필요 시 추가 스타일 */
 }
 
 /* Prev and Next Buttons */
@@ -76,15 +78,20 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.3); /* 기존 0.2에서 0.3으로 약간 증가 */
     color: white;
     border: none;
-    padding: 10px;
+    padding: 0; /* 패딩 제거 */
     cursor: pointer;
     font-size: 24px;
     border-radius: 50%;
     z-index: 10;
     transition: background-color 0.3s ease;
+    height: 43px;
+    width: 43px;
+    display: flex; /* Flexbox 적용 */
+    align-items: center; /* 수직 중앙 정렬 */
+    justify-content: center; /* 수평 중앙 정렬 */
 }
 
 .yc-accprev-button {
@@ -97,7 +104,7 @@
 
 .yc-accprev-button:hover,
 .yc-accnext-button:hover {
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.4); /* 호버 시 배경색 약간 어둡게 */
 }
 
 /* Selection Section */
@@ -250,6 +257,10 @@
 .yc-accessory-item {
     text-align: center;
     width: 300px;
+    border: 1px solid #e5e5e5; /* Added border */
+    padding: 15px; /* Added padding for better spacing */
+    border-radius: 10px; /* Optional: Rounded corners */
+    background-color: #ffffff; /* Optional: Light background */
 }
 
 .yc-accessory-image {
@@ -323,6 +334,28 @@
     transform: scale(1.1);
 }
 
+/* 추가 이미지 섹션 */
+.yc-acc-additional-images {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    width: 90%;
+    margin: auto;
+    margin-bottom: 50px;
+}
+
+.yc-acc-model-images-small {
+    display: inline-block; /* 이미지들이 한 줄에 나열되도록 설정 */
+    margin: 10px; /* 이미지 간 간격 */
+}
+
+.yc-acc-image {
+    width: 150px; /* 원하는 너비로 설정 */
+    height: auto; /* 높이는 자동으로 비율 유지 */
+    border-radius: 8px; /* 이미지 모서리 둥글게 (선택 사항) */
+}
+
 /* 반응형 디자인 */
 @media (max-width: 768px) {
     .yc-acc-purchase-header h1 {
@@ -338,7 +371,7 @@
         width: 30px;
         height: 30px;
         font-size: 16px;
-        padding: 8px;
+        padding: 0; /* Flexbox 적용으로 인해 패딩 제거 */
     }
 
     .yc-acc-model-images-section {
