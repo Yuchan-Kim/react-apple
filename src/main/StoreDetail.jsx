@@ -12,7 +12,7 @@ import Footer from '../include/Footer';
 
 const StoreDetail = () => {
     
-    const {storeNum} =- useParams();
+    const {storeNum} = useParams();
 
     const [storeName, setStoreName] = useState('');
     const [storeAddress, setStoreAddress] = useState('');
