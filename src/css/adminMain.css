@@ -231,7 +231,6 @@
 #admin_main .hjy-card img {
     max-width: 250px;
     max-height: 600px;
-    border-radius: 10px;
     margin-bottom: 10px; /* Add some space between the image and the details */
     padding-top: 10px; /* Add padding only to the top */
 }

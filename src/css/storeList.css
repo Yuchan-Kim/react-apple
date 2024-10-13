@@ -140,7 +140,6 @@
 #store #store_Img {
     width: 300px; /* 이미지 크기를 적절하게 조정 */
     height: 200px;
-    border-radius: 8px;
     margin-right: 30px;
 }
 
