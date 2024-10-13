@@ -34,15 +34,16 @@
 /* Store Image */
 .j-store-image {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: center;  /* 수평 중앙 정렬 */
+    align-items: center;      /* 수직 중앙 정렬 */
     width: 100%;
-    margin: 0px 20px;
+    margin: 0 auto;           /* 컨테이너 자체도 중앙에 위치 */
 }
 
 .j-store-image img {
-    max-width: 1450px;
-    height: auto;
+    max-width: 100%;           /* 부모 요소에 맞게 이미지 너비 조정 */
+    height: auto;              /* 높이는 자동으로 조정하여 비율 유지 */
+    object-fit: cover;         /* 이미지 비율 유지 */
 }
 
 /* Store Details Grid */
