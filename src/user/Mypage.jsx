@@ -217,11 +217,11 @@ const Mypage = () => {
                                             <>
                                                 {likeList.map((like, index) => (
                                                     <div className="DA-product-info" key={index}>
-                                                        <img src={`${process.env.REACT_APP_API_URL}/upload/${like.imageSavedName}`} alt="상품사진" />
+                                                        <img src={`${process.env.REACT_APP_API_URL}/upload/${like.imageSavedName}`} alt={like.imageSavedName} />
 
                                                         <div className="DA-product-details">
                                                             <h4>{like.productName} {like.storageSize} {like.colorName}</h4>
-                                                            <p>{(like.totalPrice).toLocaleString()}원</p>
+                                                            <p>{(like.productPrice).toLocaleString()}원</p>
                                                         </div>
                                                     </div>
                                                 ))}
@@ -256,11 +256,11 @@ const Mypage = () => {
                                                 <>
                                                     {purchaseList.map((purchase, index) => (
                                                         <div className="DA-purchaseList-info" key={index}>
-                                                            <img src={`${process.env.REACT_APP_API_URL}/upload/${purchase.imageSavedName}`} alt="상품사진" />
+                                                            <img src={`${process.env.REACT_APP_API_URL}/upload/${purchase.imageSavedName}`} alt={purchase.imageSavedName} />
 
                                                             <div className="DA-purchaseList-details">
                                                                 <h4>{purchase.productName} {purchase.storageSize} {purchase.colorName}</h4>
-                                                                <p>{(purchase.totalPrice).toLocaleString()}원</p>
+                                                                <p>{(purchase.productPrice).toLocaleString()}원</p>
                                                             </div>
                                                         </div>
                                                     ))}

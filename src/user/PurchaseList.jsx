@@ -120,13 +120,13 @@ const PurchaseList = () => {
                                                 {purchaseList.map((purchase, index)=>{
                                                     return(
                                                         <div className="DA-clearfix" key={index}>
-                                                            <img src={`${process.env.REACT_APP_API_URL}/upload/${imageSavedName}`} alt="상품사진" />
+                                                            <img src={`${process.env.REACT_APP_API_URL}/upload/${purchase.imageSavedName}`} alt={purchase.imageSavedName} />
                                                             {/* imageSavedName */}
                                                             <div className="DA-details">
                                                                 <p>{purchase.productName}</p>
                                                                 <p>{purchase.colorName}</p>
                                                                 <p>{purchase.productCount}</p>
-                                                                <p>{purchase.totalPrice}</p>
+                                                                <p>{purchase.productPrice.toLocaleString()}</p>
                                                                 <p>{purchase.purchasedDate}</p>
                                                             </div>
                                                         </div>
