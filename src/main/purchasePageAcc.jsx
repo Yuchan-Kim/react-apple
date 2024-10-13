@@ -1,7 +1,6 @@
-import React,{ useState, useEffect,navigate } from 'react';
-import { Link,useParams, useNavigate} from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
 
 import '../css/purchaseAcc.css';
 import Header from '../include/Header';
@@ -11,7 +10,7 @@ import { BsMenuButtonFill } from 'react-icons/bs';
 function PurchaseACC() {
   const { productDetailNum } = useParams();
 
-  const [productAccInfo, setProductAccInfo] = useState([]);
+  const [productAccInfo, setProductAccInfo] = useState({});
   const [infoImagesAcc, setInfoImagesAcc] = useState([]);
   const [productImagesAcc, setProductImagesAcc] = useState([]);
   const [relatedModelsAcc, setRelatedModelAcc] = useState([]);
@@ -36,13 +35,14 @@ function PurchaseACC() {
     axios.get(`${process.env.REACT_APP_API_URL}/api/productAcc/${productDetailNum}/productimages`)
       .then(response => {
         setProductImagesAcc(response.data.apiData);
+        setCurrentImageIndex(0); // 이미지 로드 시 인덱스 초기화
       })
       .catch(error => {
         console.error('제품 이미지를 가져오는 중 오류 발생:', error);
       });
 
     // 추가 이미지 가져오기
-    axios.get(`http://${process.env.REACT_APP_API_URL}/api/productAcc/${productDetailNum}/infoImages`)
+    axios.get(`${process.env.REACT_APP_API_URL}/api/productAcc/${productDetailNum}/infoImages`)
       .then(response => {
         setInfoImagesAcc(response.data.apiData);
       })
@@ -50,52 +50,56 @@ function PurchaseACC() {
         console.error('추가 이미지를 가져오는 중 오류 발생:', error);
       });
 
-      // 관련 악세사리 가져오기
+    // 관련 악세사리 가져오기
     axios.get(`${process.env.REACT_APP_API_URL}/api/product/${productDetailNum}/relatedProducts`)
-    .then(response => {
-      setRelatedModelAcc(response.data.apiData);
-    })
-    .catch(error => {
-      console.error('관련 악세사리를 가져오는 중 오류 발생:', error);
-    });
+      .then(response => {
+        setRelatedModelAcc(response.data.apiData);
+      })
+      .catch(error => {
+        console.error('관련 악세사리를 가져오는 중 오류 발생:', error);
+      });
   }, [productDetailNum]);
 
   // AppleCare 옵션 클릭 처리
   const handleAppleCareAccOptionClick = (option) => {
-    // 같은 항목을 클릭하면 선택 취소, 다른 항목 클릭 시 그 항목을 선택
     setSelectedAppleCareAcc(selectedAppleCareAcc === option ? null : option);
   }
-  // 이미지 넘기기
+
+  // 이미지 넘기기 (순환하지 않도록 수정)
   const handlePrevImage = () => {
-    setCurrentImageIndex((prevIndex) =>
-      prevIndex === 0 ? productImagesAcc.length - 1 : prevIndex - 1
-    );
+    setCurrentImageIndex((prevIndex) => {
+      if (prevIndex > 0) {
+        return prevIndex - 1;
+      }
+      return prevIndex;
+    });
   };
 
   const handleNextImage = () => {
-    setCurrentImageIndex((prevIndex) =>
-      prevIndex === productImagesAcc.length - 1 ? 0 : prevIndex + 1
-    );
+    setCurrentImageIndex((prevIndex) => {
+      if (prevIndex < productImagesAcc.length - 1) {
+        return prevIndex + 1;
+      }
+      return prevIndex;
+    });
   };
   
-  //장바구니 추가
-  const validImages = productImagesAcc
-
+  // 장바구니 추가
   const handleAddToCart = () => {
     const token = localStorage.getItem('token');
-  
+
     if (!token) {
       console.log("토큰이 없습니다. 로그인하세요.");
       alert("로그인이 필요합니다. 로그인 페이지로 이동합니다.");
       navigate("/user/loginform");
       return;  // 오류가 있으면 함수 중단
     }
-  
+
     if (!productDetailNum) {
       console.error("productDetailNum이 없습니다.");
       return;
     }
-  
+
     // axios 요청 반환
     return axios({
       method: 'post',
@@ -121,21 +125,22 @@ function PurchaseACC() {
       console.log("장바구니 추가 실패", error);
     });
   };
-  //관심상품 추가
+
+  // 관심상품 추가
   const handleAddToLiked = () => {
     const token = localStorage.getItem('token');
-  
+
     if (!token) {
       console.log("토큰이 없습니다. 로그인하세요.");
       navigate('/user/loginform');
       return;
     }
-  
+
     if (!productDetailNum) {
       console.error("productDetailNum이 없습니다.");
       return;
     }
-  
+
     // axios 요청 반환
     return axios({
       method: 'put',
@@ -161,10 +166,10 @@ function PurchaseACC() {
       console.log("관심 상품 추가 실패", error);
     });
   };
+
   if (!productImagesAcc || productImagesAcc.length === 0) {
     return <p>No images available.</p>;
   }
-  
 
   return (
     <>
@@ -174,7 +179,6 @@ function PurchaseACC() {
         {/* ACC Purchase Header Section */}
         <section className="yc-acc-purchase-section">
           <div className="yc-acc-purchase-header">
-            
             <h1>{productAccInfo.productName || '제품 정보 없음'} 구매하기</h1>
             <p className="yc-acc-price">
               {productAccInfo.productPrice !== undefined 
@@ -186,34 +190,40 @@ function PurchaseACC() {
 
         {/* Model Images Section */}
         <section className="yc-acc-model-images-section">
-          <div className="yc-acc-model-images">
-            {validImages.length > 0 ? (
-            <>
-              {/* 이전 버튼: 첫 번째 이미지가 아니면 표시 */}
-              {currentImageIndex > 0 && (
-                <button className="yc-accprev-button" onClick={handlePrevImage}>
-                  &#10094;
-                </button>
-              )}
-              
-              {validImages[currentImageIndex] && (
+          <div className="yc-acc-model-images-wrapper">
+            {productImagesAcc.length > 0 ? (
+              <>
+                {/* Prev 버튼: 첫 번째 이미지가 아닐 때만 표시 */}
+                {currentImageIndex > 0 && (
+                  <button 
+                    className="yc-accprev-button" 
+                    onClick={handlePrevImage}
+                    aria-label="이전 이미지"
+                  >
+                    &#10094;
+                  </button>
+                )}
+                
                 <img
-                  src={`${process.env.REACT_APP_API_URL}/upload/${validImages[currentImageIndex].imageSavedName}`}
-                  alt={validImages[currentImageIndex].imageSavedName}
-                  className="yc-phone-image"
+                  src={`${process.env.REACT_APP_API_URL}/upload/${productImagesAcc[currentImageIndex].imageSavedName}`}
+                  alt={productImagesAcc[currentImageIndex].imageSavedName}
+                  className="yc-acc-phone-image"
                 />
-              )}
 
-              {/* 다음 버튼: 마지막 이미지가 아니면 표시 */}
-              {currentImageIndex < validImages.length - 1 && (
-                <button className="yc-accnext-button" onClick={handleNextImage}>
-                  &#10095;
-                </button>
-              )}
-            </>
-          ) : (
-            <p>No images to display.</p>
-          )}
+                {/* Next 버튼: 마지막 이미지가 아닐 때만 표시 */}
+                {currentImageIndex < productImagesAcc.length - 1 && (
+                  <button 
+                    className="yc-accnext-button" 
+                    onClick={handleNextImage}
+                    aria-label="다음 이미지"
+                  >
+                    &#10095;
+                  </button>
+                )}
+              </>
+            ) : (
+              <p>No images to display.</p>
+            )}
           </div>
 
           {/* Selection Section */}
@@ -221,26 +231,26 @@ function PurchaseACC() {
             <h2>AppleCare+ 보증. 새로 구입한 악세사리를 보호하세요.</h2>
             <div className="yc-acc-applecare-options">
               {/* AppleCare+ 선택 */}
-                <div
-                  className={`yc-acc-applecare-option ${selectedAppleCareAcc === 'applecare' ? 'yc-selected' : ''}`}
-                  onClick={() => handleAppleCareAccOptionClick('applecare')}
-                >
-                  <span className="yc-acc-applecare-logo">
-                    <span className="yc-acc-apple-logo"></span>
-                    <span className="yc-acc-applecare-text"> AppleCare+</span>
-                  </span>
-                  <p>우발적인 손상에 대한 횟수 제한 없는 수리*</p>
-                  <p>Apple 정품 부품으로 진행되는 Apple 인증 수리 서비스</p>
-                  <p>Apple 전문가의 우선 지원</p>
-                </div>
+              <div
+                className={`yc-acc-applecare-option ${selectedAppleCareAcc === 'applecare' ? 'yc-selected' : ''}`}
+                onClick={() => handleAppleCareAccOptionClick('applecare')}
+              >
+                <span className="yc-acc-applecare-logo">
+                  <span className="yc-acc-apple-logo"></span>
+                  <span className="yc-acc-applecare-text"> AppleCare+</span>
+                </span>
+                <p>우발적인 손상에 대한 횟수 제한 없는 수리*</p>
+                <p>Apple 정품 부품으로 진행되는 Apple 인증 수리 서비스</p>
+                <p>Apple 전문가의 우선 지원</p>
+              </div>
 
-                {/* AppleCare+ 보증 추가 안 함 */}
-                <div
-                  className={`yc-acc-applecare-option-nocare ${selectedAppleCareAcc === 'nocare' ? 'yc-selected' : ''}`}
-                  onClick={() => handleAppleCareAccOptionClick('nocare')}
-                >
-                  <p>AppleCare+ 보증 추가 안 함</p>
-                </div>
+              {/* AppleCare+ 보증 추가 안 함 */}
+              <div
+                className={`yc-acc-applecare-option-nocare ${selectedAppleCareAcc === 'nocare' ? 'yc-selected' : ''}`}
+                onClick={() => handleAppleCareAccOptionClick('nocare')}
+              >
+                <p>AppleCare+ 보증 추가 안 함</p>
+              </div>
               <div className="yc-acc-applecare-info">
                 <div className="yc-acc-info-box">
                   <p className="yc-acc-applecare-addons">
@@ -252,36 +262,41 @@ function PurchaseACC() {
             </div>
 
             {/* Price and Buttons */}
-              <div className="yc-acc-price-section">
-                {productAccInfo && productAccInfo.productPrice !== undefined ? (
-                  <>
-                    <button 
-                      className="yc-acc-continue" 
-                      onClick={() => handleAddToLiked({ productDetailNum: productAccInfo.productDetailNum })}
-                    >
-                      관심상품 추가
-                    </button>
-                    <button
-                      className="yc-acc-continue" 
-                      onClick={() => handleAddToCart({ productDetailNum: productAccInfo.productDetailNum })}
-                    >
-                      장바구니에 추가
-                    </button>
-                  </>
-                ) : (
-                  <p>가격 정보를 불러오는 중...</p>
-                )}
-              </div>
-
-
+            <div className="yc-acc-price-section">
+              {productAccInfo && productAccInfo.productPrice !== undefined ? (
+                <>
+                  <button 
+                    className="yc-acc-continue" 
+                    onClick={handleAddToLiked}
+                  >
+                    관심상품 추가
+                  </button>
+                  <button
+                    className="yc-acc-continue" 
+                    onClick={handleAddToCart}
+                  >
+                    장바구니에 추가
+                  </button>
+                </>
+              ) : (
+                <p>가격 정보를 불러오는 중...</p>
+              )}
+            </div>
           </div>
         </section>
 
-        {infoImagesAcc.map((image, index) => (
-          <div key={index} className={`yc-acc-model-images${index + 3}`}>
-            <img key={index} src={`${process.env.REACT_APP_API_URL}/upload/${image.infoImageSavedName}`}alt = {image.infoImageSavedName}className="yc-acc-image"/>
-          </div>
-        ))}
+        {/* 추가 이미지 섹션 */}
+        <section className="yc-acc-additional-images">
+          {infoImagesAcc.map((image, index) => (
+            <div key={index} className="yc-acc-model-images-small">
+              <img 
+                src={`${process.env.REACT_APP_API_URL}/upload/${image.infoImageSavedName}`} 
+                alt={image.infoImageSavedName}
+                className="yc-acc-image"
+              />
+            </div>
+          ))}
+        </section>
 
         {/* Recommended Accessories Section */}
         <section className="yc-recommended-accessories">
@@ -291,7 +306,11 @@ function PurchaseACC() {
               relatedModelsAcc.map((acc, index) => (
                 <div key={index} className="yc-accessory-item">
                   <Link to={`/purchaseAcc/${acc.productDetailNum}`}>
-                    <img key={index} src={`${process.env.REACT_APP_API_URL}/upload/${acc.imageSavedName}`}alt = {acc.imageSavedName}className="yc-accessory-image"/>
+                    <img 
+                      src={`${process.env.REACT_APP_API_URL}/upload/${acc.imageSavedName}`} 
+                      alt={acc.imageSavedName}
+                      className="yc-accessory-image"
+                    />
                   </Link>
                   <p>{acc.productName}</p>
                   <p>₩ {(acc.productPrice).toLocaleString()}</p>
