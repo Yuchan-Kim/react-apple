@@ -90,7 +90,7 @@ const DeliveryList = () => {
 
         const requestData = {
             receiptNum: receiptNum,
-            shippingStatus: "배송 완료" // Updating status to '탈퇴' (which means withdrawal)
+            shippingStatus: "배송 완료" //
         };
 
         axios({
@@ -105,11 +105,9 @@ const DeliveryList = () => {
             console.log("===============================");
 
             if (response.data.result === 'success') {
-                // Remove the updated item from unionList
-                let newArray = unionList.filter((union) => {
-                    return union.receiptNum !== receiptNum;
-                });
-                setUnionList(newArray);
+                // After successful update, refetch the entire list from server
+                getUnionList(); // Refetch the union list from the server
+    
             } else {
                 alert(response.data.message);
             }
@@ -139,17 +137,9 @@ const DeliveryList = () => {
             console.log("===============================");
 
             if (response.data.result === 'success') {
-                // Update the shipping status of the item in unionList
-                let newArray = unionList.map((union) => {
-                    if (union.receiptNum === receiptNum) {
-                        return {
-                            ...union,
-                            shippingStatus: requestData.shippingStatus // Update shipping status
-                        };
-                    }
-                    return union; // Return unchanged items
-                });
-                setUnionList(newArray);
+                // After successful update, refetch the entire list from server
+                getUnionList(); // Refetch the union list from the server
+    
             } else {
                 alert(response.data.message);
             }
