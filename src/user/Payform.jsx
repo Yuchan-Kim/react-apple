@@ -323,7 +323,7 @@ const CheckoutPage = () => {
                     {cartList.map((cartVo) => (
                       <li key={cartVo.cartNum} className="jm-product-details">
                         <div className="jm-product-img">
-                          <img src={`${process.env.REACT_APP_API_URL}/upload/${cartVo.imageSavedName}`} alt="product" />
+                          <img src={`${process.env.REACT_APP_API_URL}/upload/${cartVo.imageSavedName}`} alt={cartVo.imageSavedName} />
                         </div>
                         <div className="jm-product-info">
                           <p>{cartVo.productName} {cartVo.storageSize}</p>

@@ -131,14 +131,11 @@
   
 }
 
-.jm-item-image-box img{
-  width: auto;
-  text-align: center;
-}
-
   .jm-product-image{
-    height: 100%;
-    width: 400px;;
+    width: 380px; /* Set the desired width */
+    height: 300px; /* Set the desired height */
+    object-fit: cover; /* Ensures the image covers the area while maintaining aspect ratio */
+    border-radius: 8px;
   }
   
   .jm-item-info {

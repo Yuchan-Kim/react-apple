@@ -148,13 +148,15 @@ text-align: center;
 }
 
 .jm-product-img {
-width: 40%;
+width: 150px;
+align-items: center;
 }
 
 .jm-product-img img {
-  width: 100%;
-  margin-block: 20px;
-  padding-top: 15px;
+  width: 150px; /* Set the desired width */
+    height: 150px; /* Set the desired height */
+    object-fit: cover; /* Ensures the image covers the area while maintaining aspect ratio */
+    border-radius: 6px;
   }
 
 .jm-product-info {

@@ -1,5 +1,6 @@
 .jm-order-confirmation-container {
     font-family: Arial, sans-serif;
+    justify-content: center;
     text-align: center;
     padding: 40px; /* 상단 여백을 더 추가 */
   }
@@ -104,7 +105,7 @@
   .jm-pickup-StoreAddress-info {
     margin-top: 100px;
     text-align: left;
-    margin-right: 20px;
+    margin-left: 20px;
   }
 
   .jm-span-tatle {
@@ -125,6 +126,8 @@
   }
 
   .jm-product-summary {
+    display: inline-block;
+    width: 80%;
     margin: 20px;
   }
   .jm-shipping-info,
@@ -136,7 +139,7 @@
   .jm-product-summary ul {
     display: grid;
     justify-content: center;
-    max-width: 100%;
+    max-width: 70%;
     grid-template-columns: repeat(3, 1fr); /* Create 3 equal-width columns */
     list-style: none;
     padding: 0;
@@ -144,23 +147,12 @@
   
   .jm-product-details {
     display: flex;
-    width: 100%;
-    margin-left: 20px;
+    width: 80%;
     text-align: center;
     }
-    
-    .jm-product-img {
-    width: 40%;
-    }
-    
-    .jm-product-img img {
-      width: 100%;
-      margin-block: 20px;
-      padding-top: 15px;
-      }
-    
+      
     .jm-product-info {
-      width: 60%;
+      width: 50%;
       margin-block: 20px;
       padding-top: 15px;
     }

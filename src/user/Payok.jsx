@@ -73,14 +73,15 @@ const Payok = () => {
                 <>
                 <h2>구매완료 - {historyList[0].purchasedDate}</h2>
                 <div className='jm-pickup-StireAddress'>
+                <div className='jm-payment-info-StoreMApImg'>
+                <img src={`${process.env.REACT_APP_API_URL}/upload/${historyList[0].storeMapImage}`} alt={historyList[0].storeMapImage} />
+                </div>
+
                 <div className='jm-pickup-StoreAddress-info'>
                   <span className="jm-order-number">픽업 장소: {historyList[0].storeName} <br/> 스토어 주소: {historyList[0].storeAddress}</span><br/><br/>
                   <span className='jm-span-tatle'>매장 내</span>
                   <p>온라인으로 주문하신 제품을 픽업하세요.<br/> 기기 설정과 관련한 도움도 받고, 액세서리도 쇼핑하실 수 있습니다.<br/>
                   주문하신 제품이 준비되면 자세한 픽업 안내를 이메일로 보내 드립니다.<br/> 새 기기 설정과 관련하여 도움이 필요하시면<br/> Apple 스페셜리스트가 진행하는 무료 온라인 세션을 예약하세요.</p>
-                </div>
-                <div className='jm-payment-info-StoreMApImg'>
-                <img src={`${process.env.REACT_APP_API_URL}/upload/${historyList[0].storeMapImage}`} alt={historyList[0].storeMapImage} />
                 </div>
                 </div>
                 </>
