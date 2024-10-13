@@ -208,7 +208,7 @@ const CheckoutPage = () => {
       data: {
         storeNum: selectedStore,          // 선택된 매장
         userAddress: userAddress,         // 배송지
-        shippingStatus: '배송',           // 배송 상태
+        shippingStatus: '배송 준비중',           // 배송 상태
         totalPrice: totalPrice,           // 총 결제 금액
       },
     })
