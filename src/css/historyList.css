@@ -92,9 +92,10 @@
 
 /* 매장 이미지 */
 #history #sotre_Img {
-    width: 170px; /* 이미지 크기를 적절하게 조정 */
-    height: auto;
+    width: 200px; /* 이미지 크기 조정 */
+    height: 200px; /* 높이도 동일하게 설정 */
     border-radius: 8px;
+    object-fit: cover; /* 이미지가 박스에 꽉 차도록 설정하고 비율 유지 */
     margin-right: 30px;
 }
 
