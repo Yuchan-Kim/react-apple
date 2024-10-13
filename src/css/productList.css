@@ -1,434 +1,290 @@
-@charset "UTF-8";
+/* clearfix */
+#contents .clearfix{*zoom:1;}
+#contents .clearfix:before, .clearfix:after {display: block; content: ""; line-height: 0;}
+#contents .clearfix:after {clear: both;}
 
-/****************************************************************/
-/* PurchaseACC 공통 스타일 *****************************************/
-/****************************************************************/
-
-/* Global Purchase Section */
-.yc-acc-purchase-section {
-    padding: 50px 0;
-    background-color: white;
-    text-align: left;
-    width: 90%;
-    margin: auto;
-    margin-bottom: 0px;
-    padding-bottom: 0px;
+/* #product 레이아웃 수정 */
+#product {
+    margin: 20px auto;
+    width: 100%;
+    max-width: 1200px; /* 헤더의 로고와 맞추기 위해 최대 너비 설정 */
+    padding: 20px 20px; /* 양쪽에 약간의 패딩을 추가해 정돈된 느낌 */
+    margin-bottom: 100px;
 }
 
-.yc-acc-purchase-header {
-    margin-bottom: 30px;
+/* aside 메뉴 */
+#product #asides {
+    float: left;
+    width: 17%;
+    margin-left: 2%;
 }
 
-.yc-acc-new-badge {
-    color: #d35400;
+#product #asides h2 {
+    font-size: 20px;
     font-weight: bold;
-    font-size: 14px;
-    display: block;
-    margin-bottom: 10px;
+    padding-bottom: 5px;
 }
 
-.yc-acc-purchase-header h1 {
-    font-size: 40px;
-    font-weight: bold;
-    color: #1d1d1f;
+#product #asides a {
+    text-decoration: none;
+}
+
+#product #asides a:link {
+    color: #333; 
+}
+
+#product #asides a:visited {
+    color: #333; 
+}
+
+#product #asides #sub_list ul {
+    padding-inline-start: 0;
     margin: 0;
-    margin-bottom:0px;
 }
 
-.yc-acc-price {
-    font-size: 22px;
-    color: #6e6e73;
-    margin-top: 10px;
+#product #asides #sub_list ul>li {
+    padding-bottom: 10px;
+    font-size: 15px;
+    list-style-type: none; 
+}
+
+#product #asides #sub_list ul>li a {
+    color: #aeaeae;
+    text-decoration: none;
+}
+
+#product #asides #sub_list ul>li a:hover {
     font-weight: bold;
+    color: #1594EB;
 }
 
-/* Model Images Section */
-.yc-acc-model-images-section {
-    width: 90%;
-    margin: auto;
-    margin-bottom: 50px; /* Adjusted from 100px to 50px for better spacing */
-    display: flex;
-    justify-content: center;
-    align-items: center; /* Center vertically if needed */
+/* 매장 리스트 영역 */
+#product #product_area {
+    float: left;
+    width: 75%; /* aside와 합쳐서 전체 100%가 되도록 설정 */
 }
 
-/* Model Images Wrapper */
-.yc-acc-model-images-wrapper {
-    position: relative;
-    width: 100%;
-    max-width: 800px; /* 더 큰 이미지 크기를 위해 조정 */
-    margin: auto;
-    overflow: hidden;
-    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+#product #product_list h2 {
+    font-size: 20px;
+    font-weight: bold;
+    padding-bottom: 15px;
 }
 
-/* Image Styling */
-.yc-acc-phone-image {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 80%;
-    height: 80%;
-    object-fit: contain;
-    border-radius: 12px;
+/* 제목과 버튼을 한 줄에 배치 */
+#product .hjy_header_with_buttons {
+    display: flex; 
+    justify-content: space-between; /* 좌우로 배치 */
+    align-items: center; /* 세로 정렬 */
+    margin-bottom: 10px; 
 }
 
-/* Prev and Next Buttons */
-.yc-accprev-button,
-.yc-accnext-button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.2);
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
+#product .hjy_header_with_buttons h2 {
     font-size: 24px;
-    border-radius: 80%;
-    z-index: 10;
-    transition: background-color 0.3s ease;
-    width: 40px;
-}
-
-.yc-accprev-button {
-    left: 10px;
-}
-
-.yc-accnext-button {
-    right: 10px;
-}
-
-.yc-accprev-button:hover,
-.yc-accnext-button:hover {
-    background-color: rgba(0, 0, 0, 0.3);
-}
-
-/* Selection Section */
-.yc-acc-selection-section {
-    width: 42%;
-    overflow-y: auto; /* scroll에서 auto로 변경 */
-    max-height: 600px;
-    margin-left: 40px;
-}
-
-.yc-acc-model-selection h2,
-.yc-acc-applecare-selection h2 {
-    font-size: 23px;
-    margin-bottom: 20px;
-}
-
-.yc-acc-applecare-selection {
-    margin-bottom: 250px;
-}
-
-/* AppleCare Options */
-.yc-acc-applecare-options {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.yc-acc-applecare-option {
-    border: 1px solid #e5e5e5;
-    padding: 20px;
-    border-radius: 10px;
-    background-color: white;
-    font-size: 12px;
-    color: rgb(83, 80, 80);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    transition: border-color 0.3s, background-color 0.3s;
-}
-
-.yc-acc-applecare-option-nocare {
-    padding: 20px;
-    padding-top: 0px;
-    border: 1px solid #e5e5e5;
-    border-radius: 10px;
-    background-color: white;
-    font-size: 18px;
-    font-weight: bold;
-    color: rgb(0, 0, 0);
-    display: flex;
-    flex-direction: column;
-    transition: border-color 0.3s, background-color 0.3s;
-}
-
-.yc-acc-applecare-logo {
-    font-weight: bold;
-    font-size: 18px;
-    margin-bottom: 10px;
-}
-
-.yc-acc-apple-logo {
-    color: #e74c3c;
-}
-
-.yc-acc-applecare-text {
-    color: #1d1d1f;
-}
-
-.yc-acc-applecare-info {
-    width: 100%;
-    padding: 20px;
-    border-radius: 10px;
-    background-color: rgb(251, 251, 251);
-    font-size: 12px;
-    color: #6e6e73;
-    text-align: left;
-    margin-bottom: 30px;
-}
-
-/* Price and Buttons */
-.yc-acc-price-section {
-    margin-bottom: 30px;
-    text-align: center;
-}
-
-.yc-acc-info-box {
-    background-color: rgb(251, 251, 251);
-    padding: 10px;
-    border-radius: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    font-size: 13px;
-}
-
-.yc-acc-info-button {
-    transition: transform 0.2s, color 0.3s;
-}
-
-.yc-acc-info-button:hover {
-    transform: rotate(45deg);
-    color: #0070c9;
-}
-
-.yc-acc-continue {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #0070c9;
-    border: none;
-    color: white;
-    border-radius: 20px;
-    cursor: pointer;
-    margin-right: 10px;
-    font-size: 14px;
-    float: right;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.yc-acc-continue:hover {
-    background-color: #005bb5;
-    transform: scale(1.05);
-}
-
-.yc-acc-continue:active {
-    transform: scale(0.95);
-}
-
-/* Recommended Accessories Section */
-.yc-recommended-accessories {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.yc-section-title {
-    font-size: 22px;
-    margin-bottom: 20px;
     font-weight: bold;
 }
 
-.yc-accessory-list {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    width: 90%;
+#product .hjy_header_with_buttons a:link {
+    text-decoration: none;
+    color: #ffffff;
 }
 
-.yc-accessory-item {
-    text-align: center;
-    width: 300px;
-    border: 1px solid #e5e5e5; /* Added border */
-    padding: 15px; /* Added padding for better spacing */
-    border-radius: 10px; /* Optional: Rounded corners */
-    background-color: #ffffff; /* Optional: Light background */
+#product .hjy_header_with_buttons a:visited {
+    text-decoration: none;
+    color: #ffffff;
 }
 
-.yc-accessory-image {
-    width: 100%;
-    margin-bottom: 10px;
-}
-
-.yc-add-to-cart-button {
+/* 추가 버튼 스타일링 */
+#product .hjy_add_product_btn {
+    padding: 10px 5px;
+    width: 90px;
     background-color: #0071e3;
     color: white;
-    padding: 10px;
     border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: background-color 0.3s ease;
+}
+
+#product .hjy_add_product_btn:hover {
+    background-color: #005bb5;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* 버튼 안의 a 태그에 흰색 텍스트 적용 */
+#product .hjy_add_product_btn a {
+    color: white; 
+}
+
+#product .hjy_add_product_btn a:visited {
+    color: white; 
+}
+
+/* 매장 목록 */
+#product #product_item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#product #product_item:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* 매장 이미지 */
+#product #store_Img {
+    width: 200px; /* 이미지 크기 조정 */
+    height: 200px; /* 높이도 동일하게 설정 */
+    border-radius: 8px;
+    object-fit: cover; /* 이미지가 박스에 꽉 차도록 설정하고 비율 유지 */
+    margin-right: 30px;
+}
+
+/* 매장 정보 */
+#product .hjy_product_info {
+    flex: 1;
+    font-size: 16px;
+}
+
+#product .hjy_product_info p {
+    margin-bottom: 10px;
+}
+
+#product .hjy_product_info strong {
+    font-weight: bold;
+}
+
+/* 수정 버튼 */
+#product .hjy_edit_btns {
+    margin-left: 10px;
+}
+
+#product .hjy_edit_btns button {
+    border: none;
+    background-color: #0071e3;
     border-radius: 5px;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease;
     cursor: pointer;
 }
 
-.yc-add-to-cart-button:hover {
+#product .hjy_edit_btns button:hover {
+    background-color: #005bb5;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+#product .hjy_edit_btns button a {
+    color: white; /* 글씨 색상을 흰색으로 설정 */
+    text-decoration: none; /* 밑줄 제거 */
+}
+
+/* a 태그에 hover 시에도 흰색 유지 */
+#product .hjy_modify_btn button a:hover {
+    color: white;
+}
+
+/* 삭제 버튼 */
+#product .hjy_del_btn {
+    margin: 0px 8px;
+}
+
+#product .hjy_del_btn button {
+    border: none;
+    color: white;
+    background-color: #ff6b6b;
+    border-radius: 5px;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+#product .hjy_del_btn button:hover {
+    background-color: #ff4c4c;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* 검색 */
+.hjy_header_with_buttons {
+    display: flex;
+    justify-content: space-between; /* 요소 간에 공간을 균등하게 분배 */
+    align-items: center; /* 세로 중앙 정렬 */
+    margin-bottom: 20px;
+}
+
+.hjy_search_form {
+    display: flex;
+    align-items: center; /* input과 검색 버튼을 수직으로 중앙 정렬 */
+    gap: 10px; /* input과 버튼 사이의 간격 */
+    position: relative;
+    top: -5px; /* input과 버튼을 위로 약간 올리기 */
+}
+
+.hjy_header_with_buttons h2 {
+    margin: 0;
+    padding: 0;
+}
+
+/* 키워드 입력창 */
+.hjy_search_form input {
+    width: 320px;
+    height: 35px;
+    border: 1px solid #d1d1d1;
+    border-radius: 8px;
+    padding-left: 10px;
+    background-color: #ffffff;
+    position: relative;
+    left: 80px; 
+}
+
+.hjy_header_with_buttons input:focus {
+    border: 1px solid #a2a2a2;
+    outline: none;
+}
+
+.hjy_search_form button {
+    border: none;
+    border-radius: 20px;
+    padding: 10px 15px;
+    cursor: pointer;
+    background-color: #0071e3;
+    color: white;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    position: relative;
+    left: 80px; 
+}
+
+.hjy_search_form button:hover {
     background-color: #005bb5;
 }
 
-.yc-more-products-button {
-    display: block;
-    text-align: center;
-    margin: 20px auto;
-    background: none;
-    color: #0071e3;
+.hjy_add_product_btn {
+    margin-left: auto; 
+    padding: 10px 15px;
+    background-color: #0071e3;
+    color: white;
+    border-radius: 20px;
+    font-weight: bold;
     text-decoration: none;
-    font-size: 16px;
-    transition: color 0.3s ease;
-}
-
-.yc-more-products-button:hover {
-    color: #005bb5;
-}
-
-/* Tooltip Styling for Color Circles */
-.yc-color-circle {
     position: relative;
-    margin-left: 5px;
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    cursor: pointer;
-    background-color: var(--color);
-    border: 1px solid transparent;
-    transition: border-color 0.3s, transform 0.3s;
+    top: -5px; /* 상품 등록 버튼을 위로 약간 올리기 */
 }
 
-.yc-color-circle::after {
-    content: attr(data-color);
-    position: absolute;
-    bottom: 125%;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #333;
-    color: #fff;
-    padding: 5px 8px;
-    border-radius: 4px;
-    opacity: 0;
-    transition: opacity 0.3s;
-    pointer-events: none;
-    font-size: 12px;
+.hjy_add_product_btn a {
+    color: white;
+    text-decoration: none;
 }
 
-.yc-color-circle:hover::after {
-    opacity: 1;
-}
-
-.yc-color-circle.yc-selected {
-    border: 2px solid #0070c9;
-    transform: scale(1.1);
-}
-
-/* 추가 이미지 섹션 */
-.yc-acc-additional-images {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    width: 90%;
-    margin: auto;
-    
-}
-
-.yc-acc-model-images-small {
-    display: inline-block; /* 이미지들이 한 줄에 나열되도록 설정 */
-    margin: 10px; /* 이미지 간 간격 */
-}
-
-.yc-acc-image {
-    width: 150px; /* 원하는 너비로 설정 */
-    height: auto; /* 높이는 자동으로 비율 유지 */
-    border-radius: 8px; /* 이미지 모서리 둥글게 (선택 사항) */
-}
-
-/* 반응형 디자인 */
-@media (max-width: 768px) {
-    .yc-acc-purchase-header h1 {
-        font-size: 24px;
-    }
-
-    .yc-acc-price {
-        font-size: 20px;
-    }
-
-    .yc-accprev-button,
-    .yc-accnext-button {
-        width: 30px;
-        height: 30px;
-        font-size: 16px;
-        padding: 8px;
-    }
-
-    .yc-acc-model-images-section {
-        width: 100%;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .yc-acc-selection-section {
-        width: 100%;
-        margin-left: 0;
-    }
-
-    .yc-acc-model-images-wrapper {
-        max-width: 100%;
-        padding-top: 75%; /* 모바일용 비율 조정 */
-    }
-
-    .yc-acc-applecare-selection {
-        margin-bottom: 150px;
-    }
-
-    .yc-acc-applecare-option,
-    .yc-acc-applecare-option-nocare {
-        font-size: 14px;
-    }
-
-    .yc-acc-continue {
-        padding: 8px 16px;
-        font-size: 12px;
-    }
-
-    .yc-recommended-accessories .yc-section-title {
-        font-size: 20px;
-    }
-
-    .yc-accessory-list {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .yc-accessory-item {
-        width: 80%;
-    }
-
-    .yc-more-products-button {
-        font-size: 14px;
-    }
-
-    /* 수정된 yc-acc-image 클래스 */
-    .yc-acc-image {
-        max-width: 100px; /* 모바일에서는 더 작은 크기로 조정 */
-        width: 100%;
-        height: 100px;
-    }
-
-    /* 수정된 yc-acc-phone-image 클래스 */
-    .yc-acc-phone-image {
-        /* 이미 컨테이너의 max-width가 800px으로 설정됨 */
-        object-fit: contain; /* 필요에 따라 조정 */
-    }
+.hjy_add_product_btn a:hover {
+    text-decoration: none;
 }
